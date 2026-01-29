@@ -29,7 +29,8 @@ const Navbar = () => {
         {/* RIGHT */}
         <ul className="nav-links">
           {[
-            { to: "/about", label: "About Trinh" },
+            { to: "/", label: "About Trinh" },
+
             { to: "/projects", label: "Projects" },
             { to: "/illustration", label: "Illustration" },
           ].map(({ to, label }) => (

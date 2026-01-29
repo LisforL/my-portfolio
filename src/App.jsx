@@ -1,34 +1,32 @@
 import { Routes, Route } from "react-router-dom";
 
-import Layout from "./Layouts/Layout";
+import ScrollToTop from "./components/ScrollToTop";
+import CursorDot from "./components/CursorDot";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
-import Home from "./pages/Home";
+/* PAGES */
+import Home from "./pages/Home";              
 import Projects from "./pages/Projects";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
 import Illustration from "./pages/Illustration";
-
-import CursorDot from "./components/CursorDot"; // 👈 ADD THIS
-
-import "./styles/home.css";
-import "./styles/navbar.css";
-import "./styles/footer.css";
 
 function App() {
   return (
     <>
-      {/* GLOBAL CURSOR DOT */}
+      <ScrollToTop />
       <CursorDot />
 
+      <Navbar />
+
       <Routes>
-        {/* Layout wrapper */}
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/about" element={<Home />} />
-          <Route path="/illustration" element={<Illustration />} />
-        </Route>
+        {/* Home = About page */}
+        <Route path="/" element={<Home />} />
+
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/illustration" element={<Illustration />} />
       </Routes>
+
+      <Footer />
     </>
   );
 }

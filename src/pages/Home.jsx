@@ -1,4 +1,4 @@
-
+import "../styles/home.css";
 
 const Home = () => {
     return (
