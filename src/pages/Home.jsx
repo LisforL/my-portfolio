@@ -49,7 +49,7 @@ const Home = () => {
 
                     {/* EXPERTISE */}
                     <div className="services-block">
-                        <h3 className="services-title">Expertise of me</h3>
+                        <h3 className="services-title">Expertise</h3>
 
                         <ul className="services-list">
                             <li>

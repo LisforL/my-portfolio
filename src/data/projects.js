@@ -31,4 +31,20 @@ export const projects = [
     mockupImage: "/projects/spitimou-mockup.png",
     link: "https://figma.com",
   },
+  {
+    id: "05",
+    title: "ELONET",
+    type: "Beauty",
+    bgImage: "/projects/ELONET-bg.png",
+    mockupImage: "/projects/ELONET-mockup.png",
+    link: "https://figma.com",
+  },
+  {
+    id: "06",
+    title: "CRYPTO WEB",
+    type: "Crypto",
+    bgImage: "/projects/CRYPTO WEB-bg.png",
+    mockupImage: "/projects/CRYPTO WEB-mockup.png",
+    link: "https://figma.com",
+  },
 ];
