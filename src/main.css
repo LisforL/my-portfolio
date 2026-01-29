@@ -15,44 +15,39 @@
   padding-top: var(--navbar-height);
 }
 /* ===============================
-   CURSOR DOT
+   MOUSE FOLLOWER — DOT GROW (FIX)
 ================================ */
 
-.cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: #FF5286;
-
-  pointer-events: none;
+/* Base dot */
+.mf-cursor {
+  color: #FF5286 !important; /* already working */
   z-index: 9999;
-
-  will-change: transform;
-  transition:
-    width 0.2s ease,
-    height 0.2s ease,
-    opacity 0.2s ease;
 }
 
-/* Grow on links */
-.cursor-dot.cursor-grow {
-  width: 12px;
-  height: 12px;
-  opacity: 0.85;
+/* DEFAULT dot size */
+.mf-cursor::before {
+  transform: scale(0.2); /* base size */
+}
+
+/* GROW on hover */
+.mf-cursor.-grow::before {
+  transform: scale(0.25); /* 👈 grow amount */
+  opacity: 1;
+}
+
+/* Smooth animation */
+.mf-cursor::before {
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease;
 }
 
 /* Disable on touch devices */
 @media (hover: none) {
-  .cursor-dot {
+  .mf-cursor {
     display: none;
   }
 }
-
-
 
 /* Global reset */
 * {

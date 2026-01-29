@@ -1,55 +1,29 @@
 import { useEffect } from "react";
+import MouseFollower from "mouse-follower";
+import gsap from "gsap";
+
+MouseFollower.registerGSAP(gsap);
 
 const CursorDot = () => {
   useEffect(() => {
-    const dot = document.querySelector(".cursor-dot");
+    const cursor = new MouseFollower({
+      container: document.body,
 
-    let x = 0;
-    let y = 0;
-    let targetX = 0;
-    let targetY = 0;
+      speed: 0.6,
+      ease: "expo.out",
 
-    const onMouseMove = (e) => {
-      targetX = e.clientX;
-      targetY = e.clientY;
-    };
+      skewing: 0,
+      skewingText: 0,
 
-    const onMouseOver = (e) => {
-      if (
-        e.target.closest(
-          "a, button, .wave-link, .footer-wave-link, .project-action, .project-image-wrapper"
-        )
-      ) {
-        dot.classList.add("cursor-grow");
-      }
-    };
+      stateDetection: {
+        "-grow": "a, button, .wave-link, .footer-wave-link, .project-action, .project-image-wrapper, .illustration-feature figure, .illustration-split figure, .illustration-characters figure",
+      },
+    });
 
-    const onMouseOut = () => {
-      dot.classList.remove("cursor-grow");
-    };
-
-    const animate = () => {
-      x += (targetX - x) * 0.2; // smooth trailing
-      y += (targetY - y) * 0.2;
-
-      dot.style.transform = `translate(${x}px, ${y}px)`;
-      requestAnimationFrame(animate);
-    };
-
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("mouseover", onMouseOver);
-    window.addEventListener("mouseout", onMouseOut);
-
-    animate();
-
-    return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseover", onMouseOver);
-      window.removeEventListener("mouseout", onMouseOut);
-    };
+    return () => cursor.destroy();
   }, []);
 
-  return <div className="cursor-dot" />;
+  return null;
 };
 
 export default CursorDot;
