@@ -1,0 +1,239 @@
+/* ===============================
+   BASE
+================================ */
+.illustration {
+  background: #f2f2f0;
+  color: #111;
+}
+
+figure {
+  margin: 0;
+}
+
+/* ===============================
+   TYPOGRAPHY
+================================ */
+.figcaption {
+  margin-top: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-align: center;
+}
+
+.fig-title {
+  font-family: "ZT Formom", serif;
+  font-size: 3rem;
+  font-style: oblique;
+  color: #111;
+}
+
+.fig-subtitle {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #666;
+}
+
+/* ===============================
+   HEADER
+================================ */
+.illustration-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.illustration-header h1 {
+  font-family: "ZT Formom", serif;
+  font-size: 6.5rem;
+  font-weight: 400;
+}
+
+/* ===============================
+   FEATURED IMAGE
+================================ */
+.illustration-feature {
+  max-width: 1100px;
+  margin: 0 auto 6rem;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.illustration-feature img {
+  width: 100%;
+  height: 580px;
+}
+
+/* ===============================
+   SPLIT SECTION (EDITORIAL)
+================================ */
+.illustration-split {
+  display: grid;
+  grid-template-columns: 5fr 7fr; /* asymmetrical editorial layout */
+  gap: 4rem;
+
+  width: 100%;
+  padding: 0 4rem;
+  margin-bottom: 7rem;
+  align-items: start;
+}
+
+.illustration-split figure {
+  width: 100%;
+}
+
+/* Image behavior */
+.split-left img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.split-right img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+/* ===============================
+   CHARACTER GRID 
+================================ */
+.illustration-characters {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6rem 4rem;
+
+  max-width: 900px;
+  margin: 0 auto 8rem;
+}
+
+.illustration-characters figure {
+  text-align: center;
+}
+
+.illustration-characters img {
+  width: 100%;
+  max-width: 360px;
+
+  aspect-ratio: 3 / 4;     /* same box for all */
+  object-fit: contain;     
+
+  background: #f2f2f0;     /* optional: blends with page */
+  margin: 0 auto;
+  display: block;
+}
+
+/* CAPTION */
+.illustration-characters figcaption {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.char-title {
+  font-family: "ZT Formom", serif;
+  font-style: oblique;
+  font-size: 3rem;
+  color: #111;
+}
+
+.char-subtitle {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #666;
+}
+
+
+/* ===============================
+   MASCOT ROW
+================================ */
+.illustration-mascots {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin-bottom: 6rem;
+}
+
+.illustration-mascots figure {
+  text-align: center;
+}
+
+.illustration-mascots img {
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+.mascot-featured figcaption {
+  margin-top: 1rem;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  color: #555;
+}
+
+
+/* ===============================
+   IMAGE → VIDEO HOVER (BASE)
+================================ */
+
+.media-hover {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+
+  background: #f2f2f0;          /* 👈 solid backing */
+  isolation: isolate;           /* 👈 stops blend bleed */
+}
+
+.media-hover img,
+.media-hover video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: opacity 0.4s ease;
+}
+
+/* Video hidden by default */
+.media-hover video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Hover state */
+.media-hover:hover img {
+  opacity: 0;
+}
+
+.media-hover:hover video {
+  opacity: 1;
+  transform: scale(1.001);
+}
+
+@media (max-width: 900px) {
+  .illustration-split {
+    grid-template-columns: 1fr;
+    padding: 0 2rem;
+  }
+
+  .illustration-characters {
+    grid-template-columns: 1fr;
+  }
+
+  .illustration-mascots {
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .illustration-header h1 {
+    font-size: 3.5rem;
+  }
+
+  .fig-title {
+    font-size: 1.6rem;
+  }
+
+  .char-title {
+    font-size: 1.8rem;
+  }
+}

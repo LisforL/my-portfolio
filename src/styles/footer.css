@@ -1,0 +1,272 @@
+.footer {
+    padding: 5rem 6rem 3rem;
+    background-color: #f9f9f9;
+    color: #111;
+}
+
+/* TOP ROW */
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+/* BACK TO TOP */
+.back-to-top {
+    background: none;
+    border: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.arrow {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #111;
+  font-size: 1rem;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+
+  will-change: transform;
+}
+
+.back-to-top:hover .arrow {
+  background-color: #111;
+  color: #fff;
+
+  animation: pulseGrow 0.9s ease-in-out infinite;
+}
+
+
+/* CTA SECTION */
+.footer-cta {
+  position: relative;
+  margin: 6rem 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;   
+  text-align: center;
+}
+
+
+.footer-question {
+    position: relative;
+    z-index: 2;
+
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #111;
+    margin-bottom: 0.5rem;
+}
+
+.footer-title-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Huge background-style title */
+.footer-title {
+    position: relative;
+    z-index: 1;
+
+    font-size: 12rem;
+    font-weight: 600;
+    align-self: center;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: rgba(0, 0, 0, 0.08);
+
+    line-height: 1;
+    margin: 0;
+
+    white-space: nowrap;
+}
+
+
+/* BOTTOM ROW */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-credit strong {
+    font-weight: 600;
+    color: #111;
+}
+
+/* ===============================
+   FOOTER WAVE LINKS
+================================ */
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem; /* increase spacing between social links */
+}
+
+.footer-wave-link {
+  display: inline-flex;
+  text-decoration: none;
+  color: #4D4D4D;
+
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  line-height: 1.2;
+}
+
+
+/* letters */
+.footer-wave-link .char {
+  display: inline-block;
+  transform: translateY(0);
+
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s ease;
+
+  transition-delay: calc(var(--i) * 0.02s);
+}
+
+/* hover wave */
+.footer-wave-link:hover .char {
+  transform: translateY(-30%);
+  color: #000;
+}
+
+
+/* CREDIT */
+.footer-credit {
+    font-size: 0.75rem;
+    text-align: right;
+    color: #555;
+}
+
+/* ===============================
+   DARK PAGE FOOTER
+================================ */
+
+body.dark-page .footer {
+  background-color: #0e0e0e;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* divider text */
+body.dark-page .footer-question {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* big background title */
+body.dark-page .footer-title {
+  color: rgba(255, 255, 255, 0.08);
+}
+
+/* credits */
+body.dark-page .footer-credit {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+body.dark-page .footer-credit strong {
+  color: #fff;
+}
+
+/* back to top arrow */
+body.dark-page .arrow {
+  border-color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+body.dark-page .back-to-top:hover .arrow {
+  background-color: #fff;
+  color: #0e0e0e;
+}
+
+body.dark-page .back-to-top {
+  color: #fff;
+}
+
+/* footer wave links */
+body.dark-page .footer-wave-link {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+body.dark-page .footer-wave-link:hover .char {
+  color: #fff;
+}
+@media (max-width: 900px) {
+  .footer {
+    padding: 4rem 2rem 2rem;
+  }
+
+  /* Top row stacks */
+  .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  /* CTA spacing */
+  .footer-cta {
+    margin: 4rem 0;
+  }
+
+  /* Bottom row stacks */
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .footer-credit {
+    text-align: left;
+  }
+}
+
+
+@media (max-width: 600px) {
+  /* Allow title to wrap */
+  .footer-title {
+    font-size: 4.5rem;
+    white-space: normal;      /* 👈 FIX */
+    text-align: center;
+    line-height: 1.05;
+  }
+
+  .footer-question {
+    text-align: center;
+  }
+
+  /* Center links */
+  .footer-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  /* Center credit text */
+  .footer-credit {
+    font-size: 0.7rem;
+    text-align: left;
+  }
+
+  /* Back to top button */
+  .back-to-top {
+    align-self: flex-start;
+  }
+}
+

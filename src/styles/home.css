@@ -1,0 +1,297 @@
+/* ===============================
+   HOME HERO GRID
+================================ */
+
+.home {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  min-height: calc(100vh - var(--navbar-height));
+  padding: 0 6rem 2rem;
+  background-color: #f2f2f0;
+}
+
+/* HERO NAME */
+.home-hero {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f2f2f0;
+}
+
+.home-name {
+  font-family: "ZT Formom", serif;
+  font-size: 9rem;
+  font-weight: 400;
+  word-spacing: -1.5rem;
+  color: #111;
+  text-align: center;
+  margin: 0;
+}
+
+.oblique {
+  font-style: oblique;
+}
+
+/* LEFT TEXT */
+.home-left {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  align-self: center;
+  font-size: 1.25rem;
+  color: #4D4D4D;
+  max-width: 320px;
+}
+
+.home-intro {
+  line-height: 1.5;
+  margin-bottom: 6rem;
+  font-size: 1rem;
+  width: 410px;
+}
+
+/* CENTER IMAGE */
+.home-center {
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-wrapper {
+  position: relative;
+}
+
+.home-image {
+  margin-bottom: 2rem;
+  width: 324px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.spark {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 120px;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* RIGHT TEXT */
+.home-right {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+  align-self: end;
+  justify-self: end;
+  text-align: right;
+  font-size: 1rem;
+  color: #4D4D4D;
+  max-width: 320px;
+  margin-bottom: 5rem;
+}
+
+.home-right p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  position: relative;
+}
+
+.home-right p::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.home-right p:first-child::before {
+  display: none;
+}
+
+/* ===============================
+   SERVICES SECTION
+================================ */
+
+.home-services {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch; 
+  gap: 6rem;
+  padding: 3rem 0 8rem 6rem;
+  background-color: #f2f2f0;
+}
+
+
+/* LEFT CONTENT */
+.services-content {
+  max-width: 720px;
+}
+
+/* Eyebrow */
+.services-eyebrow {
+  font-size: 2.9rem;
+  color: rgba(0, 0, 0, 0.35);
+  margin-bottom: 4rem;
+  white-space: nowrap;
+}
+
+.services-eyebrow span {
+  color: #111;
+}
+
+/* Block */
+.services-block {
+  margin-bottom: 6rem;
+}
+
+.services-title {
+  font-family: "ZT Formom", serif;
+  font-size: 3rem;
+  font-style: oblique;
+  font-weight: 500;
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.09rem;
+}
+
+/* ===============================
+   EXPERTISE LIST (PERFECT ALIGNMENT)
+================================ */
+
+.services-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.services-list li {
+  display: grid;
+  grid-template-columns: 280px 1fr; /* FIXED LEFT COLUMN */
+  column-gap: 3rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* INDEX + TITLE (ONE LINE) */
+.services-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+/* Index */
+.services-index {
+  font-size: 1rem;
+  white-space: nowrap;
+  color: #111;
+}
+
+/* Title */
+.services-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #111;
+  white-space: nowrap;
+}
+
+/* DESCRIPTION — perfectly aligned */
+.services-desc {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #666;
+  margin: 0;
+}
+
+/* ===============================
+   KNOWLEDGE LIST
+================================ */
+
+.knowledge-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.knowledge-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.knowledge-list li span:first-child {
+  color: #111;
+}
+
+/* ===============================
+   RIGHT IMAGE (EDGE-TO-EDGE)
+================================ */
+
+.services-image {
+  position: relative;
+  height: 1150px;              /* MATCH LEFT CONTENT HEIGHT */
+  display: flex;
+  align-items: flex-end;     /* image ends where text ends */
+  overflow: hidden;
+  margin-left: 12rem;
+}
+
+
+.services-image img {
+  height: 1150px;              /* MATCH LEFT CONTENT HEIGHT */
+  width: auto;               /* keep aspect ratio */
+  max-width: none;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.home-services:hover .services-image img {
+  transform: translateY(-8px) scale(1.02);
+}
+
+
+@media (max-width: 900px) {
+  .home {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 4rem;
+    padding: 0 2rem 4rem;
+  }
+
+  .home-left,
+  .home-center,
+  .home-right {
+    grid-column: auto;
+    grid-row: auto;
+    text-align: center;
+    justify-self: center;
+  }
+
+  .home-name {
+    font-size: 5.5rem;
+    word-spacing: -0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-name {
+    font-size: 3.8rem;
+  }
+
+  .home-image {
+    width: 240px;
+    height: auto;
+  }
+
+  .home-intro {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}

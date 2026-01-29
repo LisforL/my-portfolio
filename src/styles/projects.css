@@ -1,0 +1,276 @@
+/* ===============================
+   PROJECTS LAYOUT
+================================ */
+
+.projects {
+  min-height: calc(100vh - var(--navbar-height));
+  color: #fff;
+
+  padding-left:2rem;
+  padding-top:2rem                            /* bottom */
+}
+
+
+/* 2-column editorial grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 6rem;
+}
+
+/* LEFT COLUMN */
+.projects-title {
+  font-family: "ZT Formom", serif;
+  font-size: 6.25rem;
+  font-weight: 500;
+}
+
+/* RIGHT COLUMN */
+.projects-intro {
+  font-size: 1.25rem;
+  color: #4D4D4D;
+  line-height: 1.7;
+  max-width: 600px;
+  opacity: 0.7;
+
+  margin-top: 10rem;
+  margin-left: 9rem;    
+  margin-bottom: 4rem;
+}
+
+/* ===============================
+   PROJECT LIST
+================================ */
+
+.project-row-wrapper {
+  position: relative;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+/* ROW: number + card */
+.project-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+
+/* INDEX */
+.project-index {
+  position: sticky;
+  top: 2rem;
+
+  font-size: 4rem;
+  opacity: 0;
+  transform: translateY(10px);
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+
+  align-self: flex-start;
+  height: fit-content;
+  pointer-events: none;
+}
+.project-row-wrapper.is-active .project-index {
+  opacity: 0.5;
+  transform: translateY(0);
+}
+
+.projects,
+.projects-grid,
+.projects-right,
+.projects-list {
+  overflow: visible;
+}
+
+
+/* ===============================
+   CARD CONTENT
+================================ */
+
+.project-content {
+  max-width: 700px;
+}
+
+/* ===============================
+   CARD VISUAL
+================================ */
+
+.project-image-wrapper {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 5rem 3rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Background image */
+.project-image-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  filter: blur(2px) brightness(1);
+  transform: scale(1.1);
+  opacity: 1;
+
+  z-index: 1;
+}
+
+/* Foreground mockup */
+.project-image-mockup {
+  position: relative;
+  z-index: 2;
+
+  width: 72%;
+  max-width: 520px;
+  margin: 0 auto;
+
+  display: block;
+  border-radius: 8px;
+
+  filter: brightness(1.2) contrast(1.05);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Hover polish */
+.project-image-wrapper:hover .project-image-mockup {
+  transform: translateY(-6px);
+  transition: transform 0.4s ease;
+}
+
+.project-image-wrapper:hover .project-image-bg {
+  transform: scale(1.05);
+  transition: transform 0.8s ease;
+}
+
+/* ===============================
+   CARD META
+================================ */
+
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+/* Left stack */
+.project-meta-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.project-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  opacity: 0.6;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+/* ===============================
+   PROJECT ACTION — WAVE HOVER
+================================ */
+
+.project-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  text-decoration: none;
+  color: #fff;
+
+  /* keep existing button styles */
+}
+
+/* text wrapper */
+.project-action-text {
+  font-size: 0.7rem;   
+  display: inline-flex;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+}
+
+/* reuse wave behavior */
+.project-action .char {
+  display: inline-block;
+  transform: translateY(0);
+
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s ease;
+
+  transition-delay: calc(var(--i) * 0.02s);
+}
+
+/* hover wave */
+.project-action:hover .char {
+  transform: translateY(-30%);
+}
+
+
+/* Icon */
+.figma-icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  .projects-title {
+    font-size: 4.5rem;
+  }
+
+  .projects-intro {
+    margin: 3rem 0 4rem;
+    margin-left: 0;
+  }
+
+  .project-row {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .project-index {
+    position: relative;
+    top: auto;
+    opacity: 0.3;
+  }
+}
+
+@media (max-width: 600px) {
+  .projects {
+    padding: 1.5rem;
+  }
+
+  .projects-title {
+    font-size: 3.2rem;
+  }
+
+  .project-image-wrapper {
+    padding: 3rem 1.5rem;
+  }
+}

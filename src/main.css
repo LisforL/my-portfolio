@@ -1,0 +1,112 @@
+@font-face {
+  font-family: "ZT Formom";
+  src: url("./assets/fonts/zt-formom.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --navbar-height: 96px;
+}
+
+.page-root {
+  min-height: calc(100vh - var(--navbar-height));
+  padding-top: var(--navbar-height);
+}
+/* ===============================
+   CURSOR DOT
+================================ */
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #FF5286;
+
+  pointer-events: none;
+  z-index: 9999;
+
+  will-change: transform;
+  transition:
+    width 0.2s ease,
+    height 0.2s ease,
+    opacity 0.2s ease;
+}
+
+/* Grow on links */
+.cursor-dot.cursor-grow {
+  width: 12px;
+  height: 12px;
+  opacity: 0.85;
+}
+
+/* Disable on touch devices */
+@media (hover: none) {
+  .cursor-dot {
+    display: none;
+  }
+}
+
+
+
+/* Global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global background */
+
+body {
+  margin: 0;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background-color: #f2f2f0;
+}
+
+
+body.dark-page {
+  background-color: #0e0e0e;
+}
+
+@keyframes pulseGrow {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* ===============================
+   RESPONSIVE ROOT
+================================ */
+
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 1200px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 900px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  html {
+    font-size: 13px;
+  }
+}
