@@ -84,13 +84,13 @@ const Projects = () => {
                         rel="noreferrer"
                         className="project-action"
                       >
-                        <img
+                        {/* <img
                           src="/Figma.png"
                           alt="Figma"
                           className="figma-icon"
-                        />
+                        /> */}
                         <span className="project-action-text wave-text">
-                          {"Open Prototype in Figma".split("").map((char, i) => (
+                          {"See The Product".split("").map((char, i) => (
                             <span
                               key={i}
                               className="char"
