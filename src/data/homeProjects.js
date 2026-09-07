@@ -52,7 +52,7 @@ export const homeProjects = [
     image: "/projects/MÂM VIỆT-mockup.png",
     blurb: "A website and brand for a family-run Vietnamese restaurant in Saigon.",
     tags: ["Brand Identity", "Design System", "Web Design", "Reservation Flow"],
-    link: "https://www.figma.com/proto/zMNp5ITJA5TognfGqioKrf/M%C3%A2m-Vi%E1%BB%87t?page-id=2208%3A4670&node-id=2208-4677&viewport=80%2C255%2C0.13&t=wY4xvtilhqOlRA9Q-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2208%3A4677",
+    link: "https://www.figma.com/proto/hhg2duIbefMcX3gRafePSR/Ma%CC%82m-Vie%CC%A3%CC%82t--Viet-?node-id=2208-4677&viewport=-513%2C275%2C0.26&t=j3bEpGLGk2G6R5xH-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2208%3A4677&page-id=2208%3A4670",
     linkLabel: "View the prototype",
   },
   {
@@ -66,7 +66,7 @@ export const homeProjects = [
     image: "/projects/omical-mockup.png",
     blurb: "A brand and booking site for a boutique hotel in Phu Quoc, Viet Nam.",
     tags: ["Brand Strategy", "Visual Identity", "Web Design", "Booking Flow"],
-    link: "https://www.figma.com/proto/qOYbQeLHcgRwNI8mDWLEYO/Omical-hotel?page-id=&node-id=597-1080&viewport=1305%2C2369%2C0.09&t=slTAnMjY5Uq0JGuz-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=597%3A1080",
+    link: "https://www.figma.com/proto/lKL7M4VOSVgYlUyqWlRtmF/Omical-hotel?node-id=597-1080&viewport=1511%2C3042%2C0.1&t=V43dPTqBTwvK7EpU-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=597%3A1080&page-id=0%3A1",
     linkLabel: "View the prototype",
   },
   {
