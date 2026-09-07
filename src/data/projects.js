@@ -18,7 +18,7 @@ export const projects = [
   {
     id: "03",
     title: "MÂM VIỆT",
-    type: "Resturant & Booking",
+    type: "Restaurant & Booking",
     bgImage: "/projects/MÂM VIỆT-bg.png",
     mockupImage: "/projects/MÂM VIỆT-mockup.png",
     link: "https://www.figma.com/proto/zMNp5ITJA5TognfGqioKrf/M%C3%A2m-Vi%E1%BB%87t?page-id=2208%3A4670&node-id=2208-4677&viewport=80%2C255%2C0.13&t=wY4xvtilhqOlRA9Q-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2208%3A4677",

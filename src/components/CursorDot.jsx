@@ -16,7 +16,7 @@ const CursorDot = () => {
       skewingText: 0,
 
       stateDetection: {
-        "-grow": "a, button, .wave-link, .footer-wave-link, .project-action, .project-image-wrapper, .illustration-feature figure, .illustration-split figure, .illustration-characters figure",
+        "-grow": "a, button, .wave-link, .project-action, .project-image-wrapper, .illustration-feature figure, .illustration-split figure, .illustration-characters figure",
       },
     });
 

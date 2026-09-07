@@ -1,5 +1,6 @@
 import { projects } from "../data/projects";
 import { useEffect } from "react";
+import WaveText from "../components/WaveText";
 import "../styles/projects.css";
 
 const Projects = () => {
@@ -90,15 +91,7 @@ const Projects = () => {
                           className="figma-icon"
                         /> */}
                         <span className="project-action-text wave-text">
-                          {"See The Product".split("").map((char, i) => (
-                            <span
-                              key={i}
-                              className="char"
-                              style={{ "--i": i }}
-                            >
-                              {char === " " ? "\u00A0" : char}
-                            </span>
-                          ))}
+                          <WaveText text="See The Product" />
                         </span>
                       </a>
                     </div>

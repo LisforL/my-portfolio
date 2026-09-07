@@ -1,17 +1,6 @@
 import { NavLink } from "react-router-dom";
+import WaveText from "./WaveText";
 import "../styles/navbar.css";
-
-/* split text into letters for wave motion */
-const splitText = (text) =>
-  text.split("").map((char, i) => (
-    <span
-      key={i}
-      className="char"
-      style={{ "--i": i }}
-    >
-      {char === " " ? "\u00A0" : char}
-    </span>
-  ));
 
 const Navbar = () => {
   return (
@@ -19,10 +8,9 @@ const Navbar = () => {
       <nav className="navbar">
         {/* LEFT */}
         <div className="navbar-left">
-          <img src="/logo.png" alt="Logo" className="logo" />
           <p className="availability">
-            Open for any <br />
-            collaborations and offers
+            <span className="availability-dot" aria-hidden="true" />
+            Open for any collaborations and offers
           </p>
         </div>
 
@@ -36,7 +24,7 @@ const Navbar = () => {
           ].map(({ to, label }) => (
             <li key={to}>
               <NavLink to={to} className="wave-link">
-                {splitText(label)}
+                <WaveText text={label} />
               </NavLink>
             </li>
           ))}

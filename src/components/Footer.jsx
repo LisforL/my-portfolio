@@ -1,14 +1,11 @@
 import "../styles/footer.css";
-const splitText = (text) =>
-    text.split("").map((char, i) => (
-        <span
-            key={i}
-            className="char"
-            style={{ "--i": i }}
-        >
-            {char === " " ? "\u00A0" : char}
-        </span>
-    ));
+
+const contactRows = [
+    { label: "Email", value: "trinhtrinhnguyen333@gmail.com", href: "mailto:trinhtrinhnguyen333@gmail.com" },
+    { label: "Phone", value: "+84 358 468 676", href: "tel:+84358468676" },
+    { label: "Elsewhere", value: "LinkedIn · Instagram", href: "https://linkedin.com/" },
+    { label: "Résumé", value: "Download PDF ↗", href: "#" },
+];
 
 const Footer = () => {
     const scrollToTop = () => {
@@ -17,53 +14,46 @@ const Footer = () => {
 
     return (
         <footer className="footer">
-            {/* Top row */}
-            <div className="footer-top">
-                <span>© {new Date().getFullYear()}</span>
+            <div className="footer-hello-grid">
+                <div>
+                    <a href="mailto:trinhtrinhnguyen333@gmail.com" className="footer-hello">
+                        Say hello<span className="footer-hello-dot">.</span>
+                    </a>
+                    <p className="footer-hello-note">
+                        No returns, but I will tell you within a week if I think you have hired
+                        the wrong designer for the problem.
+                    </p>
+                </div>
 
-                <button className="back-to-top" onClick={scrollToTop}>
-                    BACK TO TOP
+                <div className="footer-info">
+                    {contactRows.map((row) => (
+                        <div key={row.label} className="footer-info-row">
+                            <span className="footer-info-label">{row.label}</span>
+                            <a
+                                href={row.href}
+                                target={row.href.startsWith("http") ? "_blank" : undefined}
+                                rel={row.href.startsWith("http") ? "noreferrer" : undefined}
+                            >
+                                {row.value}
+                            </a>
+                        </div>
+                    ))}
+                    <div className="footer-info-row footer-info-row-plain">
+                        <span className="footer-info-label">Based in</span>
+                        <span>Hồ Chí Minh City · UTC+7</span>
+                    </div>
+                </div>
+            </div>
+
+            <div className="footer-bottom-bar">
+                <span>© {new Date().getFullYear()} Trinh Trinh Nguyen</span>
+                <span className="footer-credit-line">
+                    Design by Trinh Trinh Nguyen · Developed by Linn Htin Nyo
+                </span>
+                <button type="button" className="back-to-top" onClick={scrollToTop}>
+                    Back to top
                     <span className="arrow">↑</span>
                 </button>
-            </div>
-
-            {/* Main CTA */}
-            <div className="footer-cta">
-                <p className="footer-question">HAVE A PROJECT IN MIND?</p>
-
-                <div className="footer-title-wrapper">
-                    <h2 className="footer-title">LET’S TALK</h2>
-                </div>
-            </div>
-
-
-
-            {/* Bottom row */}
-            <div className="footer-bottom">
-                <div className="footer-links">
-                    <a
-                        href="https://linkedin.com/"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="footer-wave-link"
-                    >
-                        {splitText("LINKEDIN")}
-                    </a>
-
-                    <a
-                        rel="noreferrer"
-                        className="footer-wave-link"
-                    >
-                        {splitText("PHONE +84765236522")}
-                    </a>
-                </div>
-
-
-                <div className="footer-credit">
-                    <p>Design by <strong>Trinh Trinh Nguyen</strong></p>
-                    <p>Development by <strong>Linn Htin Nyo</strong></p>
-                </div>
-
             </div>
         </footer>
     );
