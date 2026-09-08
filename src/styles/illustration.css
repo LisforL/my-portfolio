@@ -1,239 +1,326 @@
 /* ===============================
-   BASE
+   PAGE / ROOM LAYOUT
 ================================ */
-.illustration {
-  background: #f2f2f0;
-  color: #111;
+
+.salon {
+  background: #F0EFEC;
+  color: #131312;
 }
 
-figure {
-  margin: 0;
-}
-
-/* ===============================
-   TYPOGRAPHY
-================================ */
-.figcaption {
-  margin-top: 1.1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  text-align: center;
-}
-
-.fig-title {
-  font-family: "ZT Formom", serif;
-  font-size: 3rem;
-  font-style: oblique;
-  color: #111;
-}
-
-.fig-subtitle {
-  font-size: 1.1rem;
-  font-style: italic;
-  color: #666;
-}
-
-/* ===============================
-   HEADER
-================================ */
-.illustration-header {
-  text-align: center;
-  margin-bottom: 5rem;
-}
-
-.illustration-header h1 {
-  font-family: "ZT Formom", serif;
-  font-size: 6.5rem;
-  font-weight: 400;
-}
-
-/* ===============================
-   FEATURED IMAGE
-================================ */
-.illustration-feature {
-  max-width: 1100px;
-  margin: 0 auto 6rem;
-  padding: 0 2rem;
-  text-align: center;
-}
-
-.illustration-feature img {
-  width: 100%;
-  height: 580px;
-}
-
-/* ===============================
-   SPLIT SECTION (EDITORIAL)
-================================ */
-.illustration-split {
+.salon-room {
   display: grid;
-  grid-template-columns: 5fr 7fr; /* asymmetrical editorial layout */
-  gap: 4rem;
-
-  width: 100%;
-  padding: 0 4rem;
-  margin-bottom: 7rem;
-  align-items: start;
+  grid-template-columns: 320px minmax(0, 1fr);
+  align-items: stretch;
 }
-
-.illustration-split figure {
-  width: 100%;
-}
-
-/* Image behavior */
-.split-left img {
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-.split-right img {
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-}
-/* ===============================
-   CHARACTER GRID 
-================================ */
-.illustration-characters {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 6rem 4rem;
-
-  max-width: 900px;
-  margin: 0 auto 8rem;
-}
-
-.illustration-characters figure {
-  text-align: center;
-}
-
-.illustration-characters img {
-  width: 100%;
-  max-width: 360px;
-
-  aspect-ratio: 3 / 4;     /* same box for all */
-  object-fit: contain;     
-
-  background: #f2f2f0;     /* optional: blends with page */
-  margin: 0 auto;
-  display: block;
-}
-
-/* CAPTION */
-.illustration-characters figcaption {
-  margin-top: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.char-title {
-  font-family: "ZT Formom", serif;
-  font-style: oblique;
-  font-size: 3rem;
-  color: #111;
-}
-
-.char-subtitle {
-  font-size: 1.1rem;
-  font-style: italic;
-  color: #666;
-}
-
 
 /* ===============================
-   MASCOT ROW
-================================ */
-.illustration-mascots {
-  display: flex;
-  justify-content: center;
-  gap: 4rem;
-  margin-bottom: 6rem;
-}
-
-.illustration-mascots figure {
-  text-align: center;
-}
-
-.illustration-mascots img {
-  max-width: 260px;
-  margin: 0 auto;
-}
-
-.mascot-featured figcaption {
-  margin-top: 1rem;
-  font-size: 1rem;
-  letter-spacing: 0.12em;
-  color: #555;
-}
-
-
-/* ===============================
-   IMAGE → VIDEO HOVER (BASE)
+   WALL LABEL (SIDEBAR)
 ================================ */
 
-.media-hover {
+.salon-wall-label {
   position: relative;
-  width: 100%;
-  overflow: hidden;
-  cursor: pointer;
-
-  background: #f2f2f0;          /* 👈 solid backing */
-  isolation: isolate;           /* 👈 stops blend bleed */
+  height: calc(100vh - var(--navbar-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 3rem 2rem 2.5rem 2.5rem;
+  border-right: 1px solid #cfccc3;
+  box-sizing: border-box;
 }
 
-.media-hover img,
-.media-hover video {
-  width: 100%;
+.salon-eyebrow {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a8a85;
+}
+
+.salon-title {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-size: clamp(2.75rem, 5.4vw, 4.5rem);
+  line-height: 0.88;
+  margin-top: 1.1rem;
+}
+
+.salon-title-accent {
+  font-style: italic;
+  color: #FF52A8;
+}
+
+.salon-intro {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #55554f;
+  margin: 1.4rem 0 0;
+}
+
+.salon-controls {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.salon-counter {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.salon-counter-at {
+  font-family: "Instrument Serif", serif;
+  font-size: 3.25rem;
+  line-height: 1;
+}
+
+.salon-counter-of {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a8a85;
+}
+
+.salon-scrub {
+  position: relative;
+  padding: 0.875rem 0;
+  cursor: grab;
+  touch-action: none;
+}
+
+.salon-scrub-rail {
+  height: 3px;
+  background: #d5d2c9;
+}
+
+.salon-scrub-fill {
   height: 100%;
-  display: block;
-  transition: opacity 0.4s ease;
+  background: #131312;
 }
 
-/* Video hidden by default */
-.media-hover video {
+.salon-scrub-ticks {
   position: absolute;
-  inset: 0;
-  opacity: 0;
+  inset: 0.875rem 0 auto 0;
+  height: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   pointer-events: none;
 }
 
-/* Hover state */
-.media-hover:hover img {
-  opacity: 0;
+.salon-tick {
+  width: 1px;
+  height: 9px;
+  background: #c6c3ba;
 }
 
-.media-hover:hover video {
-  opacity: 1;
-  transform: scale(1.001);
+.salon-tick-on {
+  background: #131312;
 }
+
+.salon-hint {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c0553f;
+  margin-top: -0.4rem;
+}
+
+.salon-nail {
+  position: absolute;
+  top: 32rem;
+  left: 1.2rem;
+  width: 15px;
+  height: 15px;
+  margin-left: -7px;
+  border-radius: 999px;
+  background: #131312;
+  border: 2px solid #F0EFEC;
+  box-shadow: 0 2px 8px rgba(19, 19, 18, 0.28);
+  pointer-events: none;
+}
+
+/* ===============================
+   TRACK (HORIZONTAL GALLERY)
+================================ */
+
+.salon-track {
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: calc(100vh - var(--navbar-height));
+  cursor: grab;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+  scrollbar-width: none;
+}
+
+.salon-track::-webkit-scrollbar {
+  display: none;
+}
+
+.salon-track:active {
+  cursor: grabbing;
+}
+
+.salon-track-inner {
+  display: flex;
+  align-items: center;
+  gap: 2.75rem;
+  height: 100%;
+  max-height: 100%;
+  padding: 0 4rem;
+  width: max-content;
+  box-sizing: border-box;
+}
+
+.salon-piece {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+  max-height: 100%;
+  cursor: pointer;
+}
+
+.salon-frame {
+  position: relative;
+  box-shadow: 0 18px 40px rgba(19, 19, 18, 0.16);
+  transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.45s;
+}
+
+.salon-frame:hover {
+  transform: rotate(0deg) translateY(-8px) scale(1.015) !important;
+  box-shadow: 0 30px 60px rgba(19, 19, 18, 0.26);
+}
+
+.salon-frame-inner {
+  position: absolute;
+  inset: 10px;
+  overflow: hidden;
+  background: #dcd9d1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.salon-frame-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.salon-frame-placeholder {
+  font-family: "Instrument Serif", serif;
+  font-size: 1.1rem;
+  color: rgba(19, 19, 18, 0.4);
+  padding: 0 1rem;
+}
+
+.salon-caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  max-width: 26rem;
+}
+
+.salon-piece-title {
+  font-family: "Instrument Serif", serif;
+  font-size: 1.25rem;
+  line-height: 1.15;
+}
+
+.salon-piece-meta {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a8a85;
+  margin-top: 0.3rem;
+}
+
+.salon-piece-n {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.625rem;
+  color: #a9a8a2;
+}
+
+/* ===============================
+   END OF WALL CARD
+================================ */
+
+.salon-end {
+  flex: 0 0 auto;
+  width: 21.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.875rem;
+  padding-left: 1.5rem;
+  border-left: 1px solid #cfccc3;
+}
+
+.salon-end-title {
+  font-family: "Instrument Serif", serif;
+  font-size: 2.125rem;
+  line-height: 1.1;
+}
+
+.salon-end-body {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #55554f;
+  margin: 0;
+}
+
+.salon-end-actions {
+  display: flex;
+  gap: 0.625rem;
+  flex-wrap: wrap;
+  margin-top: 0.375rem;
+}
+
+.salon-end-btn-solid {
+  font-size: 0.8125rem;
+  padding: 0.75rem 1.125rem;
+  background: #131312;
+  color: #F0EFEC;
+  text-decoration: none;
+}
+
+.salon-end-btn-outline {
+  font-size: 0.8125rem;
+  padding: 0.75rem 1.125rem;
+  border: 1px solid #131312;
+  background: none;
+  color: #131312;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
 
 @media (max-width: 900px) {
-  .illustration-split {
-    grid-template-columns: 1fr;
-    padding: 0 2rem;
+  .salon-room {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .illustration-characters {
-    grid-template-columns: 1fr;
+  .salon-wall-label {
+    height: auto;
+    padding: 2rem 1.5rem 1.5rem;
+    border-right: 0;
+    border-bottom: 1px solid #cfccc3;
   }
 
-  .illustration-mascots {
-    flex-wrap: wrap;
-    gap: 3rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .illustration-header h1 {
-    font-size: 3.5rem;
-  }
-
-  .fig-title {
-    font-size: 1.6rem;
-  }
-
-  .char-title {
-    font-size: 1.8rem;
+  .salon-track {
+    height: 62vh;
   }
 }
