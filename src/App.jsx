@@ -6,9 +6,10 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 /* PAGES */
-import Home from "./pages/Home";              
+import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Illustration from "./pages/Illustration";
+import BizMotCaseStudy from "./pages/case-studies/BizMot";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<Home />} />
 
         <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/bizmot" element={<BizMotCaseStudy />} />
         <Route path="/illustration" element={<Illustration />} />
       </Routes>
 

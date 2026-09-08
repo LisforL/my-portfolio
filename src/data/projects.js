@@ -22,6 +22,7 @@ export const projects = [
     href: "https://bizmot.com/en",
     altHref: "https://www.figma.com/proto/uXTV7cg5O6A3l0z7kx2Dw5/Card-create-flow?node-id=98-19180&viewport=3069%2C-1317%2C0.14&t=MF9rXlZZCyoE0ctZ-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=98%3A19180&page-id=0%3A1",
     altLabel: "Open the prototype ↗",
+    caseStudyPath: "/projects/bizmot",
   },
   {
     n: "03",

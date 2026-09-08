@@ -1,0 +1,892 @@
+/* ===============================
+   SHARED CASE STUDY TOKENS
+================================ */
+
+.case-study {
+  background: #F0EFEC;
+  color: #131312;
+  font-family: "Inter", sans-serif;
+}
+
+.case-study a {
+  color: #c0553f;
+  border-bottom: 1px solid currentColor;
+  text-decoration: none;
+}
+
+.case-study a:hover {
+  color: #131312;
+}
+
+.cs-section {
+  padding: 0 3rem 7.5rem;
+}
+
+.cs-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cs-index {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  color: #131312;
+  margin-top: 0.75rem;
+}
+
+.cs-h2 {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  margin-top: 1.25rem;
+  max-width: 34rem;
+}
+
+.cs-h2-dim {
+  color: #a9a8a2;
+}
+
+.cs-lead {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #55554f;
+  max-width: 47.5rem;
+  margin-top: 1.5rem;
+}
+
+.cs-lead + .cs-lead {
+  margin-top: 1.5rem;
+}
+
+/* ===============================
+   HERO
+================================ */
+
+.cs-hero {
+  padding: 4.5rem 3rem 7.5rem;
+}
+
+.cs-hero-title {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-size: clamp(3.5rem, 8vw, 6.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin-top: 1.75rem;
+  max-width: 68.75rem;
+}
+
+.cs-hero-title em {
+  font-style: italic;
+}
+
+.cs-hero-subhead {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #55554f;
+  max-width: 47.5rem;
+  margin-top: 1.5rem;
+}
+
+.cs-hero-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c0553f;
+}
+
+.cs-meta {
+  display: grid;
+  grid-template-columns: repeat(5, max-content);
+  justify-content: space-between;
+  gap: 2rem;
+  margin: 3.5rem 0 0;
+}
+
+.cs-meta-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a8a85;
+}
+
+.cs-meta-value {
+  font-size: 0.9375rem;
+  color: #131312;
+  margin-top: 0.5rem;
+}
+
+.cs-intro {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #8a8a85;
+  max-width: 47.5rem;
+  margin-top: 2.5rem;
+}
+
+.cs-hero-image {
+  margin-top: 3.5rem;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 16 / 8;
+}
+
+.cs-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===============================
+   WHAT IS IT
+================================ */
+
+.cs-eyebrow {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a8a85;
+  padding-top: 2.375rem;
+}
+
+.cs-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3.25rem;
+  align-items: stretch;
+  margin-top: 1rem;
+}
+
+.cs-card {
+  border: 1px solid #d6d5d0;
+  border-radius: 4px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cs-card-block-title {
+  font-size: 1.75rem;
+  font-family: "Instrument Serif", serif;
+}
+
+.cs-card-block ul {
+  margin: 0.75rem 0 0;
+  padding-left: 1.125rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.cs-card-block li {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #55554f;
+}
+
+.cs-card-block-note {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #55554f;
+  margin-top: 0.75rem;
+}
+
+.cs-hairline {
+  height: 1px;
+  background: #d6d5d0;
+}
+
+.cs-label-row {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.cs-label-row-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a8a85;
+  padding-top: 0.2rem;
+}
+
+.cs-label-row-value {
+  color: #55554f;
+  font-size: 1rem;
+}
+
+.cs-dark-card {
+  border-radius: 4px;
+  padding: 2rem;
+  color: #F0EFEC;
+  background: #131312;
+}
+
+.cs-dark-card-title {
+  font-size: 1.75rem;
+  font-family: "Instrument Serif", serif;
+  color: #F0EFEC;
+  padding-bottom: 0.375rem;
+}
+
+.cs-dark-card-body {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #a9a8a2;
+  margin-top: 0.5rem;
+}
+
+.cs-product-image {
+  border-radius: 4px;
+  overflow: hidden;
+  height: 100%;
+  min-height: 20rem;
+}
+
+.cs-product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===============================
+   FLOWS
+================================ */
+
+.cs-hint {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  color: #c0553f;
+  margin-top: 3rem;
+}
+
+.cs-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.cs-tab {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  padding: 0.875rem 1.25rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #d6d5d0;
+  background: transparent;
+  color: #55554f;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.cs-tab-active {
+  background: #131312;
+  border-color: #131312;
+  color: #F0EFEC;
+}
+
+.cs-flow-panel {
+  margin-top: 1.5rem;
+  border: 1px solid #d6d5d0;
+  border-radius: 4px;
+  padding: 2rem;
+  background: #EAE9E5;
+}
+
+.cs-flow-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3.25rem;
+  align-items: flex-start;
+  padding-bottom: 1.5rem;
+}
+
+.cs-flow-sequence-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  color: #8a8a85;
+  padding-bottom: 0.75rem;
+}
+
+.cs-flow-sequence-item {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background: #F0EFEC;
+  border: 1px solid #d6d5d0;
+  border-radius: 4px;
+  padding: 0.875rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.cs-flow-sequence-item:first-child {
+  margin-top: 0;
+}
+
+.cs-flow-sequence-n {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.875rem;
+  color: #a9a8a2;
+}
+
+.cs-flow-sequence-text {
+  font-size: 1rem;
+}
+
+.cs-flow-sequence-note {
+  font-size: 0.8125rem;
+  color: #8a8a85;
+  margin-top: 0.75rem;
+  font-style: italic;
+}
+
+.cs-flow-density {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c0553f;
+}
+
+.cs-flow-title {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-size: 1.75rem;
+  margin-top: 0.5rem;
+}
+
+.cs-flow-body {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #55554f;
+  margin-top: 0.75rem;
+  max-width: 47.5rem;
+}
+
+.cs-flow-label-row {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+  border-top: 1px solid #d6d5d0;
+  padding-top: 1rem;
+  margin-top: 1.5rem;
+}
+
+.cs-flow-label-row:first-of-type {
+  margin-top: 1.5rem;
+}
+
+.cs-flow-label-row-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a8a85;
+}
+
+.cs-flow-label-row-value {
+  font-size: 0.875rem;
+  color: #131312;
+}
+
+.cs-flow-label-row-value-cost {
+  color: #c0553f;
+}
+
+.cs-screen-strip {
+  margin-top: 0.75rem;
+  background: #F0EFEC;
+  border: 1px solid #d6d5d0;
+  border-radius: 4px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cs-screen-strip-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cs-screen-strip-title {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #55554f;
+}
+
+.cs-screen-strip-sub {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.625rem;
+  color: #8a8a85;
+}
+
+.cs-screen-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8.125rem, 1fr));
+  gap: 0.875rem 0.625rem;
+}
+
+.cs-screen-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  min-width: 0;
+}
+
+.cs-screen-mock {
+  aspect-ratio: 16 / 9;
+  border: 1px solid #131312;
+  border-radius: 2px;
+  background: #fff;
+  display: flex;
+  overflow: hidden;
+}
+
+.cs-screen-mock-form {
+  flex: 1.4;
+  padding: 0.4375rem 0.375rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cs-screen-mock-line {
+  height: 0.6875rem;
+  border: 1px solid #c9c8c3;
+  border-radius: 1px;
+}
+
+.cs-screen-mock-line-short {
+  width: 60%;
+}
+
+.cs-screen-mock-bottom {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.3125rem;
+}
+
+.cs-screen-mock-progress {
+  flex: 1;
+  height: 3px;
+  background: #d6d5d0;
+  position: relative;
+}
+
+.cs-screen-mock-progress-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: #131312;
+}
+
+.cs-screen-mock-btn {
+  width: 0.9375rem;
+  height: 0.4375rem;
+  background: #131312;
+  border-radius: 1px;
+}
+
+.cs-screen-mock-preview {
+  flex: 1;
+  background: #EAE9E5;
+  border-left: 1px solid #d6d5d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-screen-mock-preview-shape {
+  width: 60%;
+  height: 78%;
+  border: 1px solid #c9c8c3;
+  border-radius: 5px;
+  background: #F0EFEC;
+}
+
+.cs-screen-caption {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.625rem;
+  color: #55554f;
+}
+
+.cs-screen-caption-accent {
+  color: #c0553f;
+}
+
+/* ===============================
+   TESTING
+================================ */
+
+.cs-rounds {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.cs-round-card {
+  border-radius: 4px;
+  padding: 2rem;
+  border: 1px solid #d6d5d0;
+}
+
+.cs-round-card-dark {
+  background: #131312;
+  color: #F0EFEC;
+  border-color: #131312;
+}
+
+.cs-round-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.cs-round-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a8a85;
+}
+
+.cs-round-card-dark .cs-round-label {
+  color: #77776f;
+}
+
+.cs-round-matchup {
+  font-family: "Instrument Serif", serif;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.cs-round-winner {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c0553f;
+}
+
+.cs-round-body {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  margin-top: 1rem;
+  color: #55554f;
+}
+
+.cs-round-card-dark .cs-round-body {
+  color: #a9a8a2;
+}
+
+.cs-round-quotes {
+  display: grid;
+  gap: 0.625rem;
+  margin-top: 1.25rem;
+}
+
+.cs-round-quote {
+  font-style: italic;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  border-left: 2px solid #c0553f;
+  padding-left: 0.875rem;
+}
+
+.cs-callout {
+  margin-top: 1.5rem;
+  border-left: 2px solid #c0553f;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #55554f;
+}
+
+/* ===============================
+   SOLUTION STEPS
+================================ */
+
+.cs-steps {
+  display: grid;
+  gap: 3.5rem;
+  margin-top: 2.5rem;
+}
+
+.cs-step-num {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c0553f;
+}
+
+.cs-step-title {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-size: 2rem;
+  margin-top: 0.5rem;
+}
+
+.cs-step-body {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #55554f;
+  margin-top: 0.75rem;
+  max-width: 47.5rem;
+}
+
+.cs-step-note {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #55554f;
+  margin-top: 1rem;
+}
+
+.cs-step-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.cs-step-image-frame {
+  border-radius: 4px;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: #dcd9d1;
+}
+
+.cs-step-image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cs-step-image-caption {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  color: #55554f;
+  margin-top: 0.5rem;
+}
+
+.cs-step-image-caption-accent {
+  color: #c0553f;
+}
+
+.cs-prototype-link {
+  margin-top: 2rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.cs-prototype-caption {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  color: #8a8a85;
+  border-bottom: none;
+}
+
+/* ===============================
+   MAKING POSSIBLE
+================================ */
+
+.cs-problem-chain {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.cs-problem-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.cs-problem-arrow {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.875rem;
+  color: #55554f;
+  text-align: center;
+}
+
+.cs-problem {
+  font-size: 0.9375rem;
+  color: #a9a8a2;
+}
+
+.cs-problem-accent {
+  color: #FF9E7A;
+}
+
+.cs-solution-text {
+  font-size: 0.9375rem;
+  color: #F0EFEC;
+}
+
+.cs-approach-block {
+  margin-top: 1.5rem;
+}
+
+.cs-approach-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a8a85;
+}
+
+.cs-approach-body {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #55554f;
+  margin-top: 0.5rem;
+  max-width: 47.5rem;
+}
+
+/* ===============================
+   RESULTS
+================================ */
+
+.cs-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.cs-stat-card {
+  border: 1px solid #d6d5d0;
+  border-radius: 4px;
+  padding: 1.75rem;
+}
+
+.cs-stat-value {
+  font-family: "Instrument Serif", serif;
+  font-size: 2.5rem;
+}
+
+.cs-stat-caption {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: #55554f;
+  margin-top: 0.75rem;
+}
+
+.cs-quotes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.cs-quote {
+  font-family: "Instrument Serif", serif;
+  font-style: italic;
+  font-size: 1.375rem;
+  line-height: 1.4;
+  border-left: 2px solid #c0553f;
+  padding-left: 1.125rem;
+}
+
+.cs-source {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  color: #8a8a85;
+  margin-top: 1.5rem;
+}
+
+/* ===============================
+   LEARNINGS
+================================ */
+
+.cs-learning-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.cs-learning-card {
+  border: 1px solid #d6d5d0;
+  border-radius: 4px;
+  padding: 2rem;
+}
+
+.cs-learning-title {
+  font-family: "Instrument Serif", serif;
+  font-size: 1.5rem;
+}
+
+.cs-learning-body {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #55554f;
+  margin-top: 0.75rem;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1180px) {
+  .cs-meta {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .cs-split,
+  .cs-flow-grid,
+  .cs-rounds,
+  .cs-stats,
+  .cs-quotes,
+  .cs-learning-cards,
+  .cs-problem-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cs-flow-label-row,
+  .cs-label-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+  }
+
+  .cs-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .cs-section,
+  .cs-hero {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { projects, primaryLabelFor } from "../data/projects";
 import "../styles/projects.css";
 
@@ -70,14 +71,20 @@ const Projects = () => {
                   </div>
 
                   <div className="project-actions">
-                    <a
-                      href={caseStudyHref}
-                      target={project.href ? "_blank" : undefined}
-                      rel={project.href ? "noreferrer" : undefined}
-                      className="project-btn-solid"
-                    >
-                      Open case study →
-                    </a>
+                    {project.caseStudyPath ? (
+                      <Link to={project.caseStudyPath} className="project-btn-solid">
+                        Open case study →
+                      </Link>
+                    ) : (
+                      <a
+                        href={caseStudyHref}
+                        target={project.href ? "_blank" : undefined}
+                        rel={project.href ? "noreferrer" : undefined}
+                        className="project-btn-solid"
+                      >
+                        Open case study →
+                      </a>
+                    )}
                     {project.altHref && (
                       <a
                         href={project.altHref}

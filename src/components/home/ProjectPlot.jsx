@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { homeProjects } from "../../data/homeProjects";
 
 const ProjectPlot = () => {
@@ -76,9 +77,15 @@ const ProjectPlot = () => {
               ))}
             </div>
             <div className="plot-card-actions">
-              <a href="#work" className="home-btn home-btn-solid home-btn-sm">
-                Open case study →
-              </a>
+              {project.caseStudyPath ? (
+                <Link to={project.caseStudyPath} className="home-btn home-btn-solid home-btn-sm">
+                  Open case study →
+                </Link>
+              ) : (
+                <a href="#work" className="home-btn home-btn-solid home-btn-sm">
+                  Open case study →
+                </a>
+              )}
               {project.link && (
                 <a href={project.link} target="_blank" rel="noreferrer" className="home-btn home-btn-outline home-btn-sm">
                   {project.linkLabel} ↗

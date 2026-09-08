@@ -26,6 +26,7 @@ export const homeProjects = [
     tags: ["Flow Design", "Prototyping", "Usability Testing", "UI Design"],
     link: "https://bizmot.com/en",
     linkLabel: "View the live site",
+    caseStudyPath: "/projects/bizmot",
   },
   {
     num: "03",
