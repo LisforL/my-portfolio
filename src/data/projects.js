@@ -34,6 +34,7 @@ export const projects = [
     shotImage: "/projects/spitimou-mockup.png",
     blurb: "A property marketplace for Cyprus, used by buyers, investors and agencies alike.",
     href: "https://spitimou.cy",
+    caseStudyPath: "/projects/spitimou",
   },
   {
     n: "04",

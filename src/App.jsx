@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Illustration from "./pages/Illustration";
 import BizMotCaseStudy from "./pages/case-studies/BizMot";
+import SpitiMouCaseStudy from "./pages/case-studies/SpitiMou";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
 
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/bizmot" element={<BizMotCaseStudy />} />
+        <Route path="/projects/spitimou" element={<SpitiMouCaseStudy />} />
         <Route path="/illustration" element={<Illustration />} />
       </Routes>
 

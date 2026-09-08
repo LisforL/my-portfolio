@@ -41,6 +41,7 @@ export const homeProjects = [
     tags: ["Competitive Audit", "Information Architecture", "Web UX", "Agency Dashboard"],
     link: "https://spitimou.cy",
     linkLabel: "View the live site",
+    caseStudyPath: "/projects/spitimou",
   },
   {
     num: "04",
