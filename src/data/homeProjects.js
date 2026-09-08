@@ -12,6 +12,7 @@ export const homeProjects = [
     tags: ["UX Research", "IA & Flows", "Design System", "iOS UI"],
     link: "https://apps.apple.com/vn/app/zenly-share-location-penlo/id6443518385",
     linkLabel: "View the app",
+    caseStudyPath: "/projects/penlo",
   },
   {
     num: "02",

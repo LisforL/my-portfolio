@@ -9,6 +9,7 @@ export const projects = [
     shotImage: "/projects/penlo-mockup.png",
     blurb: "An iOS app for sharing your live location with close friends and family.",
     href: "https://apps.apple.com/vn/app/zenly-share-location-penlo/id6443518385",
+    caseStudyPath: "/projects/penlo",
   },
   {
     n: "02",
