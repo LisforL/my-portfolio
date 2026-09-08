@@ -44,6 +44,10 @@ const ProcessTimeline = () => {
                 const w = activeScale.weights[i];
                 const pct = Math.round((w / activeScale.weights.reduce((a, b) => a + b, 0)) * 100);
                 const on = i === move;
+                // Fill must stay at least as wide as its own label, plus breathing
+                // room, so the light/dark crossfade never lands right on the text.
+                const minPx = m.deliver.length * 7 + 48;
+                const fillWidth = `max(${(w / maxWeight) * 100}%, ${minPx}px)`;
                 return (
                   <button
                     key={m.num}
@@ -59,13 +63,24 @@ const ProcessTimeline = () => {
                     <div className="process-move-bar-track">
                       <div
                         className="process-move-bar-fill"
-                        style={{ width: `${(w / maxWeight) * 100}%`, background: on ? m.tint : "#d0cfca" }}
+                        style={{ width: fillWidth, background: on ? m.tint : "#d0cfca" }}
                       />
-                      <div className="process-move-bar-text">
+                      <div className="process-move-bar-text-base">
                         <span>{m.deliver}</span>
-                        <span>{pct}%</span>
+                      </div>
+                      <div
+                        className="process-move-bar-text-clip"
+                        style={{ width: fillWidth }}
+                      >
+                        <div
+                          className="process-move-bar-text-clip-inner"
+                          style={{ color: on ? "#F0EFEC" : "#131312" }}
+                        >
+                          {m.deliver}
+                        </div>
                       </div>
                     </div>
+                    <span className="process-move-pct">{pct}%</span>
                   </button>
                 );
               })}

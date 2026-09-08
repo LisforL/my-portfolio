@@ -480,7 +480,7 @@
 
 .process-move-row {
   display: grid;
-  grid-template-columns: 190px minmax(0, 1fr);
+  grid-template-columns: 190px minmax(0, 1fr) 2.5rem;
   gap: 1.5rem;
   align-items: center;
   cursor: pointer;
@@ -530,16 +530,38 @@
   transition: width 0.55s cubic-bezier(0.22, 0.61, 0.36, 1), background 0.3s;
 }
 
-.process-move-bar-text {
+.process-move-bar-text-base {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
   padding: 0 1rem;
   font-size: 0.8rem;
   color: #131312;
+  white-space: nowrap;
+}
+
+.process-move-bar-text-clip {
+  position: absolute;
+  inset: 0 auto 0 0;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.process-move-bar-text-clip-inner {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  height: 46px;
+  padding: 0 1rem;
+  font-size: 0.8rem;
+}
+
+.process-move-pct {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  color: #55554f;
+  text-align: right;
 }
 
 .process-detail {
