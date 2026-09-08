@@ -952,7 +952,8 @@
 }
 
 .cs-cmp-row:first-child .cs-cmp-cell {
-  padding: 1rem 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
@@ -967,8 +968,8 @@
 }
 
 .cs-cmp-cell-decision {
-  margin: 0 -1.25rem;
-  padding: 0.625rem 1.25rem;
+  margin-right: -1.25rem;
+  padding: 0.625rem 1.25rem 0.625rem 1rem;
   background: rgba(192, 85, 63, 0.06);
   color: #131312;
 }
