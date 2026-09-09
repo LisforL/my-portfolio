@@ -72,6 +72,7 @@ export const homeProjects = [
     tags: ["Brand Strategy", "Visual Identity", "Web Design", "Booking Flow"],
     link: "https://www.figma.com/proto/lKL7M4VOSVgYlUyqWlRtmF/Omical-hotel?node-id=597-1080&viewport=1511%2C3042%2C0.1&t=V43dPTqBTwvK7EpU-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=597%3A1080&page-id=0%3A1",
     linkLabel: "View the prototype",
+    caseStudyPath: "/projects/omical",
   },
   {
     num: "06",

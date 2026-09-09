@@ -260,7 +260,7 @@ export const spitimou = {
     allLabel: "All projects ↗",
     items: [
       { title: "Mâm Việt", tag: "Restaurant · Branding", image: "/projects/MÂM VIỆT-mockup.png", link: "/projects/mamviet" },
-      { title: "Omical Hotel", tag: "Booking · Web", image: "/projects/omical-mockup.png", link: "/projects" },
+      { title: "Omical Hotel", tag: "Booking · Web", image: "/projects/omical-mockup.png", link: "/projects/omical" },
       { title: "Nomu", tag: "Delivery app · Concept", image: "/projects/nomu-mockup.png", link: "/projects/nomu" },
     ],
   },

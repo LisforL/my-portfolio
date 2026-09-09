@@ -4340,6 +4340,478 @@ a.cs-more-card {
 }
 
 /* ===============================
+   OMICAL — BRAND / STYLE GUIDE
+================================ */
+
+.cs-om-mark-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  height: 17.5rem;
+}
+
+.cs-om-mark-logo {
+  background: #131312;
+  border-radius: 4px;
+  overflow: hidden;
+  min-height: 16.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-om-mark-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cs-om-mark-card {
+  border-radius: 4px;
+  padding: 2rem;
+  background: #EAE9E5;
+}
+
+.cs-om-mark-title {
+  font-size: 1.75rem;
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.cs-om-mark-body {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #55554f;
+}
+
+.cs-om-grid-demo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4rem;
+  align-items: start;
+}
+
+.cs-om-grid-title {
+  font-size: 1.75rem;
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.cs-om-grid-boxes {
+  display: flex;
+  gap: 0.375rem;
+  height: 5.5rem;
+  margin-bottom: 1rem;
+}
+
+.cs-om-grid-boxes-mobile {
+  width: 7.5rem;
+}
+
+.cs-om-grid-box {
+  flex: 1;
+  background: #EAE9E5;
+}
+
+.cs-om-grid-caption {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  color: #8A8A85;
+}
+
+.cs-om-type-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-om-type-head,
+.cs-om-type-row {
+  display: grid;
+  grid-template-columns: 9.375rem minmax(0, 1fr) 11.875rem;
+  gap: 1.5rem;
+  border-top: 1px solid #d6d5d0;
+  padding: 1.5rem 0;
+  align-items: baseline;
+}
+
+.cs-om-type-head {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a8a85;
+}
+
+.cs-om-type-role {
+  font-size: 0.875rem;
+  color: #131312;
+}
+
+.cs-om-type-family {
+  font-family: "Instrument Serif", serif;
+  font-size: 1.25rem;
+  line-height: 1.15;
+  color: #131312;
+}
+
+.cs-om-type-family-plain {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9375rem;
+}
+
+.cs-om-type-family-upper {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.cs-om-type-spec {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  color: #8a8a85;
+  line-height: 1.5;
+}
+
+.cs-om-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.cs-om-buttons-panel {
+  border-radius: 4px;
+  padding: 2rem;
+}
+
+.cs-om-buttons-panel-dark {
+  background: #072818;
+}
+
+.cs-om-buttons-panel-light {
+  background: #EAE9E5;
+}
+
+.cs-om-buttons-panel-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.cs-om-buttons-panel-dark .cs-om-buttons-panel-label {
+  color: #A8C4B6;
+}
+
+.cs-om-buttons-panel-light .cs-om-buttons-panel-label {
+  color: #55554F;
+}
+
+.cs-om-button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.cs-om-button-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.cs-om-button-pill {
+  border-radius: 999px;
+  padding: 0.75rem 1.375rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cs-om-button-state-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  color: #8a8a85;
+}
+
+.cs-om-tabs-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.cs-om-tab-pill {
+  border-radius: 4px;
+  padding: 0.625rem 1.125rem;
+  font-size: 0.8125rem;
+}
+
+.cs-om-steps-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.8125rem;
+}
+
+.cs-om-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.cs-om-icon-card {
+  border: 1px solid #d6d5d0;
+  border-radius: 4px;
+  padding: 1.75rem;
+  background: #EAE9E5;
+}
+
+.cs-om-icon-card-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #55554F;
+  margin-bottom: 1.25rem;
+}
+
+.cs-om-icon-frame {
+  position: relative;
+  height: 9.375rem;
+}
+
+.cs-om-icon-frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cs-om-icon-caption {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  color: #55554F;
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+.cs-om-icon-interactive {
+  background: #072818;
+  border-radius: 4px;
+  padding: 1.75rem;
+  margin-top: 1.5rem;
+}
+
+.cs-om-icon-interactive-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #A8C4B6;
+  margin-bottom: 1.5rem;
+}
+
+.cs-om-icon-states-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.cs-om-icon-state-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.cs-om-icon-state-row {
+  display: flex;
+  gap: 0.875rem;
+  align-items: center;
+}
+
+.cs-om-icon-circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+}
+
+.cs-om-icon-state-name {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  color: #A8C4B6;
+}
+
+.cs-om-icon-interactive-caption {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  color: #8a8a85;
+  margin-top: 1.25rem;
+  text-align: center;
+  letter-spacing: 0.06em;
+}
+
+/* ===============================
+   OMICAL — SCREENS
+================================ */
+
+.cs-om-screens-layout {
+  display: grid;
+  grid-template-columns: 18.75rem minmax(0, 1fr);
+  gap: 3rem;
+  align-items: stretch;
+}
+
+.cs-om-screens-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.cs-om-screens-group-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a8a85;
+  margin-bottom: 0.75rem;
+}
+
+.cs-om-screens-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.cs-om-screens-item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+  width: 100%;
+  padding: 0.75rem 0.875rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  background: transparent;
+  color: #131312;
+  border: 1px solid #d6d5d0;
+  transition: background 0.15s, border-color 0.15s;
+  text-align: left;
+}
+
+.cs-om-screens-item:hover {
+  border-color: #131312;
+}
+
+.cs-om-screens-item-active,
+.cs-om-screens-item-active:hover {
+  background: #131312;
+  color: #F0EFEC;
+  border-color: #131312;
+}
+
+.cs-om-screens-item-num {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.cs-om-screens-item-name {
+  font-size: 0.9375rem;
+  flex: 1;
+}
+
+.cs-om-screens-viewer {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.cs-om-screens-viewer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid #d6d5d0;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex: none;
+}
+
+.cs-om-screens-viewer-title {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.cs-om-screens-viewer-num {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  color: #8a8a85;
+}
+
+.cs-om-screens-viewer-name {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-size: 1.75rem;
+}
+
+.cs-om-screens-viewer-meta {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  color: #8a8a85;
+}
+
+.cs-om-screens-frame {
+  border: 1px solid #d6d5d0;
+  border-radius: 4px;
+  background: #fff;
+  flex: 1 1 25rem;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.cs-om-screens-frame::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cs-om-screens-frame::-webkit-scrollbar-thumb {
+  background: #d6d5d0;
+  border-radius: 4px;
+}
+
+.cs-om-screens-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cs-om-screens-hint {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  color: #c0553f;
+  margin-top: 0.75rem;
+  flex: none;
+}
+
+.cs-om-screens-lead {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #55554f;
+  margin-top: 1.5rem;
+  flex: none;
+}
+
+/* ===============================
    RESPONSIVE
 ================================ */
 
@@ -4502,6 +4974,40 @@ a.cs-more-card {
   .cs-nm-phone {
     max-width: 21.25rem;
     margin: 0 auto;
+  }
+
+  .cs-om-mark-grid,
+  .cs-om-grid-demo,
+  .cs-om-buttons-grid,
+  .cs-om-icon-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cs-om-mark-grid {
+    height: auto;
+  }
+
+  .cs-om-icon-states-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cs-om-type-head,
+  .cs-om-type-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .cs-om-type-spec {
+    display: none;
+  }
+
+  .cs-om-screens-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cs-om-screens-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
   }
 }
 

@@ -357,7 +357,7 @@ export const penlo = {
     allLink: "/projects",
     allLabel: "All projects ↗",
     items: [
-      { title: "Omical Hotel", tag: "Booking · Web", image: "/projects/omical-mockup.png", link: "/projects" },
+      { title: "Omical Hotel", tag: "Booking · Web", image: "/projects/omical-mockup.png", link: "/projects/omical" },
       { title: "Mâm Việt", tag: "Restaurant · Branding", image: "/projects/MÂM VIỆT-mockup.png", link: "/projects/mamviet" },
       { title: "SpitiMou", tag: "Real estate · Web", image: "/projects/spitimou-mockup.png", link: "/projects/spitimou" },
     ],
