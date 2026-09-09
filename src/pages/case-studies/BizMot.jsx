@@ -1,31 +1,94 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { bizmot } from "../../data/caseStudies/bizmot";
 import "../../styles/case-study.css";
 
-const ScreenTile = ({ n, label, accent }) => (
-  <div className="cs-screen-tile">
-    <div className="cs-screen-mock">
-      <div className="cs-screen-mock-form">
-        <div className="cs-screen-mock-line" style={{ height: "0.5rem", border: "none" }} />
-        <div className="cs-screen-mock-line" />
-        <div className="cs-screen-mock-line cs-screen-mock-line-short" />
-        <div className="cs-screen-mock-bottom">
-          <div className="cs-screen-mock-progress">
-            <div className="cs-screen-mock-progress-fill" style={{ width: `${(Number(n) || 1) * 9}%` }} />
+const ScreenPreview = ({ stage, chrome }) => {
+  if (stage === "template") return <div className="cs-screen-mock-preview-template" />;
+  if (stage === "final") return <div className="cs-screen-mock-preview-final" />;
+  if (stage === "blank") return <div className="cs-screen-mock-preview-shape" />;
+
+  const showLine = stage !== "avatar";
+  const showLineShort = stage === "avatar-fields" || stage === "avatar-duo" || stage === "avatar-full";
+  const showDuo = stage === "avatar-duo" || stage === "avatar-full";
+  const showFull = stage === "avatar-full";
+
+  return (
+    <div className="cs-screen-mock-preview-shape cs-screen-mock-preview-card">
+      {chrome && <div className="cs-screen-mock-preview-chrome" />}
+      <div className="cs-screen-mock-preview-avatar" />
+      {showLine && <div className="cs-screen-mock-preview-line" />}
+      {showLineShort && <div className="cs-screen-mock-preview-line cs-screen-mock-preview-line-short" />}
+      {showDuo && (
+        <div className="cs-screen-mock-preview-duo">
+          <div />
+          <div />
+        </div>
+      )}
+      {showFull && <div className="cs-screen-mock-preview-full" />}
+    </div>
+  );
+};
+
+const ScreenTile = ({
+  n,
+  total,
+  label,
+  title,
+  kind = "form",
+  fields = 1,
+  activeField,
+  preview = "blank",
+  chrome,
+  highlight,
+}) => {
+  const progress = Math.round((Number(n) / Number(total)) * 100);
+  return (
+    <div className="cs-screen-tile">
+      <div className={`cs-screen-mock ${highlight ? "cs-screen-mock-bold" : ""}`}>
+        <div className="cs-screen-mock-form">
+          {title && <div className="cs-screen-mock-title">{title}</div>}
+          {kind === "chips" && (
+            <div className="cs-screen-mock-chips">
+              <div className="cs-screen-mock-chip cs-screen-mock-chip-active" />
+              <div className="cs-screen-mock-chip" />
+              <div className="cs-screen-mock-chip" />
+            </div>
+          )}
+          {kind === "template" && (
+            <div className="cs-screen-mock-template-grid">
+              <div />
+              <div />
+              <div className="cs-screen-mock-template-selected" />
+              <div />
+            </div>
+          )}
+          {kind === "form" &&
+            Array.from({ length: fields }).map((_, i) => <div key={i} className="cs-screen-mock-line" />)}
+          {kind === "form" && activeField && <div className="cs-screen-mock-line cs-screen-mock-line-short" />}
+          {kind === "chips" && <div className="cs-screen-mock-line cs-screen-mock-line-tall" />}
+          {kind === "final" && (
+            <>
+              <div className="cs-screen-mock-line cs-screen-mock-line-center" />
+            </>
+          )}
+          <div className="cs-screen-mock-bottom">
+            <div className="cs-screen-mock-progress">
+              <div className="cs-screen-mock-progress-fill" style={{ width: `${progress}%` }} />
+            </div>
+            <div className={`cs-screen-mock-btn ${kind === "final" ? "cs-screen-mock-btn-lg" : ""}`} />
           </div>
-          <div className="cs-screen-mock-btn" />
+        </div>
+        <div className="cs-screen-mock-preview">
+          <ScreenPreview stage={preview} chrome={chrome} />
         </div>
       </div>
-      <div className="cs-screen-mock-preview">
-        <div className="cs-screen-mock-preview-shape" />
+      <div className={`cs-screen-caption ${highlight ? "cs-screen-caption-accent" : ""}`}>
+        {n} {label}
       </div>
     </div>
-    <div className={`cs-screen-caption ${accent ? "cs-screen-caption-accent" : ""}`}>
-      {n} {label}
-    </div>
-  </div>
-);
+  );
+};
 
 const BizMotCaseStudy = () => {
   const [flow, setFlow] = useState(bizmot.defaultFlow);
@@ -178,9 +241,9 @@ const BizMotCaseStudy = () => {
                 <div className="cs-screen-strip-title">{activeFlow.stripHeader}</div>
                 <div className="cs-screen-strip-sub">{activeFlow.stripSubheader}</div>
               </div>
-              <div className="cs-screen-grid">
+              <div className={`cs-screen-grid cs-screen-grid-cols-${activeFlow.screens.length / 2}`}>
                 {activeFlow.screens.map((s) => (
-                  <ScreenTile key={s.n} n={s.n} label={s.label} accent={s.accent} />
+                  <ScreenTile key={s.n} total={activeFlow.screens.length} {...s} />
                 ))}
               </div>
             </div>
@@ -199,21 +262,27 @@ const BizMotCaseStudy = () => {
           <div className="cs-rounds">
             {bizmot.testing.rounds.map((round) => (
               <div key={round.label} className={`cs-round-card ${round.dark ? "cs-round-card-dark" : ""}`}>
-                <div className="cs-round-head">
-                  <div className="cs-round-label">{round.label} · {round.matchup}</div>
-                  <div className="cs-round-winner">Winner: {round.winner}</div>
+                <div>
+                  <div className="cs-round-label">{round.label}</div>
+                  <div className="cs-round-matchup">{round.matchup}</div>
+                  <div className="cs-round-winner">Winner · {round.winner}</div>
                 </div>
-                <p className="cs-round-body">{round.body}</p>
-                <div className="cs-round-quotes">
-                  {round.quotes.map((q) => (
-                    <div key={q} className="cs-round-quote">“{q}”</div>
-                  ))}
+                <div>
+                  <p className="cs-round-body">{round.body}</p>
+                  <div className="cs-round-quotes">
+                    {round.quotes.map((q) => (
+                      <blockquote key={q} className="cs-round-quote">"{q}"</blockquote>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="cs-callout">{bizmot.testing.gotWrong}</div>
+          <div className="cs-callout">
+            <div className="cs-callout-label">What I got wrong</div>
+            <p className="cs-callout-body">{bizmot.testing.gotWrong}</p>
+          </div>
         </div>
       </section>
 
@@ -225,29 +294,36 @@ const BizMotCaseStudy = () => {
           </h2>
 
           <div className="cs-steps">
-            {bizmot.solution.steps.map((step) => (
-              <div key={step.n}>
-                <div className="cs-step-num">Step {step.n}</div>
-                <h3 className="cs-step-title">{step.title}</h3>
-                <p className="cs-step-body">{step.body}</p>
-                {step.bullets && (
-                  <ul style={{ margin: "0.75rem 0 0", paddingLeft: "1.125rem", color: "#55554f" }}>
-                    {step.bullets.map((b) => (
-                      <li key={b} style={{ fontSize: "1rem", lineHeight: 1.6, marginTop: "0.25rem" }}>{b}</li>
-                    ))}
-                  </ul>
-                )}
-                {step.note && <p className="cs-step-note">{step.note}</p>}
-                <div className="cs-step-images">
-                  {step.images.map((img) => (
-                    <div key={img.src}>
-                      <div className="cs-step-image-frame">
-                        <img src={img.src} alt={img.caption} />
+            {bizmot.solution.steps.map((step, stepIndex) => (
+              <div key={step.n} className="cs-step">
+                <div>
+                  <div className="cs-step-num">Step {step.n}</div>
+                  <h3 className="cs-step-title">{step.title}</h3>
+                  <p className="cs-step-body">{step.body}</p>
+                  {step.bullets && (
+                    <ul className="cs-step-list">
+                      {step.bullets.map((b) => (
+                        <li key={b}>
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {step.note && <p className="cs-step-note">{step.note}</p>}
+                </div>
+                <div className={stepIndex === 0 ? "cs-step-banner" : "cs-step-images"}>
+                  {step.images.map((img, i) => (
+                    <Fragment key={img.src}>
+                      <div>
+                        <div className={`cs-step-image-frame ${img.accent ? "cs-step-image-frame-bold" : ""}`}>
+                          <img src={img.src} alt={img.caption} />
+                        </div>
+                        <div className={`cs-step-image-caption ${img.accent ? "cs-step-image-caption-accent" : ""}`}>
+                          {img.caption}
+                        </div>
                       </div>
-                      <div className={`cs-step-image-caption ${img.accent ? "cs-step-image-caption-accent" : ""}`}>
-                        {img.caption}
-                      </div>
-                    </div>
+                      {stepIndex === 0 && i === 1 && <div className="cs-step-banner-arrow">→</div>}
+                    </Fragment>
                   ))}
                 </div>
               </div>
@@ -271,30 +347,34 @@ const BizMotCaseStudy = () => {
           </h2>
           <p className="cs-lead">{bizmot.makingPossible.body}</p>
 
-          <div className="cs-dark-card" style={{ marginTop: "2rem" }}>
-            <div className="cs-dark-card-title" style={{ fontSize: "1.5rem" }}>Three problems, three decisions</div>
-            <div className="cs-problem-chain">
-              {bizmot.makingPossible.problems.map((p, i) => (
-                <div key={p.problem}>
-                  <div className="cs-problem-row">
-                    <div className={`cs-problem ${p.accent ? "cs-problem-accent" : ""}`}>{p.problem}</div>
-                    <div className="cs-solution-text">{p.solution}</div>
-                  </div>
-                  {i < bizmot.makingPossible.problems.length - 1 && (
-                    <div className="cs-problem-arrow">↓</div>
-                  )}
-                </div>
-              ))}
+          <div className="cs-making-grid">
+            <div className="cs-dark-card">
+              <div className="cs-approach-label" style={{ color: "#8a8a85" }}>Three problems, three decisions</div>
+              <div className="cs-problem-chain">
+                {bizmot.makingPossible.problems.map((p, i) => (
+                  <Fragment key={p.problem}>
+                    <div className={`cs-problem-box ${p.accent ? "cs-problem-box-accent" : ""}`}>
+                      <div className="cs-problem">{p.problem}</div>
+                      <div className="cs-solution-text">{p.solution}</div>
+                    </div>
+                    {i < bizmot.makingPossible.problems.length - 1 && (
+                      <div className="cs-problem-arrow">↓</div>
+                    )}
+                  </Fragment>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className="cs-approach-block">
-            <div className="cs-approach-label">What we didn't do</div>
-            <p className="cs-approach-body">{bizmot.makingPossible.whatWeDidntDo}</p>
-          </div>
-          <div className="cs-approach-block">
-            <div className="cs-approach-label">What we did instead</div>
-            <p className="cs-approach-body">{bizmot.makingPossible.whatWeDidInstead}</p>
+            <div>
+              <div className="cs-approach-block">
+                <div className="cs-approach-label">What we didn't do</div>
+                <p className="cs-approach-body">{bizmot.makingPossible.whatWeDidntDo}</p>
+              </div>
+              <div className="cs-approach-block">
+                <div className="cs-approach-label">What we did instead</div>
+                <p className="cs-approach-body">{bizmot.makingPossible.whatWeDidInstead}</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
