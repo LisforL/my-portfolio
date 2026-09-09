@@ -350,16 +350,4 @@ export const penlo = {
       cutBody: "Group maps, location history, and a scheduled auto-pause all tested as \"nice\" but not trust-critical. I dropped them to spend the time on the four privacy controls that decide whether people keep sharing at all. Prioritizing by the thesis, not the backlog.",
     },
   },
-
-  moreProjects: {
-    heading: "More",
-    headingRest: "projects",
-    allLink: "/projects",
-    allLabel: "All projects ↗",
-    items: [
-      { title: "Omical Hotel", tag: "Booking · Web", image: "/projects/omical-mockup.png", link: "/projects/omical" },
-      { title: "Mâm Việt", tag: "Restaurant · Branding", image: "/projects/MÂM VIỆT-mockup.png", link: "/projects/mamviet" },
-      { title: "SpitiMou", tag: "Real estate · Web", image: "/projects/spitimou-mockup.png", link: "/projects/spitimou" },
-    ],
-  },
 };

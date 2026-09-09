@@ -262,16 +262,4 @@ export const mamviet = {
     intro: "The booking flow clicked through end to end: home, guests and time, floor map, postcard.",
     caption: "Home → floor map → postcard",
   },
-
-  moreProjects: {
-    heading: "More",
-    headingRest: "projects",
-    allLink: "/projects",
-    allLabel: "All projects ↗",
-    items: [
-      { title: "BizMot", tag: "Business · Web app", image: "/projects/bizmot-mockup.png", link: "/projects/bizmot" },
-      { title: "SpitiMou", tag: "Real estate · Web", image: "/projects/spitimou-mockup.png", link: "/projects/spitimou" },
-      { title: "Penlo", tag: "Location sharing · iOS", image: "/projects/penlo-mockup.png", link: "/projects/penlo" },
-    ],
-  },
 };

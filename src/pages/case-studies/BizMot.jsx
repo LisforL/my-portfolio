@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
 import { bizmot } from "../../data/caseStudies/bizmot";
+import MoreProjects from "../../components/MoreProjects";
 import "../../styles/case-study.css";
 
 const ScreenPreview = ({ stage, chrome }) => {
@@ -423,32 +423,7 @@ const BizMotCaseStudy = () => {
         </div>
       </section>
 
-      <section className="cs-section">
-        <div className="cs-inner cs-more-section-inner">
-          <div className="cs-more-head">
-            <h2 className="cs-h2" style={{ margin: 0 }}>
-              <span className="cs-h2-dim">{bizmot.moreProjects.heading}</span> {bizmot.moreProjects.headingRest}
-            </h2>
-            <Link to={bizmot.moreProjects.allLink} className="cs-more-link">
-              {bizmot.moreProjects.allLabel}
-            </Link>
-          </div>
-
-          <div className="cs-more-grid">
-            {bizmot.moreProjects.items.map((p) => (
-              <Link key={p.title} to={p.link} className="cs-more-card">
-                <div className="cs-more-image">
-                  <img src={p.image} alt={p.title} />
-                </div>
-                <div className="cs-more-row">
-                  <span className="cs-more-title">{p.title}</span>
-                  <span className="cs-more-tag">{p.tag}</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <MoreProjects current="/projects/bizmot" />
     </main>
   );
 };

@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { nomu } from "../../data/caseStudies/nomu";
+import MoreProjects from "../../components/MoreProjects";
 import "../../styles/case-study.css";
 
 const CharacterSection = ({ character }) => {
@@ -320,6 +321,8 @@ const NomuCaseStudy = () => {
           <ScreensInspector items={nomu.screens.items} layers={nomu.screens.layers} gutter={nomu.screens.gutter} />
         </div>
       </section>
+
+      <MoreProjects current="/projects/nomu" />
     </main>
   );
 };

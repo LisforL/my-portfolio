@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { omical } from "../../data/caseStudies/omical";
+import MoreProjects from "../../components/MoreProjects";
 import "../../styles/case-study.css";
 
 const ScreensExplorer = ({ screens }) => {
@@ -282,6 +283,8 @@ const OmicalCaseStudy = () => {
           </div>
         </div>
       </section>
+
+      <MoreProjects current="/projects/omical" />
     </main>
   );
 };

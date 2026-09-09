@@ -2,6 +2,7 @@ export const projects = [
   {
     n: "01",
     title: "Penlo",
+    tag: "Location sharing · iOS",
     year: "2026",
     status: "Live",
     tint: "#1b2836",
@@ -14,6 +15,7 @@ export const projects = [
   {
     n: "02",
     title: "BizMot",
+    tag: "Business · Web app",
     year: "2025",
     status: "Live",
     tint: "#241f33",
@@ -28,6 +30,7 @@ export const projects = [
   {
     n: "03",
     title: "SpitiMou",
+    tag: "Real estate · Web",
     year: "2025",
     status: "Live",
     tint: "#152b26",
@@ -40,6 +43,7 @@ export const projects = [
   {
     n: "04",
     title: "Mâm Việt",
+    tag: "Restaurant · Branding",
     year: "2025",
     status: "Prototype",
     tint: "#331d19",
@@ -52,6 +56,7 @@ export const projects = [
   {
     n: "05",
     title: "Omical Hotel",
+    tag: "Booking · Web",
     year: "2025",
     status: "Prototype",
     tint: "#182620",
@@ -64,6 +69,7 @@ export const projects = [
   {
     n: "06",
     title: "Nomu",
+    tag: "Delivery app · Concept",
     year: "2026",
     status: "Concept",
     tint: "#33220f",
