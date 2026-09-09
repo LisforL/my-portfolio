@@ -70,6 +70,7 @@ export const projects = [
     shotImage: "/projects/nomu-mockup.png",
     blurb: "A food delivery app concept built around a playful 3D mascot. From order tracking to the visual identity.",
     href: null,
+    caseStudyPath: "/projects/nomu",
   },
 ];
 

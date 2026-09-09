@@ -86,5 +86,6 @@ export const homeProjects = [
     tags: ["Visual Identity", "3D Character", "Icon Set", "Mobile UI"],
     link: null,
     linkLabel: null,
+    caseStudyPath: "/projects/nomu",
   },
 ];

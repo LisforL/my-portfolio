@@ -13,6 +13,7 @@ import BizMotCaseStudy from "./pages/case-studies/BizMot";
 import SpitiMouCaseStudy from "./pages/case-studies/SpitiMou";
 import PenloCaseStudy from "./pages/case-studies/Penlo";
 import MamVietCaseStudy from "./pages/case-studies/MamViet";
+import NomuCaseStudy from "./pages/case-studies/Nomu";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/projects/spitimou" element={<SpitiMouCaseStudy />} />
         <Route path="/projects/penlo" element={<PenloCaseStudy />} />
         <Route path="/projects/mamviet" element={<MamVietCaseStudy />} />
+        <Route path="/projects/nomu" element={<NomuCaseStudy />} />
         <Route path="/illustration" element={<Illustration />} />
       </Routes>
 
