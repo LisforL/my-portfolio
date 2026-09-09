@@ -57,6 +57,7 @@ export const homeProjects = [
     tags: ["Brand Identity", "Design System", "Web Design", "Reservation Flow"],
     link: "https://www.figma.com/proto/hhg2duIbefMcX3gRafePSR/Ma%CC%82m-Vie%CC%A3%CC%82t--Viet-?node-id=2208-4677&viewport=-513%2C275%2C0.26&t=j3bEpGLGk2G6R5xH-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2208%3A4677&page-id=2208%3A4670",
     linkLabel: "View the prototype",
+    caseStudyPath: "/projects/mamviet",
   },
   {
     num: "05",
