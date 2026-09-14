@@ -1,21 +1,54 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { nomu } from "../../data/caseStudies/nomu";
 import MoreProjects from "../../components/MoreProjects";
 import "../../styles/case-study.css";
 
 const CharacterSection = ({ character }) => {
   const [activePose, setActivePose] = useState(0);
-  const [wipe, setWipe] = useState(52);
-  const draggingRef = useRef(false);
+  const [hovering, setHovering] = useState(false);
+  const [wipe, setWipe] = useState(50);
   const wipeRef = useRef(null);
+  const rawRef = useRef(50);
+  const curRef = useRef(50);
+  const rafRef = useRef(null);
   const pose = character.poses[activePose];
 
-  const setWipeFromClientX = (clientX) => {
+  useEffect(() => () => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+  }, []);
+
+  const startEase = () => {
+    if (rafRef.current) return;
+    const tick = () => {
+      const dx = rawRef.current - curRef.current;
+      if (Math.abs(dx) < 0.1) {
+        curRef.current = rawRef.current;
+        setWipe(curRef.current);
+        rafRef.current = null;
+        return;
+      }
+      curRef.current += dx * 0.22;
+      setWipe(curRef.current);
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+  };
+
+  const setRawFromClientX = (clientX) => {
     const el = wipeRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
     const pct = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
-    setWipe(pct);
+    rawRef.current = pct;
+    if (!hovering) curRef.current = pct;
+    setHovering(true);
+    startEase();
+  };
+
+  const handleLeave = () => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    rafRef.current = null;
+    setHovering(false);
   };
 
   return (
@@ -25,32 +58,25 @@ const CharacterSection = ({ character }) => {
           <div
             ref={wipeRef}
             className="cs-nm-wipe"
-            onPointerDown={(e) => {
-              draggingRef.current = true;
-              setWipeFromClientX(e.clientX);
-            }}
-            onPointerMove={(e) => {
-              if (draggingRef.current) setWipeFromClientX(e.clientX);
-            }}
-            onPointerUp={() => {
-              draggingRef.current = false;
-            }}
-            onPointerLeave={() => {
-              draggingRef.current = false;
-            }}
+            onPointerMove={(e) => setRawFromClientX(e.clientX)}
+            onPointerEnter={(e) => setRawFromClientX(e.clientX)}
+            onPointerLeave={handleLeave}
           >
             <div className="cs-nm-wipe-layer">
               <img src={pose.final} alt={`${pose.name} — final render`} />
             </div>
-            <div className="cs-nm-wipe-sketch" style={{ clipPath: `inset(0 ${100 - wipe}% 0 0)` }}>
+            <div
+              className="cs-nm-wipe-sketch"
+              style={{ clipPath: hovering ? `inset(0 ${100 - wipe}% 0 0)` : "inset(0 100% 0 0)" }}
+            >
               <div className="cs-nm-wipe-layer">
                 <img src={pose.sketch} alt={`${pose.name} — sketch`} />
               </div>
             </div>
-            <div className="cs-nm-wipe-handle" style={{ left: `${wipe}%` }}>
-              <div className="cs-nm-wipe-handle-knob">↔</div>
-            </div>
-            <div className="cs-nm-wipe-tag cs-nm-wipe-tag-left">Sketch</div>
+            <div
+              className="cs-nm-wipe-line"
+              style={{ left: `${wipe}%`, opacity: hovering ? 1 : 0 }}
+            />
             <div className="cs-nm-wipe-tag cs-nm-wipe-tag-right">Final</div>
           </div>
         </div>
@@ -259,7 +285,7 @@ const NomuCaseStudy = () => {
       <section className="cs-section">
         <div className="cs-inner">
           <div className="cs-index">[04]</div>
-          <h2 className="cs-h2">
+          <h2 className="cs-h2" style={{ maxWidth: "none" }}>
             {nomu.icons.heading} <span className="cs-h2-dim">{nomu.icons.headingRest}</span>
           </h2>
 

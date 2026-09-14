@@ -231,9 +231,9 @@ const PenloCaseStudy = () => {
             <span className="cs-h2-dim">{penlo.problem.heading}</span> {penlo.problem.headingRest}
           </h2>
           <p className="cs-lead">
-            <strong>{penlo.problem.leadBold}</strong> {penlo.problem.lead}
+            <strong>{penlo.problem.leadBold}</strong> {penlo.problem.lead}{" "}
+            <em style={{ color: "#88887f" }}>{penlo.problem.leadNote}</em>
           </p>
-          <div className="cs-callout">{penlo.problem.leadNote}</div>
 
           <div className="cs-why-label" style={{ marginTop: "3rem" }}>{penlo.problem.whyLabel}</div>
           <div className="cs-why-grid">
@@ -515,7 +515,9 @@ const PenloCaseStudy = () => {
       <section className="cs-section">
         <div className="cs-inner">
           <div className="cs-index">[09]</div>
-          <h2 className="cs-h2">{penlo.tradeoffs.heading}</h2>
+          <h2 className="cs-h2">
+            <span className="cs-h2-dim">{penlo.tradeoffs.heading}</span> {penlo.tradeoffs.headingRest}
+          </h2>
           <p className="cs-lead" style={{ marginBottom: "3.5rem" }}>{penlo.tradeoffs.lead}</p>
 
           <div className="cs-tradeoff-grid">

@@ -2774,7 +2774,7 @@ a.cs-more-card {
 ================================ */
 
 .cs-mv-cover {
-  margin-top: 4rem;
+  margin-top: 0;
 }
 
 .cs-mv-cover img {
@@ -3827,7 +3827,7 @@ a.cs-more-card {
   border-radius: 4px;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  cursor: ew-resize;
+  cursor: crosshair;
   touch-action: none;
   user-select: none;
 }
@@ -3850,30 +3850,14 @@ a.cs-more-card {
   background: #EAE9E5;
 }
 
-.cs-nm-wipe-handle {
+.cs-nm-wipe-line {
   position: absolute;
   top: 0;
   bottom: 0;
   width: 1px;
   background: #FF52A8;
   pointer-events: none;
-}
-
-.cs-nm-wipe-handle-knob {
-  position: absolute;
-  top: 50%;
-  left: -20px;
-  margin-top: -20px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #FF52A8;
-  color: #F0EFEC;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 13px;
+  transition: opacity 0.18s ease;
 }
 
 .cs-nm-wipe-tag {
@@ -3885,10 +3869,6 @@ a.cs-more-card {
   text-transform: uppercase;
   color: #8a8a85;
   pointer-events: none;
-}
-
-.cs-nm-wipe-tag-left {
-  left: 14px;
 }
 
 .cs-nm-wipe-tag-right {

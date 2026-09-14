@@ -81,7 +81,7 @@ export const penlo = {
       { title: "Interviews", n: "n = 12", body: "Found out how friends coordinate and when sharing feels uncomfortable." },
       { title: "Survey", n: "n = 64", body: "Tested comfort levels across different types of relationships." },
       { title: "Usability round 1", n: "n = 8 · shipped app", body: "Tested the current app in the App Store. This is the baseline we compare all improvements against." },
-      { title: "Usability round 2", n: "n = 8", body: "Tested the redesign with a new group of people. This validates our case study." },
+      { title: "Usability round 2", n: "n = 8", body: "Tested the redesign with a new group of people. This validates our redesign." },
     ],
   },
 
@@ -321,13 +321,14 @@ export const penlo = {
       { title: "Friend card", image: "/case-studies/penlo/ui-card.png", body: "Last-active, the place they are at, and two clear actions, plus the per-friend tier control." },
       { title: "Add friend", image: "/case-studies/penlo/ui-add.png", body: "Three ways in, and requesting versus pending kept apart so a sent request never looks like a friend." },
       { title: "Profile", image: "/case-studies/penlo/ui-profile.png", body: "Your own identity, your ID to share, and where friend management lives, separate from the map." },
-      { title: "Map settings", image: "/case-studies/penlo/ui-settings.png", body: "What the map shows is the user's call — real-time status, weather, and battery each toggle off without leaving the map." },
+      { title: "Map settings", image: "/case-studies/penlo/ui-settings.png", body: "Real-time status, weather, and battery each toggle off without leaving the map." },
       { title: "Share code", image: "/case-studies/penlo/ui-share.png", body: "A code you can hand over in person or send through any app, no contact upload required." },
     ],
   },
 
   tradeoffs: {
-    heading: "Trade-offs and priorities",
+    heading: "Trade-offs",
+    headingRest: "and priorities",
     lead: "Some design choices meant choosing between reach and trust. Others decided where the two months went. I made these choices on purpose, and I can explain each one.",
     items: [
       {

@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Illustration from "./pages/Illustration";
+import Contact from "./pages/Contact";
 import BizMotCaseStudy from "./pages/case-studies/BizMot";
 import SpitiMouCaseStudy from "./pages/case-studies/SpitiMou";
 import PenloCaseStudy from "./pages/case-studies/Penlo";
@@ -36,6 +37,7 @@ function App() {
         <Route path="/projects/nomu" element={<NomuCaseStudy />} />
         <Route path="/projects/omical" element={<OmicalCaseStudy />} />
         <Route path="/illustration" element={<Illustration />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
 
       <Footer />

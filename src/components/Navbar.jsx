@@ -21,6 +21,7 @@ const Navbar = () => {
 
             { to: "/projects", label: "Projects" },
             { to: "/illustration", label: "Illustration" },
+            { to: "/contact", label: "Contact" },
           ].map(({ to, label }) => (
             <li key={to}>
               <NavLink to={to} className="wave-link">

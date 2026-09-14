@@ -14,11 +14,10 @@ const FitQuiz = () => {
         <div className="fit-grid">
           <div>
             <h2 className="home-h2 home-h2-dark">
-              Are we a <span className="home-h2-dim-dark">fit</span>?
+              How I <span className="home-h2-dim-dark">think, work, and design</span>
             </h2>
             <p className="fit-lead">
-              The honest answer depends on what you need. I wrote six of them — keep tapping
-              until one sounds like your project.
+              Six questions. Six honest answers.
             </p>
           </div>
 

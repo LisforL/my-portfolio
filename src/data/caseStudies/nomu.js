@@ -6,7 +6,7 @@ export const nomu = {
   meta: [
     { label: "Project", value: "UI design, mascot & icon set" },
     { label: "Category", value: "Food delivery" },
-    { label: "Role", value: "Figma, 3D character renders" },
+    { label: "Role", value: "Sole designer — UI, mascot, icon set" },
     { label: "Project Year", value: "2026" },
     { label: "Timeline", value: "2 weeks" },
   ],
@@ -60,7 +60,7 @@ export const nomu = {
         body: "Each pose communicates the order status at a glance, helping users understand what is happening.",
       },
     ],
-    hint: "Drag to compare the hand-drawn with the final render",
+    hint: "Move your cursor across the render to compare the hand-drawn sketch with the final",
     poses: [
       {
         name: "Eating",
