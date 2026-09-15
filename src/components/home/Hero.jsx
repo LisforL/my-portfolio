@@ -28,14 +28,16 @@ const Hero = () => {
     <section className="home-hero" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
       <div className="home-hero-inner">
         <div className="home-hero-copy">
-          <div className="home-eyebrow">[ UI/UX · animation · illustration ]</div>
-          <h1 className="home-hero-name">Trinh Trinh Nguyen</h1>
-          <p className="home-hero-intro">
+          <div className="home-eyebrow home-anim-rise">[ UI/UX · animation · illustration ]</div>
+          <h1 className="home-hero-name home-anim-rise home-anim-delay-1">
+            Trinh Trinh Nguyen<span className="home-hero-name-dot">.</span>
+          </h1>
+          <p className="home-hero-intro home-anim-rise home-anim-delay-2">
             I am a product designer who turns complex problems into clear, engaging digital
             experiences — research, UX, UI, and visual design, connecting what users need to
             decisions a team can actually ship.
           </p>
-          <div className="home-hero-actions">
+          <div className="home-hero-actions home-anim-rise home-anim-delay-3">
             <a href="/projects" className="home-btn home-btn-solid">See selected work</a>
             <a href="#hello" className="home-btn home-btn-outline">Résumé (PDF)</a>
           </div>
@@ -43,11 +45,11 @@ const Hero = () => {
 
         <div className="home-hero-portrait-col">
           <div className="home-hero-portrait-stage">
-            <div ref={frameRef} className="home-hero-portrait-frame">
+            <div ref={frameRef} className="home-hero-portrait-frame home-anim-frame">
               <img src="/profile.png" alt="Trinh Trinh Nguyen" />
             </div>
           </div>
-          <div className="home-hero-caption">Hello — that's me / my work</div>
+          <div className="home-hero-caption home-anim-rise home-anim-delay-5">Hello — that's me / my work</div>
         </div>
       </div>
     </section>

@@ -123,6 +123,75 @@
    HERO
 ================================ */
 
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-frame {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes dot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.home-anim-rise {
+  animation: hero-rise 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.home-eyebrow.home-anim-rise {
+  animation-duration: 0.7s;
+}
+
+.home-hero-name.home-anim-rise {
+  animation-duration: 0.9s;
+}
+
+.home-anim-delay-1 {
+  animation-delay: 0.08s;
+}
+
+.home-anim-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.home-anim-delay-3 {
+  animation-delay: 0.3s;
+}
+
+.home-anim-delay-5 {
+  animation-delay: 0.5s;
+}
+
+.home-anim-frame {
+  animation: hero-frame 1s cubic-bezier(0.22, 0.61, 0.36, 1) 0.25s both;
+}
+
+.home-hero-name-dot {
+  color: #FF52A8;
+  animation: dot-pulse 2.6s ease-in-out 1.6s infinite;
+}
+
 .home-hero {
   padding: 5rem 3rem 6rem;
 }
