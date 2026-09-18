@@ -39,7 +39,6 @@ const Hero = () => {
           </p>
           <div className="home-hero-actions home-anim-rise home-anim-delay-3">
             <a href="/projects" className="home-btn home-btn-solid">See selected work</a>
-            <a href="#hello" className="home-btn home-btn-outline">Résumé (PDF)</a>
           </div>
         </div>
 

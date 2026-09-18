@@ -45,10 +45,6 @@ const Contact = () => {
                 <span className="contact-row-label">Phone</span>
                 <span className="contact-row-value">+84 358 468 676</span>
               </a>
-              <a href="#" className="contact-row">
-                <span className="contact-row-label">Résumé</span>
-                <span className="contact-row-value">Download PDF ↓</span>
-              </a>
             </div>
           </div>
 
@@ -61,9 +57,6 @@ const Contact = () => {
               className="contact-card-btn-solid"
             >
               Get in touch →
-            </a>
-            <a href="#" className="contact-card-btn-outline">
-              Download résumé ↓
             </a>
           </div>
         </div>

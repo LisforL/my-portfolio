@@ -4,7 +4,6 @@ const contactRows = [
     { label: "Email", value: "trinhtrinhnguyen333@gmail.com", href: "mailto:trinhtrinhnguyen333@gmail.com" },
     { label: "Phone", value: "+84 358 468 676", href: "tel:+84358468676" },
     { label: "Elsewhere", value: "LinkedIn · Instagram", href: "https://linkedin.com/" },
-    { label: "Résumé", value: "Download PDF ↗", href: "#" },
 ];
 
 const Footer = () => {
