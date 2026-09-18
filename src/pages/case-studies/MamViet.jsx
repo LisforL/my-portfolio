@@ -377,7 +377,7 @@ const MamVietCaseStudy = () => {
                 <div className="cs-mv-sg-ornament-note">
                   Frame 60 × 60 px
                   <br />
-                  #072818 · Lục
+                  #303E97 · Lam
                 </div>
               </div>
               <div className="cs-mv-sg-ornament-card cs-mv-sg-ornament-card-dark">
@@ -388,7 +388,7 @@ const MamVietCaseStudy = () => {
                 <div className="cs-mv-sg-ornament-note">
                   Frame 40 × 40 px
                   <br />
-                  #072818 · Lục
+                  #303E97 · Lam
                 </div>
               </div>
             </div>

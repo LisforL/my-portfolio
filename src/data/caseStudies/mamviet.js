@@ -188,10 +188,10 @@ export const mamviet = {
       mobile: "4 columns · 20px margin · 16px gutter",
     },
     palette: [
-      { hex: "#072818", label: "Primary · Blue - default ground, all marketing pages" },
-      { hex: "#D8B25B", label: "Accent · Yellow - action only; buttons and CTAs" },
-      { hex: "#F8EDE0", label: "Neutral 1 - reading surfaces, cards and forms" },
-      { hex: "#D76310", label: "Tertiary · Red - accents and highlights" },
+      { hex: "#303E97", label: "Primary · Blue - default ground, all marketing pages" },
+      { hex: "#F9E154", label: "Accent · Yellow - action only; buttons and CTAs" },
+      { hex: "#FFFFFF", label: "Neutral 1 - reading surfaces, cards and forms" },
+      { hex: "#9C1C1F", label: "Tertiary · Red - accents and highlights" },
     ],
     type: [
       { role: "Display 1", family: "Beautique Display", serif: true, spec: "75 px · LS 0%", sub: "Regular" },
