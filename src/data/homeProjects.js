@@ -4,7 +4,7 @@ export const homeProjects = [
     title: "Penlo",
     role: "iOS app redesign · sole designer",
     year: "2026",
-    status: "Live",
+    status: "Under development",
     x: 38,
     y: 58,
     image: "/projects/penlo-mockup.png",

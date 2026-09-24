@@ -48,7 +48,7 @@ const Hero = () => {
               <img src="/profile.png" alt="Trinh Trinh Nguyen" />
             </div>
           </div>
-          <div className="home-hero-caption home-anim-rise home-anim-delay-5">Hello — that's me / my work</div>
+          <div className="home-hero-caption home-anim-rise home-anim-delay-5">Hello — that's me</div>
         </div>
       </div>
     </section>
