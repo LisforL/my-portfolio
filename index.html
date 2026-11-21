@@ -483,11 +483,19 @@ body.playing .track.on .t-no .ic .pa { display: block; }
   transition: opacity 0.7s cubic-bezier(0.45, 0, 0.55, 1), filter 0.7s cubic-bezier(0.45, 0, 0.55, 1), transform 0.7s cubic-bezier(0.45, 0, 0.55, 1);
   transition-delay: var(--d, 0s);
 }
-.mw-init .w > span.is-in, .mw-dot.is-in, .mw-side.is-in { opacity: 1; filter: blur(0); transform: none; }
-.mw-wd.is-in, #slogan .w.is-in, .mw-notes > .is-in { opacity: 1; filter: blur(0); transform: none; }
+.mw-init .w > span.is-in, .mw-dot.is-in, .mw-side.is-in { opacity: 1; filter: none; transform: none; }
+.mw-wd.is-in, #slogan .w.is-in, .mw-notes > .is-in { opacity: 1; filter: none; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .mw-wd, #slogan .w, .mw-notes > * { opacity: 1; filter: none; transform: none; transition: none; }
 }
+/* Safari (the owner's report, 21 Nov 2026: "the purple text got cut a little"). WebKit paints an
+   element that has a filter only inside its own box, and La Belle Aurore's loops reach well outside
+   its line box (most of all on a tight line-height: the How I work title's `shape.` is 0.5), so
+   Chrome showed the script words whole and Safari cut them. The words used to rest on `blur(0)`,
+   which is still a filter; they now rest on `none` (the blur still eases out, as blur to none
+   animates the same), so once in they have no filter to clip them. The hero's script line is split
+   into letters each on a layer of their own (will-change), which Safari clips the same way. */
+.hero h1 .tail .ch { will-change: auto; }
 /* the label's backdrop: the cover photo, far out of focus and steeped in wine, with labels pinned
    along the foot of the screen (all in the flower layer, so they show only on the label) */
 .mw-bg { position: absolute; inset: 0; overflow: hidden; background: #351E28; }
@@ -906,6 +914,13 @@ body.on-label .nav-link:hover, body.on-label .nav-link:focus-visible { color: va
 .about:not(.ab-wide) .ab-head { margin-bottom: 4px; padding-bottom: 5px; }
 .about:not(.ab-wide) .tr-row { padding: 4px 0; }
 .about:not(.ab-wide) .ab-tracks { --nc: 34px; }
+/* Safari clips a <button>'s contents to the button, and each step's script name (Discover, Define...)
+   sits in one with its loops above the 6px padding, so Safari cut their tops. The row gets 10px more
+   room above and below, taken back by a -10px margin (flow-root on the li keeps those margins from
+   merging with the next row's), so the rows look and space exactly as before. */
+.tr { display: flow-root; }
+.tr-row { padding-top: 16px; padding-bottom: 16px; margin: -10px 0; }
+.about:not(.ab-wide) .tr-row { padding-top: 14px; padding-bottom: 14px; }
 .about:not(.ab-wide) .tr-nm { font-size: 22px; }
 .about:not(.ab-wide) .tr-tasks li { padding: 1px 0; font-size: 13px; }
 .about:not(.ab-wide) .tr-tasks li:last-child { padding-bottom: 6px; }
