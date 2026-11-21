@@ -825,3 +825,14 @@ about 1-2 screens each.
 - Info: smaller flower between ALWAYS DESIGNING and WITH INTENTION, tighter goals, the next story's
   cover 4:3 instead of the tall 358x441 crop.
 - Every footer on a phone is as tall as its content instead of a whole screen.
+
+## Videos (21 Nov 2026)
+
+Bliss's and TL Studio's recordings were ~3000px wide at 5-13 Mbps (75 MB for ten). They are re-encoded
+to 2560 wide (still sharp on a 2x laptop screen, where a full-width reel is about 3000 device pixels),
+no audio, which brought them to 26 MB with no visible difference (checked frame by frame). The other
+projects' videos were already 1440-1920 wide at 1-2 Mbps and are untouched. A new recording, same way:
+
+```
+ffmpeg -i in.mov -an -vf "scale=2560:-2:flags=lanczos" -c:v libx264 -preset slow -crf 22 -pix_fmt yuv420p -movflags +faststart out.mp4
+```
