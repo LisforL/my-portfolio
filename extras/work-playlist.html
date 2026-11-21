@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Selected work · playlist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500&display=swap">
+<style>
+/* The Selected work laid out like a playlist poster: seven covers round the title, each with its
+   number and its name placed beside it as on the poster (under it, to its right, number above
+   and name below, or both above), some running off the edges. When the section comes into
+   view the covers first stand in a turning ring, round-cornered and lifted; after a moment they
+   move by themselves to their places, square and flat, then the title and the labels come up.
+   The covers are grey placeholders until each project has its picture. */
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-Ultralight.otf") format("opentype"); font-weight: 200; font-style: normal; }
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-UltralightItalic.otf") format("opentype"); font-weight: 200; font-style: italic; }
+:root {
+  --paper: #faf8f5; --ink: #400d1b; --ink-soft: #6c454f; --accent: #8760af;
+  --serif: "PP Editorial New", "Instrument Serif", "Times New Roman", serif;
+  --body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", Menlo, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; }
+canvas { display: block; }
+.back { position: absolute; z-index: 30; left: 18px; top: 16px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; }
+.back:hover { color: var(--ink); }
+
+/* the section: one screen tall; covers may run off its edges */
+.pl { --B: 200px; position: relative; height: 100vh; height: 100svh; min-height: 600px; overflow: hidden; background: var(--paper); }
+
+/* a cover: a grey placeholder for now; a link into the case study */
+.pl-cv { position: absolute; left: 0; top: 0; display: block; background: var(--g); transform-origin: 50% 50%; will-change: transform; opacity: 0; }
+.pl-cv.done { transition: scale 0.4s cubic-bezier(.2, .8, .2, 1); }
+.pl-cv.done:hover, .pl-cv.done:focus-visible { scale: 1.035; }
+.pl-cv:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+/* its number and its name, placed as on the poster */
+.pl-n, .pl-t { position: absolute; left: 0; top: 0; margin: 0; opacity: 0; translate: 0 8px; pointer-events: none; transition: opacity 0.6s ease, translate 0.7s cubic-bezier(.2, .8, .2, 1), color 0.3s ease; }
+.pl-n.in, .pl-t.in { opacity: 1; translate: 0 0; }
+.pl-n { font: 400 calc(var(--B) * 0.074)/1 var(--mono); letter-spacing: 0.02em; white-space: nowrap; }
+.pl-t { width: max-content; max-width: calc(var(--B) * var(--tw, 0.92)); font: 400 calc(var(--B) * 0.084)/1.12 var(--body); letter-spacing: -0.005em; }
+.pl-n.hot { color: var(--accent); }
+.pl-t.hot { text-decoration: underline; text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+
+/* the title in the middle */
+.pl-mid { position: absolute; left: 50%; top: 50%; display: grid; justify-items: center; text-align: center; translate: -50% -50%; opacity: 0; pointer-events: none; }
+.pl-title { margin: 0; font: 200 calc(var(--B) * 0.38)/0.94 var(--serif); letter-spacing: -0.02em; white-space: nowrap; }
+.pl-title em { font-style: italic; color: var(--accent); }
+.pl-pix { margin-top: calc(var(--B) * 0.1); }
+.pl-by { margin: calc(var(--B) * 0.13) 0 0; font: 500 calc(var(--B) * 0.06)/1 var(--body); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
+.pl-replay { position: absolute; z-index: 30; right: 18px; bottom: 16px; padding: 8px 12px; border: 1px solid rgba(64, 13, 27, 0.2); border-radius: 999px; background: rgba(250, 248, 245, 0.8); cursor: pointer; font: 500 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+.pl-replay:hover { border-color: var(--ink); color: var(--ink); }
+@media (max-width: 760px) {
+  .pl-n { font-size: max(9.5px, calc(var(--B) * 0.1)); }
+  .pl-t { font-size: max(10.5px, calc(var(--B) * 0.115)); }
+  .pl-title { font-size: calc(var(--B) * 0.36); }
+  .pl-by { font-size: 8.5px; letter-spacing: 0.14em; }
+  .pl-by2 { display: none; }
+}
+</style>
+</head>
+<body>
+<a class="back" href="../index.html">← The site</a>
+<section class="pl" id="pl" aria-labelledby="plT">
+  <div class="pl-mid" id="mid">
+    <h2 class="pl-title" id="plT">Records I’d<br>play <em>again.</em></h2>
+    <canvas class="pl-pix" id="pix" role="img" aria-label="playlist"></canvas>
+    <p class="pl-by">Trinh Trinh Nguyen<span class="pl-by2"> · Selected work</span></p>
+  </div>
+  <button type="button" class="pl-replay" id="replay">Replay ↺</button>
+</section>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const clamp01 = (x) => Math.max(0, Math.min(1, x));
+  const smooth = (x) => { x = clamp01(x); return x * x * (3 - 2 * x); };
+  const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* seven projects; words in [brackets] are placeholders */
+  const PROJECTS = [
+    "[Project name], a mobile app for slow travel",
+    "[Project name], a booking flow for a wellness studio",
+    "[Project name], a design system for a fintech team",
+    "[Project name], an e-commerce redesign",
+    "[Project name], a dashboard for a logistics start-up",
+    "[Project name], a habit-tracking app",
+    "[Project name], a website for a ceramics studio"
+  ];
+  /* the poster's layout. u, v: the cover's centre from the middle of the section (-1 the left or
+     top edge, 1 the right or bottom); w, h: its size in covers (--B); lab: where its number and
+     name go (under it; to its right; number above and name under; both above); tw: how wide the
+     name may run, in covers; vw: v on wide screens, where the poster is squeezed in height */
+  const POSTER = [
+    { u: -0.35, v: -0.86, w: 1, h: 1.02, lab: "below" },
+    { u: 0.14, v: -0.68, w: 1, h: 1.06, lab: "right" },
+    { u: -0.72, v: -0.28, vw: -0.35, w: 1, h: 1.17, lab: "split" },
+    { u: 0.80, v: -0.07, w: 1, h: 1.02, lab: "split" },
+    { u: -0.93, v: 0.37, vw: 0.5, w: 1, h: 1.24, lab: "right", tw: 0.5 },
+    { u: -0.18, v: 0.84, w: 1.3, h: 1.27, lab: "above" },
+    { u: 0.50, v: 0.51, w: 1, h: 1.14, lab: "split" }
+  ];
+  const GREYS = ["#d8d4d0", "#cfcac6", "#dbd7d3", "#d2cdc9", "#d6d2ce", "#ccc7c2", "#d9d5d1"];   // placeholders, a touch apart
+  const N = PROJECTS.length;
+  const pl = $("pl"), mid = $("mid"), pix = $("pix");
+  const items = PROJECTS.map((t, i) => {
+    const cv = document.createElement("a");
+    cv.className = "pl-cv"; cv.href = "#"; cv.style.setProperty("--g", GREYS[i % GREYS.length]);
+    cv.setAttribute("aria-label", "( " + String(i + 1).padStart(2, "0") + " ) " + t);
+    cv.addEventListener("click", (e) => e.preventDefault());
+    const n = document.createElement("p"); n.className = "pl-n"; n.textContent = "( " + String(i + 1).padStart(2, "0") + " )";
+    const tt = document.createElement("p"); tt.className = "pl-t"; tt.textContent = t;
+    if (POSTER[i].tw) tt.dataset.tw = POSTER[i].tw;
+    cv.addEventListener("pointerenter", () => { n.classList.add("hot"); tt.classList.add("hot"); });
+    cv.addEventListener("pointerleave", () => { n.classList.remove("hot"); tt.classList.remove("hot"); });
+    pl.append(cv, n, tt);
+    return { i, cv, n, t: tt, p: POSTER[i], x: 0, y: 0, w: 0, h: 0, tf: "" };
+  });
+
+  /* "playlist" in pixels: a small bitmap word, each pixel a square, coming in pixel by pixel */
+  const GLYPHS = {
+    p: [".....", ".....", "#.##.", "##..#", "#...#", "#...#", "####.", "#....", "#...."],
+    l: [".##..", "..#..", "..#..", "..#..", "..#..", "..#..", ".###.", ".....", "....."],
+    a: [".....", ".....", ".###.", "....#", ".####", "#...#", ".####", ".....", "....."],
+    y: [".....", ".....", "#...#", "#...#", "#...#", "#..##", ".##.#", "....#", ".###."],
+    i: ["..#..", ".....", ".##..", "..#..", "..#..", "..#..", ".###.", ".....", "....."],
+    s: [".....", ".....", ".####", "#....", ".###.", "....#", "####.", ".....", "....."],
+    t: [".....", ".#...", "####.", ".#...", ".#...", ".#..#", "..##.", ".....", "....."]
+  };
+  const WORD = "playlist", dots = [], cols = WORD.length * 6 - 1;
+  [...WORD].forEach((ch, k) => GLYPHS[ch].forEach((row, y) => [...row].forEach((v, x) => { if (v === "#") dots.push({ x: k * 6 + x, y, r: Math.random() }); })));
+  let px = 8, shownPix = -1;
+  function sizePix() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    pix.width = Math.round(cols * px * dpr); pix.height = Math.round(9 * px * dpr);
+    pix.style.width = cols * px + "px"; pix.style.height = 9 * px + "px";
+    shownPix = -1;
+  }
+  function drawPix(q) {
+    q = Math.round(q * 40) / 40;
+    if (q === shownPix) return;
+    shownPix = q;
+    const dpr = Math.min(devicePixelRatio || 1, 2), g = pix.getContext("2d");
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.clearRect(0, 0, pix.width, pix.height);
+    g.fillStyle = "#8760af";
+    const gap = Math.max(1, px * 0.12);
+    dots.forEach((d) => { if (d.r <= q) g.fillRect(d.x * px, d.y * px, px - gap, px - gap); });
+  }
+
+  /* sizes: a cover (--B), each cover's place, its labels' places, and the ring it starts in */
+  let W = 0, H = 0, B = 200, phone = false, ring = { x: 0, y: 0, R: 0, S: 0 };
+  function layout() {
+    W = pl.clientWidth; H = pl.clientHeight; phone = W <= 760;
+    B = phone ? Math.min(W * 0.21, H * 0.12) : Math.min(H * 0.22, W * 0.14);
+    pl.style.setProperty("--B", B.toFixed(1) + "px");
+    px = phone ? Math.max(2.5, Math.round(B * 0.04 * 2) / 2) : Math.max(3, Math.round(B * 0.05 * 2) / 2);
+    sizePix();
+    mid.style.top = (H / 2 - 0.06 * H / 2) + "px";
+    items.forEach((it) => {
+      const p = it.p;
+      if (it.t.dataset.tw) it.t.style.setProperty("--tw", phone ? 0.9 : it.t.dataset.tw);   // the narrow column is too narrow on a phone
+      it.w = p.w * B; it.h = p.h * B;
+      it.x = W / 2 + p.u * W / 2; it.y = H / 2 + (!phone && p.vw !== undefined ? p.vw : p.v) * H / 2;
+      Object.assign(it.cv.style, { width: it.w + "px", height: it.h + "px" });
+      it.tf = "";
+    });
+    placeLabels();
+    ring = { x: W / 2, y: H / 2, R: Math.min(W, H) * (phone ? 0.3 : 0.27), S: Math.min(W, H) * (phone ? 0.25 : 0.19) };
+  }
+  /* the labels, at the poster's gaps (in covers) from their cover */
+  function placeLabels() {
+    const g = B * 0.075, gn = B * 0.06;
+    items.forEach((it) => {
+      const l = it.x - it.w / 2, r = it.x + it.w / 2, t = it.y - it.h / 2, b = it.y + it.h / 2;
+      const nh = it.n.offsetHeight, th = it.t.offsetHeight;
+      let nx = l, ny, tx = l, ty;
+      if (it.p.lab === "below") { ny = b + g * 1.4; ty = ny + nh + gn; }
+      else if (it.p.lab === "right") { nx = tx = r + g; ny = t; ty = ny + nh + gn; }
+      else if (it.p.lab === "split") { ny = t - g - nh; ty = b + g; }
+      else { ty = t - g * 1.1 - th; ny = ty - gn - nh; }                      // above: number, then name, then the cover
+      Object.assign(it.n.style, { left: nx + "px", top: ny + "px" });
+      Object.assign(it.t.style, { left: tx + "px", top: ty + "px" });
+    });
+  }
+
+  /* the sequence, in seconds from when the section comes into view: the covers come up in a
+     ring and turn; then each moves to its place; then the title and the labels */
+  const POP = 0.6, MOVE = 1.9, STAGGER = 0.08, TRAVEL = 1.2, TITLE = 2.9, LABELS = 3.25;
+  let t0 = -1, done = false;
+  function start() { t0 = performance.now(); done = false; items.forEach((it) => { it.cv.classList.remove("done"); it.n.classList.remove("in"); it.t.classList.remove("in"); it.tf = ""; }); shownPix = -1; }
+  function frame(now) {
+    if (t0 >= 0 && !done) {
+      const s = reduce ? 99 : (now - t0) / 1000, spin = Math.min(s, MOVE) * 0.45;
+      items.forEach((it, i) => {
+        const th = (i / N) * Math.PI * 2 + spin, depth = (1 - Math.cos(th)) / 2;      // 0 at the back of the ring, 1 at the front
+        const rx = ring.x + ring.R * Math.sin(th), ry = ring.y - ring.R * Math.cos(th) * 0.86;
+        const rs = ring.S * (0.8 + 0.3 * depth);
+        const pop = smooth((s - i * 0.06) / POP), e = ease(clamp01((s - MOVE - i * STAGGER) / TRAVEL));
+        const x = lerp(rx, it.x, e), y = lerp(ry, it.y, e);
+        const sx = lerp(rs / it.w, 1, e) * lerp(0.7, 1, pop), sy = lerp(rs / it.h, 1, e) * lerp(0.7, 1, pop);
+        const yaw = lerp(-Math.sin(th) * 24, 0, e), roll = lerp(Math.sin(th) * 6, 0, e);
+        const tf = "translate3d(" + (x - it.w / 2).toFixed(1) + "px," + (y - it.h / 2).toFixed(1) + "px,0) perspective(1400px) rotateY(" + yaw.toFixed(2) + "deg) rotate(" + roll.toFixed(2) + "deg) scale(" + sx.toFixed(4) + "," + sy.toFixed(4) + ")";
+        if (tf !== it.tf) {
+          it.tf = tf;
+          const st = it.cv.style, rad = lerp(14, 0, e);
+          st.transform = tf;
+          st.opacity = pop.toFixed(3);
+          st.borderRadius = (rad / sx).toFixed(1) + "px / " + (rad / sy).toFixed(1) + "px";
+          st.boxShadow = e < 1 ? "0 " + (16 * (1 - e)).toFixed(1) + "px " + (34 * (1 - e)).toFixed(1) + "px rgba(43,10,18," + (0.22 * (1 - e)).toFixed(3) + ")" : "none";
+          st.zIndex = String(2 + Math.round((1 - e) * depth * 10));
+        }
+        if (s > LABELS + i * 0.07) { it.n.classList.add("in"); it.t.classList.add("in"); }
+      });
+      const q = smooth((s - TITLE) / 0.7);
+      mid.style.opacity = q.toFixed(3);
+      mid.style.translate = "-50% calc(-50% + " + ((1 - q) * 14).toFixed(1) + "px)";
+      drawPix(smooth((s - TITLE - 0.1) / 0.8));
+      if (s > LABELS + N * 0.07 + 0.8) { done = true; items.forEach((it) => it.cv.classList.add("done")); }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* it plays once the section is well in view (and again from the button) */
+  new IntersectionObserver((es) => { es.forEach((e) => { if (e.isIntersecting && t0 < 0) start(); }); }, { threshold: 0.4 }).observe(pl);
+  $("replay").addEventListener("click", start);
+  addEventListener("resize", () => { layout(); if (done) { done = false; t0 = performance.now() - 99000; } });
+  if (document.fonts) document.fonts.ready.then(() => { placeLabels(); });
+  layout();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

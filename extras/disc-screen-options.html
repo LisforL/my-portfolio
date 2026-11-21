@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Disc screen options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500&display=swap">
+<style>
+/* Four directions for the disc screen, drawn as static sketches with the site's own photo,
+   fonts and colours. Each artboard is laid out at full size (1440 × 900, 390 × 844) and scaled
+   to fit; click a desktop sketch to see it larger. */
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-Ultralight.otf") format("opentype"); font-weight: 200; font-style: normal; }
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-UltralightItalic.otf") format("opentype"); font-weight: 200; font-style: italic; }
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-Italic.otf") format("opentype"); font-weight: 400; font-style: italic; }
+:root {
+  --paper: #faf8f5; --ink: #400d1b; --wine: #351e28; --ink-soft: #6c454f; --accent: #8760af;
+  --line: #dbd4d1; --thistle: #cdb9dd;
+  --serif: "PP Editorial New", "Instrument Serif", "Times New Roman", serif;
+  --body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", Menlo, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #efebe7; color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; }
+.page { max-width: 1500px; margin: 0 auto; padding: 32px clamp(16px, 3vw, 40px) 64px; }
+.page > header { margin-bottom: 28px; }
+.page > header h1 { margin: 0 0 8px; font: 200 clamp(30px, 4vw, 52px)/1 var(--serif); letter-spacing: -0.01em; }
+.page > header p { margin: 0; max-width: 62em; font-size: 15px; line-height: 1.45; color: var(--ink-soft); }
+.opt { margin-top: 40px; }
+.opt h2 { display: flex; align-items: baseline; gap: 14px; margin: 0 0 6px; font: 200 clamp(24px, 2.6vw, 34px)/1.1 var(--serif); }
+.opt h2 b { font: 500 12px/1 var(--mono); letter-spacing: 0.08em; color: var(--accent); }
+.opt h2 em { font-style: italic; }
+.opt > p { margin: 0 0 14px; max-width: 70em; font-size: 15px; line-height: 1.45; color: var(--ink-soft); }
+.row { display: grid; grid-template-columns: 1.6fr 0.462fr; gap: clamp(10px, 1.6vw, 22px); align-items: start; }
+.row.big { grid-template-columns: 1fr; }
+.row.big .p { max-width: 320px; }
+.ab { position: relative; overflow: hidden; border-radius: 6px; box-shadow: 0 1px 0 rgba(64,13,27,.06), 0 10px 30px -12px rgba(64,13,27,.25); background: var(--paper); }
+.d { aspect-ratio: 1440 / 900; cursor: zoom-in; }
+.row.big .d { cursor: zoom-out; }
+.p { aspect-ratio: 390 / 844; }
+.in { position: absolute; left: 0; top: 0; transform-origin: 0 0; transform: scale(var(--s, 0.4)); background: var(--paper); overflow: hidden; }
+.d .in { width: 1440px; height: 900px; }
+.p .in { width: 390px; height: 844px; }
+.in > * { position: absolute; }
+
+/* the site's chrome: the hairline frame and the strip where the nav bar appears */
+.frame { inset: 12px 20px; border: 1px solid var(--line); pointer-events: none; z-index: 9; }
+.strip { left: 20px; right: 20px; top: 12px; height: 52px; z-index: 9; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  display: grid; grid-template-columns: minmax(150px, 1.15fr) repeat(3, minmax(0, 1.2fr)) auto; gap: 16px; align-items: center; padding: 0 12px;
+  font: 400 11px/1 var(--body); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; background: var(--paper); }
+.p .strip { grid-template-columns: 1fr auto; font-size: 9.5px; }
+.strip .cat { font-family: var(--mono); letter-spacing: 0.04em; color: var(--ink); }
+.strip .now { justify-self: end; color: var(--accent); }
+.wm { font: 200 21px/1 var(--serif); letter-spacing: -0.01em; text-transform: none; color: var(--ink); }
+.wm em { font-style: italic; }
+
+/* the record: the cover photo with its centre hole */
+.disc { border-radius: 50%; overflow: hidden; background: url("../cover.jpg") center / 102% no-repeat; box-shadow: 0 0 0 1px rgba(135,96,175,.28); }
+.disc::after { content: ""; position: absolute; left: 50%; top: 50%; width: 16.5%; height: 16.5%; transform: translate(-50%, -50%); border-radius: 50%; background: var(--paper); box-shadow: 0 0 0 1px rgba(64,13,27,.18); }
+svg.ndl { left: 0; top: 0; width: 100%; height: 100%; mix-blend-mode: difference; pointer-events: none; z-index: 5; }
+
+/* type and controls */
+.kick { display: flex; align-items: center; gap: 14px; font: 400 11px/1 var(--body); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+.p .kick { font-size: 9.5px; gap: 8px; }
+.kick i { width: 48px; height: 1px; background: currentColor; opacity: 0.5; }
+.p .kick i { width: 18px; }
+.kick span { color: var(--ink-soft); }
+.q { margin: 0; font: italic 400 34px/1.08 var(--serif); color: var(--ink); }
+.btns { display: flex; align-items: center; gap: 8px; }
+.yn { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 22px; border-radius: 999px; border: 1px solid var(--ink);
+  font: 400 12px/1 var(--body); letter-spacing: 0.02em; text-transform: uppercase; white-space: nowrap; color: var(--ink); }
+.p .yn { padding: 0 18px; font-size: 11.5px; }
+.yn.yes { background: var(--ink); color: var(--paper); }
+.yn svg { width: 8px; height: 8px; }
+.cue { display: inline-flex; align-items: center; gap: 8px; font: 400 12px/1 var(--body); letter-spacing: 0.02em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+.p .cue { font-size: 11px; }
+.cue svg { width: 9px; height: 9px; }
+.lab { font: 400 12px/1 var(--body); letter-spacing: 0.02em; text-transform: uppercase; color: var(--accent); }
+.meta { font: 400 11px/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+.tl-head { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 4px; }
+.trk { display: grid; grid-template-columns: 26px auto minmax(20px, 1fr) auto; align-items: baseline; column-gap: 12px; padding: 12px 0 11px; border-bottom: 1px solid var(--line); }
+.trk .no, .trk .tm { font: 400 11px/1 var(--mono); color: var(--ink-soft); }
+.trk .ti { font: italic 400 22px/1 var(--serif); }
+.trk .ld { height: 2px; background: radial-gradient(circle, var(--ink-soft) 0.75px, transparent 1.05px) left center / 6px 2px repeat-x; opacity: 0.55; }
+.trk.on .ti { color: var(--accent); }
+.inl { display: flex; gap: 22px; align-items: baseline; white-space: nowrap; }
+.inl span { display: inline-flex; align-items: baseline; gap: 8px; }
+.inl b { font: 400 11px/1 var(--mono); color: var(--ink-soft); }
+.inl em { font: italic 400 19px/1 var(--serif); color: var(--ink); }
+.p .inl { gap: 16px; }
+.p .inl em { font-size: 18px; }
+
+/* B: the sleeve */
+.sleeve { background: #400d1b; box-shadow: 0 22px 50px -18px rgba(64,13,27,.45); z-index: 3; overflow: hidden; }
+.sleeve > * { position: absolute; }
+.sv-line { inset: 18px; border: 1px solid rgba(205,185,221,.32); }
+.sv-wear { border-radius: 50%; border: 18px solid rgba(255,255,255,.035); }
+.sv-edge { top: 0; bottom: 0; right: 0; width: 3px; background: rgba(255,255,255,.07); }
+.sv-vine { background: var(--thistle); -webkit-mask: url("../vines/vine-right.png") center / contain no-repeat; mask: url("../vines/vine-right.png") center / contain no-repeat; opacity: .9; }
+.sv-top { font: 500 15px/1.7 var(--mono); letter-spacing: 0.16em; color: rgba(250,248,245,.82); }
+.sv-top span { color: var(--thistle); }
+.sv-name { font: italic 200 72px/0.98 var(--serif); color: var(--paper); letter-spacing: -0.01em; }
+.sv-foot { display: flex; justify-content: space-between; font: 500 11px/1 var(--mono); letter-spacing: 0.16em; color: rgba(250,248,245,.6); }
+.sticker { border-radius: 50%; background: var(--thistle); color: #400d1b; display: grid; place-content: center; text-align: center; gap: 5px;
+  font: 500 10.5px/1.2 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; transform: rotate(-8deg); box-shadow: 0 2px 0 rgba(0,0,0,.08); }
+.sticker em { font: italic 400 21px/1 var(--serif); letter-spacing: 0; text-transform: none; }
+.shade { top: 0; bottom: 0; width: 64px; background: linear-gradient(90deg, rgba(64,13,27,.34), rgba(64,13,27,0)); }
+
+/* C: the masthead */
+.mast { font: 200 186px/1 var(--serif); letter-spacing: -0.012em; white-space: nowrap; color: var(--ink); }
+.mast em { font-style: italic; }
+
+/* D: the deck, in hairlines */
+.plinth { border: 1px solid #cdc4c0; border-radius: 30px; background: rgba(64,13,27,.022); }
+.eng { font: 200 26px/1 var(--serif); letter-spacing: -0.01em; }
+.eng em { font-style: italic; }
+.eng small { display: block; margin-top: 10px; font: 400 10px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+.speed { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; font: 400 11px/1 var(--mono); letter-spacing: 0.06em; }
+.speed span { padding: 8px 12px; color: var(--ink-soft); }
+.speed span.on { background: var(--accent); color: var(--paper); }
+svg.art { left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; }
+/* the sentence either side of the record (sized to fit by the script below) */
+.sent2 { margin: 0; font: 200 80px/1 var(--serif); letter-spacing: -0.012em; white-space: nowrap; color: var(--ink); }
+.sent2 em { font-style: italic; color: var(--accent); }
+.sent2.mid { left: 50%; transform: translateX(-50%); }
+.ask2 { margin: 0; font: italic 400 21px/1.25 var(--serif); color: var(--ink-soft); }
+/* the word options: a grid of desktop sketches */
+.words { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px clamp(14px, 2vw, 26px); margin-top: 30px; }
+.words.big { grid-template-columns: 1fr; }
+.w-card h2 { display: flex; align-items: baseline; gap: 10px; margin: 0 0 4px; font: 200 clamp(22px, 2.4vw, 32px)/1.1 var(--serif); }
+.w-card h2 b { font-weight: 200; }
+.w-card h2 em { font-style: italic; color: var(--accent); }
+.w-card > p { margin: 0 0 10px; font-size: 14px; line-height: 1.4; color: var(--ink-soft); }
+.w-card h2 .pick, .opt h2 .pick { font: 400 11px/1 var(--body); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+/* A1: the ring of print round the record */
+.ring { font: 400 11px var(--mono); fill: var(--ink-soft); }
+/* A2: the name as the record's title */
+.title { font: 200 66px/1 var(--serif); letter-spacing: -0.01em; white-space: nowrap; }
+.title em { font-style: italic; }
+/* A3: the question in two halves either side of the record */
+.sent { font-size: 60px; line-height: 1; white-space: nowrap; }
+/* A4: a wall label */
+.card { border-top: 1px solid var(--ink); padding-top: 12px; }
+.card .cn { font: 500 12px/1.3 var(--body); letter-spacing: 0.08em; text-transform: uppercase; }
+.card .cs { margin-top: 2px; font: 400 12px/1.3 var(--body); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+.card .ct { margin-top: 12px; font: italic 400 23px/1.1 var(--serif); }
+.card .cm { margin-top: 6px; font: 400 13px/1.45 var(--body); color: var(--ink-soft); }
+.card .trk { padding: 9px 0 8px; }
+.card .trk .ti { font-size: 18px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>Let it <em style="font-style: italic">… ?</em></h1>
+    <p>T1 with other words in place of “spin”. The record is still the “it”, and the button repeats the word (“Let it sing”). Click a sketch to see it larger.</p>
+  </header>
+
+  <section class="words">
+    <div class="w-card">
+      <h2><b>Let it</b> <em>sing?</em> <small class="pick">my pick</small></h2>
+      <p>The record sings: soft, warm, and plainly about sound.</p>
+      <div class="ab d"><div class="in">
+        <div class="frame"></div>
+        <div class="strip"><span class="wm">Trinh Trinh <em>Nguyen</em></span><span>Side A</span><span>33⅓ RPM</span><span>Stereo</span><span class="now">Sound off</span></div>
+        <div class="disc" style="left:470px;top:170px;width:500px;height:500px"></div>
+        <svg class="ndl" data-n="720,420,250,-65,346"></svg>
+        <p class="sent2" data-cy="420" style="right:1018px">Let it</p>
+        <p class="sent2" data-cy="420" style="left:1018px"><em>sing?</em></p>
+        <div class="btns" style="left:0;right:0;top:712px;justify-content:center"><span class="yn yes">Let it sing <svg viewBox="0 0 10 10"><path d="M2.5 1v8l6.5-4z" fill="currentColor"/></svg></span><span class="yn">Not now</span></div>
+        <div class="inl" style="left:34px;bottom:36px"><span><b>01</b><em>Late Bloom</em><b>2:00</b></span><span><b>02</b><em>Night Bus</em><b>1:59</b></span></div>
+        <span class="cue" style="right:34px;bottom:38px">Scroll <svg viewBox="0 0 10 10"><path d="M5 1v7M2 5.5L5 8.5 8 5.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span>
+      </div></div>
+    </div>
+    <div class="w-card">
+      <h2><b>Let it</b> <em>play?</em></h2>
+      <p>The clearest: everyone knows what play means.</p>
+      <div class="ab d"><div class="in">
+        <div class="frame"></div>
+        <div class="strip"><span class="wm">Trinh Trinh <em>Nguyen</em></span><span>Side A</span><span>33⅓ RPM</span><span>Stereo</span><span class="now">Sound off</span></div>
+        <div class="disc" style="left:470px;top:170px;width:500px;height:500px"></div>
+        <svg class="ndl" data-n="720,420,250,-65,346"></svg>
+        <p class="sent2" data-cy="420" style="right:1018px">Let it</p>
+        <p class="sent2" data-cy="420" style="left:1018px"><em>play?</em></p>
+        <div class="btns" style="left:0;right:0;top:712px;justify-content:center"><span class="yn yes">Let it play <svg viewBox="0 0 10 10"><path d="M2.5 1v8l6.5-4z" fill="currentColor"/></svg></span><span class="yn">Not now</span></div>
+        <div class="inl" style="left:34px;bottom:36px"><span><b>01</b><em>Late Bloom</em><b>2:00</b></span><span><b>02</b><em>Night Bus</em><b>1:59</b></span></div>
+        <span class="cue" style="right:34px;bottom:38px">Scroll <svg viewBox="0 0 10 10"><path d="M5 1v7M2 5.5L5 8.5 8 5.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span>
+      </div></div>
+    </div>
+    <div class="w-card">
+      <h2><b>Let it</b> <em>bloom?</em></h2>
+      <p>Picks up the vines and the first song, Late Bloom.</p>
+      <div class="ab d"><div class="in">
+        <div class="frame"></div>
+        <div class="strip"><span class="wm">Trinh Trinh <em>Nguyen</em></span><span>Side A</span><span>33⅓ RPM</span><span>Stereo</span><span class="now">Sound off</span></div>
+        <div class="disc" style="left:470px;top:170px;width:500px;height:500px"></div>
+        <svg class="ndl" data-n="720,420,250,-65,346"></svg>
+        <p class="sent2" data-cy="420" style="right:1018px">Let it</p>
+        <p class="sent2" data-cy="420" style="left:1018px"><em>bloom?</em></p>
+        <div class="btns" style="left:0;right:0;top:712px;justify-content:center"><span class="yn yes">Let it bloom <svg viewBox="0 0 10 10"><path d="M2.5 1v8l6.5-4z" fill="currentColor"/></svg></span><span class="yn">Not now</span></div>
+        <div class="inl" style="left:34px;bottom:36px"><span><b>01</b><em>Late Bloom</em><b>2:00</b></span><span><b>02</b><em>Night Bus</em><b>1:59</b></span></div>
+        <span class="cue" style="right:34px;bottom:38px">Scroll <svg viewBox="0 0 10 10"><path d="M5 1v7M2 5.5L5 8.5 8 5.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span>
+      </div></div>
+    </div>
+    <div class="w-card">
+      <h2><b>Let it</b> <em>turn?</em></h2>
+      <p>Quieter than spin: a record turning, unhurried.</p>
+      <div class="ab d"><div class="in">
+        <div class="frame"></div>
+        <div class="strip"><span class="wm">Trinh Trinh <em>Nguyen</em></span><span>Side A</span><span>33⅓ RPM</span><span>Stereo</span><span class="now">Sound off</span></div>
+        <div class="disc" style="left:470px;top:170px;width:500px;height:500px"></div>
+        <svg class="ndl" data-n="720,420,250,-65,346"></svg>
+        <p class="sent2" data-cy="420" style="right:1018px">Let it</p>
+        <p class="sent2" data-cy="420" style="left:1018px"><em>turn?</em></p>
+        <div class="btns" style="left:0;right:0;top:712px;justify-content:center"><span class="yn yes">Let it turn <svg viewBox="0 0 10 10"><path d="M2.5 1v8l6.5-4z" fill="currentColor"/></svg></span><span class="yn">Not now</span></div>
+        <div class="inl" style="left:34px;bottom:36px"><span><b>01</b><em>Late Bloom</em><b>2:00</b></span><span><b>02</b><em>Night Bus</em><b>1:59</b></span></div>
+        <span class="cue" style="right:34px;bottom:38px">Scroll <svg viewBox="0 0 10 10"><path d="M5 1v7M2 5.5L5 8.5 8 5.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span>
+      </div></div>
+    </div>
+    <div class="w-card">
+      <h2><b>Let it</b> <em>hum?</em></h2>
+      <p>Small and soft: music in the background while you look.</p>
+      <div class="ab d"><div class="in">
+        <div class="frame"></div>
+        <div class="strip"><span class="wm">Trinh Trinh <em>Nguyen</em></span><span>Side A</span><span>33⅓ RPM</span><span>Stereo</span><span class="now">Sound off</span></div>
+        <div class="disc" style="left:470px;top:170px;width:500px;height:500px"></div>
+        <svg class="ndl" data-n="720,420,250,-65,346"></svg>
+        <p class="sent2" data-cy="420" style="right:1018px">Let it</p>
+        <p class="sent2" data-cy="420" style="left:1018px"><em>hum?</em></p>
+        <div class="btns" style="left:0;right:0;top:712px;justify-content:center"><span class="yn yes">Let it hum <svg viewBox="0 0 10 10"><path d="M2.5 1v8l6.5-4z" fill="currentColor"/></svg></span><span class="yn">Not now</span></div>
+        <div class="inl" style="left:34px;bottom:36px"><span><b>01</b><em>Late Bloom</em><b>2:00</b></span><span><b>02</b><em>Night Bus</em><b>1:59</b></span></div>
+        <span class="cue" style="right:34px;bottom:38px">Scroll <svg viewBox="0 0 10 10"><path d="M5 1v7M2 5.5L5 8.5 8 5.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span>
+      </div></div>
+    </div>
+    <div class="w-card">
+      <h2><b>Let it</b> <em>dance?</em></h2>
+      <p>Playful: the record moves, and so might you.</p>
+      <div class="ab d"><div class="in">
+        <div class="frame"></div>
+        <div class="strip"><span class="wm">Trinh Trinh <em>Nguyen</em></span><span>Side A</span><span>33⅓ RPM</span><span>Stereo</span><span class="now">Sound off</span></div>
+        <div class="disc" style="left:470px;top:170px;width:500px;height:500px"></div>
+        <svg class="ndl" data-n="720,420,250,-65,346"></svg>
+        <p class="sent2" data-cy="420" style="right:1018px">Let it</p>
+        <p class="sent2" data-cy="420" style="left:1018px"><em>dance?</em></p>
+        <div class="btns" style="left:0;right:0;top:712px;justify-content:center"><span class="yn yes">Let it dance <svg viewBox="0 0 10 10"><path d="M2.5 1v8l6.5-4z" fill="currentColor"/></svg></span><span class="yn">Not now</span></div>
+        <div class="inl" style="left:34px;bottom:36px"><span><b>01</b><em>Late Bloom</em><b>2:00</b></span><span><b>02</b><em>Night Bus</em><b>1:59</b></span></div>
+        <span class="cue" style="right:34px;bottom:38px">Scroll <svg viewBox="0 0 10 10"><path d="M5 1v7M2 5.5L5 8.5 8 5.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span>
+      </div></div>
+    </div>
+    <div class="w-card">
+      <h2><b>Let it</b> <em>flow?</em></h2>
+      <p>The music runs on while you browse.</p>
+      <div class="ab d"><div class="in">
+        <div class="frame"></div>
+        <div class="strip"><span class="wm">Trinh Trinh <em>Nguyen</em></span><span>Side A</span><span>33⅓ RPM</span><span>Stereo</span><span class="now">Sound off</span></div>
+        <div class="disc" style="left:470px;top:170px;width:500px;height:500px"></div>
+        <svg class="ndl" data-n="720,420,250,-65,346"></svg>
+        <p class="sent2" data-cy="420" style="right:1018px">Let it</p>
+        <p class="sent2" data-cy="420" style="left:1018px"><em>flow?</em></p>
+        <div class="btns" style="left:0;right:0;top:712px;justify-content:center"><span class="yn yes">Let it flow <svg viewBox="0 0 10 10"><path d="M2.5 1v8l6.5-4z" fill="currentColor"/></svg></span><span class="yn">Not now</span></div>
+        <div class="inl" style="left:34px;bottom:36px"><span><b>01</b><em>Late Bloom</em><b>2:00</b></span><span><b>02</b><em>Night Bus</em><b>1:59</b></span></div>
+        <span class="cue" style="right:34px;bottom:38px">Scroll <svg viewBox="0 0 10 10"><path d="M5 1v7M2 5.5L5 8.5 8 5.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span>
+      </div></div>
+    </div>
+    <div class="w-card">
+      <h2><b>Let it</b> <em>begin?</em></h2>
+      <p>Less about sound, more about starting the visit.</p>
+      <div class="ab d"><div class="in">
+        <div class="frame"></div>
+        <div class="strip"><span class="wm">Trinh Trinh <em>Nguyen</em></span><span>Side A</span><span>33⅓ RPM</span><span>Stereo</span><span class="now">Sound off</span></div>
+        <div class="disc" style="left:470px;top:170px;width:500px;height:500px"></div>
+        <svg class="ndl" data-n="720,420,250,-65,346"></svg>
+        <p class="sent2" data-cy="420" style="right:1018px">Let it</p>
+        <p class="sent2" data-cy="420" style="left:1018px"><em>begin?</em></p>
+        <div class="btns" style="left:0;right:0;top:712px;justify-content:center"><span class="yn yes">Let it begin <svg viewBox="0 0 10 10"><path d="M2.5 1v8l6.5-4z" fill="currentColor"/></svg></span><span class="yn">Not now</span></div>
+        <div class="inl" style="left:34px;bottom:36px"><span><b>01</b><em>Late Bloom</em><b>2:00</b></span><span><b>02</b><em>Night Bus</em><b>1:59</b></span></div>
+        <span class="cue" style="right:34px;bottom:38px">Scroll <svg viewBox="0 0 10 10"><path d="M5 1v7M2 5.5L5 8.5 8 5.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span>
+      </div></div>
+    </div>
+  </section>
+</div>
+
+<script>
+/* the needle, as the site draws it: a thick stem from the label, then a fine tapering blade.
+   data-n = centre x, centre y, disc radius, angle (degrees), length */
+document.querySelectorAll("svg.ndl").forEach((svg) => {
+  const ab = svg.closest(".in"), w = ab.offsetWidth, h = ab.offsetHeight;
+  svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+  const [cx, cy, R, deg, len] = svg.dataset.n.split(",").map(Number);
+  const t = deg * Math.PI / 180, ux = Math.cos(t), uy = Math.sin(t), nx = -uy, ny = ux;
+  const hw = Math.max(1.6, R * 0.014), w0 = Math.max(0.9, R * 0.0065), w1 = Math.max(0.5, R * 0.0028);
+  const h0 = R * 0.04, h1 = Math.min(R * 0.36, len - 1), p = (k, s) => (cx + ux * k + nx * s).toFixed(1) + " " + (cy + uy * k + ny * s).toFixed(1);
+  const ink = "rgb(186,235,218)";   // paper minus ink: under difference it lands on the wine ink
+  svg.innerHTML = '<line x1="' + (cx + ux * h0) + '" y1="' + (cy + uy * h0) + '" x2="' + (cx + ux * h1) + '" y2="' + (cy + uy * h1) +
+    '" stroke="' + ink + '" stroke-width="' + (hw * 2) + '" stroke-linecap="round"/>' +
+    '<path d="M' + p(h1, w0) + " L" + p(len, w1) + " A" + w1 + " " + w1 + " 0 0 1 " + p(len, -w1) + " L" + p(h1, -w0) + 'Z" fill="' + ink + '"/>';
+});
+/* size each sentence so its longer half fits beside the record (or across a phone), the two
+   halves at one size, and centre its x-height on the record's axis */
+function fitSentences() {
+  document.querySelectorAll(".in").forEach((ab) => {
+    const parts = [...ab.querySelectorAll(".sent2")];
+    if (!parts.length) return;
+    const phone = ab.offsetWidth < 500, room = phone ? 322 : 384, max = phone ? 52 : 86;
+    let fs = max;
+    parts.forEach((el) => { el.style.fontSize = max + "px"; fs = Math.min(fs, max * room / el.scrollWidth); });
+    parts.forEach((el) => {
+      el.style.fontSize = fs.toFixed(1) + "px";
+      if (el.dataset.cy) el.style.top = (+el.dataset.cy - 0.57 * fs).toFixed(1) + "px";
+    });
+  });
+}
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(fitSentences);
+fitSentences();
+/* scale each artboard to its box */
+const fit = () => document.querySelectorAll(".ab").forEach((ab) => {
+  const inner = ab.querySelector(".in");
+  ab.style.setProperty("--s", ab.clientWidth / inner.offsetWidth);
+});
+new ResizeObserver(fit).observe(document.body);
+fit();
+document.querySelectorAll(".d").forEach((d) => d.addEventListener("click", () => { (d.closest(".row") || d.closest(".words")).classList.toggle("big"); fit(); }));
+</script>
+</body>
+</html>

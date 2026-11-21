@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Selected work · sleeves</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500&display=swap">
+<style>
+/* Mock-ups for the Selected work, to choose a direction from (the prototype comes after): six
+   projects in two columns and three rows, each only its cover (a sleeve) and its name. Point at
+   one and its record slides half out of the sleeve, rolling as it comes, with a few words about
+   the project printed on it. Three directions, switched by the tabs (#a, #b, #c):
+   A lift: the record rises out of the top of the sleeve; the words in lines above its label.
+   B side out: on wine; it rolls out of the side; the words run round its grooves.
+   C mirror: two staggered columns meeting in the middle; the records come out towards the
+     page's edges; the words printed on a large label, like a real record's.
+   The first project shows its record until you point at one. Covers are grey placeholders;
+   words in [brackets] are placeholders. */
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-Ultralight.otf") format("opentype"); font-weight: 200; font-style: normal; }
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-UltralightItalic.otf") format("opentype"); font-weight: 200; font-style: italic; }
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-Italic.otf") format("opentype"); font-weight: 400; font-style: italic; }
+:root {
+  --paper: #faf8f5; --ink: #400d1b; --wine: #400d1b; --ink-soft: #6c454f; --accent: #8760af;
+  --line: #dbd4d1; --thistle: #cdb9dd;
+  --serif: "PP Editorial New", "Instrument Serif", "Times New Roman", serif;
+  --body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", Menlo, monospace;
+  --bar: 64px;
+  --pad: clamp(16px, 5vw, 88px);
+  --out: cubic-bezier(.16, 1, .3, 1);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+button { font: inherit; color: inherit; }
+.opt { display: none; }
+.opt.on { display: block; }
+
+/* the bar: back to the site, and the three directions */
+.ob {
+  position: fixed; z-index: 100; inset: 0 0 auto 0; height: var(--bar);
+  display: flex; align-items: center; gap: clamp(12px, 2vw, 28px); padding: 0 clamp(14px, 2vw, 28px);
+  background: rgba(250, 248, 245, 0.94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.ob-home { font-size: 11px; line-height: 1; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
+.ob-home:hover { color: var(--ink); }
+.ob-t { margin: 0; font: 200 22px/1 var(--serif); white-space: nowrap; }
+.ob-t em { font-style: italic; color: var(--accent); }
+.ob-tabs { margin-left: auto; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+.ob-tabs::-webkit-scrollbar { display: none; }
+.ob-tabs button {
+  flex: none; display: inline-flex; align-items: baseline; gap: 8px;
+  padding: 9px 14px 8px; border: 1px solid rgba(64, 13, 27, 0.22); border-radius: 999px; background: none; cursor: pointer;
+  font-size: 12px; line-height: 1; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.ob-tabs button b { font: 500 11px/1 var(--mono); color: var(--accent); }
+.ob-tabs button:hover { border-color: var(--ink); }
+.ob-tabs button[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.ob-tabs button[aria-selected="true"] b { color: var(--thistle); }
+.ob-tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (max-width: 760px) { .ob-t, .ob-home { display: none; } .ob-tabs { margin-left: 0; } .ob-tabs button { padding: 9px 11px 8px; } }
+
+/* the direction, in a few words */
+.dir { max-width: 1180px; margin: 0 auto; padding: calc(var(--bar) + clamp(36px, 6vw, 72px)) var(--pad) clamp(28px, 4vw, 44px);
+  display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 16px 6vw; align-items: end; box-sizing: content-box; }
+.dir-k { margin: 0 0 12px; font: 500 11px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.dir-t { margin: 0; font: 200 clamp(40px, 4.6vw, 70px)/0.95 var(--serif); letter-spacing: -0.01em; }
+.dir-t em { font-style: italic; color: var(--accent); }
+.dir-d { margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink-soft); max-width: 52ch; }
+.dir-d b { font-weight: 500; color: var(--ink); }
+@media (max-width: 760px) { .dir { grid-template-columns: minmax(0, 1fr); } }
+
+/* the section as it would sit on the site */
+.wk { padding: clamp(56px, 7vw, 110px) var(--pad) clamp(100px, 12vw, 180px); border-top: 1px solid var(--line); }
+.wk-in { max-width: 1180px; margin: 0 auto; }
+.wk-h { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 18px 40px; }
+.wk-k { margin: 0 0 16px; font: 500 11px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.wk-t { margin: 0; font: 200 clamp(46px, 5.6vw, 92px)/0.95 var(--serif); letter-spacing: -0.015em; }
+.wk-t em { font-style: italic; color: var(--accent); }
+.hint { margin: 0; display: inline-flex; align-items: center; gap: 10px; font: 500 11px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+.hint::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+
+/* a project: its sleeve (the cover) with the record inside, and its name */
+.pj { position: relative; outline: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.pj.on, .pj:hover, .pj:focus-visible { z-index: 3; }
+.rec { position: relative; aspect-ratio: 1; }
+.sl { position: absolute; inset: 0; z-index: 2; border-radius: 3px; background: var(--g); box-shadow: 0 26px 46px -30px rgba(43, 10, 18, 0.55);
+  transition: transform 0.9s var(--out); }
+.sl::before { content: ""; position: absolute; opacity: 0; transition: opacity 0.6s ease; pointer-events: none; }   /* its shadow on the record */
+.pj:focus-visible .sl { outline: 2px solid var(--accent); outline-offset: 5px; }
+.dk { position: absolute; z-index: 1; left: 3%; top: 3%; width: 94%; height: 94%; border-radius: 50%; container-type: size;
+  background:
+    repeating-radial-gradient(circle at 50% 50%, rgba(205, 185, 221, 0.075) 0 0.6px, transparent 0.7px 2.6px),
+    radial-gradient(circle at 50% 50%, #2a0a13 0 32%, #16050a 72%, #0f0306 100%);
+  box-shadow: inset 0 0 0 1px rgba(205, 185, 221, 0.16);
+  transform: translate(0, 0) rotate(var(--r0, -60deg));
+  transition: transform 0.95s var(--out); }
+.pj.on .dk, .pj:hover .dk, .pj:focus-visible .dk { transform: translate(var(--dx, 0%), var(--dy, 0%)) rotate(0deg); }
+.dk::after { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 50%; box-shadow: 0 0 34px rgba(20, 4, 8, 0.45); opacity: 0; transition: opacity 0.6s ease; }   /* its shadow, once out */
+.pj.on .dk::after, .pj:hover .dk::after, .pj:focus-visible .dk::after { opacity: 1; }
+.pj.on .sl::before, .pj:hover .sl::before, .pj:focus-visible .sl::before { opacity: 1; }
+/* the light on the grooves turns while the record is out (the words stay still) */
+.dk-sheen { position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
+  background: conic-gradient(from 25deg, transparent 0 5%, rgba(250, 248, 245, 0.1) 11%, transparent 19% 50%, rgba(250, 248, 245, 0.08) 57%, transparent 65% 100%); }
+.pj.on .dk-sheen, .pj:hover .dk-sheen, .pj:focus-visible .dk-sheen { animation: turn 6s linear infinite; }
+@keyframes turn { to { transform: rotate(1turn); } }
+.dk-lab { position: absolute; left: 50%; top: 50%; width: 30%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%;
+  background: var(--thistle); box-shadow: inset 0 0 0 1px rgba(64, 13, 27, 0.2), 0 0 0 3px rgba(205, 185, 221, 0.12); color: var(--ink); }
+.dk-lab::after { content: ""; position: absolute; left: 50%; top: 50%; width: 7%; aspect-ratio: 1; min-width: 4px; transform: translate(-50%, -50%); border-radius: 50%; background: var(--paper); }
+.pj-t { margin: 20px 0 0; display: flex; align-items: baseline; gap: 12px; font: 200 clamp(24px, 2.4vw, 36px)/1.05 var(--serif); letter-spacing: -0.005em; }
+.pj-n { flex: none; font: 500 11px/1 var(--mono); letter-spacing: 0.1em; color: var(--accent); }
+
+/* ── A · Lift: the record rises out of the top of the sleeve ── */
+.A .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(28px, 6vw, 110px); row-gap: clamp(150px, 16vw, 220px); padding-top: clamp(150px, 16vw, 220px); }
+.A .pj { width: min(100%, 380px); justify-self: center; --dy: -50%; --r0: -55deg; }
+.A .sl::before { left: 2%; right: 2%; bottom: 100%; height: 18px; background: linear-gradient(to top, rgba(15, 3, 6, 0.4), transparent); }
+.A .pj.on .sl, .A .pj:hover .sl, .A .pj:focus-visible .sl { transform: translateY(4%); }
+.A .dk-info { position: absolute; left: 15%; right: 15%; top: 9%; bottom: 66%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 1.8cqh; text-align: center; color: var(--paper); }
+.i-no { font: 500 max(8px, 2.7cqw)/1 var(--mono); letter-spacing: 0.12em; color: var(--thistle); }
+.i-what { font: italic 200 max(13px, 5.4cqw)/1.05 var(--serif); max-width: 60cqw; }
+.i-meta { font: 400 max(7.5px, 2.5cqw)/1.35 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: rgba(250, 248, 245, 0.72); max-width: 74cqw; }
+.lab-a { position: absolute; left: 10%; right: 10%; top: 17%; text-align: center; font: 500 max(6.5px, 1.9cqw)/1.35 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* ── B · Side out: on wine; the record rolls out of the side, its words round the grooves ── */
+.B .wk { background: var(--wine); color: var(--paper); border-top: 0; }
+.B .wk-k, .B .pj-n { color: var(--thistle); }
+.B .wk-t em { color: var(--thistle); }
+.B .hint { color: rgba(250, 248, 245, 0.62); }
+.B .hint::before { background: var(--thistle); }
+.B .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(28px, 4vw, 64px); row-gap: clamp(64px, 7vw, 110px); padding-top: clamp(60px, 7vw, 100px); }
+.B .pj { width: 62%; --dx: 50%; --r0: -60deg; }
+.B .sl { box-shadow: 0 28px 50px -26px rgba(10, 2, 4, 0.75); }
+.B .sl::before { top: 2%; bottom: 2%; left: 100%; width: 18px; background: linear-gradient(to right, rgba(10, 2, 4, 0.45), transparent); }
+.B .pj.on .sl, .B .pj:hover .sl, .B .pj:focus-visible .sl { transform: translateX(-3%); }
+.dk-arc { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.dk-arc text { font-family: var(--mono); font-size: 3.1px; letter-spacing: 0.42px; text-transform: uppercase; }
+.dk-arc .a-what { fill: rgba(250, 248, 245, 0.92); font-weight: 500; }
+.dk-arc .a-role { fill: var(--thistle); }
+.dk-arc .a-meta { fill: rgba(205, 185, 221, 0.7); }
+.lab-b { position: absolute; left: 58%; top: 50%; transform: translateY(-50%); font: italic 200 max(14px, 6.6cqw)/1 var(--serif); }
+
+/* ── C · Mirror: staggered columns; the records come out towards the page's edges, the words on a large label ── */
+.C .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(20px, 2.6vw, 44px); padding-top: clamp(60px, 7vw, 100px); }
+.C .col { display: grid; row-gap: clamp(80px, 9vw, 140px); align-content: start; }
+.C .col + .col { padding-top: min(17vw, 250px); }
+.C .pj { width: 64%; --dx: 50%; --r0: -60deg; }
+.C .out-l { justify-self: end; --dx: -50%; --r0: 60deg; }
+.C .sl::before { top: 2%; bottom: 2%; left: 100%; width: 18px; background: linear-gradient(to right, rgba(15, 3, 6, 0.4), transparent); }
+.C .out-l .sl::before { left: auto; right: 100%; background: linear-gradient(to left, rgba(15, 3, 6, 0.4), transparent); }
+.C .pj.on .sl, .C .pj:hover .sl, .C .pj:focus-visible .sl { transform: translateX(-3%); }
+.C .out-l.on .sl, .C .out-l:hover .sl, .C .out-l:focus-visible .sl { transform: translateX(3%); }
+.C .out-l .pj-t { flex-direction: row-reverse; text-align: right; }
+.C .dk-lab { width: 62%; }
+.lab-c { position: absolute; top: 50%; left: 53%; right: 7%; transform: translateY(-50%); display: grid; justify-items: center; gap: 2.2cqh; text-align: center; }
+.out-l .lab-c { left: 7%; right: 53%; }
+.c-side { font: 500 max(6.5px, 2.2cqw)/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.c-what { font: italic 200 max(11px, 4.4cqw)/1.05 var(--serif); }
+.c-role, .c-meta { font: 400 max(6.5px, 2cqw)/1.35 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+
+/* phones: one column */
+@media (max-width: 760px) {
+  .A .grid, .B .grid, .C .cols { grid-template-columns: minmax(0, 1fr); }
+  .A .grid { row-gap: 44vw; padding-top: 44vw; }
+  .A .pj { width: 76%; }
+  .B .pj, .C .pj { width: 66%; }
+  .C .col + .col { padding-top: 0; margin-top: clamp(80px, 9vw, 140px); }
+  .C .out-l { justify-self: start; --dx: 50%; --r0: -60deg; }
+  .C .out-l .sl::before { right: auto; left: 100%; background: linear-gradient(to right, rgba(15, 3, 6, 0.4), transparent); }
+  .C .out-l.on .sl, .C .out-l:hover .sl { transform: translateX(-3%); }
+  .C .out-l .pj-t { flex-direction: row; text-align: left; }
+  .out-l .lab-c { left: 53%; right: 7%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dk, .sl { transition-duration: 0.01s; }
+  .dk-sheen { animation: none !important; }
+}
+</style>
+</head>
+<body>
+<nav class="ob" aria-label="Directions">
+  <a class="ob-home" href="../index.html">← The site</a>
+  <p class="ob-t">Selected work, <em>as sleeves</em></p>
+  <div class="ob-tabs" role="tablist">
+    <button type="button" role="tab" data-o="a"><b>A</b>Lift</button>
+    <button type="button" role="tab" data-o="b"><b>B</b>Side out</button>
+    <button type="button" role="tab" data-o="c"><b>C</b>Mirror</button>
+  </div>
+</nav>
+<main>
+  <section class="opt A" id="opt-a" data-o="a" aria-label="Direction A, lift"></section>
+  <section class="opt B" id="opt-b" data-o="b" aria-label="Direction B, side out"></section>
+  <section class="opt C" id="opt-c" data-o="c" aria-label="Direction C, mirror"></section>
+</main>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+  const two = (i) => String(i + 1).padStart(2, "0");
+
+  /* six projects; words in [brackets] are placeholders */
+  const PROJECTS = [
+    { name: "[Project name]", what: "a mobile app for slow travel", tag: "Mobile / App", year: "2026", role: "[Lead product designer]", time: "[12 weeks]" },
+    { name: "[Project name]", what: "a booking flow for a wellness studio", tag: "Web / UX", year: "2026", role: "[Product designer]", time: "[6 weeks]" },
+    { name: "[Project name]", what: "a design system for a fintech team", tag: "Design system", year: "2025", role: "[Design systems lead]", time: "[5 months]" },
+    { name: "[Project name]", what: "an e-commerce redesign", tag: "Web / E-commerce", year: "2025", role: "[Product designer]", time: "[10 weeks]" },
+    { name: "[Project name]", what: "a dashboard for a logistics start-up", tag: "SaaS / Dashboard", year: "2024", role: "[Senior product designer]", time: "[4 months]" },
+    { name: "[Project name]", what: "a habit-tracking app", tag: "Mobile / App", year: "2024", role: "[Product designer]", time: "[8 weeks]" }
+  ];
+  const GREYS = ["#d8d4d0", "#cfcac6", "#dbd7d3", "#d2cdc9", "#d6d2ce", "#ccc7c2"];
+
+  /* a project: the record (whatever is printed on it) inside its sleeve, then its name */
+  const card = (i, printed, cls) => {
+    const p = PROJECTS[i];
+    return '<article class="pj' + (cls ? " " + cls : "") + '" tabindex="0" aria-label="( ' + two(i) + " ) " + esc(p.name) + ", " + esc(p.what) + '">' +
+      '<div class="rec"><div class="dk"><span class="dk-sheen"></span>' + printed + "</div>" +
+      '<div class="sl" style="--g:' + GREYS[i] + '"></div></div>' +
+      '<h3 class="pj-t"><span class="pj-n">( ' + two(i) + ' )</span><span>' + esc(p.name) + "</span></h3></article>";
+  };
+  const head = '<header class="wk-h"><div><p class="wk-k">(02) Selected work &nbsp;·&nbsp; 06 projects</p>' +
+    '<h2 class="wk-t">Records I’d play <em>again.</em></h2></div><p class="hint">Point at a cover</p></header>';
+  const dir = (k, t, d) => '<div class="dir"><div><p class="dir-k">Direction ' + k + '</p><h1 class="dir-t">' + t + '</h1></div><p class="dir-d">' + d + "</p></div>";
+
+  /* A: lines above the label, the kind and year on the label */
+  const printA = (i) => {
+    const p = PROJECTS[i];
+    return '<div class="dk-lab"><span class="lab-a">' + esc(p.tag) + "<br>" + p.year + "</span></div>" +
+      '<div class="dk-info"><span class="i-no">( ' + two(i) + ' )</span><span class="i-what">' + esc(p.what) + "</span>" +
+      '<span class="i-meta">' + esc(p.role) + " · " + esc(p.time) + "</span></div>";
+  };
+  /* B: words round the grooves of the half that comes out, the number on the label. What it is
+     runs round the top (on two arcs if it is long), the role and the time round the foot; each
+     arc holds so many letters (the type is monospaced) */
+  const fill = (text, cap) => {                       // as many whole words as fit, and the rest
+    const words = text.split(" ");
+    let a = "";
+    while (words.length && (a ? a.length + 1 : 0) + words[0].length <= cap) a += (a ? " " : "") + words.shift();
+    return [a, words.join(" ")];
+  };
+  const arc = (id, d, s, cls) => s ? '<path id="' + id + '" d="' + d + '" fill="none"/><text class="' + cls + '"><textPath href="#' + id + '" startOffset="4%">' + esc(s) + "</textPath></text>" : "";
+  const printB = (i) => {
+    const p = PROJECTS[i], id = "b" + i;
+    const [w1, rest] = fill(p.what.toUpperCase(), 26), [w2] = fill(rest, 21);
+    return '<div class="dk-lab"><span class="lab-b">' + two(i) + "</span></div>" +
+      '<svg class="dk-arc" viewBox="0 0 100 100" aria-hidden="true">' +
+        arc(id + "a", "M 50 8 A 42 42 0 0 1 92 50", w1, "a-what") +        // the top, clockwise to the side
+        arc(id + "b", "M 50 15 A 35 35 0 0 1 85 50", w2, "a-what") +
+        arc(id + "c", "M 50 95 A 45 45 0 0 0 95 50", p.role.toUpperCase(), "a-role") +   // the foot, up to the side
+        arc(id + "d", "M 50 88 A 38 38 0 0 0 88 50", (p.time + " · " + p.year).toUpperCase(), "a-meta") +
+      "</svg>";
+  };
+  /* C: everything on a large label, like the centre of a real record */
+  const printC = (i) => {
+    const p = PROJECTS[i];
+    return '<div class="dk-lab"><div class="lab-c"><span class="c-side">Side A · ' + two(i) + '</span><span class="c-what">' + esc(p.what) + "</span>" +
+      '<span class="c-role">' + esc(p.role) + '</span><span class="c-meta">' + p.year + " · 33⅓ rpm</span></div></div>";
+  };
+
+  const all = [0, 1, 2, 3, 4, 5];
+  $("opt-a").innerHTML = dir("A", "Lift", "Six sleeves in two columns, only <b>the cover and the name</b>. Point at one and its record <b>rises out of the top</b> of the sleeve, rolling as it comes, with what the project is, your role and the time printed in lines above its label.") +
+    '<div class="wk"><div class="wk-in">' + head + '<div class="grid">' + all.map((i) => card(i, printA(i))).join("") + "</div></div></div>";
+  $("opt-b").innerHTML = dir("B", "Side <em>out</em>", "The same grid <b>on wine</b>, like the hero and the About. The record <b>rolls out of the side</b> of its sleeve, and its words run round the grooves, the way the edge of a record is printed: what it is over the top, the role and the time round the foot.") +
+    '<div class="wk"><div class="wk-in">' + head + '<div class="grid">' + all.map((i) => card(i, printB(i))).join("") + "</div></div></div>";
+  $("opt-c").innerHTML = dir("C", "Mirror", "Two <b>staggered columns</b> of covers meeting in the middle; each record slides <b>outwards</b>, towards the edge of the page. Its words are printed on <b>a large label</b>, like the centre of a real record: side, number, what it is, role and year.") +
+    '<div class="wk"><div class="wk-in">' + head + '<div class="cols"><div class="col">' + [0, 2, 4].map((i) => card(i, printC(i), "out-l")).join("") +
+    '</div><div class="col">' + [1, 3, 5].map((i) => card(i, printC(i), "out-r")).join("") + "</div></div></div></div>";
+
+  /* the first project shows its record until you point at one; on a touch screen a tap opens
+     a record (and closes the one that was out) */
+  let touch = false;
+  addEventListener("pointerdown", (e) => { touch = e.pointerType !== "mouse"; }, { passive: true });
+  document.querySelectorAll(".opt").forEach((sec) => {
+    const first = sec.querySelector(".pj");
+    first.classList.add("on");
+    sec.addEventListener("pointerover", (e) => {
+      if (e.pointerType === "mouse" && e.target.closest(".pj")) sec.querySelectorAll(".pj.on").forEach((p) => p.classList.remove("on"));
+    });
+    sec.addEventListener("click", (e) => {
+      const pj = e.target.closest(".pj");
+      if (!pj || !touch) return;
+      const was = pj.classList.contains("on");
+      sec.querySelectorAll(".pj.on").forEach((p) => p.classList.remove("on"));
+      if (!was) pj.classList.add("on");
+    });
+  });
+
+  /* the tabs */
+  const tabs = [...document.querySelectorAll(".ob-tabs button")];
+  function show(o) {
+    document.querySelectorAll(".opt").forEach((s) => s.classList.toggle("on", s.dataset.o === o));
+    tabs.forEach((t) => t.setAttribute("aria-selected", String(t.dataset.o === o)));
+    scrollTo(0, 0);
+    history.replaceState(null, "", "#" + o);
+  }
+  tabs.forEach((t) => t.addEventListener("click", () => show(t.dataset.o)));
+  show(["a", "b", "c"].includes(location.hash.slice(1)) ? location.hash.slice(1) : "a");
+})();
+</script>
+</body>
+</html>

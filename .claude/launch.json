@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "serve.py",
+        "8001"
+      ],
+      "port": 8001
+    },
+    {
+      "name": "portfolio-attach",
+      "url": "http://localhost:8001"
+    }
+  ]
+}

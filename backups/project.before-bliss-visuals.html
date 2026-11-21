@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project · Trinh Trinh Nguyen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Koulen&display=swap">
+<style>
+html { font-synthesis: none; }   /* one weight per font: never fake bold or slant */
+/* A project's page, laid out exactly as the reference's case page (mason-wong.com/work/lfctv-go,
+   the owner's team site, used with permission), measured at 1440×900 and set in vw so it scales:
+   the same blocks in the same order and spacing, and the same use of type: Koulen for every big
+   word (the facts, the title, the headings, the next project's name), a mono face for the labels
+   in [brackets] and the body text. In the site's own colours: paper, wine ink, purple accent.
+   The words and pictures come from PROJECTS below (?p=1…6). */
+:root {
+  --paper: #faf8f5; --ink: #351E28; --ink-soft: #6c454f; --accent: #8760af; --thistle: #cdb9dd; --light: rgb(231, 229, 223);
+  --big: "Koulen", Impact, "Arial Narrow", sans-serif;
+  --mono: "IBM Plex Mono", Menlo, Consolas, monospace;
+  --pad: 24px;
+  --gap: 40px;                                   /* between the blocks, as the reference */
+  --lab: 14px;                                   /* the reference's own sizes, fixed: 14/19.6 labels */
+  --body: 14px;                                  /* 14/19.6 body. The reference sets 12, but its text
+                                                    blocks are a sentence or two while these carry whole
+                                                    sections, so the owner keeps 14 (19 Nov 2026) */
+  --disp: 57px;                                  /* 57/51.3 headlines (47 under 1500, as the reference) */
+  --name: 167px;                                 /* 167/150.3 the project's name (127 under 1500) */
+  --sub: 37px;                                   /* 37/33.3 the facts and a sub-head inside a section */
+  --track: -1.5px;                               /* every display word is tracked in, as the reference */
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+.lab { margin: 0; font-family: var(--mono); font-size: var(--lab); line-height: 1.4; text-transform: uppercase; }
+.body { margin: 0; font-family: var(--mono); font-size: var(--body); line-height: 1.4; }
+.body + .body { margin-top: 1.4em; }
+.body b { font-weight: 700; }   /* a highlighted phrase is the mono's bold (the owner's asking, 20 Nov 2026: no thistle marker under it) */
+.body em { font-style: italic; }
+.head { margin: 0; font-family: var(--big); font-weight: 400; text-transform: uppercase; letter-spacing: var(--track); }
+
+/* the bar, pinned: the way back at the left, close at the right */
+.bar { position: fixed; z-index: 10; top: 20px; left: var(--pad); right: var(--pad); display: flex; justify-content: space-between; align-items: center; pointer-events: none; }
+.bar a { pointer-events: auto; text-decoration: none; }
+.bar .close { padding: 0 4px; background: var(--ink); color: var(--paper); transition: background-color 0.25s ease; }
+.bar .close:hover { background: var(--accent); }
+.bar .back:hover { color: var(--accent); }
+
+.page { position: relative; padding: 0 var(--pad); }
+/* 1 · the four facts, a label over a value, then the cover with the name across its middle */
+/* the four facts: each one as wide as its own words, with the same air between all four and the
+   row flush to both margins (the reference's fixed columns were measured for its own text, and
+   left a hole under a short value like HOTEL). 2.4vw is the floor; the rest is shared out even */
+.facts { display: flex; justify-content: space-between; align-items: flex-start; gap: 2.4vw; margin: 0; padding-top: 417px; }   /* the name sits 157 from the top and the facts 110 under it */
+.facts > div { flex: 0 1 auto; }
+.facts dt { font-family: var(--mono); font-size: var(--lab); line-height: 1.4; text-transform: uppercase; }
+.facts dd { margin: 8px 0 0; font-family: var(--big); font-size: var(--sub); line-height: 0.9; letter-spacing: var(--track); text-transform: uppercase; }
+.facts div:last-child { text-align: right; }
+.cover { position: relative; height: 100vh; margin-top: 34px; display: grid; place-items: center; overflow: hidden; }
+.cover .pic { position: absolute; inset: 0; }
+/* the name, big and centred in the space above the facts, in the ink (as the reference) */
+.title { position: absolute; left: 0; right: 0; top: 157px; margin: 0; font-family: var(--big); font-weight: 400; font-size: var(--name); line-height: 0.9; letter-spacing: var(--track); color: var(--ink); text-align: center; }
+
+/* 2 · the overview, in the right half: label, heading, a few lines */
+.overview { display: grid; grid-template-columns: 1fr 1fr; align-content: center; padding: 100px 0; margin-top: var(--gap); box-sizing: border-box; }   /* the reference's overview: 100px above and below its words */   /* the words start on the page's middle line */
+.overview .txt { grid-column: 2; }
+.overview .lab { margin-bottom: 16px; }    /* label, 16px, headline, 30px, body — the reference's own rhythm */
+.overview .head { font-size: var(--disp); line-height: 0.9; max-width: 80%; margin-bottom: 30px; }
+.overview .body { max-width: 70%; }
+
+/* a picture: a placeholder colour and its label until a path is set */
+.pic { position: relative; overflow: hidden; background: var(--c, var(--thistle)); margin: 0; }
+.pic img, .pic video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* a screen recording keeps its own shape (2994×1724), so no edge of the site it shows is cut off */
+.full.vid { height: auto; aspect-ratio: 2994 / 1724; }
+/* a picture that must be seen whole (a capture of a layout, with words in it): shown entire, with air
+   round it, on a ground of its own edge colour (`fit` and `bg` on its entry in `pics`) */
+.pic.fit img { inset: 6vh 5vw; width: calc(100% - 10vw); height: calc(100% - 12vh); object-fit: contain; }
+/* the live site, under the project's name (TL Studio, at the owner's asking) */
+.live { position: absolute; left: 0; right: 0; top: calc(157px + var(--name) * 0.9 + 26px); margin: 0; text-align: center; }
+.live .btn { margin-top: 0; }
+/* a run of screen recordings, each smaller than the screen and well apart, so they read sharp and one
+   at a time rather than as one long wall of video */
+.reel { margin-top: var(--gap); padding: 12vh 0 4vh; }
+.reel .lab { margin: 0 0 16px; text-align: center; }
+.reel .head { margin: 0 auto; text-align: center; }
+.reel .clip { width: 100%; margin: 40px 0 0; aspect-ratio: 2994 / 1724; }   /* 40px apart, the owner's asking */   /* the page's margins, as every picture (the owner's rule) */
+.reel .clip:first-of-type { margin-top: 8vh; }
+.pic > span { position: absolute; left: 14px; bottom: 12px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(53, 30, 40, 0.6); }
+.pic.dark > span { color: rgba(231, 229, 223, 0.6); }
+.full { height: 100vh; margin-top: var(--gap); }
+
+/* a text block on its own, centred (the reference's discovery) or in the left quarter (its last notes) */
+.solo { min-height: 85vh; display: grid; align-content: center; padding: 6vh 0; margin-top: var(--gap); }
+.solo .lab { margin-bottom: 16px; }
+.solo.mid { justify-items: center; text-align: center; }
+.solo.mid .txt { width: 58vw; }
+.solo.left .txt { width: 27.85vw; margin-left: 9.3vw; text-align: center; }
+
+/* text over a dark picture, centred: label, a heading in Koulen, a few lines */
+.over { position: relative; height: 100vh; margin-top: var(--gap); display: grid; place-items: center; text-align: center; overflow: hidden; }
+.over .pic { position: absolute; inset: 0; }
+.over .txt { position: relative; z-index: 1; color: var(--light); }
+.over .lab { margin-bottom: 16px; }
+.over .head { font-size: var(--disp); line-height: 0.9; width: 40%; margin: 0 auto 30px; }
+.over .body { width: 35%; margin: 0 auto; }
+.over .body b { background: none; color: var(--paper); }
+.over .body a { color: var(--thistle); text-underline-offset: 4px; }
+/* a link to the live work, as a button: a paper box, mono capitals, an arrow */
+.btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 2.2vw; padding: 10px 16px; background: var(--paper); color: var(--ink) !important;
+  font-family: var(--mono); font-size: var(--lab); line-height: 1; text-transform: uppercase; text-decoration: none; transition: background-color 0.25s ease, transform 0.3s ease; }
+.btn:hover, .btn:focus-visible { background: var(--thistle); transform: translateY(-2px); }
+
+/* a picture in the left half, the notes centred in the right */
+.pair { display: grid; grid-template-columns: 47.5vw 1fr; height: 85vh; margin-top: var(--gap); }
+.over.tall { height: 100vh; }              /* every picture is one screen tall, as the reference */
+.pair.flip { grid-template-columns: 1fr 47.5vw; }
+.pair.flip .txt { order: -1; }
+.pair .txt { align-self: center; justify-self: center; width: 24.2vw; text-align: center; }   /* 377 at 1560, centred in its half, as the reference */
+.pair .lab { margin-bottom: 16px; }
+.pair .pic.fit img { inset: 5vh 3vw; width: calc(100% - 6vw); height: calc(100% - 10vh); }
+
+/* a sub-head and a bullet list inside a section's text, as the owner's own copy has them */
+.sub { margin: 48px 0 16px; font-family: var(--big); font-weight: 400; font-size: var(--sub); line-height: 0.9; letter-spacing: var(--track); text-transform: uppercase; }
+.txt > .sub:first-child, .txt > .lab + .sub { margin-top: 0; }
+.bul { margin: 0.9em 0 0; padding-left: 1.1em; font-family: var(--mono); font-size: var(--body); line-height: 1.4; }
+.bul li { margin-top: 0.5em; }
+.bul li::marker { color: var(--accent); }
+.bul + .body { margin-top: 1.4em; }   /* a paragraph after a list keeps the body's own rhythm */
+.overview .sub, .overview .bul { max-width: 70%; }
+/* every section after [Overview] is centred, as the reference's work pages (only the overview sits left) */
+/* Only the overview sits left (in the right half). Every other text section is centred, as the
+   reference's (mason-wong.com/work/england-rfu), and given the reference's white space: a screen of its
+   own, its words in the middle of it, 160px of air at the least above and below, one 40% column. The
+   reader sees that text and nothing else (the owner's asking, 20 Nov 2026: "learn the way it makes white
+   space for the content, so the reader focuses on reading it"). */
+.overview.ctr { grid-template-columns: 1fr; justify-items: center; align-content: center; text-align: center; min-height: 100vh; padding: 160px 0; }
+.overview.ctr .txt { grid-column: 1; width: 100%; }
+.overview.ctr .head, .overview.ctr .body, .overview.ctr .sub, .overview.ctr .bul { max-width: 40%; margin-left: auto; margin-right: auto; }
+.overview.ctr .bul { text-align: left; }   /* a list keeps its bullets in a straight line, inside the centred column */
+/* A freer case page (Penlo, at the owner's asking, 20 Nov 2026): a picture at its own shape and a size
+   that reads, sat close to the words it belongs to, rather than every picture one screen tall.
+   `snug` text: no 85vh, just air above and below. `fig`: a picture on its own, centred, its own height.
+   `duo`: words and a picture side by side, the picture the wider of the two (`flip` swaps them). */
+/* one rhythm on a freer page (the owner's asking, "the gaps are not balanced"): 160px from one section
+   to the next, 80px from a section's words to its own picture */
+.fig { margin: var(--gap) 0 0; }   /* 40px from the block above, as every block on the reference */   /* the full width between the page's margins, as every picture on the case page */
+.pic.nat { height: auto; background: transparent; }
+.pic.nat.ph { aspect-ratio: 16 / 9; background: var(--c); }
+.pic.nat img, .pic.fit.nat img { position: static; display: block; width: 100%; height: auto; padding: 0; object-fit: initial; }
+.duo { display: grid; grid-template-columns: 1fr 1.45fr; gap: 6vw; align-items: center; padding: 0; margin-top: 160px; }   /* the picture runs to the page's margin */
+.duo.flip { grid-template-columns: 1.45fr 1fr; }
+.duo.flip .txt { order: 2; }
+.duo .txt { justify-self: center; max-width: 440px; }
+.duo .lab { margin-bottom: 16px; }
+/* `show`: a section's words and a few finished screens on a dark ground the full width between the
+   margins (Penlo's [Visual design]: its own dark gradient, the line, then three phones, the middle one
+   a little higher) */
+.show { position: relative; margin-top: var(--gap); padding: 14vh 4vw 16vh; overflow: hidden; color: var(--light); text-align: center; }
+.show > .pic { position: absolute; inset: 0; }
+.show .txt { position: relative; z-index: 1; }
+.show .lab { margin-bottom: 16px; }
+.show .body { width: 35%; margin: 0 auto; }
+.show .phones { position: relative; z-index: 1; display: flex; justify-content: center; align-items: flex-start; gap: 5vw; margin-top: 10vh; }
+.show .phones img { display: block; width: min(19vw, 300px); height: auto; filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.45)); }
+.show .phones img:nth-child(2) { margin-top: -4vh; }
+/* a challenge's number, bold over its paragraph */
+.num { margin: 1.4em 0 0; font-family: var(--mono); font-size: var(--body); line-height: 1.4; font-weight: 700; }
+.num + .body { margin-top: 0; }
+.over .sub, .over .bul { width: 35%; margin-left: auto; margin-right: auto; text-align: left; }
+
+/* a picture that carries its section's label, for a [Visual design] run of screens */
+.shot { margin-top: var(--gap); }
+.shot .lab { margin: 0 0 16px; text-align: center; }
+.shot .head { margin: 0 auto 1.6vw; text-align: center; }
+.shot .full { margin-top: 0; }
+
+/* a link on paper ground: the ink box, as the bar's "close project" */
+.btn.ink { background: var(--ink); color: var(--paper) !important; }
+.btn.ink:hover, .btn.ink:focus-visible { background: var(--accent); color: var(--paper) !important; }
+
+/* a set of small parts under one label — the research questions, the findings, the principles,
+   the trade-offs. The owner's cases are told in numbered parts, so each block carries its number
+   in its label and the parts stand in two, three or four columns under a centred heading */
+.set { min-height: 85vh; display: grid; align-content: center; padding: 6vh 0; margin-top: var(--gap); }
+.set .hd, .tbl .hd, .sw .hd { width: 58vw; margin: 0 auto 48px; text-align: center; }
+.set .hd .lab, .tbl .hd .lab, .sw .hd .lab { margin-bottom: 16px; }
+.set .hd .head, .tbl .hd .head, .sw .hd .head { font-size: var(--disp); line-height: 0.9; }
+.set .hd .body, .tbl .hd .body, .sw .hd .body { margin-top: 1.4em; }
+.set .items { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 3.2vw 2.2vw; }
+.set .it { border-top: 1px solid rgba(53, 30, 40, 0.18); padding-top: 1.1vw; }
+.set .it .n { margin: 0 0 0.8vw; font-family: var(--mono); font-size: var(--lab); line-height: 1.4; text-transform: uppercase; color: var(--accent); }
+.set .it .t { margin: 0 0 16px; font-family: var(--big); font-weight: 400; font-size: var(--sub); line-height: 0.9; letter-spacing: var(--track); text-transform: uppercase; }
+.set .it .q { margin: 0 0 0.4vw; font-family: var(--mono); font-size: var(--body); line-height: 1.5; font-style: italic; color: var(--ink-soft); }
+.set .it .by { margin: 0 0 1.1vw; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+
+/* a table: the market read, the methods, a type scale */
+.tbl { min-height: 85vh; display: grid; align-content: center; padding: 6vh 0; margin-top: var(--gap); }
+.tbl table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: var(--body); line-height: 1.4; text-align: left; }
+.tbl th { padding: 0 1.4vw 0.8vw 0; font-weight: 400; font-size: var(--lab); text-transform: uppercase; color: var(--accent); border-bottom: 1px solid rgba(53, 30, 40, 0.3); vertical-align: bottom; }
+.tbl td { padding: 1vw 1.4vw 1vw 0; border-bottom: 1px solid rgba(53, 30, 40, 0.12); vertical-align: top; color: var(--ink-soft); }
+.tbl td:first-child { text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink); white-space: nowrap; }
+.tbl th:last-child, .tbl td:last-child { padding-right: 0; }
+.tbl .note { margin: 1.6vw 0 0; font-family: var(--mono); font-size: var(--body); line-height: 1.4; color: var(--ink-soft); }
+
+/* the colours a brand case stands on */
+.sw { min-height: 85vh; display: grid; align-content: center; padding: 6vh 0; margin-top: var(--gap); }
+.sw .items { display: flex; gap: 1.2vw; }
+.sw .c { flex: 1; }
+.sw .c i { display: block; height: 7vw; border: 1px solid rgba(53, 30, 40, 0.14); }
+.sw .c p { margin: 0.9vw 0 0; font-family: var(--mono); font-size: var(--body); line-height: 1.4; color: var(--ink-soft); }
+.sw .c b { display: block; font-weight: 400; font-size: var(--lab); text-transform: uppercase; color: var(--ink); }
+
+/* 3 · the next project: a small label, its name, and a little card over it */
+/* the next project, as the reference's (mason-wong.com/work/thenorwegiancapsule, measured 20 Nov 2026 at
+   1512x816): the page's last screen, its foot line on the bottom edge. "Next project" in Koulen 24 150px
+   from the section's top, the name 46px under it at the title's own size, then a 349x198 picture 49px
+   under the name. Pointing at the picture: it eases to 0.98 and 0.6, and a 262x139 copy slides down
+   into a window 20px inside its top (a spring of about half a second, measured frame by frame). */
+.next { position: relative; min-height: calc(100vh - var(--pad)); margin-top: var(--gap); padding-top: 150px; box-sizing: border-box; text-align: center; }
+.next .nl { margin: 0; font-family: var(--big); font-size: 24px; line-height: 0.9; text-transform: uppercase; color: var(--accent); }
+.next .nn { display: block; margin-top: 24px; font-family: var(--big); font-size: var(--name); line-height: 0.9; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink); text-decoration: none; }
+.next .card { position: relative; display: block; width: min(349px, 100%); aspect-ratio: 349 / 198; margin: 49px auto 0; }   /* 49px under the name's box (418 - 369 on the reference at rest, re-measured 20 Nov) */
+.next .card .big { position: absolute; inset: 0; overflow: hidden; transition: transform 0.55s cubic-bezier(.3, .7, .3, 1), opacity 0.55s cubic-bezier(.3, .7, .3, 1); }
+.next .card .win { position: absolute; top: 10.1%; left: 12.46%; width: 75.07%; height: 70.2%; overflow: hidden; }   /* 262x139, 20px in, at 349x198 */
+.next .card .win .pic { position: absolute; inset: 0; transform: translateY(calc(-100% - 11px)); transition: transform 0.55s cubic-bezier(.3, .7, .3, 1); }
+.next .card .big .pic { position: absolute; inset: 0; }
+.next .card:hover .big, .next .card:focus-visible .big { transform: scale(0.98); opacity: 0.6; }
+.next .card:hover .win .pic, .next .card:focus-visible .win .pic { transform: none; }
+.foot { position: absolute; left: 0; right: 0; bottom: 18px; display: flex; justify-content: space-between; align-items: center; margin: 0; }
+.foot a { text-decoration: none; }
+.foot a:hover { color: var(--accent); }
+.foot .up { position: absolute; left: 50%; width: 18px; margin-left: -9px; line-height: 1; font-size: 18px; }
+
+/* coming in as you scroll: words rise out of a soft blur, pictures open upwards */
+/* Copied from the reference's own code (mason-wong.com/work/nationwide, its Framer settings):
+   scroll: every section and the words inside it fade from 0 to 1 over 0.4s, ease [.44,0,.56,1], as
+   soon as any of it is on screen (threshold 0), and fade out again when they leave (animateOnce off).
+   opening: the top bar drops in from 70px above (0.7s delay, 0.8s, ease [.44,0,.56,1]); the name,
+   the facts and the cover rise from 700px below at 0.8s, 0.9s and 1s, over 1s, ease [.03,1.01,.59,.98]. */
+[data-rv] { opacity: 0; transition: opacity 0.4s cubic-bezier(.44, 0, .56, 1); }
+[data-rv].in { opacity: 1; }
+.pt-rise { transform: translateY(700px); }
+.pt-up .pt-rise { transform: none; transition: transform 1s cubic-bezier(.03, 1.01, .59, .98); transition-delay: var(--rd, 0s); }
+.bar { opacity: 0.001; transform: translateY(-70px); }
+.pt-up .bar { opacity: 1; transform: none; transition: opacity 0.8s cubic-bezier(.44, 0, .56, 1) 0.7s, transform 0.8s cubic-bezier(.44, 0, .56, 1) 0.7s; }
+.noise { position: fixed; inset: 0; z-index: 20; pointer-events: none; opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+@media (max-width: 1440px) {   /* the reference's desktop breakpoint, measured: 1440 is still 47px, 1450 is already 57 */
+  :root { --disp: 47px; --name: 127px; --sub: 31px; }
+  .facts { padding-top: 381px; }
+}
+@media (max-width: 760px) {
+  .facts { flex-wrap: wrap; gap: 22px 16px; padding-top: 34vh; }
+  .facts > div { flex: 1 1 42%; }
+  .facts div:last-child { text-align: left; }
+  .facts dd { font-size: 26px; }
+  .cover { height: 70vh; }
+  .title { font-size: 64px; top: 16vh; }
+  .overview { grid-template-columns: 1fr; padding: 12vh 0; }
+  .overview .txt { grid-column: 1; padding-left: 0; }
+  .overview .head, .over .head { font-size: 30px; max-width: none; width: auto; }
+  .overview.ctr { min-height: 0; padding: 14vh 0; }
+  .overview.ctr .head, .overview.ctr .body, .overview.ctr .sub, .overview.ctr .bul { max-width: none; }
+  .overview .body, .over .body, .solo.mid .txt, .solo.left .txt, .pair .txt { width: auto; max-width: none; margin-left: 0; }
+  .full { height: 56vh; }
+  .full.vid { height: auto; }
+  .pic.fit { height: auto; }   /* on a phone a whole picture takes its own height, with no empty band round it */
+  .pic.fit img { position: static; width: 100%; height: auto; padding: 16px; box-sizing: border-box; }
+  .live { top: calc(16vh + 64px * 0.9 + 16px); }
+  .reel { padding-top: 6vh; }
+  .reel .clip { width: 100%; margin-top: 24px; }
+  .reel .clip:first-of-type { margin-top: 32px; }
+  .duo, .duo.flip { grid-template-columns: 1fr; gap: 32px; padding: 0; }
+  .duo.flip .txt { order: 0; }
+  .show { padding: 8vh 16px 10vh; }
+  .show .body { width: auto; }
+  .show .phones { gap: 2.5vw; margin-top: 6vh; }
+  .show .phones img { width: 24vw; }   /* three phones and their gaps inside the panel's 16px padding */
+  .show .phones img:nth-child(2) { margin-top: -2vh; }
+  .solo { height: auto; padding: 12vh 0; }
+  .over { height: 86vh; padding: 0 8px; }
+  .pair { grid-template-columns: 1fr; height: auto; }
+  .pair .pic { height: 56vh; }
+  .pair .txt { padding: 10vh 0 2vh; }
+  .pair.flip { grid-template-columns: 1fr; }
+  .pair.flip .txt { margin-left: 0; justify-self: stretch; }
+  .over.tall { height: 90vh; }
+  .set, .tbl, .sw { padding: 12vh 0; }
+  .set .hd, .tbl .hd, .sw .hd { width: auto; }
+  .set .items { grid-template-columns: 1fr !important; }
+  .set .it .t { font-size: 22px; }
+  .sw .items { flex-wrap: wrap; }
+  .sw .c { flex: 1 1 40%; }
+  .sw .c i { height: 64px; }
+  .tbl { overflow-x: auto; }
+  .next { padding-top: 18vh; }
+  .next .nl { font-size: 18px; }
+  .next .nn { font-size: 56px; margin-top: 16px; }
+  .next .card { margin-top: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-rv], .pic[data-rv] { transition: none; opacity: 1; transform: none; filter: none; clip-path: none; }
+  .pt-rise, .bar { transform: none; opacity: 1; }
+}
+</style>
+<script src="pt.js"></script>
+</head>
+<body>
+<header class="bar lab">
+  <a href="work.html" class="back">Collection of work</a>
+  <a href="work.html" class="close">Close project</a>
+</header>
+<main class="page" id="page"></main>
+<div class="noise" aria-hidden="true"></div>
+
+<script>
+/* ── Each project's page. The words are the owner's own case copy, laid out in the reference's
+   case-page language: the name, the four facts, the cover, then the sections the copy has
+   ([Overview], [The challenges], [The discovery], [Key design decisions], [The brand],
+   [Visual design]), with pictures between them, and the next project at the foot.
+   Block kinds: half (text in the right half) · over (text over a dark picture, + tall) ·
+   mid / left (text on paper) · pair (a picture with notes beside it, + flip) · full (a picture,
+   which takes a `lab` to carry a section label) · set (small parts in columns: cols 2, 3 or 4) ·
+   tbl (a table) · sw (a palette). Every block takes `lab`, `head`, `lines` and an optional
+   `btn: { label, href, ink }` — no case uses one, since the reference's case pages carry none;
+   `p` says which of `pics` it shows. */
+const PROJECTS = [
+  /* 1 ─ Penlo (apps.apple.com/.../penlo) */
+  { name: "Penlo", what: "a live location-sharing app", deliverable: "iOS app redesign",
+    industry: "Social & location", role: "Product designer", services: "UX research & UI", timeline: "2 months", year: "2026",
+    /* from the owner's own case page (trinhtrinhnguyen.com/projects/penlo), 20 Nov 2026: its hero, the
+       old version, and 2x captures of its findings cards, Ghost Mode, the marker card's three rounds and
+       the key screens. The picture under the overview has no match yet (left for the owner). */
+    cover: "projects/penlo/cover.jpg",
+    pics: [null,
+      { src: "projects/penlo/old-version.jpg", fit: "contain", bg: "#131313" },
+      { src: "projects/penlo/trust-curve.jpg", fit: "contain", bg: "#131313" },   /* "where the trust breaks", the owner's choice over the findings cards */
+      { src: "projects/penlo/ghost-mode.jpg", fit: "contain", bg: "#f0efeb" },
+      "projects/penlo/visual-bg.jpg",
+      { src: "projects/penlo/screens-1.jpg", fit: "contain", bg: "#f0efeb" },
+      null,
+      { src: "projects/penlo/marker-card.jpg", fit: "contain", bg: "#f0efeb" },
+      "projects/penlo/ui-profile.png", "projects/penlo/ui-settings.png", "projects/penlo/ui-share.png"],
+    blocks: [
+      { k: "half", lab: "[Overview]", head: "A live location-sharing app that helps people stay connected while keeping control over their privacy.", lines: [
+        "I designed Penlo, a location-sharing app that helps people stay connected with friends. After its first version launched on the App Store, I revisited the product to rethink its visual design and key interactions.",
+        "Working with two developers, a QA and a manager, I led the redesign to make the experience clearer, easier to use and more enjoyable to return to."] },
+      { k: "fig", p: 0 },
+      { k: "half", lab: "[The challenges]", head: "Helping People Stay Connected Through Their Location.", lines: [
+        "One interview story stuck with me. Sáu joined Penlo excited to see their friends on the map. A few days later, it was just dots on a screen, with nobody interacting. Sáu hadn't deleted the app; they had simply stopped opening it.",
+        "This highlighted a quiet problem with location-sharing apps: people can lose interest without ever uninstalling them.",
+        "The redesign needed to address four things:",
+        { ul: [
+          "<b>Outdated visuals:</b> Gradients across the interface competed with the map.",
+          "<b>Unclear interactions:</b> Empty states and location prompts didn't always explain what to do next.",
+          "<b>Limited privacy controls:</b> Users could share their location with everyone or no one, with little in between.",
+          "<b>Poor timing:</b> The app asked for location access before users understood why it was needed"] }] },
+      { k: "fig", p: 1 },
+      { k: "half", lab: "[The discovery]", lines: [
+        { sub: "Understanding Why People Stop Sharing" },
+        "I interviewed 12 people aged 21–39 about how they share their locations with friends and what makes them uncomfortable.",
+        "<b>Key Insight:</b> 9 out of 12 wanted to hide their location from a specific person without notifying them.",
+        "I then surveyed 64 people to see how common this need was. 41 ranked the ability to quietly pause sharing with one person as their top priority.",
+        "This showed that privacy needed to be more flexible than a simple on-or-off setting."] },
+      { k: "fig", p: 2 },
+      { k: "half", lines: [
+        { sub: "Usability Testing" },
+        "Without access to usage data, I used moderated testing to understand where people struggled with the original experience and evaluate the redesign.",
+        { ul: ["8 sessions with the original app.", "8 sessions with a new group using the redesigned app."] },
+        "Participants were recruited through a screener survey."] },
+      { k: "pair", flip: true, p: 3, lab: "[Key design decisions]", lines: [
+        { sub: "Ghost Mode: More Control Over Privacy" },
+        "Instead of making location sharing an all-or-nothing choice, I introduced four privacy levels for each friend: Precise, Blurred, Frozen and Hidden.",
+        "Users can change a friend's privacy level in just two taps, without notifying them. This gives people more control over how much of their location they share with each person."] },
+      { k: "pair", p: 5, lines: [
+        { sub: "A Map-First Interface" },
+        "Since the map is at the heart of Penlo, I removed the gradients that competed with it and introduced a consistent dark theme across the app. Controls also follow the same visual style and interaction patterns from screen to screen."] },
+      { k: "half", lines: [
+        { sub: "A More Useful Marker Card" },
+        "After three rounds of testing, I refined the marker card to make important information and actions easier to access.",
+        { ul: [
+          "<b>Battery level and last active time</b> help users understand how recent a friend's location is.",
+          "<b>Two clear actions</b> keep the card simple.",
+          "<b>A visible privacy control</b> makes changing sharing settings easier."] }] },
+      { k: "fig", p: 7 },
+      { k: "show", bg: 4, shots: [8, 9, 10], lab: "[Visual design]", lines: [
+        "A more thoughtful way to stay connected with the people who matter, where location sharing feels useful, comfortable and always within your control."] },
+    ] },
+  /* 2 ─ SpitiMou (spitimou.cy) */
+  { name: "SpitiMou", what: "a property marketplace for Cyprus", deliverable: "Responsive website",
+    industry: "Real estate", role: "Product designer", services: "UX / UI design", timeline: "1 month", year: "2025",
+    blocks: [
+      { k: "half", lab: "[Overview]", head: "A real estate marketplace that helps people find properties in Cyprus and gives agencies one place to manage their listings.", lines: [
+        "SpitiMou brings together people looking for property in Cyprus and the agencies listing them. The goal was to make it easier for buyers to explore properties while giving agencies a practical way to publish and manage their listings."] },
+      { k: "full", p: 0 },
+      { k: "half", lab: "[The challenges]", head: "Making Property Search More Useful for Buyers and Easier to Manage for Agencies", lines: [
+        "Buyers often choose an area before a property, but most search filters focus on the property itself, leaving people to look elsewhere for information about the neighborhood. Important details were also scattered across photos and listing pages, making properties harder to compare.",
+        "For agencies, adding a property meant filling in a long form all at once, while keeping multiple listings up to date involved a lot of manual work.",
+        "The platform needed to address both sides:",
+        { sub: "For buyers" },
+        { ul: [
+          "Understand the area around a property before making a decision.",
+          "Compare key property details without opening every listing."] },
+        { sub: "For agencies" },
+        { ul: [
+          "Add properties through a simpler, more flexible process.",
+          "Manage multiple listings and keep them up to date in one place."] }] },
+      { k: "full", p: 1 },
+      { k: "half", lab: "[The discovery]", lines: [
+        { sub: "Competitive Analysis: Learning from Airbnb, Booking.com and Rightmove" },
+        "I studied Airbnb and Booking.com for how they help people explore unfamiliar places, and Rightmove for its approach to property search. I looked at their search experiences, filters, listing cards and ways of building trust.",
+        "<b>Key Insight:</b> Location is central to how people explore properties, while clear listing details and visible agency information help buyers compare options and know who they're dealing with.",
+        { sub: "Understanding the Cyprus Market" },
+        "Buyers in Cyprus often know which city they want to search in before looking at individual properties.",
+        "<b>Key Insight:</b> This gave SpitiMou room to show more search filters upfront, helping buyers narrow down their options without adding too much complexity."] },
+      { k: "full", p: 2 },
+      { k: "half", lab: "[Key design decisions]", lines: [
+        { sub: "Starting the Search with Cities" },
+        "Buyers can start by exploring city pages. Each listing includes a written description and map location, helping buyers understand the surrounding area without leaving the platform.",
+        { sub: "Making Listings Easier to Compare" },
+        "I brought the most important details together on each listing card: price, bedrooms, bathrooms, property size, agency name and reference number. This lets buyers scan and compare properties without opening each listing individually.",
+        { sub: "Keeping Filters Within Reach" },
+        "Six main filters sit below the navigation on every page, with over 40 additional options, including property condition, features and distance to nearby places, available in Advanced Search.",
+        "<b>Why:</b> Many buyers already know their preferred city and property type, so the main filters cover common searches while Advanced Search gives them more control when needed.",
+        "<b>The trade-off:</b> Showing filters upfront makes them easier to access, but takes up valuable screen space on mobile and pushes property listings further down.",
+        { sub: "Breaking Property Submission into Steps" },
+        "I split the long add-property form into four steps: Basics, Details, Media and Review. Progress is saved along the way, allowing agents to come back and finish later. A dashboard also lets them manage their listings and see which are live, in draft or sold.",
+        { sub: "Showing Who's Behind Each Listing" },
+        "Every property displays its agency name and links to an agency profile with all its listings.",
+        "<b>Why:</b> Agencies manage multiple properties, so giving them a consistent presence across the platform helps buyers know who they're dealing with. It also gives agencies more visibility, much like the branding approach I observed on Rightmove.",
+        "<b>The trade-off:</b> Showing an individual agent could make the experience feel more personal. There's also a visibility gap between smaller agencies with only a few listings and established ones with many. Sorting by recently updated listings helps, but doesn't fully solve this."] },
+      { k: "full", p: 3 },
+      { k: "full", p: 4 }
+    ] },
+  /* 3 ─ Omical: a resort on Phú Quốc Island */
+  { name: "Omical", what: "a garden resort's brand and booking site", deliverable: "Brand & booking site",
+    industry: "Resort", role: "Product designer", services: "Brand & UI design", timeline: "3 weeks", year: "2025",
+    blocks: [
+      { k: "half", lab: "[Overview]", head: "A natural and elegant brand identity and booking website inspired by the resort's architecture and surrounding gardens.", lines: [
+        "Omical is a resort on Phú Quốc Island, surrounded by lush gardens and greenery. I designed its brand identity and booking website to bring the feeling of the resort online, giving guests a glimpse of the experience before they arrive."] },
+      { k: "full", p: 0 },
+      { k: "over", tall: true, p: 1, lab: "[The challenges]", head: "Bringing the Feel of a Garden Resort Into Its Brand and Website", lines: [
+        "Staying at Omical feels like having your own little corner of the tropics — peaceful, surrounded by greenery, and effortlessly elegant. The challenge was to capture that feeling in the brand and carry it through to the website.",
+        "Many resort websites tend to follow a similar look, relying on large photos and booking forms. I wanted Omical to have something more distinctive, with a visual direction inspired by the resort itself rather than another familiar hotel design."] },
+      { k: "pair", p: 2, lab: "[The brand]", lines: [
+        "The logo brings together two elements: the building's tall arched windows and a leaf. The arched window reflects the resort's architecture, while the leaf represents the greenery surrounding it. Together, they capture the character of Omical — a refined stay closely connected to nature.",
+        "The visual identity uses two main colours: forest green, drawn from the surrounding gardens, and golden yellow, adding a touch of warmth and elegance. Classic serif typography gives the brand a more refined character, balanced by a clean, simple typeface that keeps everything feeling fresh and easy to read."] },
+      { k: "full", p: 3, lab: "[Visual design]" },
+      { k: "full", p: 4 }
+    ] },
+  /* 4 ─ Nomu: a food delivery app concept with its own mascot */
+  { name: "Nomu", what: "a food delivery app with a mascot", deliverable: "App UI, mascot, icon set",
+    industry: "Food delivery", role: "Product designer", services: "UI & illustration", timeline: "2 weeks", year: "2026",
+    blocks: [
+      { k: "half", lab: "[Overview]", head: "A friendly food delivery app where a Shiba mascot follows every order, from the kitchen to your door.", lines: [
+        "Nomu is a food delivery app concept. I designed the interface, the mascot and the icon set to give the brand a friendly personality and make everyday ordering feel more fun."] },
+      { k: "full", p: 0 },
+      { k: "over", tall: true, p: 1, lab: "[The challenges]", head: "Creating a Food Delivery Brand People Remember After Their Food Arrives", lines: [
+        "Ordering food is something people do almost every day, so it often feels like a routine. People open the app, place an order and wait, and the brand is easy to forget once the food arrives.",
+        "The challenge was to give Nomu a friendly personality that people remember, and to turn the waiting time and everyday ordering into small moments that feel fun and enjoyable."] },
+      { k: "pair", p: 2, lab: "[The brand]", lines: [
+        "Nomu is a Shiba dog wearing a rider helmet, with a coin as a small detail. People recognize the Shiba's shape instantly, the helmet connects it to delivery, and the coin links it to the rewards in the app. Together, they make Nomu easy to remember long after the order is done.",
+        "The brand is built on two colours. Bright pink gives Nomu its warm, cheerful personality, and yellow is used for coins and the main buttons, so people always know what to tap."] },
+      { k: "over", p: 3, lab: "[Visual design]", lines: [
+        "Nomu turns the waiting time into something to watch. The character picks up the order, rides the scooter on the live map and hands over the food when it arrives, so people can follow their order just by looking at Nomu.",
+        "Small moments make everyday ordering more fun. When you tap a tab, the grey icon is replaced by Nomu holding it inside a pink shape, and coins, daily check-ins and small missions add a little surprise to each order. Behind the playful look, every screen follows the same spacing grid, so the app stays clean and easy to use."] },
+      { k: "full", p: 4 }
+    ] },
+  /* 5 ─ Mâm Việt: a family-run restaurant in Saigon */
+  { name: "Mâm Việt", big: "Mam Viet", what: "a Vietnamese restaurant's brand and site", deliverable: "Brand & 16-page site",
+    industry: "Restaurant", role: "Product designer", services: "Brand & UI/UX", timeline: "3 months", year: "2025",
+    blocks: [
+      { k: "half", lab: "[Overview]", head: "Bringing the spirit of regional Vietnamese cuisine and shared dining to a family-run restaurant in Saigon through brand and digital design.", lines: [
+        "Mâm Việt serves regional Vietnamese food in two ways: shared set meals called <em>mâm</em> and individual dishes. I designed its brand identity, design system and a 16-page website to help guests explore the menu, book a table and get a feel for the restaurant before they visit."] },
+      { k: "full", p: 0 },
+      { k: "over", tall: true, p: 1, lab: "[The challenges]", head: "Making Mâm Việt easier to explore and book online.", lines: [
+        "Before the redesign, Mâm Việt's website was a single page with a photo of the menu. On mobile, it was hard to read, prices and allergen information were difficult to find, and there was no explanation of what a <em>mâm</em> was.",
+        "Booking was just as inconvenient. Guests had to call the restaurant, but during busy hours the phone often went unanswered. Meanwhile, posters, signage and delivery apps all used different fonts and colours, making the brand look inconsistent.",
+        "The goal was to make the food easier to understand, let guests book a table on their own, and bring everything together under one consistent identity."] },
+      { k: "pair", p: 2, lab: "[The brand]", lines: [
+        "I wanted Mâm Việt's identity to feel connected to the way people experience the restaurant: sharing a meal, discovering dishes from different regions, and spending time around the table. I looked to traditional Vietnamese ceramics for a visual direction that felt familiar and crafted, while still fresh and welcoming.",
+        "Deep blue became the foundation of the colour palette, with yellow reserved for buttons to make important actions, especially booking, easy to spot.",
+        "I carried this direction into the typography and graphic details. An elegant display font adds character, while a clean typeface keeps menus and booking information easy to read. Subtle icons and patterns bring in Vietnamese influences without overwhelming the content."] },
+      { k: "over", p: 3, lab: "[Visual design]", lines: [
+        "The menu puts shared set trays first, followed by individual dishes, giving the restaurant's signature dining experience a clear place. Each dish shows its region, spice level, allergens and price, along with a short note on how it's enjoyed. This helps first-time guests understand the food and choose with confidence.",
+        "For bookings, I designed an interactive floor plan where guests can choose their dining room and preferred time, then receive an instant confirmation. When all tables are booked, they can join a waitlist and receive a text when a table becomes available.",
+        "A booking button is available on every page, making it easy for guests to start a reservation whenever they're ready."] },
+      { k: "full", p: 4 }
+    ] },
+  /* 6 ─ Bliss: a restaurant website */
+  { name: "Bliss", what: "a restaurant website built on warmth", deliverable: "Restaurant website",
+    industry: "Restaurant", role: "Product designer", services: "UI/UX & motion", timeline: "", year: "2026",
+    blocks: [
+      { k: "half", lab: "[Overview]", head: "A digital experience inspired by good food, warm moments and the joy of dining together.", lines: [
+        "Bliss is built around a simple promise: Made with Love, Served with Joy. I designed its website to reflect that spirit, bringing together everything guests need to explore the restaurant, from browsing the menu and viewing the gallery to booking a table. Subtle motion adds a little life throughout the experience."] },
+      { k: "full", p: 0 },
+      { k: "over", tall: true, p: 1, lab: "[The challenges]", head: "Bringing the warmth of dining at Bliss into its website.", lines: [
+        "Bliss feels warm and welcoming, from the food to the people who serve it. The challenge was to carry that same warmth onto the website.",
+        "At the same time, the website needed to make everyday tasks easy. Guests should be able to browse the menu, reserve a table and explore the restaurant without the visual experience getting in the way."] },
+      { k: "pair", p: 2, lab: "[The brand]", lines: [
+        "I wanted the visual identity to balance the warmth of Bliss's promise with the more refined feel of dining out. Warm cream creates a soft, welcoming foundation, while deep burgundy adds richness and a touch of elegance.",
+        "I carried this balance into the typography and graphic details. Elegant serif fonts give the brand a classic character, while hand-drawn food patterns add a playful, personal touch that reflects the idea of food made with care and served with joy."] },
+      { k: "full", p: 3, lab: "[Visual design]" },
+      { k: "full", p: 4 }
+    ] },
+  /* 7 ─ TL Studio (tlstudio.site) */
+  { name: "TL Studio", what: "a website for a digital agency", deliverable: "Responsive website",
+    industry: "Digital agency", role: "Product designer", services: "UI/UX design", timeline: "", year: "2026",
+    /* the owner's own visuals (20 Nov 2026): the laptop on the cover, the night map under [Design
+       direction], the blue arcs beside [Content & structure], and five screen recordings for
+       [Visual design] (the hero, then sections 01 to 04). The old picture under the overview is gone. */
+    cover: "projects/tl-studio/image-01.jpg",
+    live: { label: "Visit live site", href: "https://tlstudio.site/" },
+    pics: ["projects/tl-studio/image-03.jpg", "projects/tl-studio/image-04.png",
+      "projects/tl-studio/visual-01.mp4", "projects/tl-studio/visual-02.mp4", "projects/tl-studio/visual-03.mp4",
+      "projects/tl-studio/visual-04.mp4", "projects/tl-studio/visual-05.mp4"],
+    blocks: [
+      { k: "half", lab: "[Overview]", lines: [
+        "TL Studio is a digital agency offering website design, development, and other digital services for businesses.",
+        "The goal was to create a website that clearly presents what the studio offers, showcases its work, and makes it easy for potential clients to get in touch.",
+        "I worked independently on the design, from competitor research and visual direction to page layouts, interactions, and developer handoff."] },
+      { k: "over", tall: true, p: 0, lab: "[Design direction]", head: "A bold visual direction.", lines: [
+        "I chose a dark interface with bold typography and electric blue visuals to give the website a distinctive look.",
+        "The main challenge was balancing expressive visuals with readable content, so the website could make a strong first impression without distracting visitors from the information they needed."] },
+      { k: "pair", p: 1, lab: "[Content & structure]", head: "Organizing information around the visitor.", lines: [
+        "The website brings together the studio's services, selected work, team, and company information. I structured the content to help visitors understand what the studio offers before deciding whether to get in touch.",
+        "For each core service, I included an overview of the approach and what clients can expect to receive, making the offerings easier to understand."] },
+      { k: "reel", lab: "[Visual design]", ps: [2, 3, 4, 5, 6] }
+    ] }
+];
+const PALETTE = ["#cdb9dd", "#b49ac8", "#e3d6ea", "#8760af", "#d9c7e0", "#a68bbf"];
+
+(function () {
+  const q = new URLSearchParams(location.search);
+  const i = Math.min(PROJECTS.length, Math.max(1, parseInt(q.get("p"), 10) || 1)) - 1;
+  const pj = PROJECTS[i], nx = PROJECTS[(i + 1) % PROJECTS.length];
+  const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  const n2 = (k) => String(k).padStart(2, "0");
+  document.title = pj.name + " · Trinh Trinh Nguyen";
+  const pics = pj.pics || [];
+  let picNo = 0;
+  const pic = (cls, dark, src) => {
+    picNo++;
+    const opt = src && typeof src === "object" ? src : null;   /* { src, fit: "contain", bg } */
+    if (opt) src = opt.src;
+    const col = opt && opt.bg ? opt.bg : dark ? "#351E28" : PALETTE[(picNo + i) % PALETTE.length];
+    /* a path ending in .mp4 is a screen recording: it plays silently on a loop while it is on screen */
+    const vid = src && /\.mp4$/i.test(src);
+    return '<figure class="pic ' + (dark ? "dark " : "") + (vid ? "vid " : "") + (opt && opt.fit ? "fit " : "") + cls + '" data-rv style="--c:' + col + '">' +
+      (vid ? '<video src="' + esc(src) + '" muted loop playsinline preload="metadata" aria-hidden="true"></video>'
+        : src ? '<img src="' + esc(src) + '" alt="">' : "<span>[image " + n2(picNo) + "]</span>") + "</figure>";
+  };
+  const d = (k) => ' data-rv style="--d:' + (k * 0.07).toFixed(2) + 's"';
+  /* a line is a paragraph, or { sub } a sub-head, or { ul } a bullet list — the owner's own copy */
+  /* [The challenges] are numbered #1 #2 #3, as the reference's: its list items, or its paragraphs when it has no list */
+  const numbered = (b) => /challenges/i.test(b.lab || "");
+  const hasList = (b) => (b.lines || []).some((l) => l && l.ul);
+  const lines = (b, k0) => { let n = 0; return (b.lines || []).map((l, k) =>
+    typeof l === "string" ? (numbered(b) && !hasList(b) ? '<p class="num"' + d(k0 + k) + ">#" + (++n) + "</p>" : "") + '<p class="body"' + d(k0 + k) + ">" + l + "</p>"
+    : l.sub ? '<h3 class="sub"' + d(k0 + k) + ">" + l.sub + "</h3>"
+    : l.ul && numbered(b) ? l.ul.map((x) => '<p class="num"' + d(k0 + k) + ">#" + (++n) + '</p><p class="body"' + d(k0 + k) + ">" + x + "</p>").join("")
+    : l.ul ? '<ul class="bul"' + d(k0 + k) + ">" + l.ul.map((x) => "<li>" + x + "</li>").join("") + "</ul>" : "").join(""); };
+  const btn = (b, k0) => b.btn ? '<a class="btn' + (b.btn.ink ? " ink" : "") + '"' + d(k0) +
+    ' href="' + b.btn.href + '" target="_blank" rel="noopener">' + b.btn.label + ' <span aria-hidden="true">&nearr;</span></a>' : "";
+  /* a block's words: its label, its heading (big where the block has room for one, bold in the
+     body where it does not), its lines, and a link to the live work if it has one */
+  const lab = (b, k) => b.lab ? '<p class="lab"' + d(k) + ">" + b.lab + "</p>" : "";
+  const words = (b, big) => '<div class="txt">' + lab(b, 0) +
+    (b.head ? (big ? '<h2 class="head"' + d(1) + ">" + b.head + "</h2>" : '<p class="body"' + d(1) + "><b>" + b.head + "</b></p>") : "") +
+    lines(b, 2) + btn(b, 2 + (b.lines || []).length) + "</div>";
+  /* a centred label, heading and opening lines over a set, a table or a palette */
+  const hd = (b) => '<div class="hd">' + lab(b, 0) +
+    (b.head ? '<h2 class="head"' + d(1) + ">" + b.head + "</h2>" : "") + lines(b, 2) + "</div>";
+  /* the small parts of a set: a number or kind, a name, a quote with who said it, then the lines */
+  const items = (b) => '<div class="items">' + b.items.map((it, k) => '<div class="it"' + d(k) + ">" +
+    (it.n ? '<p class="n">' + it.n + "</p>" : "") + (it.t ? '<h3 class="t">' + it.t + "</h3>" : "") +
+    (it.q ? '<p class="q">&ldquo;' + it.q + "&rdquo;</p>" : "") + (it.by ? '<p class="by">' + it.by + "</p>" : "") +
+    (it.lines || []).map((l) => '<p class="body">' + l + "</p>").join("") + "</div>").join("") + "</div>";
+  const table = (b) => '<table' + d(2) + "><thead><tr>" + b.cols.map((c) => "<th>" + c + "</th>").join("") +
+    "</tr></thead><tbody>" + b.rows.map((r) => "<tr>" + r.map((c) => "<td>" + c + "</td>").join("") + "</tr>").join("") +
+    "</tbody></table>" + (b.note ? '<p class="note"' + d(3) + ">" + b.note + "</p>" : "");
+  const swatch = (b) => '<div class="items">' + b.items.map((c, k) => '<div class="c"' + d(k) + '><i style="background:' + c.hex + '"></i>' +
+    "<p><b>" + c.hex + "</b>" + c.t + (c.lines ? " &mdash; " + c.lines.join(" ") : "") + "</p></div>").join("") + "</div>";
+  /* every part a case page can be made of, in the order the project lists them */
+  const draw = (b) =>
+    b.k === "half" ? '<section class="overview' + (/overview/i.test(b.lab || "") ? "" : " ctr") + '">' + words(b, true) + "</section>" :
+    b.k === "over" ? '<section class="over' + (b.tall ? " tall" : "") + '">' + pic("", true, pics[b.p]) + words(b, true) + "</section>" :
+    b.k === "mid" ? '<section class="solo mid">' + words(b, true) + "</section>" :
+    b.k === "left" ? '<section class="solo left">' + words(b, false) + "</section>" :
+    b.k === "pair" ? '<section class="pair' + (b.flip ? " flip" : "") + '">' + pic("", false, pics[b.p]) + words(b, false) + "</section>" :
+    b.k === "full" ? (b.lab || b.head
+      ? '<section class="shot">' + lab(b, 0) + (b.head ? '<h2 class="head"' + d(1) + ">" + b.head + "</h2>" : "") + pic("full", false, pics[b.p]) + "</section>"
+      : pic("full", false, pics[b.p])) :
+    b.k === "fig" ? '<div class="fig"' + (b.w ? ' style="width:' + b.w + '"' : "") + ">" + pic("nat" + (pics[b.p] ? "" : " ph"), false, pics[b.p]) + "</div>" :
+    b.k === "duo" ? '<section class="duo' + (b.flip ? " flip" : "") + '">' + words(b, true) + pic("nat" + (pics[b.p] ? "" : " ph"), false, pics[b.p]) + "</section>" :
+    b.k === "show" ? '<section class="show">' + pic("", true, pics[b.bg]) + words(b, true) +
+      '<div class="phones"' + d(3) + ">" + b.shots.map((n) => '<img src="' + esc(pics[n]) + '" alt="">').join("") + "</div></section>" :
+    b.k === "reel" ? '<section class="reel">' + lab(b, 0) + (b.head ? '<h2 class="head"' + d(1) + ">" + b.head + "</h2>" : "") +
+      b.ps.map((n) => pic("clip", false, pics[n])).join("") + "</section>" :
+    b.k === "set" ? '<section class="set" style="--cols:' + (b.cols || 3) + '">' + hd(b) + items(b) + "</section>" :
+    b.k === "tbl" ? '<section class="tbl">' + hd(b) + table(b) + "</section>" :
+    b.k === "sw" ? '<section class="sw">' + hd(b) + swatch(b) + "</section>" : "";
+  /* the ways back to the work page ("Close project", "Collection of work") open it where it was left */
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest && e.target.closest('a[href="work.html"]');
+    if (a) try { sessionStorage.setItem("workBack", "1"); } catch (er) {}
+  }, true);
+  document.getElementById("page").innerHTML =
+    '<dl class="facts">' +
+      [["[Deliverables]", pj.deliverable], ["[Industry]", pj.industry], ["[Role]", pj.role], ["[Services]", pj.services]]
+        .map(([k, v], j) => "<div" + d(j) + "><dt>" + k + "</dt><dd>" + esc(v) + "</dd></div>").join("") +
+    "</dl>" +
+    '<h1 class="title"' + d(0) + ">" + esc(pj.big || pj.name) + "</h1>" +
+    (pj.live ? '<p class="live"><a class="btn ink" href="' + esc(pj.live.href) + '" target="_blank" rel="noopener">' +
+      esc(pj.live.label) + ' <span aria-hidden="true">&nearr;</span></a></p>' : "") +   /* Koulen has no Vietnamese diacritics: `big` spells the display name without them */
+    '<section class="cover">' + pic("", true, pj.cover) + "</section>" +
+    pj.blocks.map(draw).join("") +
+    (() => {
+      const href = "project.html?p=" + (((i + 1) % PROJECTS.length) + 1);
+      const shot = (c) => '<figure class="pic" style="--c:' + c + '">' + (nx.cover ? '<img src="' + esc(nx.cover) + '" alt="">' : "") + "</figure>";
+      return '<section class="next">' +
+        '<p class="nl"' + d(0) + ">Next project</p>" +
+        '<a class="nn" href="' + href + '"' + d(1) + ">" + esc(nx.big || nx.name) + "</a>" +
+        '<a class="card" href="' + href + '" aria-label="' + esc(nx.name) + '"' + d(2) + ">" +
+          '<span class="big">' + shot(PALETTE[(i + 1) % PALETTE.length]) + "</span>" +
+          '<span class="win">' + shot(PALETTE[(i + 3) % PALETTE.length]) + "</span></a>" +
+        '<p class="foot lab"><a href="work.html">Collection of work</a><a class="up" href="#top" aria-label="Back to the top">&uarr;</a><span>Copyright 2026</span></p>' +
+      "</section>";
+    })();
+  /* the foot's arrow goes back to the top of the case */
+  document.querySelector(".foot .up").addEventListener("click", (e) => { e.preventDefault(); scrollTo({ top: 0, behavior: "smooth" }); });
+  /* the first screen rises in (not faded): the name and facts, then the cover */
+  document.documentElement.classList.add("pt-case");
+  const rise = [document.querySelector(".title"), document.querySelector(".live"), document.querySelector(".facts"), document.querySelector(".cover")];
+  rise.forEach((e, k) => { if (!e) return; e.classList.add("pt-rise"); e.style.setProperty("--rd", (0.8 + k * 0.1).toFixed(1) + "s"); e.querySelectorAll("[data-rv]").forEach((x) => x.removeAttribute("data-rv")); e.removeAttribute("data-rv"); });
+  requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add("pt-up")));
+  /* each section after the cover fades as a whole too, as the reference's sections do (the words inside fade with it) */
+  document.querySelectorAll("#page > section:not(.cover):not(.next), #page > figure, #page > .next > .nl, #page > .next > .nn, #page > .next > .card").forEach((e) => e.setAttribute("data-rv", ""));
+  const els = document.querySelectorAll("[data-rv]");
+  if (!("IntersectionObserver" in window)) { els.forEach((e) => e.classList.add("in")); return; }
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    e.target.classList.toggle("in", e.isIntersecting);   /* in when any of it shows, out when it has gone */
+  }), { threshold: 0 });
+  els.forEach((e) => io.observe(e));
+  /* the recordings play only while on screen (and not at all for anyone who asked for less motion:
+     they show their first frame) */
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const vio = new IntersectionObserver((es) => es.forEach((e) => {
+    const v = e.target;
+    if (e.isIntersecting && !still) { const p = v.play(); if (p) p.catch(() => {}); } else v.pause();
+  }), { threshold: 0.15 });
+  document.querySelectorAll(".pic video").forEach((v) => { v.preload = "auto"; vio.observe(v); });
+})();
+</script>
+</body>
+</html>

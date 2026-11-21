@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work · Trinh Trinh Nguyen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;1,400&family=Koulen&display=swap">
+<style>
+html { font-synthesis: none; }   /* one weight per font: never fake bold or slant */
+/* The about page, built on the reference's info page (mason-wong.com/info, the owner's team site, used
+   with permission). It follows the reference's four layouts and their breakpoints, measured from the
+   live page: large (1500px and up), desktop (1200–1499), tablet (810–1199) and phone (under 810).
+   Sizes are the reference's own pixels in each layout. The hero's INFO always sits on the bottom edge
+   of the first screen, as the reference's does. Its Selected Clients, Prequel and "built bold / made
+   human" sections are left out at the owner's asking. The site's own fonts, colours and flower;
+   film noise over everything. Pictures are placeholders for the owner to fill. */
+@font-face { font-family: "La Belle Aurore"; src: url("fonts/LaBelleAurore-latin.woff2") format("woff2"); font-display: swap; }
+:root {
+  --paper: #faf8f5; --ink: #351E28; --ink-soft: #6c454f; --accent: #8760af; --thistle: #cdb9dd; --light: rgb(231, 229, 223); --wine: #351E28;
+  --big: "Koulen", Impact, "Arial Narrow", sans-serif;
+  --mono: "IBM Plex Mono", Menlo, Consolas, monospace;
+  --script: "La Belle Aurore", cursive;
+  --pad: 24px; --lab: 14px; --vh: 100vh;
+  /* The spacing scale, read off the reference (mason-wong.com, its info and work pages measured at
+     1720 wide: the gaps between its blocks fall into clear bands, 178-238, 148-150, 106, 65-75 and
+     38-48). One name per band, used on every page of this site so the rhythm is the same throughout:
+       --space-section  a section's own top and bottom padding, and the gap between its main blocks
+       --space-block    one block to the next inside a section
+       --space-label    a label or caption to the block it belongs to
+       --space-row      one row of a list to the next
+       --space-tight    round a picture, or a line to its button
+       --space-dark     a section standing on a photo: half as much again as --space-section
+     Each window size sets the five once; nothing else in the page hard-codes a gap of this size. */
+  --space-section: 200px; --space-block: 150px; --space-label: 115px; --space-row: 72px; --space-tight: 48px;
+  --space-dark: calc(var(--space-section) * 1.5);   /* a section standing on a photo takes half as much again, as the reference's do */
+}
+@supports (height: 100svh) { :root { --vh: 100svh; } }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+p, h1, h2, h3, ol, figure { margin: 0; }
+.lab, .body { font-family: var(--mono); font-size: var(--lab); line-height: 1.4; }
+.lab { text-transform: uppercase; }
+.big { font-family: var(--big); font-weight: 400; text-transform: uppercase; }
+.scr { font-family: var(--script); text-transform: none; letter-spacing: 0; font-weight: 400; }
+.dark { background: var(--wine); color: var(--light); }
+.paper { background: var(--paper); color: var(--ink); }
+.dark .scr { color: var(--thistle); }
+.paper .scr { color: var(--accent); }
+.line { display: block; }
+.line + .line { margin-top: 16px; }
+/* the flower: the same upright vine of dots and 0s and 1s as the home page's (it stands where the
+   reference stands its gold Chinese characters) */
+.vine { display: block; pointer-events: none; background: url(vines/flower-dots.png) center / contain no-repeat; }
+/* a picture placeholder, until the owner's own picture goes in */
+.ph-pic { position: relative; overflow: hidden; background: radial-gradient(70% 70% at 30% 25%, rgba(205, 185, 221, 0.28), rgba(205, 185, 221, 0) 70%), linear-gradient(160deg, #4a2a38, #351e28 50%, #1a0e14); }
+.ph-pic > .ph { position: absolute; left: 20px; bottom: 16px; color: rgba(231, 229, 223, 0.55); }
+
+/* the nav bar is the site's one bar, styled and moved by pt.js (the same as the home page's) */
+@media (max-width: 1499.98px) { :root { --space-section: 170px; --space-block: 128px; --space-label: 90px; --space-row: 64px; } }
+@media (max-width: 1199.98px) { :root { --space-section: 150px; --space-block: 112px; --space-label: 90px; --space-row: 56px; --space-tight: 40px; } }
+@media (max-width: 809.98px) { :root { --pad: 16px; --lab: 12px; --space-section: 96px; --space-block: 72px; --space-label: 64px; --space-row: 40px; --space-tight: 32px; } }
+/* 1 · the hero. The first screen is INFO on its bottom edge with the flower between IN and FO;
+   then the words, at the reference's fixed spacing below it */
+/* the dark part: the hero's screen and the whole row of projects stand on one ground, the photo
+   held behind the screen the whole way down (sticky), as the reference's film is */
+.open { position: relative; background: var(--wine); }
+.open .photo { position: absolute; inset: 0; z-index: 0; }
+.open .photo .st { position: sticky; top: 0; height: var(--vh); overflow: hidden; }
+.open .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; opacity: 0.4; filter: blur(0.6px); }
+.open .photo .st::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(53, 30, 40, 0.3), rgba(53, 30, 40, 0.62) 45%, rgba(53, 30, 40, 0.74)); }
+.open > :not(.photo) { position: relative; z-index: 1; }
+.first, .rest { position: relative; z-index: 1; }
+/* INFO scales with the window (no jump at the 1200 / 1500 breakpoints): 670px from 1500 wide up,
+   44.67vw below (the same proportion as at 1500), never taller than the screen allows; phones keep their own size */
+.first { height: var(--vh); --info: min(670px, 44.67vw, calc(var(--vh) * 0.8)); }
+.first .w { position: absolute; bottom: 0; font-size: var(--info); line-height: 0.7; }
+.first .w.l { left: 0; }
+.first .w.r { right: 0; letter-spacing: -0.02em; }
+.first .vine { position: absolute; left: 50%; bottom: calc(var(--info) * -0.0403); width: calc(var(--info) * 0.2866); height: calc(var(--info) * 0.8269); transform: translateX(-50%); }
+   and the note starts at the box's left edge, under the first word of the lines (as the owner set it in Figma) */
+.rest .feet { position: absolute; left: var(--pad); right: var(--pad); bottom: 50px; display: grid; grid-template-columns: 1fr auto 1fr; line-height: 0.83; }
+.rest .feet > :last-child { text-align: right; }
+
+/* the hero is the big word alone on its screen, as the reference's work page: the row of projects
+   follows it straight on, on the same dark ground */
+@media (max-width: 809.98px) {
+  .first { height: calc(var(--vh) * 0.95); display: flex; justify-content: center; align-items: flex-end; }
+  .first .w { position: static; font-size: min(252px, 50vw); line-height: 0.8; }   /* WORK is 1.98 of its size wide (INFO less): 64.6vw ran past the screen, the phone zoomed the page out and the nav's year fell off the edge */
+  .first .vine { top: 32%; bottom: auto; width: 64px; height: 185px; }
+  .ft .mid { grid-template-columns: 1fr; row-gap: 48px; }
+  .ft .vine { display: none; }
+}
+
+/* 2 · the work, after the reference's work page (mason-wong.com/work, the owner's team site, used
+   with permission), measured on the live page at 1720. It follows the hero's screen straight on, on
+   the same dark ground: the label centred, then one picture per project, 722x471, with a mono caption
+   10px under it (its name at the left, its kind at the right), the projects 50 apart in one long row
+   that moves sideways as the held screen is scrolled. */
+.wk { position: relative; }
+.wk::before { content: ""; position: absolute; inset: 0; background: radial-gradient(42% 60% at 50% 46%, rgba(205, 185, 221, 0.1), rgba(205, 185, 221, 0) 70%); pointer-events: none; }   /* the faint glow behind the row, as the reference's */
+.wk .hold { position: sticky; top: 0; height: var(--vh); overflow: hidden; }
+.wk .lab-n { position: absolute; left: 0; right: 0; top: calc(50% - (var(--vh) * 0.478 + 50px) / 2 - 64px); text-align: center; color: rgba(231, 229, 223, 0.7); }   /* 137 from the top of the screen, whatever its height, as the reference's */
+.wk .row { position: absolute; left: 0; right: 0; top: 50%; translate: 0 -50%; }   /* the row sits in the middle of the screen (the owner's asking), the label just above it */
+.wk .track { display: flex; gap: 50px; padding: 0 var(--pad); will-change: transform; }
+/* a card, as the reference's: 20 of air, a picture 722x471, the caption 10 under it (its name at the
+   left, its kind at the right at half strength). A card with a picture of its own also carries the
+   reference's inner window: a smaller frame lying inside the picture, through which the same picture
+   slides as the row goes by. */
+.wk .item { position: relative; flex: 0 0 722px; width: 722px; padding-top: 20px; text-decoration: none; color: inherit; }
+.wk .pic { display: block; height: calc(var(--vh) * 0.478); }   /* 722 wide and 0.478 of the screen tall: the reference's card keeps its height to the screen, not to a fixed 471 */
+.wk .pic img { width: 100%; height: 100%; object-fit: cover; }
+/* the reference's hover panel: a window cut inside the picture, 390 wide, with the same picture
+   parked just above it; pointing at the card slides it down into the window (and a touch larger),
+   so a second crop of the picture appears inside the first. Measured on the reference: it travels
+   108% of the window's own height and grows 1.0205, over 0.72s with a strong ease-out, and goes back
+   the same way when the pointer leaves. */
+.wk .win { position: absolute; z-index: 4; left: 166px; top: calc(20px + var(--vh) * 0.11); width: 390px; height: calc(var(--vh) * 0.2525); overflow: hidden; pointer-events: none; }
+.wk .win .in { position: absolute; inset: 0; translate: 0 -110%; transition: translate 0.72s cubic-bezier(.16, 1, .3, 1), scale 0.72s cubic-bezier(.16, 1, .3, 1); }
+.wk .win .in img { width: 100%; height: 100%; object-fit: cover; }
+.wk .item:hover .win .in, .wk .item:focus-visible .win .in { translate: 0 0; scale: 1.0205; }
+@media (prefers-reduced-motion: reduce) { .wk .win .in { transition: none; } }
+.wk .cap { display: flex; justify-content: space-between; margin-top: 10px; }
+.wk .cap > :last-child { opacity: 0.5; }
+.wk .win .in.lift { filter: brightness(1.45); }   /* until a project has its own picture, the panel is the placeholder a shade lighter, so the reveal still reads */
+.wk .soon { position: absolute; left: 24px; top: 20px; z-index: 1; color: rgba(231, 229, 223, 0.75); }
+
+/* 3 · what it adds up to, as the reference's counts under its row */
+.seam { height: 20px; background: var(--paper); }
+/* 3 · what the work comes to: on the same dark ground, over the same photo, as the reference's
+   closing lines are */
+/* The held screen leaves a tail of empty dark under the last caption (the screen is a whole screen
+   tall, the cards end about three quarters of the way down it), so padding alone put far more air
+   above these lines than below. The tail is 0.226 of the screen less 30, and the margin takes it
+   back, leaving --space-dark of air above the lines and as much below them (this block stands on the photo) (the seam counted in), which is what the
+   system gives every section on this site. The odd 21 and 2 are the type's own leading, measured, so the
+   gaps match ink to ink and not box to box. */
+.sum { position: relative; z-index: 1; margin-top: calc(var(--space-dark) + 21px - var(--vh) * 0.226); padding: 0 var(--pad) calc(var(--space-dark) - 2px); text-align: center; }
+.sum .say { max-width: 1281px; margin: 0 auto; font-size: 130px; line-height: 0.9; letter-spacing: -1.5px; }
+.sum .say .scr { font-size: 0.86em; line-height: 0.6; }
+.sum .note { margin-top: 10px; }   /* its caption sits close under, as .state .cap does on the about page */
+@media (max-width: 1499.98px) { .sum .say, .sum .n .fig { font-size: 100px; } }
+@media (max-width: 1199.98px) {
+  .wk .item { flex: 0 0 560px; width: 560px; }
+  .wk .win { left: 129px; width: 302px; }
+  .sum .say { font-size: 66px; }
+}
+@media (max-width: 809.98px) {
+  .wk .hold { position: static; height: auto; padding: var(--space-section) 0; }
+  .wk .win { display: none; }
+  .wk .lab-n { position: static; margin-bottom: var(--space-label); }
+  .wk .row { position: static; translate: none; }
+  .wk .track { flex-direction: column; gap: var(--space-label); transform: none !important; }
+  .wk .item { flex: none; width: auto; }
+  .wk .pic { height: 60vw; }
+  .sum .say { font-size: 45px; }
+}
+/* 6 · the footer, as the home page's */
+.ft { position: relative; min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; padding: 24px; overflow: hidden; }
+.ft .photo { position: absolute; inset: 0; z-index: 0; }
+.ft .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; opacity: 0.55; filter: blur(0.6px); }
+.ft .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(53, 30, 40, 0.55), rgba(53, 30, 40, 0.3) 45%, rgba(53, 30, 40, 0.75)); }
+.ft > * { position: relative; z-index: 1; }
+.ft .top, .ft .bot { display: flex; justify-content: space-between; align-items: center; }
+.ft .mid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; justify-items: center; }
+.ft .say { justify-self: start; font-size: clamp(56px, 8.4vw, 140px); line-height: 0.92; }
+.ft .vine { width: 10vw; height: 56vh; }
+.ft .rep { display: grid; justify-items: center; gap: 18px; }
+.ft .cov { width: clamp(160px, 17vw, 260px); aspect-ratio: 1; background: url(cover.jpg) center / cover; border-radius: 6px; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4); }
+.ft .lk { font-family: var(--big); font-size: clamp(18px, 1.75vw, 26px); text-transform: uppercase; text-decoration: none; }
+.ft .lk:hover, .ft .up:hover { color: var(--thistle); }
+.ft .up { font-size: 26px; text-decoration: none; }
+
+/* coming in as you scroll: a little low, then in place (no blur) */
+[data-rv] { opacity: 0; translate: 0 36px; transition: opacity 0.8s ease, translate 0.9s cubic-bezier(.22, 1, .36, 1); transition-delay: var(--d, 0s); }
+[data-rv].in { opacity: 1; translate: none; }
+/* the greeting types itself in, a letter at a time */
+.type i { font-style: normal; opacity: 0; transition: opacity 0.05s linear; }
+.type.in i { opacity: 1; }
+
+/* the film noise, over everything */
+.noise { position: fixed; inset: 0; z-index: 20; pointer-events: none; opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+</style>
+<script src="pt.js"></script>
+</head>
+<body>
+
+<header class="nav">
+  <a class="brand" href="index.html">Trinh</a>
+  <nav class="menu" aria-label="Sections">
+    <a href="index.html">Home</a>
+    <a class="is-on" href="work.html" aria-current="page">Work</a>
+    <a href="about.html">Info</a>
+  </nav>
+  <span class="yr">[2026]</span>
+</header>
+
+<main id="top">
+  <!-- 1 · the hero: WORK on the bottom edge of the first screen with the flower between its halves,
+       as the about page's INFO; then one line about the work -->
+  <section class="open dark">
+    <div class="photo" aria-hidden="true"><div class="st"><img src="hero.jpg" alt=""></div></div>
+    <h1 class="first" aria-label="Work">
+      <span class="w l big" data-rv>WO</span><span class="vine" aria-hidden="true" data-rv style="--d:.12s"></span><span class="w r big" data-rv style="--d:.06s">RK</span>
+    </h1>
+
+  <!-- 2 · the projects, moving sideways as you scroll, after the reference's work page -->
+  <div class="wk" id="wk">
+    <div class="hold">
+      <p class="lab-n lab" id="wkCount">[6 selected projects]</p>
+      <div class="row"><div class="track" id="wkTrack"></div></div>
+    </div>
+  </div>
+
+  <!-- 3 · what the work comes to, on the same dark ground and photo as the row -->
+  <div class="sum">
+    <h2 class="say big" data-rv>Turning <span class="scr">research</span><br>into products people<br>come back to</h2>
+    <p class="note body" data-rv>[Last updated: November 2026]</p>
+  </div>
+  </section>
+
+  <!-- the seam: a thin band of paper between the dark part and the footer, as the reference has -->
+  <div class="seam" aria-hidden="true"></div>
+
+  <!-- 4 · the footer, as the other pages' -->
+  <footer class="ft dark" id="contact">
+    <div class="photo" aria-hidden="true"><img src="hero.jpg" alt=""></div>
+    <p class="top lab"><span>[Trinh Trinh Nguyen]</span><span>[Copyright 2026]</span></p>
+    <div class="mid">
+      <h2 class="say big">Come<br>say<br>hello</h2>
+      <span class="vine" aria-hidden="true"></span>
+      <div class="rep"><p class="lab">[Currently on repeat]</p><a class="cov" href="index.html" aria-label="Back to the record on the home page"></a><p class="lab">[Trinh.N &ndash; Late Bloom]</p></div>
+    </div>
+    <p class="bot"><a class="lk" href="#">LinkedIn &rarr;</a><a class="up" href="#top" aria-label="Back to top">&uarr;</a><a class="lk" href="#">Instagram &rarr;</a></p>
+  </footer>
+</main>
+<div class="noise" aria-hidden="true"></div>
+
+<script>
+(function () {
+  /* the six projects, as the home page's: a name, what it is, and its page. Pictures are placeholders
+     until the owner adds them (img: "path.jpg" on a project). */
+  const PROJECTS = [
+    { name: "Penlo", tag: "iOS app redesign", url: "project.html?p=1", img: "projects/penlo/cover.jpg" },
+    { name: "SpitiMou", tag: "Real estate web", url: "project.html?p=2", img: "projects/spitimou/cover.jpg?v=2" },
+    { name: "Omical", tag: "Resort brand & web", url: "project.html?p=3", img: "projects/omical/cover.jpg" },
+    { name: "Nomu", tag: "App UI & mascot", url: "project.html?p=4", img: "projects/nomu/image-01.jpg" },
+    { name: "Mâm Việt", tag: "Brand & 16-page site", url: "project.html?p=5", img: "projects/mamviet/image-01.jpg" },
+    { name: "Bliss", tag: "Restaurant website", url: "project.html?p=6", img: "projects/bliss/image-01.jpg" },
+    { name: "TL Studio", tag: "Agency website", url: "project.html?p=7", img: "projects/tl-studio/image-01.jpg" }
+  ];
+  const track = document.getElementById("wkTrack");
+  track.innerHTML = PROJECTS.map((p, i) => {
+    const n = String(i + 1).padStart(2, "0");
+    return '<a class="item" href="' + p.url + '" data-rv style="--d:' + (i * 0.06).toFixed(2) + 's">' +
+      '<span class="pic ph-pic">' + (p.img ? '<img src="' + p.img + '" alt="">' : '<span class="ph lab">[Image ' + n + ']</span>') +
+      (p.soon ? '<span class="soon lab">[Coming soon]</span>' : "") + '</span>' +
+      '<span class="win"><span class="in' + (p.img ? '' : ' ph-pic lift') + '">' + (p.img ? '<img src="' + p.img + '" alt="">' : "") + '</span></span>' +
+      '<span class="cap lab"><span>' + p.name + '</span><span>' + p.tag + '</span></span></a>';
+  }).join("");
+  document.getElementById("wkCount").textContent = "[" + PROJECTS.length + " selected projects]";
+  /* the row moves sideways with the scroll, as long as it is wider than the screen: the section is
+     made as tall as the distance the row has to travel, and the held screen slides it along */
+  const sec = document.getElementById("wk"), hold = sec.querySelector(".hold");
+  /* The row does not sit locked to the scroll: it glides after it, as the reference's does. Measured
+     on the reference by jumping its scroll and sampling every frame: whatever is left of the distance
+     falls away at e^-6.5 a second (a little over a third of it left every 150ms), while the settled
+     places stay 2.43x the scroll. So the scroll sets where the row is going and the row eases there,
+     which is what takes the twitch out of a trackpad. */
+  const RATE = 1.15, EASE = 4.5;   /* slower than the reference's 2.43, at the owner's asking: the row moves a little more than the scroll, and glides softer */
+  const still = matchMedia("(prefers-reduced-motion: reduce)");
+  let dwell = 0, far = 0, run = 0, at = 0, to = 0, raf = 0, last = 0;
+  function far0(pad) { return Math.max(0, track.scrollWidth - innerWidth + pad); }
+  function target() {
+    if (!far) return 0;
+    const r = sec.getBoundingClientRect();
+    return -far * Math.min(1, Math.max(0, (-r.top - dwell) / run));   /* the first project holds still for a moment before the row moves */
+  }
+  function paint() { track.style.transform = far ? "translate3d(" + at.toFixed(1) + "px,0,0)" : ""; }
+  function tick(now) {
+    const dt = Math.min(0.064, (now - last) / 1000); last = now;
+    to = target();
+    at += (to - at) * (1 - Math.exp(-EASE * dt));
+    if (Math.abs(to - at) < 0.3) { at = to; raf = 0; } else raf = requestAnimationFrame(tick);
+    paint();
+  }
+  function step() {
+    if (!far) { paint(); return; }
+    if (still.matches) { at = to = target(); paint(); return; }   /* no glide for anyone who asked for none */
+    if (!raf) { last = performance.now(); raf = requestAnimationFrame(tick); }
+  }
+  function layout() {
+    const pad = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--pad")) || 24;
+    /* the row travels a quarter of a screen further than the last card needs (the reference does the
+       same: its last card ends 426 short of the right margin on a 1720 screen). That tail is what
+       keeps the last projects in view while the row is still gliding, so the screen never lets go
+       with a project half way past. */
+    const over = far0(pad) ? innerWidth * 0.248 : 0;
+    far = far0(pad) + over;
+    run = far / RATE;                   // how far you scroll to send the row all the way along
+    dwell = far ? innerHeight * 0.3 : 0;
+    sec.style.height = matchMedia("(max-width: 809.98px)").matches ? "" : (hold.clientHeight + dwell + run) + "px";
+    at = to = target(); paint();        // a resize lands it where it belongs, with no glide
+  }
+  addEventListener("scroll", step, { passive: true });
+  addEventListener("resize", () => setTimeout(layout, 80));
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(layout);
+  layout();
+  /* Coming back from a project ("Close project" or "Collection of work" sets `workBack`), the page
+     opens where it was left, with the row where it was, not at the top (the owner's asking, 20 Nov
+     2026). The place is kept on leaving; the browser's own Back keeps it by itself. */
+  addEventListener("pagehide", () => { try { sessionStorage.setItem("workY", String(Math.round(scrollY))); } catch (e) {} });
+  try {
+    const y = sessionStorage.getItem("workBack") && parseFloat(sessionStorage.getItem("workY"));
+    sessionStorage.removeItem("workBack");
+    if (y > 0) {
+      history.scrollRestoration = "manual";
+      const back = () => { scrollTo({ top: y, behavior: "instant" }); at = to = target(); paint(); };   /* instant: the page's smooth scrolling would glide there from the top */
+      back();
+      (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { layout(); back(); });
+    }
+  } catch (e) {}
+  /* things come in as they scroll into view, as on the other pages */
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) e.target.classList.add("in");
+    else if (e.boundingClientRect.top > 0) e.target.classList.remove("in");
+  }), { rootMargin: "0px 0px -6% 0px" });
+  document.querySelectorAll("[data-rv], .type").forEach((e) => io.observe(e));
+  /* the greeting at the foot of the hero types itself in */
+  document.querySelectorAll(".type").forEach((el) => {
+    el.innerHTML = Array.from(el.textContent).map((c, i) => '<i style="transition-delay:' + (i * 45) + 'ms">' + (c === " " ? "&nbsp;" : c) + "</i>").join("");
+  });
+  document.querySelector(".up").addEventListener("click", (e) => { e.preventDefault(); scrollTo({ top: 0, behavior: "smooth" }); });
+})();
+</script>
+</body></html>

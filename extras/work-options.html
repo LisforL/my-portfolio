@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work section options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500&display=swap">
+<style>
+/* Four ideas for the Selected work, all from the record world the site is built on, and none
+   with a disc: a crate of sleeves to flip through, sleeves that turn over to their credits, the
+   liner-notes booklet, and a record shop wall of staff picks. Working scroll sketches with the
+   site's fonts, colours and placeholder pictures; the tabs switch between them. The sleeve is
+   the loading screen's, printed with each project. Words in [brackets] are the site's own
+   placeholders. */
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-Ultralight.otf") format("opentype"); font-weight: 200; font-style: normal; }
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-UltralightItalic.otf") format("opentype"); font-weight: 200; font-style: italic; }
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-Italic.otf") format("opentype"); font-weight: 400; font-style: italic; }
+:root {
+  --paper: #faf8f5; --ink: #400d1b; --wine: #400d1b; --ink-soft: #6c454f; --accent: #8760af;
+  --line: #dbd4d1; --thistle: #cdb9dd; --aqua: #beffea; --deep: #2b0a12;
+  --serif: "PP Editorial New", "Instrument Serif", "Times New Roman", serif;
+  --body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", Menlo, monospace;
+  --bar: 64px;
+  --pad: clamp(20px, 5vw, 88px);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+img { display: block; }
+button { font: inherit; color: inherit; }
+.opt { display: none; }
+.opt.on { display: block; }
+
+/* the bar: back to the site, and the four options */
+.ob {
+  position: fixed; z-index: 100; inset: 0 0 auto 0; height: var(--bar);
+  display: flex; align-items: center; gap: clamp(12px, 2vw, 28px); padding: 0 clamp(14px, 2vw, 28px);
+  background: rgba(250, 248, 245, 0.94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.ob-home { font-size: 11px; line-height: 1; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
+.ob-home:hover { color: var(--ink); }
+.ob-t { margin: 0; font: 200 22px/1 var(--serif); white-space: nowrap; }
+.ob-t em { font-style: italic; color: var(--accent); }
+.ob-tabs { margin-left: auto; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+.ob-tabs::-webkit-scrollbar { display: none; }
+.ob-tabs button {
+  flex: none; display: inline-flex; align-items: baseline; gap: 8px;
+  padding: 9px 14px 8px; border: 1px solid rgba(64, 13, 27, 0.22); border-radius: 999px; background: none; cursor: pointer;
+  font-size: 12px; line-height: 1; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.ob-tabs button b { font: 500 11px/1 var(--mono); color: var(--accent); }
+.ob-tabs button:hover { border-color: var(--ink); }
+.ob-tabs button[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.ob-tabs button[aria-selected="true"] b { color: var(--thistle); }
+@media (max-width: 760px) { .ob-t, .ob-home { display: none; } .ob-tabs { margin-left: 0; } .ob-tabs button { padding: 9px 11px 8px; } }
+
+/* each option opens with a note on how it scrolls and how it belongs to the site */
+.oi { min-height: 74vh; display: grid; align-content: center; justify-items: start; gap: 18px; max-width: 1100px; padding: calc(var(--bar) + 48px) var(--pad) 56px; }
+.oi-k { margin: 0; font: 500 12px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.oi-t { margin: 0; font: 200 clamp(56px, 8vw, 128px)/0.92 var(--serif); letter-spacing: -0.02em; }
+.oi-t em { font-style: italic; color: var(--accent); }
+.oi-p { margin: 0; max-width: 34em; font-size: clamp(16px, 1.3vw, 21px); line-height: 1.45; color: var(--ink-soft); }
+.oi-why { margin: 6px 0 0; padding: 0; list-style: none; display: grid; max-width: 44em; font-size: 15px; line-height: 1.45; border-bottom: 1px dotted rgba(64, 13, 27, 0.3); }
+.oi-why li { display: grid; grid-template-columns: 90px 1fr; gap: 14px; padding: 9px 0 8px; border-top: 1px dotted rgba(64, 13, 27, 0.3); }
+.oi-why b { font: 500 11px/1.9 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.oi-go { margin: 14px 0 0; font-size: 12px; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+
+/* a project's notes, shared by all four: the number, kind and year; the name and what it is;
+   a line about it; the credits between dotted rules; the way into the case study */
+.k { margin: 0; display: flex; align-items: center; gap: 14px; font-size: 12px; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.k .rule { width: 40px; height: 1px; background: currentColor; opacity: 0.5; }
+.k .soft { color: var(--ink-soft); }
+.big { margin: 0; font: 200 clamp(42px, 5vw, 88px)/0.98 var(--serif); letter-spacing: -0.016em; }
+.big em { font-style: italic; color: var(--accent); }
+.meta { margin: 0; display: flex; align-items: center; gap: 12px; font-size: 12px; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+.meta .no { font-family: var(--mono); letter-spacing: 0.06em; color: var(--accent); }
+.meta .rule { width: 28px; height: 1px; background: currentColor; opacity: 0.5; }
+.meta .yr { margin-left: auto; font-family: var(--mono); letter-spacing: 0.06em; }
+.ttl { margin: 0; font-family: var(--serif); font-weight: 200; line-height: 1.04; letter-spacing: -0.012em; }
+.ttl em { display: block; font-style: italic; color: var(--accent); }
+.desc { margin: 0; max-width: 31em; font-size: 15px; line-height: 1.45; color: var(--ink-soft); }
+.cr { margin: 0; border-bottom: 1px dotted rgba(64, 13, 27, 0.34); }
+.cr > div { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 14px; align-items: baseline; padding: 8px 0 7px; border-top: 1px dotted rgba(64, 13, 27, 0.34); }
+.cr dt { font: 400 11px/1.4 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+.cr dd { margin: 0; font-size: 14px; line-height: 1.4; }
+.cr .res dd { color: var(--accent); }
+.go { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+.go svg { width: 12px; height: 10px; transition: transform 0.3s cubic-bezier(.22, 1, .36, 1); }
+.go:hover svg { transform: translateX(4px); }
+.walk { margin: 6px 0 0; display: flex; align-items: center; gap: 14px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+.walk i { width: 140px; border-top: 1px dotted currentColor; }
+
+/* the sleeve: the loading screen's wine sleeve, printed with a project (sized by its width, cqw):
+   the name and catalogue number at the top, the project's picture as the cover, its name and
+   kind at the foot, the open edge on the right; some carry a round sticker with the result */
+.sl { position: relative; width: 100%; aspect-ratio: 1; container-type: inline-size; background: var(--wine); color: var(--paper); }
+.sl::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 3px; background: rgba(255, 255, 255, 0.07); }
+.sl-frame { position: absolute; inset: 3cqw; border: 1px solid rgba(205, 185, 221, 0.32); pointer-events: none; }
+.sl-top, .sl-foot { position: absolute; left: 7cqw; right: 7cqw; display: flex; justify-content: space-between; align-items: baseline; gap: 3cqw; white-space: nowrap; }
+.sl-top { top: 6.6cqw; font: 500 max(6px, 2.4cqw)/1 var(--mono); letter-spacing: 0.16em; text-transform: uppercase; color: rgba(250, 248, 245, 0.82); }
+.sl-top b { font-weight: 500; color: var(--thistle); }
+.sl-art { position: absolute; left: 7cqw; right: 7cqw; top: 13cqw; bottom: 20cqw; overflow: hidden; background: #e8dff0; }
+.sl-art img { width: 100%; height: 100%; object-fit: cover; }
+.sl-foot { bottom: 6.6cqw; }
+.sl-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; font: italic 200 6.4cqw/1.05 var(--serif); }
+.sl-kind { font: 500 max(6px, 2.3cqw)/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: rgba(250, 248, 245, 0.6); }
+.sl-stk {
+  position: absolute; z-index: 2; right: 3.5cqw; top: 8.5cqw; width: 26cqw; height: 26cqw; border-radius: 50%;
+  display: grid; align-content: center; justify-items: center; gap: 1.2cqw; padding: 3cqw; text-align: center;
+  background: var(--thistle); color: var(--ink); rotate: 12deg; box-shadow: 0 1.2cqw 2.6cqw rgba(0, 0, 0, 0.28);
+  font: italic 200 2.8cqw/1.1 var(--serif);
+}
+.sl-stk small { font: 500 max(5px, 1.6cqw)/1 var(--mono); font-style: normal; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+
+
+/* ── A · Crate digging ───────────────────────────────────────────
+   The sleeves stand in a wine crate; scrolling flicks through them: the front one tips toward
+   you and drops behind the crate's front, and the next comes forward. The notes of the one in
+   front sit beside the crate, with the crate's dividers (the kinds of work) above them. */
+.cd { position: relative; }
+.cd-stage { --S: 460px; position: sticky; top: var(--bar); height: calc(100vh - var(--bar)); overflow: hidden; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: center; gap: 4vw; padding: 0 var(--pad); }
+.cd-left { display: grid; place-items: center; height: 100%; }
+.cd-crate { position: relative; width: calc(var(--S) * 1.16); height: calc(var(--S) * 1.32); perspective: calc(var(--S) * 3.2); perspective-origin: 50% -40%; }
+.cd-crate::after { content: ""; position: absolute; z-index: -1; left: -8%; right: -8%; bottom: calc(var(--S) * -0.05); height: calc(var(--S) * 0.1); background: radial-gradient(closest-side, rgba(64, 13, 27, 0.28), transparent); }
+.cd-sl { position: absolute; left: calc(var(--S) * 0.08); bottom: calc(var(--S) * 0.1); width: var(--S); transform-origin: 50% 100%; will-change: transform, opacity; }
+.cd-sl .sl { box-shadow: 0 calc(var(--S) * 0.015) calc(var(--S) * 0.05) rgba(43, 10, 18, 0.4); }
+.cd-wall { position: absolute; z-index: 49; bottom: 0; width: calc(var(--S) * 0.05); height: calc(var(--S) * 0.6); background: linear-gradient(90deg, var(--deep), #3e1321); }
+.cd-wall.l { left: 0; border-radius: 4px 0 0 0; }
+.cd-wall.r { right: 0; border-radius: 0 4px 0 0; background: linear-gradient(90deg, #3e1321, var(--deep)); }
+.cd-front {
+  position: absolute; z-index: 50; left: 0; right: 0; bottom: 0; height: calc(var(--S) * 0.3);
+  display: flex; justify-content: space-between; align-items: flex-end; padding: 0 calc(var(--S) * 0.06) calc(var(--S) * 0.05);
+  background: linear-gradient(#45142a, var(--deep) 70%); border-radius: 3px 3px 6px 6px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 calc(var(--S) * 0.03) calc(var(--S) * 0.06) rgba(43, 10, 18, 0.35);
+  font: 500 max(9px, calc(var(--S) * 0.022))/1 var(--mono); letter-spacing: 0.16em; text-transform: uppercase; color: rgba(205, 185, 221, 0.75);
+}
+.cd-front::before { content: ""; position: absolute; left: 50%; top: 24%; width: 24%; height: 15%; translate: -50% 0; border-radius: 999px; background: rgba(0, 0, 0, 0.38); box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.45); }   /* the hand hole */
+.cd-right { display: grid; align-content: center; gap: 24px; max-width: 560px; }
+.cd-head { display: grid; gap: 14px; }
+.cd-head .big { font-size: clamp(38px, 3.6vw, 64px); }
+.cd-div { display: flex; flex-wrap: wrap; gap: 6px; }
+.cd-div button {
+  padding: 10px 14px 8px; border: 0; border-bottom: 2px solid var(--thistle); border-radius: 9px 9px 0 0; background: #eee5f4; cursor: pointer;
+  font: 500 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.cd-div button span { color: var(--accent); }
+.cd-div button.on { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.cd-div button.on span { color: var(--thistle); }
+.cd-notes { display: grid; min-height: 330px; }
+.cd-n { grid-area: 1 / 1; display: grid; gap: 14px; align-content: start; }
+.cd-n .ttl { font-size: clamp(30px, 2.6vw, 46px); }
+.cd-count { margin: 0; display: flex; align-items: center; gap: 14px; font: 500 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+.cd-count i { position: relative; flex: 1; max-width: 180px; height: 1px; background: rgba(64, 13, 27, 0.16); }
+.cd-count i b { position: absolute; left: 0; top: -0.5px; height: 2px; width: 0; background: var(--accent); }
+@media (max-width: 760px) {
+  .cd-stage { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; align-items: start; gap: 4px; padding: 10px 18px 0; }
+  .cd-left { height: auto; }
+  .cd-head, .cd-div { display: none; }
+  .cd-right { gap: 12px; align-content: start; }
+  .cd-notes { min-height: 0; }
+  .cd-n { gap: 10px; }
+  .cd-n .desc { display: none; }
+  .cd-n .ttl { font-size: 26px; }
+}
+
+
+/* ── B · Turn it over ────────────────────────────────────────────
+   Each project is one sleeve, held on screen while you scroll past it; halfway, it turns over.
+   The front is the cover with its result sticker; the back is printed in wine on paper, like
+   the About's sleeve, with the credits laid out like the back of an album, a ℗ year and a
+   barcode in 0s and 1s. */
+.tb { padding-bottom: 16vh; }
+.tb-head { display: grid; gap: 18px; padding: 24px var(--pad) 32px; }
+.tb-block { position: relative; height: 175vh; }
+.tb-stage { position: sticky; top: var(--bar); height: calc(100vh - var(--bar)); display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: clamp(32px, 5vw, 96px); padding: 0 var(--pad); }
+.tb-card { --S: min(calc((100vh - var(--bar)) * 0.78), 46vw); width: var(--S); height: var(--S); perspective: calc(var(--S) * 4); }
+.tb-flip { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transform: rotateY(var(--r, 0deg)) scale(var(--lift, 1)); }
+.tb-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 calc(var(--S) * 0.03) calc(var(--S) * 0.08) rgba(43, 10, 18, 0.32); }
+.tb-back { transform: rotateY(180deg); }
+.tb-side { display: grid; gap: 18px; max-width: 520px; }
+.tb-side .ttl { font-size: clamp(36px, 3.6vw, 66px); }
+.tb-turn { margin: 4px 0 0; display: grid; gap: 10px; font-size: 12px; line-height: 1.2; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+.tb-turn b { font: 500 11px/1 var(--mono); color: var(--accent); }
+.tb-turn .b, .tb-block.back .tb-turn .a { display: none; }
+.tb-block.back .tb-turn .b { display: block; }
+.sb { position: absolute; inset: 0; container-type: inline-size; display: flex; flex-direction: column; gap: 2.2cqw; padding: 7cqw 7.5cqw 6.4cqw; background: #fbf8f3; color: var(--ink); }
+.sb::before { content: ""; position: absolute; inset: 3cqw; border: 1px solid rgba(64, 13, 27, 0.2); pointer-events: none; }
+.sb > * { position: relative; }
+.sb-kick { margin: 0; display: flex; justify-content: space-between; gap: 3cqw; padding-bottom: 2.4cqw; border-bottom: 1px solid rgba(64, 13, 27, 0.16); font: 500 max(8px, 2.1cqw)/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+.sb-kick span:first-child { color: var(--accent); }
+.sb .ttl { margin-top: 2cqw; font-size: 7.8cqw; }
+.sb .desc { max-width: none; font-size: max(11px, 3cqw); }
+.sb-cap { margin: 2cqw 0 0; font: 500 max(8px, 2.1cqw)/1 var(--mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+.sb .cr > div { grid-template-columns: 16cqw minmax(0, 1fr); gap: 2cqw; padding: 1.8cqw 0 1.6cqw; }
+.sb .cr dt { font-size: max(8px, 2.1cqw); }
+.sb .cr dd { font-size: max(11px, 3cqw); }
+.sb-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 4cqw; }
+.sb .go { font-size: max(9px, 2cqw); }
+.sb-code { display: grid; justify-items: end; gap: 0.9cqw; }
+.sb-bars { display: flex; align-items: stretch; gap: 0.45cqw; height: 6.5cqw; }
+.sb-bars i { width: 0.35cqw; background: var(--ink); }
+.sb-bars i.w { width: 0.95cqw; }
+.sb-code small { font: 500 max(7px, 1.6cqw)/1 var(--mono); letter-spacing: 0.12em; color: var(--ink-soft); }
+@media (max-width: 760px) {
+  .tb-block { height: 150vh; }
+  .tb-stage { grid-template-columns: minmax(0, 1fr); align-content: center; justify-items: center; gap: 16px; padding: 0 16px; }
+  .tb-card { --S: min(88vw, calc((100vh - var(--bar)) * 0.6)); }
+  .tb-side { justify-items: center; gap: 8px; text-align: center; }
+  .tb-side .meta { display: none; }
+  .tb-side .ttl { font-size: 24px; }
+  .sb .desc { display: none; }
+}
+
+
+/* ── C · The booklet ─────────────────────────────────────────────
+   The liner notes, made into the booklet that comes inside a record. Held on screen, it opens
+   from its wine cover and turns a page for each project: the project's picture as a plate on the
+   left, its notes on the right. The page turns follow the scroll (frame loop). On phones the
+   spreads are simply stacked. */
+.bk { position: relative; }
+.bk-stage { --P: 520px; position: sticky; top: var(--bar); height: calc(100vh - var(--bar)); overflow: hidden; display: grid; place-items: center; perspective: calc(var(--P) * 5); background: radial-gradient(ellipse at 50% 58%, #f1eaee, var(--paper) 72%); }
+.bk-book { position: relative; width: calc(var(--P) * 2); height: var(--P); transform-style: preserve-3d; translate: var(--shift, 0px) 0; }
+.bk-book::after { content: ""; position: absolute; left: calc(50% - var(--P) * 0.5 * var(--open, 0)); right: 0; bottom: calc(var(--P) * -0.06); height: calc(var(--P) * 0.08); background: radial-gradient(closest-side, rgba(64, 13, 27, 0.26), transparent); transform: translateZ(-6px); }
+.bk-under { position: absolute; top: 0; bottom: 0; width: 50%; background: #efe8e1; box-shadow: 1px 1px 0 #e3dad1, 2px 2px 0 #efe8e1, 3px 3px 0 #e3dad1, 4px 4px 0 #efe8e1; }
+.bk-under.r { left: 50%; transform: translateZ(-5px); }
+.bk-under.l { left: 0; transform: translateZ(-5px) scaleX(-1); opacity: var(--open, 0); }
+.bk-leaf { position: absolute; left: 50%; top: 0; width: 50%; height: 100%; transform-origin: 0% 50%; transform-style: preserve-3d; }
+.bk-pg { position: absolute; inset: 0; overflow: hidden; container-type: inline-size; background: #fdfaf5; box-shadow: inset 0 0 0 1px rgba(64, 13, 27, 0.07); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.bk-pg.back { transform: rotateY(180deg); }
+.bk-pg::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: var(--shade, 0); background: linear-gradient(90deg, rgba(64, 13, 27, 0.32), transparent 65%); }
+.bk-pg.back::after { background: linear-gradient(270deg, rgba(64, 13, 27, 0.32), transparent 65%); }
+.bk-spine { position: absolute; left: 50%; top: 0; bottom: 0; width: calc(var(--P) * 0.09); translate: -50% 0; transform: translateZ(2px); pointer-events: none; opacity: var(--open, 0); background: linear-gradient(90deg, transparent, rgba(64, 13, 27, 0.1) 42%, rgba(64, 13, 27, 0.2) 50%, rgba(64, 13, 27, 0.1) 58%, transparent); }
+.pg-in { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 7cqw 8cqw 7cqw; }
+.pg-head { margin: 0; display: flex; justify-content: space-between; padding-bottom: 2.4cqw; border-bottom: 1px solid rgba(64, 13, 27, 0.14); font: 500 max(8px, 1.9cqw)/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+.pg-head span:first-child { color: var(--accent); }
+.pg-no { position: absolute; bottom: 3.6cqw; font: 500 max(8px, 1.8cqw)/1 var(--mono); color: var(--ink-soft); }
+.pg-no.l { left: 5cqw; }
+.pg-no.r { right: 5cqw; }
+.pg-plate { margin: 5cqw 0 0; flex: 1; display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 2.6cqw; }
+.pg-plate .ph { position: relative; overflow: hidden; background: #ece6ee; box-shadow: 0 0 0 1px rgba(64, 13, 27, 0.1); }
+.pg-plate img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pg-plate figcaption { font: italic 200 max(12px, 3cqw)/1.2 var(--serif); color: var(--ink-soft); }
+.pg-notes { margin-top: 4.4cqw; flex: 1; display: flex; flex-direction: column; gap: 2.8cqw; }
+.pg-notes .ttl { font-size: 7.2cqw; }
+.pg-notes .desc { max-width: none; font-size: max(11px, 2.7cqw); }
+.pg-notes .cr > div { grid-template-columns: 16cqw minmax(0, 1fr); gap: 2cqw; padding: 1.6cqw 0 1.4cqw; }
+.pg-notes .cr dt { font-size: max(8px, 1.9cqw); }
+.pg-notes .cr dd { font-size: max(11px, 2.7cqw); }
+.pg-notes .go { margin-top: auto; margin-bottom: 3cqw; font-size: max(9px, 2cqw); }
+.pg-cover { background: var(--wine); color: var(--paper); box-shadow: none; }
+.pg-cover::before { content: ""; position: absolute; inset: 3cqw; border: 1px solid rgba(205, 185, 221, 0.32); }
+.pg-cover .pg-in { justify-content: space-between; padding: 8cqw; }
+.cv-top, .cv-foot { margin: 0; display: flex; justify-content: space-between; font: 500 max(8px, 2.2cqw)/1 var(--mono); letter-spacing: 0.16em; text-transform: uppercase; color: rgba(250, 248, 245, 0.82); }
+.cv-top b { font-weight: 500; color: var(--thistle); }
+.cv-foot { color: rgba(250, 248, 245, 0.6); }
+.cv-title { margin: 0; font: 200 12.5cqw/0.95 var(--serif); letter-spacing: -0.015em; }
+.cv-title em { font-style: italic; color: var(--thistle); }
+.cv-flower { font-size: 6cqw; color: var(--thistle); }
+.pg-end { display: grid; place-content: center; background: #f4eee9; font: italic 200 5cqw/1.2 var(--serif); color: var(--ink-soft); text-align: center; }
+.bk-hint { position: absolute; left: 50%; bottom: 18px; translate: -50% 0; margin: 0; font: 500 11px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
+.bk-list { display: none; }
+@media (max-width: 760px) {
+  .bk { display: none; }
+  .bk-list { display: grid; gap: 28px; padding: 0 16px 16vh; }
+  .bk-lhead { display: grid; gap: 14px; padding: 20px 4px 8px; }
+  .bk-lhead .big { font-size: 40px; }
+  .bk-spread { display: grid; box-shadow: 0 18px 40px -28px rgba(64, 13, 27, 0.5); }
+  .bk-spread .bk-pg { position: relative; aspect-ratio: 1; backface-visibility: visible; }
+  .bk-spread .bk-pg + .bk-pg { aspect-ratio: auto; min-height: 92vw; border-top: 1px dashed rgba(64, 13, 27, 0.18); }
+  .bk-spread .bk-pg + .bk-pg .pg-in { position: relative; }
+}
+
+
+/* ── D · Staff picks ─────────────────────────────────────────────
+   A record shop wall, walked sideways as you scroll down. The sleeves stand face-out on the
+   shelves, filed by kind under the shop's section signs, a year sticker on each, and a staff
+   pick card clipped under each one; the cards sway as the wall moves (frame loop). Sizes follow
+   the wall's height (--sh). */
+.sp { position: relative; }
+.sp-stage { --sh: 800px; position: sticky; top: var(--bar); height: calc(100vh - var(--bar)); overflow: hidden; background: #f6f1ea; }
+.sp-stage::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 139px, rgba(64, 13, 27, 0.045) 139px 140px); }   /* the boards of the wall */
+.sp-floor { position: absolute; left: 0; right: 0; bottom: 0; height: calc(var(--sh) * 0.06); background: #e9dfd4; border-top: 1px solid rgba(64, 13, 27, 0.12); }
+.sp-track { position: absolute; left: 0; top: 0; bottom: 0; width: max-content; display: flex; align-items: stretch; gap: 7vw; padding: 0 10vw 0 6vw; will-change: transform; }
+.sp-sign { flex: none; align-self: center; width: min(42vw, 600px); display: grid; gap: 20px; padding-bottom: 8vh; }
+.sp-head { display: grid; gap: 18px; }
+.sp-head .big { font-size: clamp(52px, 6vw, 110px); }
+.sp-sec { position: relative; flex: none; display: flex; gap: 3.2vw; padding: 0 2vw; }
+.sp-sec::after { content: ""; position: absolute; z-index: 0; left: 0; right: 0; top: calc(var(--sh) * 0.62); height: 13px; background: linear-gradient(#6b2737 0 4px, #4a1624 4px, var(--deep)); border-radius: 2px; box-shadow: 0 12px 18px -10px rgba(43, 10, 18, 0.55); }   /* the shelf */
+.sp-genre {
+  position: absolute; z-index: 2; left: 2vw; top: calc(var(--sh) * 0.1); margin: 0;
+  display: inline-flex; align-items: baseline; gap: 12px; padding: 9px 16px 8px; border-radius: 4px;
+  background: var(--ink); color: var(--paper); font: italic 200 24px/1 var(--serif);
+}
+.sp-genre small { font: 500 11px/1 var(--mono); font-style: normal; letter-spacing: 0.12em; color: var(--thistle); }
+.sp-item { position: relative; z-index: 1; flex: none; width: calc(var(--sh) * 0.4); }
+.sp-sleeve { position: absolute; left: 0; right: 0; top: calc(var(--sh) * 0.22); }
+.sp-sleeve .sl { box-shadow: 0 8px 16px -6px rgba(43, 10, 18, 0.4); }
+.sp-price { position: absolute; z-index: 3; left: -6px; top: 12%; padding: 6px 8px 5px; rotate: -9deg; background: #fffdf8; border-radius: 3px; box-shadow: 0 2px 6px rgba(43, 10, 18, 0.25); font: 500 11px/1 var(--mono); letter-spacing: 0.06em; color: var(--ink); }
+.sp-card {
+  position: absolute; left: 5%; right: 5%; top: calc(var(--sh) * 0.665);
+  display: grid; gap: 8px; padding: 18px 16px 14px;
+  background: #fffdf8; box-shadow: 0 12px 22px -14px rgba(64, 13, 27, 0.45), 0 0 0 1px rgba(64, 13, 27, 0.06);
+  transform-origin: 50% -12px; rotate: calc(var(--tilt, 0deg) + var(--sw, 0deg));
+}
+.sp-card::before { content: ""; position: absolute; left: 50%; top: -12px; width: 36px; height: 17px; margin-left: -18px; border-radius: 4px; background: var(--deep); box-shadow: inset 0 -3px 0 rgba(255, 255, 255, 0.12); }   /* the clip */
+.sp-pick { margin: 0; display: flex; justify-content: space-between; font: 500 10px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.sp-pick span:last-child { color: var(--ink-soft); }
+.sp-card .ttl { font-size: 22px; }
+.sp-card .ttl em { margin-top: 2px; font-size: 0.76em; line-height: 1.15; }
+.sp-card .cr > div { grid-template-columns: 50px minmax(0, 1fr); gap: 8px; padding: 4px 0 3px; }
+.sp-card .cr dt { font-size: 9.5px; }
+.sp-card .cr dd { font-size: 12px; }
+.sp-card .go { margin-top: 2px; font-size: 10.5px; }
+.sp-end { flex: none; align-self: center; width: min(38vw, 520px); display: grid; gap: 18px; padding-bottom: 8vh; }
+.sp-prog { position: absolute; left: 50%; bottom: calc(var(--sh) * 0.014); translate: -50% 0; display: flex; align-items: center; gap: 12px; font: 500 10px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
+.sp-pg { display: inline-flex; align-items: center; gap: 6px; }
+.sp-pg em { margin-right: 4px; font-style: normal; }
+.sp-pg b { width: 6px; height: 6px; border-radius: 50%; background: rgba(64, 13, 27, 0.22); transition: background-color 0.3s ease, scale 0.3s ease; }
+.sp-pg b.on { background: var(--accent); scale: 1.6; }
+.sp-prog > i { width: 18px; border-top: 1px dotted rgba(64, 13, 27, 0.4); }
+@media (max-height: 760px) { .sp-card .cr > div:nth-child(2) { display: none; } }
+@media (max-width: 760px) {
+  .sp-track { gap: 12vw; padding: 0 12vw 0 7vw; }
+  .sp-sign, .sp-end { width: 82vw; }
+  .sp-head .big { font-size: 46px; }
+  .sp-sec { gap: 8vw; padding: 0 4vw; }
+  .sp-genre { font-size: 20px; }
+  .sp-prog em { display: none; }
+}
+</style>
+</head>
+<body>
+<nav class="ob" aria-label="Options">
+  <a class="ob-home" href="../index.html">← The site</a>
+  <p class="ob-t">Selected work, <em>from the record shop</em></p>
+  <div class="ob-tabs" role="tablist">
+    <button type="button" role="tab" data-o="a"><b>A</b>Crate digging</button>
+    <button type="button" role="tab" data-o="b"><b>B</b>Turn it over</button>
+    <button type="button" role="tab" data-o="c"><b>C</b>The booklet</button>
+    <button type="button" role="tab" data-o="d"><b>D</b>Staff picks</button>
+  </div>
+</nav>
+<main>
+  <section class="opt" id="opt-a" data-o="a" aria-label="Option A, crate digging"></section>
+  <section class="opt" id="opt-b" data-o="b" aria-label="Option B, turn it over"></section>
+  <section class="opt" id="opt-c" data-o="c" aria-label="Option C, the booklet"></section>
+  <section class="opt" id="opt-d" data-o="d" aria-label="Option D, staff picks"></section>
+</main>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+  const clamp01 = (x) => clamp(x, 0, 1);
+  const smooth = (x) => { x = clamp01(x); return x * x * (3 - 2 * x); };
+  const easeInOut = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+  const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+  const BAR = 64;
+
+  /* the site's projects, as in index.html */
+  const PROJECTS = [
+    { title: "[Project name]: a mobile app for slow travel", tag: "Mobile / App", cat: "Mobile", year: "2026",
+      role: "[Lead product designer]", team: "[Who you worked with]", time: "[12 weeks]", result: "[What changed, in one number]",
+      desc: "[One or two lines: the problem, your part in it, and what changed for the people who use it.]" },
+    { title: "[Project name]: a booking flow for a wellness studio", tag: "Web / UX", cat: "Web", year: "2026",
+      role: "[Product designer]", team: "[Who you worked with]", time: "[6 weeks]", result: "[What changed, in one number]",
+      desc: "[One or two lines: the problem, your part in it, and what changed for the people who use it.]" },
+    { title: "[Project name]: a design system for a fintech team", tag: "Design System", cat: "Systems", year: "2025",
+      role: "[Design systems lead]", team: "[Who you worked with]", time: "[5 months]", result: "[What changed, in one number]",
+      desc: "[One or two lines: the problem, your part in it, and what changed for the people who use it.]" },
+    { title: "[Project name]: an e-commerce redesign", tag: "Web / E-commerce", cat: "Web", year: "2025",
+      role: "[Product designer]", team: "[Who you worked with]", time: "[10 weeks]", result: "[What changed, in one number]",
+      desc: "[One or two lines: the problem, your part in it, and what changed for the people who use it.]" },
+    { title: "[Project name]: a dashboard for a logistics start-up", tag: "SaaS / Dashboard", cat: "Systems", year: "2024",
+      role: "[Senior product designer]", team: "[Who you worked with]", time: "[4 months]", result: "[What changed, in one number]",
+      desc: "[One or two lines: the problem, your part in it, and what changed for the people who use it.]" },
+    { title: "[Project name]: a habit-tracking app", tag: "Mobile / App", cat: "Mobile", year: "2024",
+      role: "[Product designer]", team: "[Who you worked with]", time: "[8 weeks]", result: "[What changed, in one number]",
+      desc: "[One or two lines: the problem, your part in it, and what changed for the people who use it.]" }
+  ];
+  const N = PROJECTS.length;
+  const CATS = [...new Set(PROJECTS.map((pj) => pj.cat))];
+  const CREDITS = [["Role", "role"], ["Team", "team"], ["Time", "time"], ["Result", "result"]];
+  const two = (i) => String(i + 1).padStart(2, "0");
+  const pad2 = (n) => String(n).padStart(2, "0");
+  const catNo = (i) => "TTN—" + two(i);
+  const split = (t) => { const k = t.indexOf(": "); return k < 0 ? [t, ""] : [t.slice(0, k), t.slice(k + 2)]; };
+  const ARROW = '<svg viewBox="0 0 12 10" aria-hidden="true"><path d="M1 5h10M7 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>';
+
+  /* the placeholder pictures, drawn as on the site, as blob URLs */
+  function drawShot(pj, i) {
+    const c = document.createElement("canvas");
+    c.width = 800; c.height = 600;
+    const g = c.getContext("2d");
+    const t = (pj.tag + " " + pj.title).toLowerCase();
+    const kind = /dashboard|saas/.test(t) ? "dash" : /system/.test(t) ? "system" : /commerce|shop/.test(t) ? "shop"
+      : /mobile|app/.test(t) ? (/habit|track/.test(t) ? "habit" : "app") : "web";
+    const INK = "#400d1b", SOFT = "rgba(64,13,27,0.16)", FAINT = "rgba(64,13,27,0.09)", ACC = "#8760af", TH = "#cdb9dd", WHITE = "#fdfcfa", TINT = "#f3eef5";
+    g.fillStyle = { app: "#e8dff0", habit: "#e3ebe8", web: "#eeeae1", shop: "#efe4e2", system: "#e6e2ef", dash: "#e7ebe2" }[kind];
+    g.fillRect(0, 0, 800, 600);
+    const path = (x, y, w, h, r) => {
+      r = Math.min(r, w / 2, h / 2);
+      g.beginPath();
+      g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r);
+      g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath();
+    };
+    const box = (x, y, w, h, r, fill, stroke) => {
+      path(x, y, w, h, r);
+      if (fill) { g.fillStyle = fill; g.fill(); }
+      if (stroke) { g.strokeStyle = stroke; g.lineWidth = 2; g.stroke(); }
+    };
+    const line = (x, y, w, h = 10, fill = SOFT) => box(x, y, w, h, h / 2, fill);   // a line of text
+    const dot = (x, y, r, fill) => { g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fillStyle = fill; g.fill(); };
+    const lift = (on) => { g.shadowColor = on ? "rgba(64,13,27,0.2)" : "transparent"; g.shadowBlur = on ? 34 : 0; g.shadowOffsetY = on ? 16 : 0; };
+    const browser = (x, y, w, h) => {
+      lift(true); box(x, y, w, h, 18, WHITE); lift(false);
+      box(x, y, w, h, 18, null, "rgba(64,13,27,0.55)");
+      g.fillStyle = FAINT; g.fillRect(x + 1, y + 40, w - 2, 2);
+      dot(x + 24, y + 21, 6, TH); dot(x + 44, y + 21, 6, SOFT); dot(x + 64, y + 21, 6, SOFT);
+      box(x + w / 2 - 110, y + 11, 220, 20, 10, TINT);
+    };
+    if (kind === "app" || kind === "habit") {
+      /* two floating cards either side, then the phone */
+      lift(true); box(100, 170, 200, 118, 18, WHITE); lift(false);
+      line(122, 194, 96, 12, INK); line(122, 218, 150); line(122, 238, 118, 10, FAINT); box(122, 254, 62, 20, 10, kind === "app" ? ACC : TH);
+      lift(true); box(500, 330, 196, 104, 18, WHITE); lift(false);
+      dot(530, 366, 16, kind === "app" ? TH : ACC); line(556, 356, 110, 11, INK); line(556, 378, 80); line(522, 404, 150, 9, FAINT);
+      lift(true); box(290, 56, 220, 488, 36, WHITE); lift(false);
+      box(290, 56, 220, 488, 36, null, "rgba(64,13,27,0.6)");
+      box(364, 70, 72, 14, 7, INK);                                            // the notch
+      if (kind === "app") {
+        line(312, 108, 92, 13, INK); line(312, 130, 140);
+        box(312, 154, 176, 118, 16, TH);                                        // a map
+        g.strokeStyle = "rgba(255,255,255,0.7)"; g.lineWidth = 3; g.beginPath(); g.moveTo(322, 250); g.bezierCurveTo(372, 200, 412, 260, 478, 176); g.stroke();
+        dot(452, 196, 10, ACC); dot(452, 196, 4, WHITE);
+        for (let r = 0; r < 3; r++) {
+          box(312, 288 + r * 60, 176, 48, 12, TINT);
+          dot(334, 312 + r * 60, 12, r === 0 ? ACC : TH);
+          line(354, 302 + r * 60, 88, 9, SOFT); line(354, 318 + r * 60, 58, 8, FAINT);
+        }
+      } else {
+        line(312, 108, 110, 13, INK);
+        g.lineCap = "round"; g.lineWidth = 16;
+        g.strokeStyle = "#ece6f0"; g.beginPath(); g.arc(400, 214, 58, 0, Math.PI * 2); g.stroke();
+        g.strokeStyle = ACC; g.beginPath(); g.arc(400, 214, 58, -Math.PI / 2, Math.PI * 0.9); g.stroke();
+        line(380, 206, 40, 14, INK);
+        for (let d = 0; d < 7; d++) dot(319 + d * 27, 312, 9, d < 5 ? ACC : TH);
+        for (let r = 0; r < 2; r++) {
+          box(312, 342 + r * 60, 176, 48, 12, TINT);
+          box(328, 356 + r * 60, 20, 20, 6, r === 0 ? ACC : null, r === 0 ? null : SOFT);
+          line(358, 360 + r * 60, 96, 10, SOFT);
+        }
+      }
+      g.fillStyle = FAINT; g.fillRect(304, 488, 192, 2);
+      for (let k = 0; k < 4; k++) dot(332 + k * 46, 512, 6, k === 0 ? ACC : SOFT);   // the tab bar
+    } else if (kind === "web" || kind === "shop") {
+      browser(80, 70, 640, 460);
+      if (kind === "web") {
+        line(112, 140, 210, 20, INK); line(112, 172, 168, 20, INK);
+        line(112, 214, 230); line(112, 234, 190, 10, FAINT);
+        box(112, 270, 124, 36, 18, ACC); line(130, 284, 88, 9, "rgba(255,255,255,0.85)");
+        box(404, 132, 288, 260, 14, TINT);                                      // a calendar
+        line(426, 152, 96, 11, INK);
+        for (let r = 0; r < 4; r++) for (let q = 0; q < 6; q++)
+          box(426 + q * 42, 182 + r * 48, 30, 30, 8, r === 1 && q === 3 ? ACC : r === 2 && q === 1 ? TH : "#e7dfea");
+        for (let s = 0; s < 3; s++) box(112 + s * 96, 420, 84, 30, 15, s === 1 ? TH : TINT);
+        line(112, 468, 260, 10, FAINT);
+      } else {
+        box(112, 130, 576, 118, 14, TH);
+        line(140, 162, 200, 18, INK); line(140, 192, 150, 10, "rgba(64,13,27,0.25)"); box(140, 212, 96, 24, 12, ACC);
+        dot(600, 190, 44, "rgba(255,255,255,0.55)");
+        for (let p = 0; p < 3; p++) {
+          const x = 112 + p * 196;
+          box(x, 270, 184, 150, 12, TINT);
+          dot(x + 92, 340, 38, p === 1 ? ACC : "#e2d6e6");
+          line(x, 434, 120, 10, SOFT); line(x, 452, 70, 9, FAINT);
+          box(x + 124, 434, 60, 26, 13, p === 0 ? INK : "#ece4ea");
+        }
+      }
+    } else if (kind === "system") {
+      lift(true); box(70, 60, 660, 480, 20, WHITE); lift(false);
+      g.fillStyle = INK; g.font = "200 118px 'PP Editorial New', 'Instrument Serif', serif"; g.textBaseline = "alphabetic";
+      g.fillText("Aa", 104, 206);
+      line(104, 232, 160); line(104, 252, 118, 10, FAINT);
+      [INK, ACC, TH, "#f4f7ea", "#beffea"].forEach((col, k) => {
+        dot(342 + k * 66, 132, 24, col);
+        g.strokeStyle = FAINT; g.lineWidth = 2; g.beginPath(); g.arc(342 + k * 66, 132, 24, 0, Math.PI * 2); g.stroke();
+      });
+      box(330, 190, 132, 42, 21, ACC); line(358, 206, 76, 10, "rgba(255,255,255,0.85)");
+      box(476, 190, 132, 42, 21, null, INK); line(504, 206, 76, 10, SOFT);
+      box(624, 190, 42, 42, 21, null, SOFT);
+      box(330, 254, 64, 34, 17, ACC); dot(377, 271, 13, WHITE);
+      box(410, 254, 64, 34, 17, "#e7e1ec"); dot(427, 271, 13, WHITE);
+      box(494, 256, 30, 30, 8, INK);
+      g.strokeStyle = WHITE; g.lineWidth = 3; g.lineCap = "round"; g.beginPath(); g.moveTo(502, 271); g.lineTo(508, 277); g.lineTo(518, 264); g.stroke();
+      box(104, 306, 592, 50, 12, TINT); box(104, 306, 592, 50, 12, null, FAINT); line(124, 326, 180, 10, SOFT);
+      for (let k = 0; k < 3; k++) {
+        box(104 + k * 202, 378, 186, 128, 14, TINT);
+        line(124 + k * 202, 400, 90, 10, INK); line(124 + k * 202, 422, 138, 8, FAINT); line(124 + k * 202, 438, 108, 8, FAINT);
+        box(124 + k * 202, 466, 62, 22, 11, k === 0 ? ACC : TH);
+      }
+    } else {
+      lift(true); box(60, 60, 680, 480, 18, WHITE); lift(false);
+      box(60, 60, 150, 480, 18, INK); g.fillStyle = INK; g.fillRect(190, 60, 20, 480);   // the sidebar
+      dot(92, 92, 11, TH);
+      for (let m = 0; m < 6; m++) line(84, 132 + m * 40, m === 1 ? 92 : 70, 10, m === 1 ? TH : "rgba(250,248,245,0.32)");
+      for (let k = 0; k < 3; k++) {
+        box(232 + k * 166, 84, 150, 86, 12, TINT);
+        line(248 + k * 166, 102, 62, 8, SOFT); line(248 + k * 166, 124, 88, 18, k === 0 ? ACC : INK);
+      }
+      box(232, 190, 482, 214, 12, "#fbf9fb"); box(232, 190, 482, 214, 12, null, FAINT);
+      g.fillStyle = FAINT; for (let gl = 0; gl < 3; gl++) g.fillRect(252, 246 + gl * 50, 442, 2);
+      const pts = [[252, 372], [308, 334], [364, 350], [420, 292], [476, 308], [532, 254], [588, 272], [644, 226], [694, 238]];
+      g.beginPath(); g.moveTo(pts[0][0], 396); pts.forEach(([x, y]) => g.lineTo(x, y)); g.lineTo(694, 396); g.closePath();
+      g.fillStyle = "rgba(135,96,175,0.14)"; g.fill();
+      g.beginPath(); pts.forEach(([x, y], k) => (k ? g.lineTo(x, y) : g.moveTo(x, y)));
+      g.strokeStyle = ACC; g.lineWidth = 4; g.lineJoin = "round"; g.stroke();
+      [44, 70, 58, 86, 62, 96, 74].forEach((h, k) => box(236 + k * 68, 516 - h, 40, h, 6, k === 5 ? ACC : TH));
+    }
+    return c.toDataURL("image/png");
+  }
+  const toURL = (d) => { const b = atob(d.split(",")[1]), a = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return URL.createObjectURL(new Blob([a], { type: "image/png" })); };
+  let pics = PROJECTS.map((pj, i) => toURL(drawShot(pj, i)));
+  const fillPics = (root) => root.querySelectorAll("img[data-pic]").forEach((im) => { im.src = pics[+im.dataset.pic]; });
+
+  /* pieces of a project's notes, and its sleeve */
+  const meta = (pj, i) => '<p class="meta"><span class="no">' + catNo(i) + '</span><span class="rule"></span><span>' + esc(pj.tag) + '</span><span class="yr">' + esc(pj.year) + "</span></p>";
+  const title = (pj) => { const [n, w] = split(pj.title); return '<h3 class="ttl">' + esc(n) + (w ? "<em>" + esc(w) + "</em>" : "") + "</h3>"; };
+  const desc = (pj) => '<p class="desc">' + esc(pj.desc) + "</p>";
+  const credits = (pj) => '<dl class="cr">' + CREDITS.filter(([, k]) => pj[k]).map(([l, k]) => "<div" + (k === "result" ? ' class="res"' : "") + "><dt>" + l + "</dt><dd>" + esc(pj[k]) + "</dd></div>").join("") + "</dl>";
+  const go = '<a class="go" href="#" onclick="return false">View case study' + ARROW + "</a>";
+  const pic = (i) => '<img alt="" data-pic="' + i + '">';
+  const sleeve = (i, sticker) => {
+    const pj = PROJECTS[i];
+    return '<div class="sl"><span class="sl-frame"></span><span class="sl-top"><span>Trinh Trinh Nguyen</span><b>' + catNo(i) + '</b></span><span class="sl-art">' + pic(i) +
+      '</span><span class="sl-foot"><span class="sl-name">' + esc(split(pj.title)[0]) + '</span><span class="sl-kind">' + esc(pj.tag) + "</span></span>" +
+      (sticker && pj.result ? '<span class="sl-stk"><small>Result</small>' + esc(pj.result) + "</span>" : "") + "</div>";
+  };
+  const head = (cls) => '<div class="' + cls + '"><p class="k"><span>(02) Selected work</span><span class="rule"></span><span class="soft">06 projects</span></p><h2 class="big">Records I’d play <em>again.</em></h2></div>';
+  const intro = (L, name, pitch, rows) => '<header class="oi"><p class="oi-k">Option ' + L + '</p><h1 class="oi-t">' + name + '</h1><p class="oi-p">' + pitch + '</p><ul class="oi-why">' +
+    rows.map(([k, v]) => "<li><b>" + k + "</b><span>" + v + "</span></li>").join("") + '</ul><p class="oi-go">Scroll to try it ↓</p></header>';
+  const docTop = (el) => el.getBoundingClientRect().top + scrollY;
+  const OPT = {};
+
+
+  /* ── A · Crate digging ── */
+  OPT.a = (() => {
+    const sec = $("opt-a");
+    const count = (c) => (c === "All work" ? N : PROJECTS.filter((pj) => pj.cat === c).length);
+    sec.innerHTML = intro("A", "Crate <em>digging</em>",
+      "The work is a crate of sleeves, no discs. Scrolling flicks through it: the front sleeve tips toward you and drops behind the crate, the next cover comes forward, and its notes sit beside the crate.",
+      [["Concept", "The sleeves from your loading screen, now holding the work; the record shop is where they live."], ["Fun", "Flicking through a crate is the one thing everyone does in a record shop."], ["Clear", "One cover at a time with all its facts beside it; the crate's dividers jump to a kind of work."]]) +
+      '<div class="cd" id="cd"><div class="cd-stage" id="cdStage"><div class="cd-left"><div class="cd-crate">' +
+      PROJECTS.map((pj, i) => '<div class="cd-sl" style="z-index:' + (N - i) + '">' + sleeve(i, true) + "</div>").join("") +
+      '<span class="cd-wall l"></span><span class="cd-wall r"></span><div class="cd-front"><span>TTN · Selected work</span><span>2024—2026</span></div></div></div>' +
+      '<div class="cd-right">' + head("cd-head") +
+      '<nav class="cd-div" aria-label="The crate’s dividers">' + ["All work", ...CATS].map((c) => '<button type="button" data-c="' + esc(c) + '">' + esc(c) + " <span>" + pad2(count(c)) + "</span></button>").join("") + "</nav>" +
+      '<div class="cd-notes" id="cdNotes"></div><p class="cd-count"><span id="cdNo">01 / 06</span><i><b id="cdBar"></b></i><span>Scroll to flick through</span></p></div></div></div>';
+    const cd = $("cd"), stage = $("cdStage"), notes = $("cdNotes"), sls = [...sec.querySelectorAll(".cd-sl")], divs = [...sec.querySelectorAll(".cd-div button")];
+    let t = 0, S = 400, start = 0, stepPx = 1, shown = -1;
+    function layout() {
+      const sh = stage.clientHeight, sw = stage.clientWidth, phone = innerWidth <= 760;
+      S = phone ? Math.min(sw * 0.66, sh * 0.42) : Math.min(sh * 0.56, sw * 0.34);
+      stage.style.setProperty("--S", S.toFixed(1) + "px");
+      stepPx = Math.round(innerHeight * 0.7);
+      cd.style.height = (sh + (N - 1) * stepPx + Math.round(innerHeight * 0.35)) + "px";
+      start = docTop(cd) - BAR;
+    }
+    function showNotes(k) {
+      const old = notes.lastElementChild, el = document.createElement("div");
+      el.className = "cd-n";
+      el.innerHTML = meta(PROJECTS[k], k) + title(PROJECTS[k]) + desc(PROJECTS[k]) + credits(PROJECTS[k]) + go;
+      notes.appendChild(el);
+      if (old) {
+        old.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: "translateY(-14px)" }], { duration: 240, easing: "ease-in", fill: "forwards" }).onfinish = () => old.remove();
+        el.animate([{ opacity: 0, transform: "translateY(16px)" }, { opacity: 1, transform: "none" }], { duration: 420, delay: 150, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" });
+      }
+      shown = k;
+      $("cdNo").textContent = two(k) + " / " + pad2(N);
+      divs.forEach((d) => d.classList.toggle("on", d.dataset.c === PROJECTS[k].cat));
+    }
+    function step() {}
+    function frame() {
+      const raw = clamp((scrollY - start) / stepPx, 0, N - 1);
+      const target = Math.floor(raw) + smooth((raw - Math.floor(raw) - 0.25) / 0.5);   // each flick happens mid-step, so a stop rests on a whole cover
+      t += (target - t) * 0.15;
+      if (Math.abs(target - t) < 0.0005) t = target;
+      sls.forEach((el, i) => {
+        const d = i - t;
+        let tf, op;
+        if (d >= 0) { tf = "translate3d(0," + (-d * 0.05 * S).toFixed(1) + "px," + (-d * 0.2 * S).toFixed(1) + "px) rotateX(4deg)"; op = d > 3 ? clamp01((3.3 - d) / 0.3) : 1; }
+        else if (d > -1) { const f = -d; tf = "translate3d(0," + (f * 0.03 * S).toFixed(1) + "px," + (f * 0.1 * S).toFixed(1) + "px) rotateX(" + (4 - 98 * easeInOut(f)).toFixed(2) + "deg)"; op = 1 - smooth((f - 0.62) / 0.38); }
+        else { tf = "rotateX(-94deg)"; op = 0; }
+        if (el._tf !== tf) { el._tf = tf; el.style.transform = tf; }
+        const o = op.toFixed(3);
+        if (el._o !== o) { el._o = o; el.style.opacity = o; }
+      });
+      const k = clamp(Math.round(t), 0, N - 1);
+      if (k !== shown) showNotes(k);
+      $("cdBar").style.width = ((t / (N - 1)) * 100).toFixed(2) + "%";
+    }
+    sec.querySelector(".cd-div").addEventListener("click", (e) => {
+      const b = e.target.closest("button");
+      if (!b) return;
+      const i = b.dataset.c === "All work" ? 0 : PROJECTS.findIndex((pj) => pj.cat === b.dataset.c);
+      scrollTo({ top: start + i * stepPx + 2, behavior: "smooth" });
+    });
+    return { layout, step, frame };
+  })();
+
+
+  /* ── B · Turn it over ── */
+  OPT.b = (() => {
+    const sec = $("opt-b");
+    const bits = (i) => { const n = (Number(PROJECTS[i].year) * 37 + i * 977) & 0xffff; let s = ""; for (let b = 15; b >= 0; b--) s += (n >> b) & 1; return s; };
+    const back = (i) => {
+      const pj = PROJECTS[i], b = bits(i);
+      return '<div class="sb"><p class="sb-kick"><span>' + catNo(i) + "</span><span>Side A · " + esc(pj.tag) + " · ℗ " + esc(pj.year) + "</span></p>" + title(pj) + desc(pj) +
+        '<p class="sb-cap">Credits</p>' + credits(pj) + '<div class="sb-foot">' + go + '<span class="sb-code" aria-hidden="true"><span class="sb-bars">' +
+        [...b].map((ch) => "<i" + (ch === "1" ? ' class="w"' : "") + "></i>").join("") + "</span><small>" + b.replace(/(.{4})/g, "$1 ").trim() + "</small></span></div></div>";
+    };
+    sec.innerHTML = intro("B", "Turn it <em>over</em>",
+      "Each project is a sleeve, held on screen as you scroll past it. Halfway, it turns over: the front is the cover with its result sticker, the back is printed with the credits like the back of an album.",
+      [["Concept", "The back is your About's paper sleeve; the barcode is in 0s and 1s, the year a ℗."], ["Fun", "Every project turns over in your hands, and the back rewards you for turning it."], ["Clear", "The back of an album is already the format people read credits in."]]) +
+      '<div class="tb">' + head("tb-head") +
+      PROJECTS.map((pj, i) => '<section class="tb-block"><div class="tb-stage"><div class="tb-card"><div class="tb-flip"><div class="tb-face">' + sleeve(i, true) + '</div><div class="tb-face tb-back">' + back(i) + "</div></div></div>" +
+        '<div class="tb-side">' + meta(pj, i) + title(pj) + '<p class="tb-turn"><b class="a">Side A · the cover</b><span class="a">Keep scrolling to turn it over ↻</span><b class="b">Side B · the credits</b><span class="b">Everything about it, on the back</span></p></div></div></section>').join("") + "</div>";
+    const blocks = [...sec.querySelectorAll(".tb-block")].map((el) => ({ el, flip: el.querySelector(".tb-flip"), f: 0, key: "" }));
+    function layout() {}
+    function step() {}
+    function frame() {
+      const sh = innerHeight - BAR;
+      blocks.forEach((b) => {
+        const r = b.el.getBoundingClientRect();
+        if (r.bottom < -40 || r.top > innerHeight + 40) return;
+        const p = clamp01((BAR - r.top) / Math.max(1, b.el.offsetHeight - sh));
+        const want = smooth((p - 0.2) / 0.4);
+        b.f += (want - b.f) * 0.16;
+        if (Math.abs(want - b.f) < 0.0005) b.f = want;
+        const key = b.f.toFixed(4);
+        if (key === b.key) return;
+        b.key = key;
+        b.flip.style.setProperty("--r", (b.f * 180).toFixed(2) + "deg");
+        b.flip.style.setProperty("--lift", (1 + 0.05 * Math.sin(Math.PI * b.f)).toFixed(3));
+        b.el.classList.toggle("back", b.f > 0.5);
+      });
+    }
+    return { layout, step, frame };
+  })();
+
+
+  /* ── C · The booklet ── */
+  OPT.c = (() => {
+    const sec = $("opt-c");
+    const plate = (i) => { const [n, w] = split(PROJECTS[i].title);
+      return '<div class="pg-in"><p class="pg-head"><span>Plate ' + two(i) + "</span><span>" + esc(PROJECTS[i].tag) + '</span></p><figure class="pg-plate"><div class="ph">' + pic(i) +
+        "</div><figcaption>" + esc(n) + (w ? ", " + esc(w) : "") + '</figcaption></figure></div><span class="pg-no l">' + (2 * i + 2) + "</span>"; };
+    const page = (i) => '<div class="pg-in"><p class="pg-head"><span>' + catNo(i) + "</span><span>℗ " + esc(PROJECTS[i].year) + '</span></p><div class="pg-notes">' +
+      title(PROJECTS[i]) + desc(PROJECTS[i]) + credits(PROJECTS[i]) + go + '</div></div><span class="pg-no r">' + (2 * i + 3) + "</span>";
+    const cover = '<div class="pg-in"><p class="cv-top"><span>Trinh Trinh Nguyen</span><b>Liner notes</b></p><span class="cv-flower" aria-hidden="true">✿</span>' +
+      '<h2 class="cv-title">Records I’d play <em>again.</em></h2><p class="cv-foot"><span>Selected work · 2024—2026</span><span>TTN—06</span></p></div>';
+    let leaves = "";
+    for (let i = 0; i <= N; i++) {
+      const front = i === 0 ? '<div class="bk-pg pg-cover">' + cover + "</div>" : '<div class="bk-pg">' + page(i - 1) + "</div>";
+      const rear = i < N ? '<div class="bk-pg back">' + plate(i) + "</div>" : '<div class="bk-pg back pg-end"><p>That’s the whole booklet. ✿</p></div>';
+      leaves += '<div class="bk-leaf">' + front + rear + "</div>";
+    }
+    sec.innerHTML = intro("C", "The <em>booklet</em>",
+      "The liner notes, made into the booklet that comes inside a record. Scrolling opens its wine cover and turns a page for each project: the picture as a plate on the left, its notes on the right.",
+      [["Concept", "The liner notes you have now, as the object they come from."], ["Fun", "Real page turns, at the pace of your scroll."], ["Clear", "One spread per project: the picture on one side, everything else on the other."]]) +
+      '<div class="bk" id="bk"><div class="bk-stage" id="bkStage"><div class="bk-book" id="bkBook"><span class="bk-under l"></span><span class="bk-under r"></span>' + leaves +
+      '<span class="bk-spine"></span></div><p class="bk-hint" id="bkHint">Scroll to open the booklet</p></div></div>' +
+      '<div class="bk-list">' + head("bk-lhead") + PROJECTS.map((pj, i) => '<div class="bk-spread"><div class="bk-pg">' + plate(i) + '</div><div class="bk-pg">' + page(i) + "</div></div>").join("") + "</div>";
+    const bk = $("bk"), stage = $("bkStage"), book = $("bkBook"), lvs = [...sec.querySelectorAll(".bk-leaf")];
+    let t = 0, P = 500, start = 0, stepPx = 1, hint = "";
+    function layout() {
+      if (innerWidth <= 760) return;
+      const sh = stage.clientHeight, sw = stage.clientWidth;
+      P = Math.min(sw * 0.44, sh * 0.8);
+      stage.style.setProperty("--P", P.toFixed(1) + "px");
+      stepPx = Math.round(innerHeight * 0.75);
+      bk.style.height = (sh + N * stepPx + Math.round(innerHeight * 0.35)) + "px";
+      start = docTop(bk) - BAR;
+    }
+    function step() {}
+    function frame() {
+      if (innerWidth <= 760) return;
+      const target = clamp((scrollY - start) / stepPx, 0, N);
+      t += (target - t) * 0.12;
+      if (Math.abs(target - t) < 0.0005) t = target;
+      lvs.forEach((lf, i) => {
+        const f = i < N ? clamp01((t - i - 0.25) / 0.5) : 0, a = -180 * easeInOut(f);   // each page turns mid-step, so a stop rests on a whole spread
+        const tf = "rotateY(" + a.toFixed(2) + "deg) translateZ(" + (-i * 0.6).toFixed(1) + "px)";
+        if (lf._tf === tf) return;
+        lf._tf = tf;
+        lf.style.transform = tf;
+        lf.style.setProperty("--shade", (Math.sin(Math.PI * f) * 0.9).toFixed(3));
+      });
+      const open = easeInOut(clamp01((t - 0.25) / 0.5));
+      book.style.setProperty("--shift", (-(P / 2) * (1 - open)).toFixed(1) + "px");
+      book.style.setProperty("--open", open.toFixed(3));
+      const k = Math.round(t), h = k < 1 ? "Scroll to open the booklet" : "Spread " + pad2(k) + " of " + pad2(N);
+      if (h !== hint) { hint = h; $("bkHint").textContent = h; }
+    }
+    return { layout, step, frame };
+  })();
+
+
+  /* ── D · Staff picks ── */
+  OPT.d = (() => {
+    const sec = $("opt-d");
+    const groups = CATS.map((c) => ({ c, items: PROJECTS.map((pj, i) => i).filter((i) => PROJECTS[i].cat === c) }));
+    const TILT = [-2.2, 1.6, -1.2, 2.4, -1.8, 1.2];
+    sec.innerHTML = intro("D", "Staff <em>picks</em>",
+      "A record shop wall, walked sideways as you scroll. Each project stands face-out on the shelf under the shop's section signs, with a staff pick card clipped beneath it saying what it is.",
+      [["Concept", "Your sleeves and catalogue numbers in the shop they come from; the kinds of work are the shop's sections."], ["Fun", "Browsing a wall of covers, the cards swaying as you pass."], ["Clear", "Each card gives the name, what it is and the credits in a few lines; the sections tell you where you are."]]) +
+      '<div class="sp" id="sp"><div class="sp-stage" id="spStage"><div class="sp-floor"></div><div class="sp-track" id="spTrack">' +
+      '<div class="sp-sign">' + head("sp-head") + '<p class="desc">Six projects, filed by kind like the sections of a record shop, each with a card from the staff.</p><p class="walk">Browse this way <i></i> →</p></div>' +
+      groups.map((g) => '<section class="sp-sec"><p class="sp-genre">' + esc(g.c) + " <small>" + pad2(g.items.length) + "</small></p>" +
+        g.items.map((i) => '<article class="sp-item"><div class="sp-sleeve">' + sleeve(i, false) + '<span class="sp-price">' + esc(PROJECTS[i].year) + "</span></div>" +
+          '<div class="sp-card" style="--tilt:' + TILT[i % TILT.length] + 'deg"><p class="sp-pick"><span>Staff pick ✿</span><span>' + catNo(i) + "</span></p>" + title(PROJECTS[i]) + credits(PROJECTS[i]) + go + "</div></article>").join("") +
+        "</section>").join("") +
+      '<div class="sp-end"><p class="k"><span>End of the shelf</span></p><h2 class="big">Want the <em>full story?</em></h2><p class="desc">Each case study walks through the problem, the process and what changed.</p></div>' +
+      '</div><div class="sp-prog">' + groups.map((g) => '<span class="sp-pg"><em>' + esc(g.c) + "</em>" + g.items.map(() => "<b></b>").join("") + "</span>").join("<i></i>") + "</div></div></div>";
+    const sp = $("sp"), stage = $("spStage"), track = $("spTrack"), items = [...sec.querySelectorAll(".sp-item")], cards = [...sec.querySelectorAll(".sp-card")], dots = [...sec.querySelectorAll(".sp-pg b")];
+    let start = 0, span = 0, x = 0, lastX = 0, sw = 0, swV = 0, centers = [], on = -1;
+    function layout() {
+      const sh = stage.clientHeight;
+      stage.style.setProperty("--sh", sh + "px");
+      span = Math.max(0, track.offsetWidth - stage.clientWidth);
+      sp.style.height = (sh + span) + "px";
+      start = docTop(sp) - BAR;
+      centers = items.map((it) => it.parentElement.offsetLeft + it.offsetLeft + it.offsetWidth / 2);
+    }
+    function step() {}
+    function frame() {
+      x = -clamp01((scrollY - start) / Math.max(1, span)) * span;
+      track.style.transform = "translate3d(" + x.toFixed(1) + "px,0,0)";
+      const v = x - lastX;
+      lastX = x;
+      swV += (clamp(v * 0.45, -6, 6) - sw) * 0.09; swV *= 0.9; sw += swV;     // the cards hang from their clips: they lag, swing and settle
+      cards.forEach((c, i) => c.style.setProperty("--sw", (sw * (0.8 + 0.1 * (i % 3))).toFixed(2) + "deg"));
+      let best = 0, bd = Infinity;
+      centers.forEach((c, i) => { const d = Math.abs(c + x - stage.clientWidth / 2); if (d < bd) { bd = d; best = i; } });
+      if (best !== on) { on = best; dots.forEach((d, i) => d.classList.toggle("on", i === on)); }
+    }
+    return { layout, step, frame };
+  })();
+
+
+  /* ── switching, scrolling, sizing ── */
+  Object.keys(OPT).forEach((o) => fillPics($("opt-" + o)));
+  const tabs = [...document.querySelectorAll(".ob-tabs button")];
+  let cur = "a";
+  function show(o) {
+    cur = o;
+    document.querySelectorAll(".opt").forEach((s) => s.classList.toggle("on", s.dataset.o === o));
+    tabs.forEach((t) => t.setAttribute("aria-selected", String(t.dataset.o === o)));
+    scrollTo(0, 0);
+    OPT[o].layout(); OPT[o].step();
+    history.replaceState(null, "", "#" + o);
+  }
+  tabs.forEach((t) => t.addEventListener("click", () => show(t.dataset.o)));
+  addEventListener("scroll", () => OPT[cur].step(), { passive: true });
+  addEventListener("resize", () => { OPT[cur].layout(); OPT[cur].step(); });
+  (function loop() { if (OPT[cur].frame) OPT[cur].frame(); requestAnimationFrame(loop); })();
+  show(OPT[location.hash.slice(1)] ? location.hash.slice(1) : "a");
+  /* the placeholder type sheet uses the serif: draw the pictures again once it has loaded */
+  if (document.fonts) document.fonts.ready.then(() => {
+    pics.forEach((u) => URL.revokeObjectURL(u));
+    pics = PROJECTS.map((pj, i) => toURL(drawShot(pj, i)));
+    Object.keys(OPT).forEach((o) => fillPics($("opt-" + o)));
+    OPT[cur].layout(); OPT[cur].step();
+  });
+})();
+</script>
+</body>
+</html>

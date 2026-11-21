@@ -1,0 +1,808 @@
+24|24|48|31|22px|30.8px|0.44px|Koulen|left|rgb(231,229,223)|1.0|MHHW
+49|24|48|31|22px|30.8px|0.44px|Koulen|left|rgb(231,229,223)|1.0|MHHW
+24|753|34|20|14px|19.6px|normal|Roboto Mono|left|rgb(231,229,223)|1.0|HOME
+44|753|33|20|14px|19.6px|normal|Roboto Mono|left|rgb(231,229,223)|1.0|HOME
+48|753|34|20|14px|19.6px|normal|Roboto Mono|left|rgb(231,229,223)|1.0|WORK
+68|753|33|20|14px|19.6px|normal|Roboto Mono|left|rgb(231,229,223)|1.0|WORK
+72|753|92|20|14px|19.6px|normal|Roboto Mono|left|rgb(231,229,223)|1.0|ON THE SIDE
+96|753|34|20|14px|19.6px|normal|Roboto Mono|left|rgb(231,229,223)|1.0|INFO
+116|753|33|20|14px|19.6px|normal|Roboto Mono|left|rgb(231,229,223)|1.0|INFO
+24|1226|50|20|14px|19.6px|normal|Roboto Mono|left|rgb(231,229,223)|1.0|[2026]
+44|1226|33|20|14px|19.6px|normal|Roboto Mono|left|rgb(231,229,223)|1.0|2024
+471|0|99|329|470px|329px|normal|Koulen|start|rgb(231,229,223)|1.0|I
+471|99|218|329|470px|329px|normal|Koulen|start|rgb(231,229,223)|1.0|N
+403|598|103|94|96px|105.6px|normal|HanyiSentyFoun|start|rgb(204,187,135)|1.0|﹁
+508|598|103|94|96px|105.6px|normal|HanyiSentyFoun|start|rgb(204,187,135)|1.0|簡
+614|598|103|94|96px|105.6px|normal|HanyiSentyFoun|start|rgb(204,187,135)|1.0|介
+719|598|103|94|96px|105.6px|normal|HanyiSentyFoun|start|rgb(204,187,135)|1.0|﹂
+471|906|188|329|470px|329px|-9.4px|Koulen|start|rgb(231,229,223)|1.0|F
+471|1095|205|329|470px|329px|-9.4px|Koulen|start|rgb(231,229,223)|1.0|O
+1100|24|657|83|100px|83px|normal|Koulen|start|rgb(231,229,223)|1.0|a senior PRODUCT
+1199|24|707|83|100px|83px|normal|Koulen|start|rgb(231,229,223)|1.0|DESIGN Consultant
+1449|520|143|66|90px|65.7px|normal|Pinyon Script|start|rgb(204,187,135)|1.0|born
+1432|700|486|83|100px|83px|normal|Koulen|start|rgb(231,229,223)|1.0|in hong kong
+1531|520|155|83|100px|83px|normal|Koulen|start|rgb(231,229,223)|1.0|now
+1548|689|207|66|90px|65.7px|normal|Pinyon Script|start|rgb(204,187,135)|1.0|based
+1531|912|364|83|100px|83px|normal|Koulen|start|rgb(231,229,223)|1.0|in london
+1833|520|448|76|54px|75.6px|normal|Koulen|start|rgb(231,229,223)|1.0|2k26 • Folio of Mason
+1922|520|371|255|14px|19.6px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|Though born in Hong Kong, I spent most of my early years in the countr
+2157|780|84|19|14px|19.6px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|1981 911SC
+2421|564|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|[
+2421|573|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|S
+2421|581|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|C
+2421|590|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|R
+2421|598|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|O
+2421|606|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|L
+2421|615|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|L
+2421|632|45|14|14px|11.62px|normal|HanyiSentyFoun|start|rgb(231,229,223)|1.0|請下去
+2421|685|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|D
+2421|694|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|O
+2421|702|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|W
+2421|710|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|N
+2421|719|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|]
+2421|24|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|[
+2421|32|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|N
+2421|41|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|I
+2421|49|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|C
+2421|58|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|E
+2417|74|17|19|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|TO
+2421|100|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|M
+2421|108|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|E
+2421|116|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|E
+2421|125|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|T
+2421|142|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|Y
+2421|150|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|O
+2421|159|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|U
+2421|167|8|12|14px|11.62px|normal|Roboto Mono|start|rgb(231,229,223)|1.0|]
+2427|1164|14|2|14px|1.54px|-0.98px|HanyiSentyFoun|right|rgb(231,229,223)|1.0|「
+2427|1178|14|2|14px|1.54px|-0.98px|HanyiSentyFoun|right|rgb(231,229,223)|1.0|很
+2427|1192|14|2|14px|1.54px|-0.98px|HanyiSentyFoun|right|rgb(231,229,223)|1.0|高
+2427|1206|14|2|14px|1.54px|-0.98px|HanyiSentyFoun|right|rgb(231,229,223)|1.0|興
+2427|1220|14|2|14px|1.54px|-0.98px|HanyiSentyFoun|right|rgb(231,229,223)|1.0|見
+2427|1234|14|2|14px|1.54px|-0.98px|HanyiSentyFoun|right|rgb(231,229,223)|1.0|到
+2427|1248|14|2|14px|1.54px|-0.98px|HanyiSentyFoun|right|rgb(231,229,223)|1.0|你
+2427|1262|14|2|14px|1.54px|-0.98px|HanyiSentyFoun|right|rgb(231,229,223)|1.0|」
+2603|602|31|77|64px|76.8px|-1.28px|Koulen|start|rgb(47,47,47)|1.0|0
+2603|668|31|77|64px|76.8px|-1.28px|Koulen|start|rgb(47,47,47)|1.0|0
+2614|582|15|56|56px|56px|normal|Roboto|start|rgb(47,47,47)|1.0|[
+2614|637|26|56|56px|56px|normal|Inter|start|rgb(47,47,47)|1.0|-
+2614|703|15|56|56px|56px|normal|Roboto|start|rgb(47,47,47)|1.0|]
+2690|423|454|17|14px|16.8px|normal|Roboto Mono|center|rgb(47,47,47)|1.0|24 UNIQUE EXPERIENCES OVER 8 INDUSTRIES [AND COUNTING]
+2707|423|454|17|14px|16.8px|normal|Roboto Mono|center|rgb(47,47,47)|1.0|CREATED FOR USERS AND ORGANISATIONS GLOBALLY
+2861|10|1281|90|100px|90px|-1.5px|Koulen|center|rgb(47,47,47)|1.0|IMMERSIVE EXPERIENCES
+2955|162|310|90|100px|90px|-1.5px|Koulen|center|rgb(47,47,47)|1.0|UNIQUELY
+2955|497|291|90|100px|90px|-1.5px|Koulen|center|rgb(47,47,47)|1.0|CREATED
+2955|812|212|90|100px|90px|-1.5px|Koulen|center|rgb(47,47,47)|1.0|BASED
+2955|1049|89|90|100px|90px|-1.5px|Koulen|center|rgb(47,47,47)|1.0|ON
+3049|354|591|97|100px|90px|normal|Pinyon Script|center|rgb(138,116,50)|1.0|user-insights and
+3150|95|1110|97|100px|90px|normal|Pinyon Script|center|rgb(138,116,50)|1.0|design thinking methodologies
+3445|212|342|20|14px|19.6px|normal|Roboto Mono|center|rgb(47,47,47)|1.0|[01]
+3480|212|342|74|37px|37px|normal|Koulen|center|rgb(47,47,47)|1.0|Experiential Craftsmanship
+3587|212|342|157|14px|19.6px|normal|Roboto Mono|center|rgb(47,47,47)|1.0|Driven by the belief that design has the power to shape how we live, t
+3445|746|342|20|14px|19.6px|normal|Roboto Mono|center|rgb(47,47,47)|1.0|[02]
+3480|746|342|37|37px|37px|normal|Koulen|center|rgb(47,47,47)|1.0|Thoughtful
+3517|746|342|37|37px|37px|normal|Koulen|center|rgb(47,47,47)|1.0|INNOVATION
+3587|746|342|176|14px|19.6px|normal|Roboto Mono|center|rgb(47,47,47)|1.0|Design to me is also a bridge between emotion and function, an act of 
+3936|636|28|114|26px|28.6px|normal|HanyiSentyFoun|start|rgb(47,47,47)|1.0|﹁ 信 念 ﹂
+4324|24|118|20|14px|19.6px|normal|Roboto Mono|right|rgb(47,47,47)|1.0|[MY OFFERINGS]
+4358|24|443|113|125px|112.5px|-1.5px|Koulen|left|rgb(47,47,47)|1.0|EXpertise
+4470|24|505|145|115px|126.5px|normal|Pinyon Script|left|rgb(138,116,50)|1.0|andSkills
+4645|24|422|137|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|Bridging emotion and clarity, my design practice generally evolves aro
+5044|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|[
+5044|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|0
+5044|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|1
+5044|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|]
+5088|633|360|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|ART DIRECTION
+5088|743|33|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|D
+5088|776|15|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|I
+5088|791|34|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|R
+5088|825|29|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|E
+5088|854|32|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|C
+5088|886|28|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|T
+5088|914|15|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|I
+5088|928|32|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|O
+5088|960|32|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|N
+5116|1111|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|R
+5116|1119|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|E
+5116|1128|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|L
+5116|1136|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|A
+5116|1145|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|T
+5116|1153|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|E
+5116|1161|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|D
+5116|1178|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|W
+5116|1187|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|O
+5116|1195|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|R
+5116|1203|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|K
+5118|1220|10|16|14px|19.6px|normal|Roboto|start|rgb(47,47,47)|1.0|↓
+5190|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|T
+5190|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+5190|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+5190|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5190|667|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+5190|675|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+5190|684|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+5190|692|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+5190|701|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+5190|709|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5190|717|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|g
+5190|734|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5190|743|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|m
+5190|751|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+5190|759|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+5190|768|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+5190|776|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+5190|785|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5190|801|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+5190|810|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5190|818|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+5190|827|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+5190|843|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|v
+5190|852|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+5190|860|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+5190|869|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|u
+5190|877|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+5190|886|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+5190|902|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+5190|911|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+5190|919|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+5190|928|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+5190|936|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+5190|944|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5190|953|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+5209|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+5209|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|h
+5209|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+5209|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+5209|675|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|c
+5209|684|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+5209|692|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5209|701|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5209|709|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5209|717|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|c
+5209|726|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+5209|734|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|,
+5209|751|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+5209|759|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5209|768|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+5209|776|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|p
+5209|785|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+5209|793|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+5209|801|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5209|810|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|,
+5209|827|25|19|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|and
+5209|860|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5209|869|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5209|877|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|d
+5209|886|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|u
+5209|894|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+5209|902|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5209|911|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|.
+5209|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|NORWEGIAN CAPSULE
+5189|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|NORWEGIAN CAPSULE
+5231|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|LIVERPOOL FC
+5211|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|LIVERPOOL FC
+5305|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|[
+5305|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|0
+5305|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|2
+5305|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|]
+5309|633|47|126|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|UI
+5309|698|21|126|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|/
+5348|738|30|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|V
+5348|768|15|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|I
+5348|783|31|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|S
+5348|813|32|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|U
+5348|845|30|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|A
+5348|875|28|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|L
+5348|921|33|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|D
+5348|954|29|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|E
+5348|984|31|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|S
+5348|1014|15|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|I
+5348|1029|31|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|G
+5348|1060|32|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|N
+5377|1111|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|R
+5377|1119|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|E
+5377|1128|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|L
+5377|1136|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|A
+5377|1145|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|T
+5377|1153|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|E
+5377|1161|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|D
+5377|1178|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|W
+5377|1187|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|O
+5377|1195|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|R
+5377|1203|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|K
+5379|1220|10|16|14px|19.6px|normal|Roboto|start|rgb(47,47,47)|1.0|↓
+5450|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|C
+5450|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+5450|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5450|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+5450|667|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+5450|675|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+5450|684|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5450|692|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|g
+5450|709|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|u
+5450|717|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5450|726|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+5450|734|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|q
+5450|743|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|u
+5450|751|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5450|759|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|,
+5450|776|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+5450|785|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|c
+5450|793|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|c
+5450|801|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5450|810|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+5450|818|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+5450|827|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+5450|835|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|b
+5450|843|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+5450|852|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5450|869|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|d
+5450|877|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5450|886|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+5450|894|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+5450|902|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|g
+5450|911|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5450|919|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+5450|936|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+5450|944|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|h
+5450|953|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+5450|961|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+5470|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|f
+5470|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5470|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5470|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+5470|675|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5470|684|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+5470|692|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+5470|701|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|u
+5470|709|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+5470|717|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+5470|726|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+5470|743|25|19|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|and
+5470|776|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+5470|785|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5470|793|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+5470|801|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|v
+5470|810|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5470|827|8|19|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+5470|843|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+5470|852|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+5470|860|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+5470|869|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+5470|877|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+5470|886|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5470|894|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|g
+5470|911|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+5470|919|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|m
+5470|928|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|p
+5470|936|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+5470|944|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|c
+5470|953|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+5470|961|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|.
+5470|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|LIVERPOOL FC
+5449|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|LIVERPOOL FC
+5492|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|ENGLAND RFU
+5471|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|ENGLAND RFU
+5565|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|[
+5565|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|0
+5565|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|3
+5565|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|]
+5609|633|250|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|UX DESIGN
+5609|712|33|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|D
+5609|745|29|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|E
+5609|774|31|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|S
+5609|805|15|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|I
+5609|820|31|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|G
+5609|851|32|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|N
+5637|1111|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|R
+5637|1119|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|E
+5637|1128|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|L
+5637|1136|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|A
+5637|1145|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|T
+5637|1153|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|E
+5637|1161|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|D
+5637|1178|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|W
+5637|1187|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|O
+5637|1195|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|R
+5637|1203|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|K
+5639|1220|10|16|14px|19.6px|normal|Roboto|start|rgb(47,47,47)|1.0|↓
+5711|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|S
+5711|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|h
+5711|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+5711|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|p
+5711|667|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+5711|675|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5711|684|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|g
+5711|701|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5711|709|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|x
+5711|717|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|p
+5711|726|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5711|734|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+5711|743|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+5711|751|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5711|759|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5711|768|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|c
+5711|776|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5711|785|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+5711|801|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+5711|810|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|h
+5711|818|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+5711|827|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+5711|843|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|h
+5711|852|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+5711|860|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5711|869|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+5711|877|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|u
+5711|886|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+5711|902|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|u
+5711|911|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+5711|919|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5711|928|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+5711|936|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+5711|944|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|’
+5730|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5730|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5730|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5730|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|d
+5730|667|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+5730|675|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|,
+5730|692|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|b
+5730|701|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5730|709|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|h
+5730|717|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+5730|726|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|v
+5730|734|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+5730|743|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+5730|751|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|u
+5730|759|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+5730|768|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+5730|776|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|,
+5730|793|25|19|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|and
+5730|827|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|j
+5730|835|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+5730|843|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|u
+5730|852|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+5730|860|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+5730|869|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+5730|877|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|y
+5730|886|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+5730|894|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|.
+5730|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|AIR BP
+5710|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|AIR BP
+5752|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|NATIONWIDE
+5732|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|NATIONWIDE
+5826|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|[
+5826|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|0
+5826|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|4
+5826|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|]
+5869|633|29|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|E
+5869|663|32|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|N
+5869|695|28|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|T
+5869|723|29|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|E
+5869|753|34|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|R
+5869|786|32|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|P
+5869|818|34|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|R
+5869|852|15|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|I
+5869|867|31|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|S
+5869|897|29|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|E
+5932|633|33|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|D
+5932|666|29|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|E
+5932|696|31|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|S
+5932|726|15|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|I
+5932|741|31|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|G
+5932|772|32|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|N
+5932|823|28|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|T
+5932|851|33|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|H
+5932|884|15|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|I
+5932|899|32|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|N
+5932|932|33|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|K
+5932|964|15|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|I
+5932|979|32|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|N
+5932|1012|31|63|70px|63px|normal|Koulen|start|rgb(47,47,47)|1.0|G
+5975|1111|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|R
+5975|1119|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|E
+5975|1128|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|L
+5975|1136|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|A
+5975|1145|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|T
+5975|1153|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|E
+5975|1161|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|D
+5975|1178|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|W
+5975|1187|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|O
+5975|1195|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|R
+5975|1203|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|K
+5977|1220|10|16|14px|19.6px|normal|Roboto|start|rgb(47,47,47)|1.0|↓
+6048|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|B
+6048|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+6048|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6048|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6048|667|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|g
+6048|675|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6048|684|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6048|692|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|g
+6048|709|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|p
+6048|717|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6048|726|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+6048|734|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|p
+6048|743|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+6048|751|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6048|768|25|19|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|and
+6048|801|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|p
+6048|810|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+6048|818|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+6048|827|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|c
+6048|835|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6048|843|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+6048|852|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+6048|869|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6048|877|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+6048|886|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|g
+6048|894|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6048|902|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6048|911|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|h
+6048|919|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6048|928|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+6048|944|17|19|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|to
+6068|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+6068|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+6068|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+6068|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|v
+6068|667|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6068|684|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|c
+6068|692|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+6068|701|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|m
+6068|709|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|p
+6068|717|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+6068|726|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6068|734|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|x
+6068|751|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|c
+6068|759|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|h
+6068|768|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+6068|776|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+6068|785|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+6068|793|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6068|801|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6068|810|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|g
+6068|818|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6068|827|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+6068|843|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|w
+6068|852|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6068|860|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6068|869|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|h
+6068|886|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6068|894|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|m
+6068|902|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|p
+6068|911|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+6068|919|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6068|928|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|h
+6068|936|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|y
+6068|944|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|.
+6090|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|GLOBAL ESPORTS
+6069|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|GLOBAL ESPORTS
+6068|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|LIVERPOOL FC
+6047|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|LIVERPOOL FC
+6163|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|[
+6163|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|0
+6163|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|5
+6163|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|]
+6207|633|33|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|D
+6207|666|29|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|E
+6207|696|31|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|S
+6207|726|15|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|I
+6207|741|31|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|G
+6207|772|32|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|N
+6207|823|31|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|S
+6207|854|28|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|T
+6207|882|34|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|R
+6207|915|30|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|A
+6207|945|28|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|T
+6207|973|29|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|E
+6207|1003|31|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|G
+6207|1034|28|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|Y
+6235|1111|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|R
+6235|1119|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|E
+6235|1128|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|L
+6235|1136|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|A
+6235|1145|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|T
+6235|1153|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|E
+6235|1161|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|D
+6235|1178|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|W
+6235|1187|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|O
+6235|1195|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|R
+6235|1203|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|K
+6237|1220|10|16|14px|19.6px|normal|Roboto|start|rgb(47,47,47)|1.0|↓
+6309|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|A
+6309|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+6309|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6309|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|g
+6309|667|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6309|675|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6309|684|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6309|692|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|g
+6309|709|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|v
+6309|717|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6309|726|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+6309|734|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6309|743|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+6309|751|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6309|768|25|19|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|and
+6309|801|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|v
+6309|810|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+6309|818|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+6309|827|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|u
+6309|835|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6309|843|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|,
+6309|860|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6309|869|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|u
+6309|877|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+6309|886|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6309|894|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6309|902|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6309|911|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|g
+6309|928|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6309|936|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6309|944|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+6309|953|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6309|961|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|g
+6309|970|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|h
+6309|978|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6309|986|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+6329|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6329|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6329|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6329|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+6329|675|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6329|684|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6329|692|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6329|701|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6329|709|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6329|717|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6329|726|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6329|734|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+6329|743|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6329|751|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+6329|759|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+6329|768|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|,
+6329|785|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6329|793|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|m
+6329|801|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|p
+6329|810|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+6329|818|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|c
+6329|827|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6329|835|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|f
+6329|843|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|u
+6329|852|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+6329|869|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|d
+6329|877|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6329|886|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+6329|894|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6329|902|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|g
+6329|911|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6348|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|d
+6348|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6348|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+6348|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6348|667|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|c
+6348|675|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6348|684|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6348|692|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+6348|701|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6348|709|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|.
+6350|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|GLOBAL ESPORTS
+6330|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|GLOBAL ESPORTS
+6328|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|AIR BP
+6308|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|AIR BP
+6441|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|[
+6441|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|0
+6441|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|6
+6441|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|]
+6484|633|32|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|B
+6484|666|34|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|R
+6484|700|30|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|A
+6484|729|32|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|N
+6484|762|33|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|D
+6484|813|15|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|I
+6484|828|33|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|D
+6484|861|29|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|E
+6484|890|32|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|N
+6484|923|28|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|T
+6484|951|15|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|I
+6484|965|28|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|T
+6484|993|28|49|70px|49px|normal|Koulen|start|rgb(47,47,47)|1.0|Y
+6513|1111|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|R
+6513|1119|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|E
+6513|1128|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|L
+6513|1136|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|A
+6513|1145|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|T
+6513|1153|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|E
+6513|1161|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|D
+6513|1178|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|W
+6513|1187|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|O
+6513|1195|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|R
+6513|1203|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|K
+6515|1220|10|16|14px|19.6px|normal|Roboto|start|rgb(47,47,47)|1.0|↓
+6586|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|C
+6586|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+6586|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+6586|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|f
+6586|667|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6586|675|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6586|684|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6586|692|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|g
+6586|709|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6586|717|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|x
+6586|726|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|p
+6586|734|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+6586|743|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6586|751|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+6586|759|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+6586|768|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6586|776|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|v
+6586|785|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6586|793|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|,
+6586|810|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|c
+6586|818|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|o
+6586|827|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|h
+6586|835|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6586|843|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+6586|852|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6586|860|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|v
+6586|869|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6586|886|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6586|894|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|d
+6586|902|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6586|911|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6586|919|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6586|928|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6586|936|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6586|944|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|i
+6586|953|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6586|961|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+6606|633|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6606|642|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|h
+6606|650|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+6606|659|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6606|675|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+6606|684|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6606|692|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|f
+6606|701|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+6606|709|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6606|717|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|c
+6606|726|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6606|743|25|19|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|who
+6606|776|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|b
+6606|785|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+6606|793|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+6606|801|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|n
+6606|810|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|d
+6606|818|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|s
+6606|835|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|t
+6606|843|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+6606|852|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|u
+6606|860|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|l
+6606|869|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|y
+6606|886|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|a
+6606|894|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|r
+6606|902|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|e
+6606|911|8|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|.
+6585|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|WILD
+6607|1110|149|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|POSSO
+7110|40|511|110|110px|110px|normal|Koulen|center|rgb(231,229,223)|1.0|always
+7220|40|511|110|110px|110px|normal|Koulen|center|rgb(231,229,223)|1.0|designed
+6970|591|118|108|110px|121px|normal|HanyiSentyFoun|start|rgb(204,187,135)|1.0|﹁
+7109|591|118|108|110px|121px|normal|HanyiSentyFoun|start|rgb(204,187,135)|1.0|意
+7248|591|118|108|110px|121px|normal|HanyiSentyFoun|start|rgb(204,187,135)|1.0|圖
+7373|591|118|108|110px|121px|normal|HanyiSentyFoun|start|rgb(204,187,135)|1.0|﹂
+7110|749|511|110|110px|110px|normal|Koulen|center|rgb(231,229,223)|1.0|with
+7220|749|511|110|110px|110px|normal|Koulen|center|rgb(231,229,223)|1.0|intention
+7652|457|386|20|14px|19.6px|normal|Roboto Mono|center|rgb(231,229,223)|1.0|[My work revolves around 3 primary objectives]
+7759|174|267|20|14px|19.6px|normal|Roboto Mono|center|rgb(231,229,223)|1.0|[01]
+7794|174|267|37|37px|37px|normal|Koulen|center|rgb(231,229,223)|1.0|EMPATHY
+7831|174|267|37|37px|37px|normal|Koulen|center|rgb(231,229,223)|1.0|ENABLEMENT
+7901|174|267|137|14px|19.6px|normal|Roboto Mono|center|rgb(231,229,223)|1.0|To help businesses foster empathy for their users and grasp their need
+7759|517|267|20|14px|19.6px|normal|Roboto Mono|center|rgb(231,229,223)|1.0|[02]
+7794|517|267|37|37px|37px|normal|Koulen|center|rgb(231,229,223)|1.0|Strategic
+7831|517|267|37|37px|37px|normal|Koulen|center|rgb(231,229,223)|1.0|Synergy
+7901|517|267|137|14px|19.6px|normal|Roboto Mono|center|rgb(231,229,223)|1.0|To bring strategic alignment by connecting business goals with what ou
+7759|859|267|20|14px|19.6px|normal|Roboto Mono|center|rgb(231,229,223)|1.0|[03]
+7794|859|267|37|37px|37px|normal|Koulen|center|rgb(231,229,223)|1.0|Experience
+7831|859|267|37|37px|37px|normal|Koulen|center|rgb(231,229,223)|1.0|Design
+7901|859|267|118|14px|19.6px|normal|Roboto Mono|center|rgb(231,229,223)|1.0|To create meaningful and emotionally resonant experiences driven by us
+8460|24|151|20|14px|19.6px|normal|Roboto Mono|right|rgb(47,47,47)|1.0|[SELECTED CLIENTS]
+8466|24|363|226|125px|112.5px|-1.5px|Koulen|left|rgb(47,47,47)|1.0|SOME OF
+8515|422|134|150|120px|108px|-1.5px|Pinyon Script|left|rgb(138,116,50)|1.0|my
+8648|24|607|113|125px|112.5px|-1.5px|Koulen|right|rgb(47,47,47)|1.0|good friends
+8791|24|331|59|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|Partnering with world leading organisations across 8+ industries, crea
+13184|636|28|114|26px|28.6px|normal|HanyiSentyFoun|start|rgb(47,47,47)|1.0|﹁ 朋 友 ﹂
+13675|48|143|20|14px|19.6px|normal|Roboto Mono|right|rgb(47,47,47)|1.0|[MY LOVE STORIES]
+13709|48|447|119|125px|112.5px|-1.5px|Koulen|left|rgb(47,47,47)|1.0|The prequel
+13827|48|407|113|125px|112.5px|normal|Koulen|left|rgb(47,47,47)|1.0|to today
+13970|48|422|59|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|The story so far; from East to West, Hong Kong to London, and wherever
+13662|990|89|43|48px|43.2px|-0.96px|Koulen|start|rgb(47,47,47)|1.0|2000
+13662|1079|113|43|48px|43.2px|normal|Koulen|start|rgb(47,47,47)|1.0|- NOW
+13714|664|67|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|[LONDON]
+13714|932|260|20|14px|19.6px|normal|Roboto Mono|right|rgb(47,47,47)|1.0|SENIOR VISUAL DESIGN CONSULTANT
+14304|975|89|43|48px|43.2px|-0.96px|Koulen|start|rgb(47,47,47)|1.0|2000
+14304|1064|39|43|48px|43.2px|normal|Koulen|start|rgb(47,47,47)|1.0|-
+14304|1103|89|43|48px|43.2px|-0.96px|Koulen|start|rgb(47,47,47)|1.0|2000
+14356|664|67|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|[LONDON]
+14356|990|202|20|14px|19.6px|normal|Roboto Mono|right|rgb(47,47,47)|1.0|VISUAL DESIGN CONSULTANT
+14845|975|89|43|48px|43.2px|-0.96px|Koulen|start|rgb(47,47,47)|1.0|2000
+14845|1064|39|43|48px|43.2px|normal|Koulen|start|rgb(47,47,47)|1.0|-
+14845|1103|89|43|48px|43.2px|-0.96px|Koulen|start|rgb(47,47,47)|1.0|2000
+14898|664|168|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|[HONG KONG / LONDON]
+14898|982|210|20|14px|19.6px|normal|Roboto Mono|right|rgb(47,47,47)|1.0|FREELANCE VISUAL DESIGNER
+15287|975|89|43|48px|43.2px|-0.96px|Koulen|start|rgb(47,47,47)|1.0|2000
+15287|1064|39|43|48px|43.2px|normal|Koulen|start|rgb(47,47,47)|1.0|-
+15287|1103|89|43|48px|43.2px|-0.96px|Koulen|start|rgb(47,47,47)|1.0|2000
+15339|664|67|20|14px|19.6px|normal|Roboto Mono|start|rgb(47,47,47)|1.0|[LONDON]
+15339|1024|168|20|14px|19.6px|normal|Roboto Mono|right|rgb(47,47,47)|1.0|VISUAL DESIGN INTERN
+15840|121|319|321|165px|136.95px|normal|Koulen|center|rgb(231,229,223)|1.0|built bold
+15741|591|118|260|110px|121px|normal|HanyiSentyFoun|start|rgb(231,229,223)|1.0|﹁ 人
+16001|591|118|260|110px|121px|normal|HanyiSentyFoun|start|rgb(231,229,223)|1.0|類 ﹂
+15840|825|390|321|165px|136.95px|normal|Koulen|center|rgb(231,229,223)|1.0|made human
+16505|480|340|62|44px|61.6px|normal|Koulen|start|rgb(231,229,223)|1.0|read the next story
+16567|24|1252|20|14px|19.6px|normal|Roboto Mono|center|rgb(231,229,223)|1.0|[1 OUT OF 10 FEATURED PROJECTS]
+16975|236|101|20|14px|19.6px|normal|Roboto Mono|left|rgb(255,255,255)|1.0|LIVERPOOL FC
+16995|236|99|20|14px|19.6px|normal|Roboto Mono|left|rgb(255,255,255)|1.0|LIVERPOOL FC
+16975|980|84|20|14px|19.6px|normal|Roboto Mono|right|rgb(255,255,255)|1.0|MOBILE APP
+16995|982|82|20|14px|19.6px|normal|Roboto Mono|right|rgb(255,255,255)|1.0|MOBILE APP
+17491|412|476|59|14px|19.6px|normal|Roboto Mono|center|rgb(231,229,223)|1.0|Immersive experiences uniquely created based on user-insights and desi
+17592|596|109|28|20px|28px|normal|Koulen|start|rgb(47,47,47)|1.0|VIEW ALL WORK
+17619|606|86|28|20px|28px|normal|HanyiSentyFoun|start|rgb(47,47,47)|1.0|看作品集
+17909|40|101|21|14px|21px|normal|Roboto Mono|center|rgb(231,229,223)|1.0|[MASON WONG]
+17909|1126|134|21|14px|21px|normal|Roboto Mono|center|rgb(231,229,223)|1.0|[COPYRIGHT 2026]
+18094|124|315|115|128px|115.2px|normal|Koulen|center|rgb(231,229,223)|1.0|COME
+18209|124|315|115|128px|115.2px|normal|Koulen|center|rgb(231,229,223)|1.0|say
+18324|124|315|115|128px|115.2px|normal|Koulen|center|rgb(231,229,223)|1.0|HELLO
+18040|593|114|104|106px|116.6px|normal|HanyiSentyFoun|start|rgb(204,187,135)|1.0|﹁
+18156|593|114|104|106px|116.6px|normal|HanyiSentyFoun|start|rgb(204,187,135)|1.0|你
+18273|593|114|104|106px|116.6px|normal|HanyiSentyFoun|start|rgb(204,187,135)|1.0|好
+18389|593|114|104|106px|116.6px|normal|HanyiSentyFoun|start|rgb(204,187,135)|1.0|﹂
+18071|830|378|20|14px|19.6px|normal|Roboto Mono|center|rgb(231,229,223)|1.0|[CURRENTLY ON REPEAT]
+18421|830|378|20|14px|19.6px|normal|Roboto Mono|center|rgb(231,229,223)|1.0|[LC - MEAN IT IN THE MORNING]
+18606|129|20|20|20px|20px|normal|Koulen|start|rgb(231,229,223)|1.0|→
+18631|44|78|25|25px|25px|normal|Koulen|start|rgb(231,229,223)|1.0|LINKEDIN
+18604|44|78|25|25px|25px|normal|Koulen|start|rgb(231,229,223)|1.0|LINKEDIN
+18538|633|34|16|16px|16px|normal|Koulen|start|rgb(255,255,255)|1.0|Label
+18570|614|72|16|16px|16px|normal|Koulen|start|rgb(231,229,223)|0.0|Back to top
+18606|1238|20|20|20px|20px|normal|Koulen|start|rgb(231,229,223)|1.0|→
+18631|1138|93|25|25px|25px|normal|Koulen|start|rgb(231,229,223)|1.0|INSTAGRAM
+18604|1138|93|25|25px|25px|normal|Koulen|start|rgb(231,229,223)|1.0|INSTAGRAM
+IMG|100|759|82|29|cover|1.00|none|IepHoMf4YbH0y11loz2Se8MCMQ.png?width=180
+IMG|52|1209|82|29|cover|1.00|none|IepHoMf4YbH0y11loz2Se8MCMQ.png?width=180
+IMG|0|0|1300|2720|cover|1.00|none|FOPe8Aj35hbj3EU0S6M7RmVoCpE.jpeg?scale-d
+IMG|4199|609|667|720|cover|1.00|none|YRStH7Lcoh9O5wxFSPetODyteSM.png?width=13
+IMG|5150|1104|156|89|cover|1.00|none|XbAyT67MOmZ9iWY72g8FEkEZZFM.png?scale-do
+IMG|5150|1104|156|89|cover|1.00|none|l75LjUjrujkMT6ZEGtuUAEUrg0.png?scale-dow
+IMG|5410|1104|156|89|cover|1.00|none|l75LjUjrujkMT6ZEGtuUAEUrg0.png?scale-dow
+IMG|5410|1104|156|89|cover|1.00|none|wVp70RM8y5cAc3gtsIbnpD9Uds.png?width=200
+IMG|5671|1104|156|89|cover|1.00|none|jGIDW70qyfBuP6v8UKUwumU8HGo.png?scale-do
+IMG|5671|1104|156|89|cover|1.00|none|WK4I0BpH8t6Tz8eQXRpSVY1SJKA.png?scale-do
+IMG|6008|1104|156|89|cover|1.00|none|N0Ob9hbVGth71dwnWLywhBFGzw.png?width=135
+IMG|6008|1104|156|89|cover|1.00|none|l75LjUjrujkMT6ZEGtuUAEUrg0.png?scale-dow
+IMG|6269|1104|156|89|cover|1.00|none|N0Ob9hbVGth71dwnWLywhBFGzw.png?width=135
+IMG|6269|1104|156|89|cover|1.00|none|jGIDW70qyfBuP6v8UKUwumU8HGo.png?scale-do
+IMG|6602|1086|82|29|cover|0.00|none|IepHoMf4YbH0y11loz2Se8MCMQ.png
+IMG|6624|1093|82|29|cover|0.00|none|IepHoMf4YbH0y11loz2Se8MCMQ.png
+IMG|6119|-21|1456|2116|cover|1.00|none|BxznG8ekH2xrEL18i2Q5ceJE.mp4
+IMG|8659|900|261|206|contain|0.10|none|jQWipY05YRlVIHegmORBZxmoYc.png?width=320
+IMG|9015|900|261|206|contain|0.10|none|L8M65EZuuprxH0vVlGtjBfG9Rg.png?scale-dow
+IMG|9371|900|261|206|contain|0.10|none|bziohPxVmODeDLmypKN3ILFF3p0.png?scale-do
+IMG|9727|900|261|206|contain|0.10|none|HLsT6TkhzQYB7JDiK9jjlaG9mE.svg?scale-dow
+IMG|10083|900|261|206|contain|0.10|none|TOYe1WoOUpSaWBJ7FeCOUQl2yvg.png?width=51
+IMG|10439|900|261|206|contain|0.10|none|dPUrSSij9O6eEEe2zcu8wPV3nXs.png?scale-do
+IMG|10795|900|261|206|contain|0.10|none|pCAIbAqqRQB3hIDRF1bqXlTvhc0.svg?width=17
+IMG|11151|900|261|206|contain|0.10|none|d7mZGgKdx1EERJ1e4prtcTtmIBY.png?scale-do
+IMG|11507|900|261|206|contain|0.10|none|TcEMOLUan73Ib5ayc5wrAVk0zY.png?width=289
+IMG|11863|900|261|206|contain|0.10|none|HFLH1nJwn1qNeh3zdplC0X8zI3g.png?scale-do
+IMG|12219|900|261|206|contain|0.10|none|1qmo2DBgdh9VyMldxbt2ZGXQhg.png?scale-dow
+IMG|12575|900|261|206|contain|0.10|none|TkKgHEn1hZ46r85PNSC2BMx0O5Y.png?scale-do
+IMG|13667|664|91|33|cover|1.00|none|06AoX42TGIxk8VbqwzoFV2Dcwo.png?scale-dow
+IMG|14309|664|91|33|cover|1.00|none|06AoX42TGIxk8VbqwzoFV2Dcwo.png?scale-dow
+IMG|14848|664|107|39|cover|1.00|none|3ykPJ0EEizmBXoZCUCUv8et1nn8.png?scale-do
+IMG|15292|664|91|33|cover|1.00|none|06AoX42TGIxk8VbqwzoFV2Dcwo.png?scale-dow
+IMG|16560|414|473|258|cover|1.00|none|o6w4CVRNseGWbrL67Z02tHFMU.png?scale-down
+IMG|16704|212|876|560|cover|1.00|none|o6w4CVRNseGWbrL67Z02tHFMU.png?scale-down
+IMG|12861|0|1300|2650|cover|1.00|none|g2ltYPFjObtBwZYdmA7rDni7lU.png?width=188
+IMG|18122|884|270|267|cover|1.00|none|nsH8fDKT0gbSp0z4LbmN4XVjw28.png?scale-do
+IMG|17869|0|1300|800|cover|1.00|none|iEHXOE8MWd2vGa9Prmwyjtm35A.png?scale-dow

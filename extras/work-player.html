@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Selected work · player</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500&display=swap">
+<style>
+/* The Selected work as a record player without the player. Scrolling down from the hero, the
+   covers come up and land in a curved row: the record in play large in the middle, the next ones
+   small beside it, the far ones turned in at the edges, as if standing round the inside of a
+   drum. Scrolling on turns the row, one record at a time; the buttons and the arrow keys do the
+   same. Click the record in the middle (or play) and it is put on: the square cover flies to the
+   top of the project's page, rounds into a record, its picture shrinking to the label as the
+   grooves come up round it, and it spins while you read. "Back to the playlist" lifts it off and
+   puts it back in the row. Covers are grey placeholders; words in [brackets] are placeholders. */
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-Ultralight.otf") format("opentype"); font-weight: 200; font-style: normal; }
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-UltralightItalic.otf") format("opentype"); font-weight: 200; font-style: italic; }
+:root {
+  --paper: #faf8f5; --ink: #400d1b; --ink-soft: #6c454f; --accent: #8760af; --thistle: #cdb9dd; --wine: #400d1b;
+  --serif: "PP Editorial New", "Instrument Serif", "Times New Roman", serif;
+  --body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", Menlo, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; }
+
+/* a stand-in for the hero, so the way in can be felt */
+.hero { height: 100vh; height: 100svh; display: grid; place-content: center; justify-items: center; gap: 22px; background: var(--wine); color: var(--paper); text-align: center; }
+.hero h1 { margin: 0; font: 200 clamp(48px, 7vw, 120px)/0.95 var(--serif); letter-spacing: -0.02em; }
+.hero h1 em { font-style: italic; color: var(--thistle); }
+.hero p { margin: 0; font: 500 11px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: rgba(250, 248, 245, 0.6); }
+.back { position: absolute; z-index: 5; left: 18px; top: 16px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(250, 248, 245, 0.7); text-decoration: none; }
+.after { height: 70vh; display: grid; place-items: center; background: var(--wine); color: rgba(250, 248, 245, 0.6); font: 500 11px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; }
+
+/* the work: held on screen while the row turns */
+.wk { position: relative; }
+.wk-stage { --S: 320px; position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.cv { position: absolute; left: 0; top: 0; width: var(--S); height: var(--S); border-radius: 8px; background: var(--g); cursor: pointer; will-change: transform; transform-origin: 50% 50%; }
+.cv:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.wk-ui { position: absolute; left: 0; right: 0; display: grid; justify-items: center; text-align: center; }
+.ctrl { display: flex; align-items: center; gap: 22px; }
+.ctrl button { display: grid; place-items: center; border: 0; background: none; cursor: pointer; color: var(--ink); }
+.ctrl .sk { width: 34px; height: 34px; border-radius: 50%; transition: background-color 0.2s ease; }
+.ctrl .sk:hover { background: rgba(64, 13, 27, 0.07); }
+.ctrl .sk svg { width: 12px; height: 12px; }
+.ctrl .pl { width: 46px; height: 46px; border-radius: 50%; background: var(--ink); color: var(--paper); transition: background-color 0.2s ease, scale 0.25s ease; }
+.ctrl .pl:hover { background: var(--accent); scale: 1.06; }
+.ctrl .pl svg { width: 14px; height: 14px; margin-left: 2px; }
+.cap { margin: 16px 0 0; max-width: 24em; min-height: 2.8em; font-size: 14px; line-height: 1.4; color: var(--ink-soft); transition: opacity 0.25s ease; }
+.cap b { font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: 0.04em; color: var(--accent); }
+.wk-title { margin: clamp(22px, 4vh, 40px) 0 0; font: 200 clamp(38px, 4.6vw, 76px)/0.98 var(--serif); letter-spacing: -0.02em; color: rgba(64, 13, 27, 0.42); }
+.wk-title span { color: var(--ink); }
+.wk-title em { font-style: italic; color: var(--accent); }
+
+/* the project's page, over everything; the record lands at its top */
+.pd { position: fixed; inset: 0; z-index: 50; overflow-y: auto; visibility: hidden; }
+.pd.on { visibility: visible; }
+.pd-bg { position: fixed; inset: 0; background: var(--paper); opacity: 0; }
+.pd-in { position: relative; min-height: 100%; padding: 22px clamp(18px, 5vw, 88px) 12vh; }
+.pd-bar { position: sticky; top: 14px; z-index: 3; display: flex; justify-content: space-between; align-items: center; }
+.pd-bar button { padding: 10px 16px 9px; border: 1px solid rgba(64, 13, 27, 0.2); border-radius: 999px; background: rgba(250, 248, 245, 0.85); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); cursor: pointer; font: 500 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; }
+.pd-bar button:hover { border-color: var(--ink); }
+.pd-bar button:focus-visible, .ctrl button:focus-visible, .pd-next:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.pd-bar span { font: 500 11px/1 var(--mono); letter-spacing: 0.1em; color: var(--ink-soft); }
+.pd-slot { width: var(--D, 420px); height: var(--D, 420px); margin: 10px auto 0; }
+.pd-txt { display: grid; justify-items: center; text-align: center; gap: 14px; margin-top: clamp(26px, 4vh, 40px); }
+.pd-txt > * { opacity: 0; }
+.pd-now { display: inline-flex; align-items: center; gap: 10px; margin: 0; font: 500 12px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 10px; }
+.eq i { width: 2px; height: 100%; background: var(--accent); transform-origin: bottom; animation: eq 0.9s ease-in-out infinite; }
+.eq i:nth-child(2) { animation-delay: -0.3s; }
+.eq i:nth-child(3) { animation-delay: -0.6s; }
+@keyframes eq { 0%, 100% { transform: scaleY(0.3); } 50% { transform: scaleY(1); } }
+.pd-name { margin: 0; font: 200 clamp(44px, 6vw, 96px)/0.95 var(--serif); letter-spacing: -0.02em; }
+.pd-what { margin: 0; font: italic 200 clamp(22px, 2.2vw, 34px)/1.15 var(--serif); color: var(--accent); }
+.pd-meta { margin: 6px 0 0; font: 500 12px/1.5 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+.pd-desc { margin: 10px 0 0; max-width: 34em; font-size: 17px; line-height: 1.55; color: var(--ink-soft); }
+.pd-cr { width: min(100%, 960px); margin: clamp(26px, 4vh, 44px) 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 24px; text-align: left; }
+.pd-cr div { padding-top: 12px; border-top: 1px dotted rgba(64, 13, 27, 0.35); }
+.pd-cr dt { font: 500 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+.pd-cr dd { margin: 10px 0 0; font-size: 15px; line-height: 1.35; }
+.pd-cr .res dd { color: var(--accent); }
+.pd-pics { width: min(100%, 1100px); margin-top: clamp(30px, 5vh, 56px); display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; }
+.pd-pics div { aspect-ratio: 4 / 3; border-radius: 8px; background: #dcd8d4; display: grid; place-items: end start; padding: 14px; font: 500 11px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: rgba(64, 13, 27, 0.45); }
+.pd-pics div:first-child { aspect-ratio: auto; }
+.pd-next { margin-top: clamp(30px, 5vh, 56px); padding: 14px 22px 13px; border: 0; border-radius: 999px; background: var(--ink); color: var(--paper); cursor: pointer; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
+.pd-next:hover { background: var(--accent); }
+
+/* the record that travels: the cover, the vinyl that comes up round it, the spindle hole */
+.fly { position: absolute; left: 0; top: 0; z-index: 2; pointer-events: none; }
+.fly-spin { position: absolute; inset: 0; }
+.fly-vinyl { position: absolute; inset: 0; border-radius: 50%; opacity: 0;
+  background:
+    conic-gradient(from 20deg, rgba(255,255,255,0) 0deg, rgba(255,255,255,0.12) 30deg, rgba(255,255,255,0) 70deg, rgba(255,255,255,0) 180deg, rgba(255,255,255,0.09) 210deg, rgba(255,255,255,0) 250deg),
+    repeating-radial-gradient(circle at 50% 50%, #241016 0 1.6px, #1a0a0f 1.6px 3.2px);
+  box-shadow: 0 30px 60px -28px rgba(43, 10, 18, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.06); }
+.fly-cover { position: absolute; inset: 0; border-radius: 8px; background: var(--g); }
+.fly-hole { position: absolute; left: 50%; top: 50%; width: 3.2%; height: 3.2%; translate: -50% -50%; border-radius: 50%; background: var(--paper); opacity: 0; box-shadow: 0 0 0 1px rgba(64, 13, 27, 0.25); }
+
+@media (max-width: 760px) {
+  .ctrl { gap: 16px; }
+  .cap { font-size: 13px; max-width: 18em; }
+  .wk-title { font-size: 36px; }
+  .pd-cr { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 18px; }
+  .pd-pics { grid-template-columns: 1fr; }
+  .pd-pics div:first-child { aspect-ratio: 4 / 3; }
+  .pd-desc { font-size: 15.5px; }
+}
+@media (prefers-reduced-motion: reduce) { .eq i { animation: none; } }
+</style>
+</head>
+<body>
+<header class="hero">
+  <a class="back" href="../index.html">← The site</a>
+  <h1>Design that stays<br><em>on</em> repeat.</h1>
+  <p>(A stand-in for the hero) &nbsp;·&nbsp; scroll down</p>
+</header>
+
+<section class="wk" id="wk" aria-labelledby="wkT">
+  <div class="wk-stage" id="stage">
+    <div class="wk-ui" id="ui">
+      <div class="ctrl">
+        <button type="button" class="sk" id="prev" aria-label="Previous record"><svg viewBox="0 0 12 12"><path d="M2 1.5v9M10.5 1.5 3.6 6l6.9 4.5z" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="pl" id="play" aria-label="Play this record"><svg viewBox="0 0 12 12"><path d="M2.5 1.2v9.6L10.6 6z" fill="currentColor"/></svg></button>
+        <button type="button" class="sk" id="next" aria-label="Next record"><svg viewBox="0 0 12 12"><path d="M10 1.5v9M1.5 1.5 8.4 6 1.5 10.5z" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></button>
+      </div>
+      <p class="cap" id="cap" aria-live="polite"></p>
+      <h2 class="wk-title" id="wkT">Records I’d<br><span>play <em>again.</em></span></h2>
+    </div>
+  </div>
+</section>
+<div class="after">(03) About comes next</div>
+
+<div class="pd" id="pd" role="dialog" aria-modal="true" aria-labelledby="pdName">
+  <div class="pd-bg" id="pdBg"></div>
+  <div class="pd-in" id="pdIn">
+    <div class="pd-bar"><button type="button" id="pdBack">← Back to the playlist</button><span id="pdCount">03 / 07</span></div>
+    <div class="pd-slot" id="pdSlot"></div>
+    <div class="pd-txt" id="pdTxt"></div>
+    <div class="fly" id="fly"><div class="fly-spin" id="flySpin"><div class="fly-vinyl" id="flyVinyl"></div><div class="fly-cover" id="flyCover"></div><span class="fly-hole" id="flyHole"></span></div></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+  const clamp01 = (x) => clamp(x, 0, 1);
+  const smooth = (x) => { x = clamp01(x); return x * x * (3 - 2 * x); };
+  const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* seven projects; words in [brackets] are placeholders */
+  const PROJECTS = [
+    { title: "[Project name]: a mobile app for slow travel", tag: "Mobile / App", year: "2026", role: "[Lead product designer]", team: "[Who you worked with]", time: "[12 weeks]", result: "[What changed, in one number]" },
+    { title: "[Project name]: a booking flow for a wellness studio", tag: "Web / UX", year: "2026", role: "[Product designer]", team: "[Who you worked with]", time: "[6 weeks]", result: "[What changed, in one number]" },
+    { title: "[Project name]: a design system for a fintech team", tag: "Design System", year: "2025", role: "[Design systems lead]", team: "[Who you worked with]", time: "[5 months]", result: "[What changed, in one number]" },
+    { title: "[Project name]: an e-commerce redesign", tag: "Web / E-commerce", year: "2025", role: "[Product designer]", team: "[Who you worked with]", time: "[10 weeks]", result: "[What changed, in one number]" },
+    { title: "[Project name]: a dashboard for a logistics start-up", tag: "SaaS / Dashboard", year: "2024", role: "[Senior product designer]", team: "[Who you worked with]", time: "[4 months]", result: "[What changed, in one number]" },
+    { title: "[Project name]: a habit-tracking app", tag: "Mobile / App", year: "2024", role: "[Product designer]", team: "[Who you worked with]", time: "[8 weeks]", result: "[What changed, in one number]" },
+    { title: "[Project name]: a website for a ceramics studio", tag: "Web / Brand", year: "2024", role: "[Product designer]", team: "[Who you worked with]", time: "[7 weeks]", result: "[What changed, in one number]" }
+  ];
+  const DESC = "[One or two lines: the problem, your part in it, and what changed for the people who use it.]";
+  const GREYS = ["#d8d4d0", "#cfcac6", "#dbd7d3", "#d2cdc9", "#d6d2ce", "#ccc7c2", "#d9d5d1"];
+  const N = PROJECTS.length;
+  const two = (i) => String(i + 1).padStart(2, "0");
+  const split = (t) => { const k = t.indexOf(": "); return k < 0 ? [t, ""] : [t.slice(0, k), t.slice(k + 2)]; };
+
+  /* The row is a ring of covers turning in front of you, seen from close by. At rest it is the
+     reference's shape: the record in play large in the middle; the next one and the one before at
+     the edges, big and turned side-on; the rest round the back of the ring, small, beside the
+     middle. Scrolling turns the ring, so every cover travels round the circle: the next record
+     swings in from the edge to the middle, the one in play swings out to the other edge, and the
+     far ones pass round the back (the one going behind the middle fades out there).
+     A cover's place is its angle round the ring, counted in records from the one in play (`off`,
+     half a turn each way: -3.5 … 3.5 for seven). `ROW` is the shape at each whole place, out to the
+     back of the ring: how far out (a share of the width), how big, how far turned (degrees; past
+     90 a cover shows its back). In between, smooth curves run through those places, so a turn is
+     one even swing with no corners. Made for seven covers. */
+  const ROW = {
+    wide:  { x: [0, 0.285, 0.205, 0.135, 0], s: [1, 0.8, 0.21, 0.16, 0.13], r: [0, 72, 132, 154, 180] },
+    phone: { x: [0, 0.54, 0.42, 0.3, 0],     s: [1, 0.72, 0.21, 0.16, 0.13], r: [0, 72, 132, 154, 180] }
+  };
+  const PLACES = [0, 1, 2, 3].filter((k) => k < N / 2).concat(N / 2);   // the whole places, then the back of the ring
+  /* a smooth curve through the values at those places (monotone between them, so nothing
+     overshoots). `odd`: it runs on mirrored past the middle and the back (how far out, how far
+     turned), so it keeps its slope there; otherwise (size) it is level there. */
+  function curve(v, odd) {
+    v = v.slice(0, PLACES.length - 1).concat(v[v.length - 1]);
+    const n = PLACES.length, d = [], m = [];
+    for (let k = 0; k < n - 1; k++) d.push((v[k + 1] - v[k]) / (PLACES[k + 1] - PLACES[k]));
+    m[0] = odd ? d[0] : 0;
+    m[n - 1] = odd ? d[n - 2] : 0;
+    for (let k = 1; k < n - 1; k++) {
+      const h0 = PLACES[k] - PLACES[k - 1], h1 = PLACES[k + 1] - PLACES[k];
+      m[k] = d[k - 1] * d[k] <= 0 ? 0 : (3 * (h0 + h1)) / ((2 * h1 + h0) / d[k - 1] + (h1 + 2 * h0) / d[k]);
+    }
+    return (a) => {
+      let k = 0;
+      while (k < n - 2 && a > PLACES[k + 1]) k++;
+      const h = PLACES[k + 1] - PLACES[k], u = clamp01((a - PLACES[k]) / h), u2 = u * u, u3 = u2 * u;
+      return (2 * u3 - 3 * u2 + 1) * v[k] + (u3 - 2 * u2 + u) * h * m[k] + (3 * u2 - 2 * u3) * v[k + 1] + (u3 - u2) * h * m[k + 1];
+    };
+  }
+  const SHAPE = {};
+  for (const key in ROW) SHAPE[key] = { x: curve(ROW[key].x, true), s: curve(ROW[key].s, false), r: curve(ROW[key].r, true) };
+
+  const wk = $("wk"), stage = $("stage"), ui = $("ui"), cap = $("cap");
+  const covers = PROJECTS.map((pj, i) => {
+    const el = document.createElement("div");
+    el.className = "cv"; el.tabIndex = 0; el.setAttribute("role", "button");
+    el.setAttribute("aria-label", "( " + two(i) + " ) " + pj.title);
+    el.style.setProperty("--g", GREYS[i]);
+    stage.appendChild(el);
+    return { el, i, tf: "" };
+  });
+
+  /* sizes */
+  let W = 0, H = 0, S = 300, cx = 0, cy = 0, phone = false, start = 0, stepPx = 1;
+  function layout() {
+    W = stage.clientWidth; H = stage.clientHeight; phone = W <= 760;
+    S = phone ? Math.min(W * 0.62, H * 0.36) : Math.min(H * 0.36, W * 0.24);
+    stage.style.setProperty("--S", S.toFixed(1) + "px");
+    cx = W / 2; cy = H * (phone ? 0.3 : 0.33);
+    ui.style.top = (cy + S / 2 + (phone ? 22 : 28)) + "px";
+    stepPx = Math.round(innerHeight * 0.55);
+    wk.style.height = (H + (N - 1) * stepPx + Math.round(innerHeight * 0.4)) + "px";
+    start = wk.getBoundingClientRect().top + scrollY;
+    covers.forEach((c) => { c.tf = ""; });
+  }
+
+  /* every frame: the covers come up as the section arrives, then the ring turns with the scroll.
+     It goes round for good: `t` counts records from the first, `base` the whole turns the buttons
+     have taken it past either end of the scroll, and a record's place is counted the short way
+     round from the one in play. */
+  const mod = (a, n) => ((a % n) + n) % n;
+  let t = 0, base = 0, shown = -1, held = false;
+  const off = (i) => { let o = mod(i - t, N); if (o > N / 2) o -= N; return o; };
+  function frame() {
+    const top = wk.getBoundingClientRect().top;
+    const arrive = clamp01(1 - top / innerHeight);                 // 0 as the section's top meets the screen's foot, 1 at its top
+    const raw = clamp((scrollY - start) / stepPx, 0, N - 1);
+    const target = base + (reduce ? Math.round(raw) : Math.floor(raw) + smooth((raw - Math.floor(raw) - 0.2) / 0.6));   // it rests on each record
+    if (!held) { t += (target - t) * 0.12; if (Math.abs(target - t) < 0.0005) t = target; }
+    const K = phone ? SHAPE.phone : SHAPE.wide;
+    covers.forEach((c, i) => {
+      const o = off(i), a = Math.abs(o), sg = o < 0 ? -1 : 1;
+      let x = cx + sg * K.x(a) * W, y = cy, s = K.s(a), r = sg * K.r(a), op = 1 - smooth((a - (N / 2 - 0.35)) / 0.3);
+      /* arriving: each cover rises from a small stack below the middle, a beat after the last
+         (the ones round the back already facing away, so none flips over on the way) */
+      const e = reduce ? 1 : ease(clamp01((arrive - 0.25 - i * 0.05) / 0.5));
+      x = lerp(cx + (i - (N - 1) / 2) * S * 0.08, x, e); y = lerp(cy + H * 0.42, y, e);
+      s = lerp(0.18, s, e); r = lerp(a > 1.5 ? sg * 180 : 0, r, e); op *= smooth(e * 1.6);
+      const tf = "translate3d(" + (x - S / 2).toFixed(1) + "px," + (y - S / 2).toFixed(1) + "px,0) perspective(" + (S * 2.2).toFixed(0) + "px) rotateY(" + r.toFixed(2) + "deg) scale(" + s.toFixed(4) + ")";
+      if (tf !== c.tf) {
+        c.tf = tf; c.el.style.transform = tf;
+        c.el.style.opacity = op.toFixed(3);
+        c.el.style.pointerEvents = op < 0.05 ? "none" : "";
+        c.el.style.zIndex = String(Math.round(s * 100));            // nearer the front, on top
+        c.el.style.boxShadow = a < 0.6 ? "0 " + (24 * (1 - a / 0.6)).toFixed(1) + "px " + (50 * (1 - a / 0.6)).toFixed(1) + "px -20px rgba(43,10,18," + (0.35 * (1 - a / 0.6)).toFixed(3) + ")" : "none";
+      }
+    });
+    ui.style.opacity = smooth((arrive - 0.6) / 0.35).toFixed(3);
+    const k = mod(Math.round(t), N);
+    if (k !== shown) {
+      shown = k;
+      const [name, what] = split(PROJECTS[k].title);
+      cap.innerHTML = "<b>( " + two(k) + " )</b> " + esc(name) + "<br>" + esc(what) + ", " + esc(PROJECTS[k].year);
+    }
+    requestAnimationFrame(frame);
+  }
+  /* turn the row to place T (any whole number): the scroll holds one turn, so going past either
+     end starts a new turn and moves the scroll to the other end at once, which the held screen
+     hides; the row itself just turns on by one */
+  function goTo(T) {
+    T = Math.round(T);
+    const turn = T - mod(T, N), y = start + mod(T, N) * stepPx + 2;
+    if (turn !== base) { base = turn; scrollTo({ top: y, behavior: "instant" }); }
+    else scrollTo({ top: y, behavior: "smooth" });
+  }
+  const nearest = (i) => Math.round(t) + Math.round(off(i));        // record i, the short way round
+  const choose = (i) => (Math.abs(off(i)) < 0.3 ? open(i) : goTo(nearest(i)));
+  covers.forEach((c) => {
+    c.el.addEventListener("click", () => choose(c.i));
+    c.el.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); choose(c.i); } });
+  });
+  $("prev").addEventListener("click", () => goTo(Math.round(t) - 1));
+  $("next").addEventListener("click", () => goTo(Math.round(t) + 1));
+  $("play").addEventListener("click", () => open(mod(Math.round(t), N)));
+
+  /* ── putting a record on ──
+     The cover flies from the row to the top of the project's page (moved there and scaled from
+     where it was), rounds off, shrinks to the label as the grooves come up round it, and spins. */
+  const pd = $("pd"), bg = $("pdBg"), txt = $("pdTxt"), slot = $("pdSlot"), fly = $("fly"), spin = $("flySpin"), vinyl = $("flyVinyl"), cover = $("flyCover"), hole = $("flyHole");
+  let openIdx = -1, busy = false, spinAnim = null;
+  const EASE = "cubic-bezier(.65,0,.25,1)";
+  function page(i) {
+    const pj = PROJECTS[i], [name, what] = split(pj.title);
+    $("pdCount").textContent = two(i) + " / " + String(N).padStart(2, "0");
+    txt.innerHTML = '<p class="pd-now"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>( ' + two(i) + ' ) Now playing</p>' +
+      '<h2 class="pd-name" id="pdName">' + esc(name) + '</h2><p class="pd-what">' + esc(what) + '</p><p class="pd-meta">' + esc(pj.tag) + " · " + esc(pj.year) + "</p>" +
+      '<p class="pd-desc">' + esc(DESC) + '</p>' +
+      '<dl class="pd-cr"><div><dt>Role</dt><dd>' + esc(pj.role) + "</dd></div><div><dt>Team</dt><dd>" + esc(pj.team) + "</dd></div><div><dt>Time</dt><dd>" + esc(pj.time) + '</dd></div><div class="res"><dt>Result</dt><dd>' + esc(pj.result) + "</dd></div></dl>" +
+      '<div class="pd-pics"><div>[Picture]</div><div>[Picture]</div></div>' +
+      '<button type="button" class="pd-next" id="pdNext">Next record: ( ' + two((i + 1) % N) + " ) →</button>";
+    $("pdNext").addEventListener("click", () => { const n = (openIdx + 1) % N; close(() => { goTo(nearest(n)); setTimeout(() => open(n), 1200); }); });
+  }
+  function open(i) {
+    if (busy || openIdx >= 0) return;
+    busy = true; openIdx = i;
+    page(i);
+    const D = phone ? Math.min(W * 0.7, 300) : Math.min(innerHeight * 0.5, 440);
+    pd.style.setProperty("--D", D + "px");
+    pd.classList.add("on"); pd.scrollTop = 0;
+    document.body.style.overflow = "hidden";
+    const src = covers[i].el.getBoundingClientRect(), sr = slot.getBoundingClientRect(), base = $("pdIn").getBoundingClientRect();
+    Object.assign(fly.style, { left: (sr.left - base.left) + "px", top: (sr.top - base.top) + "px", width: D + "px", height: D + "px" });
+    cover.style.setProperty("--g", GREYS[i]);
+    covers[i].el.style.visibility = "hidden";
+    const dx = src.left + src.width / 2 - (sr.left + D / 2), dy = src.top + src.height / 2 - (sr.top + D / 2), sc = src.width / D;
+    const T = reduce ? 1 : 1500;
+    bg.animate([{ opacity: 0 }, { opacity: 1 }], { duration: T * 0.35, easing: "ease", fill: "forwards" });
+    fly.animate([{ transform: "translate(" + dx + "px," + dy + "px) scale(" + sc + ")" }, { transform: "none" }], { duration: T * 0.62, easing: EASE, fill: "both" });
+    cover.animate([{ borderRadius: (8 / sc) + "px", scale: 1 }, { borderRadius: "50%", scale: 1, offset: 0.42 }, { borderRadius: "50%", scale: 0.4 }], { duration: T, easing: "ease-in-out", fill: "both" });
+    vinyl.animate([{ opacity: 0, scale: 0.92 }, { opacity: 0, scale: 0.92, offset: 0.4 }, { opacity: 1, scale: 1 }], { duration: T, easing: "ease-out", fill: "both" });
+    hole.animate([{ opacity: 0 }, { opacity: 0, offset: 0.7 }, { opacity: 1 }], { duration: T, fill: "both" });
+    [...txt.children].forEach((el, k) => el.animate([{ opacity: 0, transform: "translateY(18px)" }, { opacity: 1, transform: "none" }], { duration: 700, delay: T * 0.55 + k * 70, easing: "cubic-bezier(.2,.8,.2,1)", fill: "forwards" }));
+    setTimeout(() => {
+      /* it plays: speeding up to a steady turn */
+      spinAnim = spin.animate([{ rotate: "0deg" }, { rotate: "360deg" }], { duration: 3600, iterations: Infinity });
+      spinAnim.playbackRate = 0.15;
+      const up = setInterval(() => { if (!spinAnim) return clearInterval(up); spinAnim.playbackRate = Math.min(1, spinAnim.playbackRate + 0.06); if (spinAnim.playbackRate >= 1) clearInterval(up); }, 60);
+      busy = false;
+      $("pdBack").focus({ preventScroll: true });
+    }, T * 0.85);
+  }
+  function close(then) {
+    if (busy || openIdx < 0) return;
+    busy = true;
+    const i = openIdx, T = reduce ? 1 : 1200;
+    /* lift it off: the turn slows to a stop at the top, then the record goes back to being the cover */
+    let a = 0;
+    if (spinAnim) { a = ((spinAnim.currentTime || 0) % 3600) / 3600 * 360; spinAnim.cancel(); spinAnim = null; }
+    const stop = spin.animate([{ rotate: a + "deg" }, { rotate: "360deg" }], { duration: reduce ? 1 : Math.max(250, (360 - a) * 2.2), easing: "cubic-bezier(.2,.6,.3,1)", fill: "forwards" });
+    stop.onfinish = () => {
+      const fr = fly.getBoundingClientRect(), dst = covers[i].el.getBoundingClientRect();
+      const dx = dst.left + dst.width / 2 - (fr.left + fr.width / 2), dy = dst.top + dst.height / 2 - (fr.top + fr.height / 2), sc = dst.width / fr.width;
+      fly.getAnimations().forEach((an) => an.cancel());
+      const pdTop = pd.scrollTop;
+      fly.animate([{ transform: "translate(0px," + 0 + "px)" }, { transform: "translate(" + dx + "px," + dy + "px) scale(" + sc + ")" }], { duration: T * 0.6, delay: T * 0.4, easing: EASE, fill: "both" });
+      cover.getAnimations().forEach((an) => an.cancel());
+      cover.animate([{ borderRadius: "50%", scale: 0.4 }, { borderRadius: "50%", scale: 1, offset: 0.5 }, { borderRadius: (8 / sc) + "px", scale: 1 }], { duration: T, easing: "ease-in-out", fill: "both" });
+      vinyl.getAnimations().forEach((an) => an.cancel());
+      vinyl.animate([{ opacity: 1 }, { opacity: 0, offset: 0.45 }, { opacity: 0 }], { duration: T, fill: "both" });
+      hole.getAnimations().forEach((an) => an.cancel());
+      hole.animate([{ opacity: 1 }, { opacity: 0, offset: 0.2 }, { opacity: 0 }], { duration: T, fill: "both" });
+      [...txt.children].forEach((el) => { el.getAnimations().forEach((an) => an.cancel()); el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 250, fill: "forwards" }); });
+      bg.getAnimations().forEach((an) => an.cancel());
+      bg.animate([{ opacity: 1 }, { opacity: 0 }], { duration: T * 0.45, delay: T * 0.5, fill: "forwards" }).onfinish = () => {
+        covers[i].el.style.visibility = "";
+        pd.classList.remove("on");
+        [fly, spin, cover, vinyl, hole].forEach((el) => el.getAnimations().forEach((an) => an.cancel()));
+        document.body.style.overflow = "";
+        openIdx = -1; busy = false;
+        if (then) then();
+      };
+      void pdTop;
+    };
+  }
+  $("pdBack").addEventListener("click", () => close());
+  addEventListener("keydown", (e) => {
+    if (openIdx >= 0) { if (e.key === "Escape") close(); return; }
+    const r = wk.getBoundingClientRect();
+    if (r.top > innerHeight * 0.3 || r.bottom < innerHeight * 0.7) return;
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); goTo(Math.round(t) + (e.key === "ArrowRight" ? 1 : -1)); }
+  });
+  addEventListener("resize", layout);
+  layout();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

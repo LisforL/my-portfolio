@@ -1,0 +1,95 @@
+<!doctype html><meta charset="utf-8"><body style="margin:0;background:#111"><canvas id="out"></canvas>
+<script>
+/* The dark wine-rose photo made over in the style of a faded zine page: its tones through a dusty
+   mauve map (blacks lifted, highlights held down), collage squares holding ghosted crops of the
+   photo itself, soft light leaks, crumpled-paper relief and stains, dust, scratches and grain. */
+const TAU = Math.PI * 2;
+const load = (src) => new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
+window.hist = async (src) => {
+  const im = await load(src), c = document.createElement("canvas"); c.width = im.naturalWidth; c.height = im.naturalHeight;
+  const x = c.getContext("2d"); x.drawImage(im, 0, 0); const p = x.getImageData(0, 0, c.width, c.height).data, h = new Array(8).fill(0);
+  for (let i = 0; i < p.length; i += 4) h[Math.min(7, (0.299 * p[i] + 0.587 * p[i + 1] + 0.114 * p[i + 2]) >> 5)]++;
+  return h.map((v) => (100 * v / (p.length / 4)).toFixed(1)).join(" ");
+};
+window.zine = async (V) => {
+  const im = await load(V.src), W = im.naturalWidth, H = im.naturalHeight;
+  const mk = () => { const c = document.createElement("canvas"); c.width = W; c.height = H; return c; };
+  let seed = V.seed;
+  const rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+  /* 1. the tone */
+  const base = mk(), bx = base.getContext("2d", { willReadFrequently: true });
+  bx.drawImage(im, 0, 0);
+  const id = bx.getImageData(0, 0, W, H), p = id.data, lut = new Float32Array(768);
+  for (let i = 0; i < 256; i++) {
+    const t = Math.pow(i / 255, V.gamma);
+    let k = 0; while (k < V.stops.length - 2 && t > V.stops[k + 1][0]) k++;
+    const [a, ca] = V.stops[k], [b, cb] = V.stops[k + 1], u = Math.min(1, Math.max(0, (t - a) / (b - a)));
+    for (let j = 0; j < 3; j++) lut[i * 3 + j] = ca[j] + (cb[j] - ca[j]) * u;
+  }
+  for (let i = 0; i < p.length; i += 4) {
+    const L = 0.299 * p[i] + 0.587 * p[i + 1] + 0.114 * p[i + 2], li = Math.round(L);
+    for (let j = 0; j < 3; j++) p[i + j] = lut[li * 3 + j] + (p[i + j] - L) * V.chroma;
+  }
+  bx.putImageData(id, 0, 0);
+  const toned = mk(); toned.getContext("2d").drawImage(base, 0, 0);
+  /* 2. the collage: squares of darker (or lighter) film, each holding a ghosted crop of the photo */
+  for (const P of V.panels) {
+    const x0 = P.r[0] * W, y0 = P.r[1] * H, w = (P.r[2] - P.r[0]) * W, h = (P.r[3] - P.r[1]) * H;
+    bx.save(); bx.beginPath(); bx.rect(x0, y0, w, h); bx.clip();
+    bx.globalCompositeOperation = P.light ? "screen" : "multiply"; bx.fillStyle = P.tint; bx.fillRect(x0, y0, w, h);
+    if (P.c) {
+      const cw = w / P.c[2], ch = h / P.c[2], cx = P.c[0] * W - cw / 2, cy = P.c[1] * H - ch / 2;
+      bx.globalCompositeOperation = P.light ? "screen" : "source-over"; bx.globalAlpha = P.a;
+      bx.filter = P.f || "none";
+      bx.drawImage(toned, cx, cy, cw, ch, x0, y0, w, h);
+      bx.filter = "none";
+    }
+    bx.restore();
+  }
+  /* 3. light leaks */
+  bx.globalCompositeOperation = "screen";
+  for (const L of V.leaks) {
+    const g = bx.createRadialGradient(L.x * W, L.y * H, 0, L.x * W, L.y * H, L.r * W);
+    g.addColorStop(0, "rgba(" + L.c + "," + L.a + ")"); g.addColorStop(1, "rgba(" + L.c + ",0)");
+    bx.fillStyle = g; bx.fillRect(0, 0, W, H);
+  }
+  bx.globalCompositeOperation = "source-over";
+  /* 4. the paper: a crumpled relief and slow stains, each centred on mid grey and laid on in soft light */
+  const relief = async (filter, k) => {
+    const svg = "<svg xmlns='http://www.w3.org/2000/svg' width='" + W + "' height='" + H + "'><filter id='f' x='0' y='0' width='100%' height='100%' color-interpolation-filters='sRGB'>" + filter + "</filter><rect width='100%' height='100%' filter='url(#f)'/></svg>";
+    const si = await load("data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg));
+    const c = mk(), x = c.getContext("2d", { willReadFrequently: true }); x.drawImage(si, 0, 0);
+    const d = x.getImageData(0, 0, W, H), q = d.data; let m = 0;
+    for (let i = 0; i < q.length; i += 4) m += q[i];
+    m /= q.length / 4;
+    for (let i = 0; i < q.length; i += 4) { const v = Math.max(0, Math.min(255, 128 + (q[i] - m) * k)); q[i] = q[i + 1] = q[i + 2] = v; q[i + 3] = 255; }
+    x.putImageData(d, 0, 0); return c;
+  };
+  const crumple = await relief("<feTurbulence type='fractalNoise' baseFrequency='" + V.paperFreq + "' numOctaves='5' seed='" + V.paperSeed + "'/><feDiffuseLighting lighting-color='#fff' surfaceScale='" + V.paperRelief + "' diffuseConstant='1'><feDistantLight azimuth='235' elevation='48'/></feDiffuseLighting>", V.paperK);
+  bx.globalCompositeOperation = "soft-light"; bx.globalAlpha = V.paper; bx.drawImage(crumple, 0, 0);
+  const stains = await relief("<feTurbulence type='fractalNoise' baseFrequency='0.0022' numOctaves='4' seed='" + (V.paperSeed + 5) + "'/><feColorMatrix type='saturate' values='0'/>", V.stainK);
+  bx.globalAlpha = V.stain; bx.drawImage(stains, 0, 0);
+  const fibre = await relief("<feTurbulence type='fractalNoise' baseFrequency='0.9 0.22' numOctaves='2' seed='" + (V.paperSeed + 9) + "'/><feColorMatrix type='saturate' values='0'/>", 1.6);
+  bx.globalAlpha = V.fibre; bx.drawImage(fibre, 0, 0);
+  bx.globalCompositeOperation = "source-over"; bx.globalAlpha = 1;
+  /* 5. dust and scratches */
+  for (let n = 0; n < V.dust; n++) {
+    const light = rnd() < 0.8;
+    bx.fillStyle = light ? "rgba(238,226,231,0.4)" : "rgba(38,24,32,0.12)";
+    bx.beginPath(); bx.arc(rnd() * W, rnd() * H, 0.5 + rnd() * rnd() * 2.4, 0, TAU); bx.fill();
+  }
+  for (let n = 0; n < V.scratches; n++) {
+    let x = rnd() * W, y = rnd() * H, a = rnd() * Math.PI * 2;
+    bx.strokeStyle = "rgba(240,228,233," + (0.08 + rnd() * 0.12).toFixed(3) + ")"; bx.lineWidth = 0.6 + rnd() * 0.7;
+    bx.beginPath(); bx.moveTo(x, y);
+    for (let s = 0, len = 30 + rnd() * 240; s < len; s += 5) { a += (rnd() - 0.5) * 0.3; x += Math.cos(a) * 5; y += Math.sin(a) * 5; bx.lineTo(x, y); }
+    bx.stroke();
+  }
+  /* 6. grain */
+  const gd = bx.getImageData(0, 0, W, H), g = gd.data;
+  for (let i = 0; i < g.length; i += 4) { const n = (rnd() - 0.5) * V.grain; g[i] += n; g[i + 1] += n; g[i + 2] += n; }
+  bx.putImageData(gd, 0, 0);
+  const out = document.getElementById("out"); out.width = W; out.height = H; out.getContext("2d").drawImage(base, 0, 0);
+  return out.toDataURL("image/jpeg", V.q);
+};
+</script>

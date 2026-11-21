@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Selected work · stack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500&display=swap">
+<style>
+/* The Selected work as a stack of record sleeves, after a reference the user sent (a studio's
+   cases page). The six covers stand one behind the other, upright, in perspective, overlapping
+   on one screen, large. Nothing moves with the scroll. Point at a cover and it comes to the
+   middle, standing straight; the covers behind it stay under a paper veil, the ones in front
+   gather close below it, tipping towards you. Its kind and name show on the left, and a round
+   "View project" follows the pointer. On a phone, tap (a second tap opens it).
+   Clicking a cover opens its project, and the record is the way in: the sleeve slides down,
+   its record slides up out of it, then flies to the top of the project's page as the page comes
+   up round it, and plays there (it spins, a slim tonearm swings onto it) while the details come
+   in. "Back to the work" (or Esc) lifts the arm, flies the record back over its sleeve and
+   sinks it in. No shadows, square corners. The covers are each project's `img`, or until there
+   is one a solid colour from the site's own. Words in [brackets] are placeholders. */
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-Ultralight.otf") format("opentype"); font-weight: 200; font-style: normal; }
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-UltralightItalic.otf") format("opentype"); font-weight: 200; font-style: italic; }
+:root {
+  --paper: #faf8f5; --ink: #400d1b; --wine: #400d1b; --ink-soft: #6c454f; --accent: #8760af;
+  --line: #dbd4d1; --thistle: #cdb9dd;
+  --serif: "PP Editorial New", "Instrument Serif", "Times New Roman", serif;
+  --body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", Menlo, monospace;
+  --pad: clamp(16px, 1.25vw, 24px);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+button { font: inherit; color: inherit; }
+
+/* a stand-in for the site's bar */
+.bar { position: fixed; z-index: 50; left: 20px; right: 20px; top: 12px; height: 52px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding: 0 16px;
+  background: rgba(250, 248, 245, 0.94); border: 1px solid var(--line); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.bar-n { font: 200 22px/1 var(--serif); white-space: nowrap; }
+.bar-n em { font-style: italic; }
+.bar-l { display: flex; gap: clamp(24px, 7vw, 120px); font-size: 12px; }
+.bar-l span::after { content: attr(data-n); font: 500 8px/1 var(--mono); vertical-align: super; color: var(--accent); margin-left: 2px; }
+.bar-r { justify-self: end; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
+.bar-r:hover { color: var(--ink); }
+@media (max-width: 760px) { .bar { left: 10px; right: 10px; grid-template-columns: 1fr auto; } .bar-l { display: none; } }
+
+/* stand-ins for the hero above and the About below */
+.hero, .after { display: grid; place-content: center; justify-items: center; gap: 18px; background: var(--wine); color: var(--paper); text-align: center; }
+.hero { height: 100vh; height: 100svh; }
+.after { height: 80vh; }
+.hero h1 { margin: 0; font: 200 clamp(48px, 7vw, 120px)/0.95 var(--serif); letter-spacing: -0.02em; }
+.hero h1 em { font-style: italic; color: var(--thistle); }
+.hero p, .after p { margin: 0; font: 500 11px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: rgba(250, 248, 245, 0.6); }
+
+/* the work: one screen */
+.ws { position: relative; height: 100vh; height: 100svh; }
+.ws-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.card { position: absolute; left: 0; top: 0; display: block; overflow: hidden; background: #ece7ec; transform-origin: 50% 0; will-change: transform, opacity;
+  outline: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.card::after { content: ""; position: absolute; inset: 0; background: var(--paper); opacity: var(--wash, 0); pointer-events: none; }   /* washed back towards the paper */
+.card img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; pointer-events: none; -webkit-user-select: none; user-select: none; }
+.card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* the words round it, in the reference's places and sizes */
+.side { position: absolute; z-index: 2100; top: 50%; transform: translateY(-50%); margin: 0; pointer-events: none; }
+.side-l { left: var(--pad); width: min(20vw, 260px); height: 64px; }
+.side-r { right: var(--pad); text-align: right; font-size: clamp(16px, 1.25vw, 24px); line-height: 1.2; }
+.say { position: absolute; left: 0; bottom: 0; width: 100%; transition: opacity 0.3s ease; }
+.say.off { opacity: 0; }
+.ix { margin: 0 0 12px; font: 400 10.5px/1 var(--mono); letter-spacing: 0.02em; }
+.lbl, .name { margin: 0; font-size: clamp(16px, 1.25vw, 24px); line-height: 1.2; }
+.kind { margin: 0 0 6px; font-size: clamp(12px, 0.75vw, 14px); line-height: 1.2; color: var(--ink-soft); }
+.foot { position: absolute; z-index: 2100; bottom: var(--pad); margin: 0; }
+.tag { left: var(--pad); font: 400 10px/1.6 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; pointer-events: none; }
+.all { right: var(--pad); display: inline-flex; align-items: center; gap: 8px; padding: 9px 12px 8px; background: #efebe9; color: var(--ink);
+  font: 500 10px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background-color 0.25s ease, color 0.25s ease; }
+.all:hover, .all:focus-visible { background: var(--ink); color: var(--paper); outline: none; }
+
+/* the round "View project" that follows the pointer over an open cover */
+.cur { position: fixed; z-index: 2200; left: 0; top: 0; width: clamp(80px, 6.4vw, 120px); height: clamp(80px, 6.4vw, 120px); border-radius: 50%; background: var(--accent); color: var(--paper);
+  display: grid; place-content: center; text-align: center; font: 500 clamp(9px, 0.65vw, 12px)/1.35 var(--mono); letter-spacing: 0.08em; text-transform: uppercase;
+  pointer-events: none; transform: scale(0); will-change: transform; }
+
+/* ── the project's page ── */
+.pd { position: fixed; inset: 0; z-index: 3000; visibility: hidden; pointer-events: none; }
+.pd.shown { visibility: visible; }
+.pd.on { pointer-events: auto; }
+.pd-bg { position: absolute; inset: 0; background: var(--paper); opacity: 0; }
+.pd-scroll { position: absolute; inset: 0; overflow-y: auto; overscroll-behavior: contain; }
+.pd-in { max-width: 860px; margin: 0 auto; padding: 108px 24px 120px; }
+.pd-slot { width: var(--dp, 380px); height: var(--dp, 380px); margin: 0 auto 64px; }
+.pd-txt > * { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.8s cubic-bezier(.16, 1, .3, 1); }
+.pd.on .pd-txt > * { opacity: 1; transform: none; }
+.pd.on .pd-txt > :nth-child(2) { transition-delay: 0.06s; } .pd.on .pd-txt > :nth-child(3) { transition-delay: 0.12s; }
+.pd.on .pd-txt > :nth-child(4) { transition-delay: 0.18s; } .pd.on .pd-txt > :nth-child(5) { transition-delay: 0.24s; }
+.pd.on .pd-txt > :nth-child(6) { transition-delay: 0.3s; }
+.pd-txt { text-align: center; }
+.pd-k { margin: 0 0 18px; font: 500 11px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.pd-t { margin: 0; font: 200 clamp(44px, 6vw, 84px)/0.95 var(--serif); letter-spacing: -0.015em; }
+.pd-w { margin: 12px 0 0; font: italic 200 clamp(22px, 2.2vw, 32px)/1.15 var(--serif); color: var(--accent); }
+.pd-d { margin: 30px auto 0; max-width: 54ch; font-size: 16px; line-height: 1.6; color: var(--ink-soft); }
+.pd-c { margin: 44px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: left; }
+.pd-c > div { padding: 16px 16px 18px 0; }
+.pd-c > div + div { padding-left: 16px; border-left: 1px solid var(--line); }
+.pd-c dt { font: 500 10px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+.pd-c dd { margin: 10px 0 0; font-size: 15px; line-height: 1.35; }
+.pd-c .res dd { color: var(--accent); }
+.pd-pics { margin-top: 48px; display: grid; gap: 16px; }
+.pd-pics span { display: block; aspect-ratio: 16 / 10; background: #e4ddd6; }
+.pd-pics span + span { background: #ebe5df; }
+.pd-bar { position: fixed; z-index: 3002; left: 20px; right: 20px; top: 12px; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 12px 0 10px;
+  background: rgba(250, 248, 245, 0.94); border: 1px solid var(--line); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity 0.4s ease, transform 0.6s cubic-bezier(.16, 1, .3, 1), visibility 0s linear 0.4s; }
+.pd-bar.on { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.pd-back { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px 8px; border: 1px solid rgba(64, 13, 27, 0.22); border-radius: 999px; background: none; cursor: pointer;
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease; }
+.pd-back:hover, .pd-back:focus-visible { background: var(--ink); border-color: var(--ink); color: var(--paper); outline: none; }
+.pd-no { font: 500 11px/1 var(--mono); letter-spacing: 0.12em; color: var(--ink-soft); }
+
+/* the record, while it travels and plays: drawn over everything, clipped to what has come out
+   of the sleeve (`clip-path`, set as it goes) */
+.fx { position: fixed; inset: 0; z-index: 3001; pointer-events: none; visibility: hidden; }
+.fx.shown { visibility: visible; }
+.fx-rec { position: absolute; left: 0; top: 0; width: var(--dp, 380px); height: var(--dp, 380px); transform-origin: 0 0; will-change: transform; }
+.fx-spin { position: absolute; inset: 0; border-radius: 50%; will-change: transform;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 0 13.6%, #0b0b0b 13.8% 16%, transparent 16.2%),
+    radial-gradient(circle at 50% 50%, transparent 0 34%, rgba(255, 255, 255, 0.035) 34.4% 35%, transparent 35.4% 47.8%, rgba(255, 255, 255, 0.05) 48.2% 48.8%, transparent 49.2%),
+    radial-gradient(circle at 50% 50%, #161616 0 40%, #121212 70%, #0e0e0e 100%); }
+.fx-lab { position: absolute; left: 50%; top: 50%; width: 27%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: var(--lab, #8760af); color: var(--ink);
+  display: grid; place-content: center; justify-items: center; gap: 0.35em; font: 500 calc(var(--dp, 380px) * 0.024)/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; }
+.fx-lab::after { content: ""; position: absolute; left: 50%; top: 50%; width: 7%; aspect-ratio: 1; min-width: 3px; transform: translate(-50%, -50%); border-radius: 50%; background: var(--paper); }
+.fx-lab b { font-weight: 500; transform: translateY(-140%); }
+.fx-lab i { font-style: normal; opacity: 0.75; transform: translateY(140%); }
+.fx-sheen { position: absolute; inset: 0; border-radius: 50%;
+  background: conic-gradient(from 320deg, transparent 0 6%, rgba(255, 255, 255, 0.06) 12%, transparent 19% 52%, rgba(255, 255, 255, 0.04) 58%, transparent 65% 100%); }
+/* the tonearm: a slim arm from a pivot beside the record, swung onto it while it plays */
+.arm { position: absolute; left: 104%; top: 2%; width: 0; height: 0; opacity: 0; transition: opacity 0.4s ease; }
+.fx.playing .arm { opacity: 1; }
+.arm-r { position: absolute; left: -1.5px; top: 0; width: 3px; height: calc(var(--dp, 380px) * 0.7); background: #b9aea8; border-radius: 2px; transform-origin: 50% 0; will-change: transform; }
+.arm-r::after { content: ""; position: absolute; left: 50%; bottom: -2px; width: calc(var(--dp, 380px) * 0.035); height: calc(var(--dp, 380px) * 0.06); transform: translateX(-50%); background: #b9aea8; border-radius: 2px; }
+.arm-p { position: absolute; left: 0; top: 0; width: calc(var(--dp, 380px) * 0.075); aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: var(--paper); box-shadow: inset 0 0 0 2px #b9aea8; }
+
+/* phones: the words above and below the stack */
+@media (max-width: 760px) {
+  .side { top: 80px; transform: none; }
+  .side-l { width: 62vw; height: 44px; }
+  .foot { bottom: 14px; }
+  .tag { display: none; }
+  .all { left: var(--pad); right: auto; }
+  .cur { display: none; }
+  .pd-in { padding-top: 96px; }
+  .pd-c { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pd-c > div:nth-child(3) { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+  .pd-c > div:nth-child(4) { border-top: 1px solid var(--line); }
+  .pd-bar { left: 10px; right: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .say, .pd-txt > *, .pd-bar { transition: none !important; } }
+</style>
+</head>
+<body>
+<header class="bar">
+  <span class="bar-n">Trinh Trinh <em>Nguyen</em></span>
+  <nav class="bar-l" aria-label="Sections"><span data-n="01.">Work</span><span data-n="02.">About</span><span data-n="03.">Contact</span></nav>
+  <a class="bar-r" href="../index.html">← The site</a>
+</header>
+<section class="hero" aria-label="Hero, a stand-in">
+  <p>The hero (a stand-in)</p>
+  <h1>Design that stays <em>with</em> you.</h1>
+  <p>Scroll down</p>
+</section>
+
+<section class="ws" id="ws" aria-label="Selected work">
+  <div class="ws-stage" id="stage">
+    <div class="side side-l" aria-live="polite">
+      <div class="say" id="sayRest"><p class="ix" id="ix">01\06</p><p class="lbl">Selected work</p></div>
+      <div class="say off" id="sayOpen"><p class="kind" id="oKind"></p><p class="name" id="oName"></p></div>
+    </div>
+    <p class="side side-r" id="count">6 projects</p>
+    <p class="foot tag">Records I’d<br>play again.</p>
+    <a class="foot all" href="#" onclick="return false">↳ View all work</a>
+  </div>
+</section>
+
+<section class="after" aria-label="About, a stand-in"><p>The About (a stand-in)</p></section>
+<div class="cur" id="cur" aria-hidden="true"><span>View<br>project</span></div>
+
+<!-- the project's page, and the record that carries you into it -->
+<div class="pd" id="pd" role="dialog" aria-modal="true" aria-labelledby="pdT">
+  <div class="pd-bg" id="pdBg"></div>
+  <div class="pd-scroll" id="pdScroll"><div class="pd-in"><div class="pd-slot" id="pdSlot" aria-hidden="true"></div><div class="pd-txt" id="pdTxt"></div></div></div>
+</div>
+<div class="fx" id="fx" aria-hidden="true">
+  <div class="fx-rec" id="fxRec">
+    <div class="fx-spin" id="fxSpin"><span class="fx-lab" id="fxLab"><b id="fxNo">( 01 )</b><i>Side A</i></span></div>
+    <div class="fx-sheen"></div>
+    <div class="arm"><div class="arm-r" id="armR"></div><div class="arm-p"></div></div>
+  </div>
+</div>
+<div class="pd-bar" id="pdBar"><button type="button" class="pd-back" id="pdBack">← Back to the work</button><span class="pd-no" id="pdNo">01 / 06</span></div>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const clamp01 = (x) => Math.max(0, Math.min(1, x));
+  const smooth = (x) => { x = clamp01(x); return x * x * (3 - 2 * x); };
+  const ease = (x) => { x = clamp01(x); return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* the six projects (as on the site); words in [brackets] are placeholders. Until a project has
+     its own picture (add img: "path.jpg"), its cover is a solid colour from the site's own;
+     `label` is its record's label, a colour that stands out from the sleeve. */
+  const PROJECTS = [
+    { title: "[Project name]: a mobile app for slow travel", tag: "Mobile / App", year: "2026", role: "[Lead product designer]", team: "[Who you worked with]", time: "[12 weeks]", result: "[What changed, in one number]", color: "#cdb9dd", label: "#8760af" },
+    { title: "[Project name]: a booking flow for a wellness studio", tag: "Web / UX", year: "2026", role: "[Product designer]", team: "[Who you worked with]", time: "[6 weeks]", result: "[What changed, in one number]", color: "#400d1b", label: "#cdb9dd" },
+    { title: "[Project name]: a design system for a fintech team", tag: "Design System", year: "2025", role: "[Design systems lead]", team: "[Who you worked with]", time: "[5 months]", result: "[What changed, in one number]", color: "#e4ddd6", label: "#8760af" },
+    { title: "[Project name]: an e-commerce redesign", tag: "Web / E-commerce", year: "2025", role: "[Product designer]", team: "[Who you worked with]", time: "[10 weeks]", result: "[What changed, in one number]", color: "#8760af", label: "#cdb9dd" },
+    { title: "[Project name]: a dashboard for a logistics start-up", tag: "SaaS / Dashboard", year: "2024", role: "[Senior product designer]", team: "[Who you worked with]", time: "[4 months]", result: "[What changed, in one number]", color: "#beffea", label: "#8760af" },
+    { title: "[Project name]: a habit-tracking app", tag: "Mobile / App", year: "2024", role: "[Product designer]", team: "[Who you worked with]", time: "[8 weeks]", result: "[What changed, in one number]", color: "#6e2a3d", label: "#cdb9dd" }
+  ];
+  const DESC = "[One or two lines: the problem, your part in it, and what changed for the people who use it.]";
+  const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+  const N = PROJECTS.length;
+  const two = (i) => String(i + 1).padStart(2, "0");
+  const split = (t) => { const k = t.indexOf(": "); return k < 0 ? [t, ""] : [t.slice(0, k), t.slice(k + 2)]; };
+  $("count").textContent = N + " projects";
+
+  const ws = $("ws"), stage = $("stage"), cur = $("cur");
+  const pd = $("pd"), pdBg = $("pdBg"), pdScroll = $("pdScroll"), pdSlot = $("pdSlot"), pdBar = $("pdBar");
+  const fx = $("fx"), fxRec = $("fxRec"), fxSpin = $("fxSpin"), armR = $("armR");
+  const cards = PROJECTS.map((pj, i) => {
+    const el = document.createElement("a");
+    el.className = "card"; el.href = "#";
+    el.setAttribute("aria-label", "( " + two(i) + " ) " + pj.title + ", " + pj.tag + ", " + pj.year + ". Open the project");
+    el.innerHTML = '<img alt="">';
+    el.dataset.i = i;
+    el.style.backgroundColor = pj.color;
+    stage.appendChild(el);
+    const img = el.firstChild;
+    if (pj.img) img.src = pj.img; else img.remove();
+    return { el, i, u: N - 1 - i, open: 0, tf: "", op: "", z: "" };   // 01 at the top, the last in front
+  });
+
+  /* The stack, measured off the reference. A cover `u` places behind the front one is scaled by
+     s(u) = 1 / (1 + RATE·u) (the far one about two thirds of the front one), and its top edge
+     lies on the line from the front one's top (yF) towards a vanishing point high above (yV), so
+     the slices between the tops widen towards the foot. The covers are large record sleeves, a
+     little shorter than square (AR), the front one about 60% of the width and running off the
+     foot; at rest each leans a little towards you (LEAN). Opening one brings it to the middle,
+     large (SO, yO); the ones behind it stay where they are under a paper veil (BEHIND); the ones
+     in front gather close below it, a little wider each, tipping towards you (TIP). */
+  const RATE = (1 / 0.69 - 1) / Math.max(1, N - 1), LEAN = 8, TIP = 30, BEHIND = 0.32, AR = 0.86, DISC = 0.94;
+  let W = 0, H = 0, W0 = 0, CH = 0, yF = 0, yV = 0, phone = false, SO = 0, yO = 0, DP = 380;
+  function layout() {
+    W = stage.clientWidth; H = stage.clientHeight; phone = W <= 760;
+    W0 = phone ? W * 0.84 : Math.min(W * 0.6, H * 1.12);
+    CH = W0 * AR;
+    const far = phone ? H * 0.24 : H * 0.11, sFar = 1 / (1 + RATE * (N - 1));
+    yF = phone ? H * 0.6 : H * 0.62;
+    yV = (far - sFar * yF) / (1 - sFar);
+    /* the open cover: large, in the middle of the room under the bar */
+    const top0 = phone ? 150 : 76, room = H - top0 - 20;
+    SO = phone ? Math.min(W - 32, room * 0.8 / AR) : Math.min(room * 0.9 / AR, W * 0.6);
+    yO = top0 + (room - SO * AR) / 2;
+    /* the record's size on the project's page */
+    DP = phone ? Math.min(W * 0.62, 260) : Math.min(H * 0.44, 420);
+    document.documentElement.style.setProperty("--dp", DP.toFixed(1) + "px");
+    cards.forEach((c) => { c.el.style.width = W0.toFixed(1) + "px"; c.el.style.height = CH.toFixed(1) + "px"; c.tf = ""; });
+  }
+  const sAt = (u) => 1 / (1 + RATE * u);
+  const yAt = (u) => yV + (yF - yV) * sAt(u);
+  function rest(c) { return { y: yAt(c.u), sc: sAt(c.u), tilt: -LEAN }; }
+  function moved(c, h) {
+    if (c === h) return { y: yO, sc: SO / W0, tilt: 0 };                // to the middle, standing straight
+    if (c.u > h.u) return rest(c);                                      // behind it: stays (under a veil)
+    const k = h.u - c.u - 1;                                            // in front of it: close below its foot
+    return { y: yO + SO * AR + H * 0.014 + k * H * (phone ? 0.075 : 0.1), sc: (SO / W0) * (1.2 + 0.07 * k), tilt: -TIP };
+  }
+
+  /* Everything that follows the pointer moves on a soft spring (critically damped: it sets off
+     gently, never overshoots and settles without a jolt). `w` sets how quick. */
+  function spring(o, key, target, dt, w) {
+    const x = o[key] - target, v = o[key + "V"] || 0, e = Math.exp(-w * dt), k = v + w * x;
+    o[key] = target + (x + k * dt) * e;
+    o[key + "V"] = (v - w * k * dt) * e;
+  }
+  /* which cover is open: the one under the pointer, once it has stayed under it a moment */
+  const pick = { cur: -1, cand: -1, since: 0 };
+  function settle(cand, now) {
+    if (cand !== pick.cand) { pick.cand = cand; pick.since = now; }
+    const wait = cand < 0 ? 140 : pick.cur < 0 ? 30 : 90;
+    if (pick.cand !== pick.cur && now - pick.since >= wait) pick.cur = pick.cand;
+    return pick.cur;
+  }
+
+  /* the pointer, a tap, the keyboard */
+  const ptr = { x: -1, y: -1, on: false, cx: -9999, cy: -9999, k: 0 };
+  addEventListener("pointermove", (e) => { if (e.pointerType === "mouse") { ptr.x = e.clientX; ptr.y = e.clientY; ptr.on = true; } }, { passive: true });
+  document.addEventListener("pointerleave", () => { ptr.on = false; });
+  let tapped = -1, focused = -1;
+  stage.addEventListener("click", (e) => {
+    const card = e.target.closest(".card");
+    if (!card) return;
+    e.preventDefault();
+    const i = +card.dataset.i;
+    if (phone && tapped !== i) { tapped = i; return; }                // on a phone: the first tap opens the cover, the second plays it
+    startPlay(i);
+  });
+  stage.addEventListener("focusin", (e) => { const c = e.target.closest(".card"); focused = c ? +c.dataset.i : -1; });
+  stage.addEventListener("focusout", () => { focused = -1; });
+
+  /* ── Playing a record: the way into a project ──
+     out     the open sleeve slides down to make room, its record slides up out of it;
+     fly     the record flies to the top of the project's page as the page comes up round it,
+             and what was hidden inside the sleeve shows as the sleeve goes;
+     on      it plays there: spins up, the tonearm swings on, the details come in;
+     off     back: the arm lifts, it slows to a stop, the details go;
+     return  it flies back over its sleeve as the page goes and the work comes back;
+     in      it sinks into its sleeve, which rises back to the middle. */
+  let play = null;
+  const T = (ms) => (reduce ? ms * 0.2 : ms);
+  function fillPage(i) {
+    const pj = PROJECTS[i], [name, what] = split(pj.title);
+    $("pdTxt").innerHTML = '<p class="pd-k">( ' + two(i) + " ) &nbsp;—&nbsp; " + esc(pj.tag) + " &nbsp;·&nbsp; " + esc(pj.year) + "</p>" +
+      '<h2 class="pd-t" id="pdT">' + esc(name) + "</h2>" + '<p class="pd-w">' + esc(what) + "</p>" + '<p class="pd-d">' + esc(DESC) + "</p>" +
+      '<dl class="pd-c"><div><dt>Role</dt><dd>' + esc(pj.role) + "</dd></div><div><dt>Team</dt><dd>" + esc(pj.team) + "</dd></div><div><dt>Time</dt><dd>" +
+      esc(pj.time) + '</dd></div><div class="res"><dt>Result</dt><dd>' + esc(pj.result) + "</dd></dl>" +
+      '<div class="pd-pics"><span></span><span></span></div>';
+    $("pdNo").textContent = two(i) + " / " + String(N).padStart(2, "0");
+    $("fxNo").textContent = "( " + two(i) + " )";
+    fxRec.style.setProperty("--lab", pj.label);
+  }
+  function startPlay(i) {
+    if (play) return;
+    pick.cur = pick.cand = i;
+    fillPage(i);
+    pdScroll.scrollTop = 0;
+    document.documentElement.style.overflow = "hidden";                // the page holds still while the record is out
+    const top = stage.getBoundingClientRect().top;
+    play = { i, phase: "prep", t0: performance.now(), top, shift: 0, shiftTo: 0, angle: -20, speed: 0, arm: -8, armV: 0, from: null };
+    fx.classList.add("shown"); pd.classList.add("shown");
+  }
+  function stopPlay() {
+    if (!play || play.phase !== "on") return;
+    play.phase = "off"; play.t0 = performance.now();
+    fx.classList.remove("playing"); pd.classList.remove("on"); pdBar.classList.remove("on");
+  }
+  $("pdBack").addEventListener("click", stopPlay);
+  addEventListener("keydown", (e) => { if (e.key === "Escape") stopPlay(); });
+
+  function placeRecord(cx, cy, d, clipY) {
+    fxRec.style.transform = "translate3d(" + (cx - d / 2).toFixed(1) + "px," + (cy - d / 2).toFixed(1) + "px,0) scale(" + (d / DP).toFixed(4) + ")";
+    fx.style.clipPath = clipY >= innerHeight - 0.5 ? "none" : "inset(0 0 " + Math.max(0, innerHeight - clipY).toFixed(1) + "px 0)";
+  }
+  function stepPlay(now, dt) {
+    if (!play) return;
+    const c = cards[play.i], el = now - play.t0;
+    const Ds = SO * DISC, cx = W / 2 + stage.getBoundingClientRect().left;
+    const sleeveTop = () => play.top + yO + play.shift;                   // the open sleeve's top edge, on screen
+    const hidden = () => sleeveTop() + Ds / 2 + 4;                          // the record's centre, all inside the sleeve
+    const halfOut = () => sleeveTop();                                      // half out
+    const slot = () => { const r = pdSlot.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; };
+    /* spin and arm */
+    const spinning = play.phase === "on";
+    play.speed += ((spinning && !reduce ? 150 : 0) - play.speed) * (1 - Math.exp(-dt * (spinning ? 1.6 : 2.6)));
+    play.angle += play.speed * dt;
+    spring(play, "arm", play.phase === "on" && el > T(250) ? 21 : -8, dt, 7);
+    fxSpin.style.transform = "rotate(" + play.angle.toFixed(2) + "deg)";
+    armR.style.transform = "rotate(" + play.arm.toFixed(2) + "deg)";
+
+    if (play.phase === "prep") {                                           // wait for the cover to stand open in the middle
+      placeRecord(cx, hidden(), Ds, sleeveTop());
+      if (c.open > 0.95 || reduce) {
+        play.shiftTo = Math.max(0, Ds / 2 + (phone ? 120 : 30) - (play.top + yO));
+        play.phase = "out"; play.t0 = now;
+      }
+    } else if (play.phase === "out") {
+      const p = el / T(800);
+      play.shift = play.shiftTo * ease(p / 0.85);
+      placeRecord(cx, lerp(hidden(), halfOut(), ease((el - T(120)) / T(680))), Ds, sleeveTop());
+      if (p >= 1) { play.phase = "fly"; play.t0 = now; }
+    } else if (play.phase === "fly") {
+      const p = el / T(1050), e = ease(p), [sx, sy] = slot();
+      placeRecord(lerp(cx, sx, e), lerp(halfOut(), sy, e), lerp(Ds, DP, e), lerp(sleeveTop(), innerHeight, ease(p / 0.55)));
+      pdBg.style.opacity = smooth(p / 0.6).toFixed(3);
+      if (p >= 1) { play.phase = "on"; play.t0 = now; fx.classList.add("playing"); pd.classList.add("on"); pdBar.classList.add("on"); $("pdBack").focus({ preventScroll: true }); }
+    } else if (play.phase === "on") {
+      const [sx, sy] = slot();
+      placeRecord(sx, sy, DP, innerHeight);
+    } else if (play.phase === "off") {
+      const [sx, sy] = slot();
+      placeRecord(sx, sy, DP, innerHeight);
+      if (el >= T(450)) { play.phase = "return"; play.t0 = now; play.from = slot(); }
+    } else if (play.phase === "return") {
+      const p = el / T(950), e = ease(p), [fx0, fy0] = play.from;
+      placeRecord(lerp(fx0, cx, e), lerp(fy0, halfOut(), e), lerp(DP, Ds, e), lerp(innerHeight, sleeveTop(), ease((p - 0.45) / 0.55)));
+      pdBg.style.opacity = (1 - smooth((p - 0.3) / 0.7)).toFixed(3);
+      if (p >= 1) { play.phase = "in"; play.t0 = now; }
+    } else if (play.phase === "in") {
+      const p = el / T(700);
+      placeRecord(cx, lerp(halfOut(), hidden(), ease(p / 0.8)), Ds, sleeveTop());
+      play.shift = play.shiftTo * (1 - ease((p - 0.25) / 0.75));
+      if (p >= 1) {
+        fx.classList.remove("shown"); pd.classList.remove("shown"); fx.style.clipPath = "";
+        document.documentElement.style.overflow = "";
+        if (phone) tapped = -1;
+        cards[play.i].el.focus({ preventScroll: true });
+        play = null;
+      }
+    }
+  }
+
+  let shown = "", openShown = -1, last = performance.now();
+  function frame(now) {
+    const dt = Math.min(1 / 30, Math.max(0, (now - last) / 1000)); last = now;
+    const r = ws.getBoundingClientRect();
+    const arrive = clamp01(1 - r.top / H);                            // 0 as the section's top meets the screen's foot, 1 at its top
+
+    let cand = -1;
+    if (play) cand = play.i;
+    else if (phone) cand = tapped;
+    else if (focused >= 0) cand = focused;
+    else if (ptr.on && r.top < H * 0.5 && r.bottom > H * 0.5) {
+      const el = document.elementFromPoint(ptr.x, ptr.y), card = el && el.closest && el.closest(".card");
+      cand = card ? +card.dataset.i : -1;
+      /* once a cover is open it stays open while the pointer is anywhere in the stack's column,
+         and changes only over another cover, so it can glide to the middle without slipping out
+         from under the pointer */
+      if (cand < 0 && pick.cur >= 0 && Math.abs(ptr.x - W / 2) <= Math.max(SO, W0) / 2 + 40) cand = pick.cur;
+    }
+    const hov = play || phone || focused >= 0 ? cand : settle(cand, now);
+    cards.forEach((c) => {
+      if (reduce) c.open = c.i === hov ? 1 : 0;
+      else spring(c, "open", c.i === hov ? 1 : 0, dt, 10);
+      if (c.open < 0.0008 && Math.abs(c.openV || 0) < 0.001) { c.open = 0; c.openV = 0; }
+    });
+    const opening = cards.filter((c) => c.open > 0.0005).sort((a, b) => a.open - b.open);
+    const shift = play ? play.shift : 0;
+
+    cards.forEach((c) => {
+      let pose = rest(c);
+      opening.forEach((h) => { const k = clamp01(h.open), m = moved(c, h); pose = { y: lerp(pose.y, m.y, k), sc: lerp(pose.sc, m.sc, k), tilt: lerp(pose.tilt, m.tilt, k) }; });
+      let y = pose.y + shift, op = 1;
+      const behind = opening.reduce((m, h) => (c.u > h.u ? Math.max(m, clamp01(h.open)) : m), 0);
+      const wash = ((1 - BEHIND) * behind).toFixed(3);                  // behind the open one: a paper veil, still solid
+      if (wash !== c.wash) { c.wash = wash; c.el.style.setProperty("--wash", wash); }
+      /* arriving: the covers rise into place from the foot, the near ones first */
+      const e = reduce ? 1 : ease((arrive - 0.15 - Math.max(0, c.u) * 0.045) / 0.55);
+      y = lerp(H + 40 + Math.max(0, c.u) * 20, y, e); op *= smooth(e * 1.4);
+      const tf = "translate3d(" + ((W - W0) / 2).toFixed(1) + "px," + y.toFixed(1) + "px,0) scale(" + pose.sc.toFixed(4) + ") perspective(" + (W0 * 2.2).toFixed(0) + "px) rotateX(" + pose.tilt.toFixed(2) + "deg)";
+      if (tf !== c.tf) { c.tf = tf; c.el.style.transform = tf; }
+      const o = op.toFixed(3);
+      if (o !== c.op) { c.op = o; c.el.style.opacity = o; c.el.style.pointerEvents = op < 0.3 ? "none" : ""; c.el.tabIndex = op < 0.3 ? -1 : 0; }
+      const z = String(c.open > 0.02 ? 2000 : Math.round(1000 - c.u * 50));   // nearer on top; the open one above all, so it glides over the others
+      if (z !== c.z) { c.z = z; c.el.style.zIndex = z; }
+    });
+
+    /* the words: the top one's number, or the open one's kind and name */
+    const ix = "01\\" + String(N).padStart(2, "0");
+    if (ix !== shown) { shown = ix; $("ix").textContent = ix; }
+    if (hov !== openShown) {
+      openShown = hov;
+      $("sayRest").classList.toggle("off", hov >= 0);
+      $("sayOpen").classList.toggle("off", hov < 0);
+      if (hov >= 0) { const pj = PROJECTS[hov]; $("oKind").textContent = pj.tag; $("oName").textContent = split(pj.title)[0]; }
+    }
+    /* the round "View project": follows the pointer over an open cover */
+    const show = !play && !phone && hov >= 0 && focused < 0 && ptr.on && cards[hov].open > 0.5 ? 1 : 0;
+    const half = cur.offsetWidth / 2;
+    if (ptr.cx < -999) { ptr.cx = ptr.x; ptr.cy = ptr.y; }
+    else { spring(ptr, "cx", ptr.x, dt, 40); spring(ptr, "cy", ptr.y, dt, 40); }
+    spring(ptr, "k", show, dt, 18);
+    if (ptr.k < 0.002 && !show) ptr.k = 0;
+    cur.style.transform = "translate3d(" + (ptr.cx - half).toFixed(1) + "px," + (ptr.cy - half).toFixed(1) + "px,0) scale(" + ptr.k.toFixed(3) + ")";
+
+    stepPlay(now, dt);
+    requestAnimationFrame(frame);
+  }
+  layout();
+  addEventListener("resize", layout);
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

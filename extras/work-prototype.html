@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Selected work · prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500&display=swap">
+<style>
+/* The Selected work as one simple prototype: the six records seen spine-on, as six bands of
+   colour side by side. Click one and it opens out into its cover with only what you need to
+   read (what it is, the kind, the year, your role, the way into the case study) while the others
+   close up into thin spines. Click it again, or press Esc, to close; the arrow keys step through.
+   On phones the bands are stacked and open downwards. */
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-Ultralight.otf") format("opentype"); font-weight: 200; font-style: normal; }
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-UltralightItalic.otf") format("opentype"); font-weight: 200; font-style: italic; }
+:root {
+  --paper: #faf8f5; --ink: #400d1b; --ink-soft: #6c454f; --accent: #8760af;
+  --serif: "PP Editorial New", "Instrument Serif", "Times New Roman", serif;
+  --body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", Menlo, monospace;
+  --pad: clamp(18px, 5vw, 88px);
+  --ease: cubic-bezier(.65, 0, .15, 1);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; background: var(--paper); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; }
+img { display: block; }
+.back { position: absolute; z-index: 5; left: var(--pad); top: 22px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; }
+.back:hover { color: var(--ink); }
+
+/* the section: a heading, then the row of records */
+.wk { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; gap: clamp(28px, 5vh, 52px); padding: 76px var(--pad) 56px; }
+.wk-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+.wk-k { margin: 0 0 14px; font: 500 12px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.wk-t { margin: 0; font: 200 clamp(40px, 5vw, 84px)/0.96 var(--serif); letter-spacing: -0.018em; }
+.wk-t em { font-style: italic; color: var(--accent); }
+.wk-hint { margin: 0 0 6px; font: 500 12px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
+
+/* the row: six bands of colour; the one you open takes most of the width */
+.row { --gap: 6px; display: flex; gap: var(--gap); height: clamp(420px, 60vh, 640px); }
+.pn { position: relative; flex: 1 1 0; min-width: 0; overflow: hidden; border-radius: 3px; background: var(--bg); color: var(--fg); transition: flex-grow 0.85s var(--ease); }
+.row:not(.has-open) .pn:hover { flex-grow: 1.4; }
+.pn.open { flex-grow: 9; }
+.pn-hit { position: absolute; inset: 0; z-index: 1; margin: 0; padding: 0; border: 0; background: none; cursor: pointer; }
+.pn-hit:focus-visible { outline: 2px solid var(--fg); outline-offset: -8px; }
+/* closed: the number at the top and the name up the spine */
+.pn-label { position: absolute; z-index: 2; inset: 22px 0 24px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; pointer-events: none; transition: opacity 0.3s ease; }
+.pn-no { font: 500 12px/1 var(--mono); letter-spacing: 0.08em; }
+.pn-name { writing-mode: vertical-rl; rotate: 180deg; font: 200 clamp(18px, 1.6vw, 24px)/1 var(--serif); white-space: nowrap; }
+.pn.open .pn-label { opacity: 0; transition-delay: 0s; }
+.row.has-open .pn:not(.open) .pn-name { opacity: 0.75; }
+/* open: a few lines of text on the left, the cover on the right; laid out at the open width so
+   nothing reflows while the band grows */
+.pn-open { position: absolute; z-index: 2; left: 0; top: 0; bottom: 0; width: var(--openW, 800px); display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr); gap: clamp(24px, 3vw, 44px); padding: clamp(24px, 3vw, 40px); pointer-events: none; visibility: hidden; }
+.pn.open .pn-open { visibility: visible; }
+.pn-text { display: flex; flex-direction: column; min-width: 0; }
+.pn-meta { margin: 0; display: flex; gap: 16px; font: 500 12px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--soft); }
+.pn-meta b { font-weight: 500; color: var(--fg); }
+.pn-title { margin: auto 0 0; font: 200 clamp(36px, 3.5vw, 58px)/1 var(--serif); letter-spacing: -0.016em; }
+.pn-title em { display: block; margin-top: 10px; font-style: italic; font-size: 0.5em; line-height: 1.2; letter-spacing: 0; color: var(--hi); }
+.pn-role { margin: 26px 0 0; font-size: 15px; line-height: 1.4; color: var(--soft); }
+.pn-go { pointer-events: auto; position: relative; z-index: 3; align-self: flex-start; margin-top: 16px; display: inline-flex; align-items: center; gap: 10px; padding-bottom: 5px; border-bottom: 1px solid currentColor; font-size: 12px; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg); text-decoration: none; }
+.pn-go svg { width: 12px; height: 10px; transition: translate 0.3s cubic-bezier(.22, 1, .36, 1); }
+.pn-go:hover svg { translate: 4px 0; }
+.pn-cover { margin: 0; align-self: end; justify-self: end; width: 100%; max-width: calc(var(--rowH, 560px) - 2 * clamp(24px, 3vw, 40px)); aspect-ratio: 1; overflow: hidden; }
+.pn-cover img { width: 100%; height: 100%; object-fit: cover; scale: 1.08; transition: scale 1.1s cubic-bezier(.2, .8, .2, 1); }
+/* coming in: the cover settles, the lines rise one after another */
+.pn-text > *, .pn-cover { opacity: 0; translate: 0 16px; transition: opacity 0.25s ease, translate 0.25s ease; }
+.pn.open .pn-text > *, .pn.open .pn-cover { opacity: 1; translate: 0 0; transition: opacity 0.6s ease, translate 0.8s cubic-bezier(.2, .8, .2, 1); }
+.pn.open .pn-cover { transition-delay: 0.3s; }
+.pn.open .pn-cover img { scale: 1; }
+.pn.open .pn-meta { transition-delay: 0.38s; }
+.pn.open .pn-title { transition-delay: 0.46s; }
+.pn.open .pn-role { transition-delay: 0.54s; }
+.pn.open .pn-go { transition-delay: 0.6s; }
+
+/* the pointer: a round label that says what a click will do */
+.cur { position: fixed; z-index: 10; left: 0; top: 0; width: 74px; height: 74px; margin: -37px 0 0 -37px; display: grid; place-items: center; border-radius: 50%; background: var(--cb, var(--ink)); color: var(--cf, var(--paper)); font: 500 11px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; pointer-events: none; scale: 0; transition: scale 0.3s cubic-bezier(.2, .8, .2, 1), background-color 0.3s ease, color 0.3s ease; }
+.cur.on { scale: 1; }
+@media (hover: none) { .cur { display: none; } }
+
+@media (max-width: 760px) {
+  .wk { justify-content: flex-start; padding-top: 64px; }
+  .wk-head { display: block; }
+  .wk-t { font-size: 42px; }
+  .wk-hint { margin-top: 18px; }
+  .row { flex-direction: column; height: auto; }
+  .pn { flex: none; height: 76px; transition: height 0.75s var(--ease); }
+  .pn.open { height: var(--openH, 620px); }
+  .pn-label { inset: 0 20px; flex-direction: row; justify-content: flex-start; gap: 18px; }
+  .pn-name { writing-mode: horizontal-tb; rotate: none; font-size: 24px; }
+  .pn-open { width: auto; right: 0; bottom: auto; grid-template-columns: minmax(0, 1fr); gap: 22px; padding: 20px; }
+  .pn-cover { order: -1; max-width: none; justify-self: stretch; }
+  .pn-title { margin-top: 18px; font-size: 34px; }
+}
+@media (prefers-reduced-motion: reduce) { .pn, .pn-text > *, .pn-cover, .pn-cover img { transition-duration: 0.01s !important; } }
+</style>
+</head>
+<body>
+<a class="back" href="../index.html">← The site</a>
+<section class="wk" aria-labelledby="wkT">
+  <header class="wk-head">
+    <div>
+      <p class="wk-k">(02) Selected work</p>
+      <h2 class="wk-t" id="wkT">Records I’d play <em>again.</em></h2>
+    </div>
+    <p class="wk-hint" id="hint">06 records · choose one</p>
+  </header>
+  <div class="row" id="row"></div>
+</section>
+<div class="cur" id="cur" aria-hidden="true">Open</div>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+  /* the site's projects, as in index.html */
+  const PROJECTS = [
+    { title: "[Project name]: a mobile app for slow travel", tag: "Mobile / App", year: "2026", role: "[Lead product designer]" },
+    { title: "[Project name]: a booking flow for a wellness studio", tag: "Web / UX", year: "2026", role: "[Product designer]" },
+    { title: "[Project name]: a design system for a fintech team", tag: "Design System", year: "2025", role: "[Design systems lead]" },
+    { title: "[Project name]: an e-commerce redesign", tag: "Web / E-commerce", year: "2025", role: "[Product designer]" },
+    { title: "[Project name]: a dashboard for a logistics start-up", tag: "SaaS / Dashboard", year: "2024", role: "[Senior product designer]" },
+    { title: "[Project name]: a habit-tracking app", tag: "Mobile / App", year: "2024", role: "[Product designer]" }
+  ];
+  /* each record in one of the site's colours: the band, the print on it, the softer print, the accent */
+  const THEMES = [
+    { bg: "#400d1b", fg: "#faf8f5", soft: "rgba(250,248,245,.62)", hi: "#cdb9dd" },
+    { bg: "#cdb9dd", fg: "#400d1b", soft: "rgba(64,13,27,.62)", hi: "#5e3d84" },
+    { bg: "#ece4da", fg: "#400d1b", soft: "rgba(64,13,27,.58)", hi: "#8760af" },
+    { bg: "#8760af", fg: "#faf8f5", soft: "rgba(250,248,245,.72)", hi: "#e6dcf0" },
+    { bg: "#2b0a12", fg: "#cdb9dd", soft: "rgba(205,185,221,.62)", hi: "#beffea" },
+    { bg: "#cdeee1", fg: "#400d1b", soft: "rgba(64,13,27,.58)", hi: "#6b4a92" }
+  ];
+  const N = PROJECTS.length;
+  const two = (i) => String(i + 1).padStart(2, "0");
+  const split = (t) => { const k = t.indexOf(": "); return k < 0 ? [t, ""] : [t.slice(0, k), t.slice(k + 2)]; };
+  const ARROW = '<svg viewBox="0 0 12 10" aria-hidden="true"><path d="M1 5h10M7 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>';
+  function drawShot(pj, i) {
+    const c = document.createElement("canvas");
+    c.width = 800; c.height = 600;
+    const g = c.getContext("2d");
+    const t = (pj.tag + " " + pj.title).toLowerCase();
+    const kind = /dashboard|saas/.test(t) ? "dash" : /system/.test(t) ? "system" : /commerce|shop/.test(t) ? "shop"
+      : /mobile|app/.test(t) ? (/habit|track/.test(t) ? "habit" : "app") : "web";
+    const INK = "#400d1b", SOFT = "rgba(64,13,27,0.16)", FAINT = "rgba(64,13,27,0.09)", ACC = "#8760af", TH = "#cdb9dd", WHITE = "#fdfcfa", TINT = "#f3eef5";
+    g.fillStyle = { app: "#e8dff0", habit: "#e3ebe8", web: "#eeeae1", shop: "#efe4e2", system: "#e6e2ef", dash: "#e7ebe2" }[kind];
+    g.fillRect(0, 0, 800, 600);
+    const path = (x, y, w, h, r) => {
+      r = Math.min(r, w / 2, h / 2);
+      g.beginPath();
+      g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r);
+      g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath();
+    };
+    const box = (x, y, w, h, r, fill, stroke) => {
+      path(x, y, w, h, r);
+      if (fill) { g.fillStyle = fill; g.fill(); }
+      if (stroke) { g.strokeStyle = stroke; g.lineWidth = 2; g.stroke(); }
+    };
+    const line = (x, y, w, h = 10, fill = SOFT) => box(x, y, w, h, h / 2, fill);   // a line of text
+    const dot = (x, y, r, fill) => { g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fillStyle = fill; g.fill(); };
+    const lift = (on) => { g.shadowColor = on ? "rgba(64,13,27,0.2)" : "transparent"; g.shadowBlur = on ? 34 : 0; g.shadowOffsetY = on ? 16 : 0; };
+    const browser = (x, y, w, h) => {
+      lift(true); box(x, y, w, h, 18, WHITE); lift(false);
+      box(x, y, w, h, 18, null, "rgba(64,13,27,0.55)");
+      g.fillStyle = FAINT; g.fillRect(x + 1, y + 40, w - 2, 2);
+      dot(x + 24, y + 21, 6, TH); dot(x + 44, y + 21, 6, SOFT); dot(x + 64, y + 21, 6, SOFT);
+      box(x + w / 2 - 110, y + 11, 220, 20, 10, TINT);
+    };
+    if (kind === "app" || kind === "habit") {
+      /* two floating cards either side, then the phone */
+      lift(true); box(100, 170, 200, 118, 18, WHITE); lift(false);
+      line(122, 194, 96, 12, INK); line(122, 218, 150); line(122, 238, 118, 10, FAINT); box(122, 254, 62, 20, 10, kind === "app" ? ACC : TH);
+      lift(true); box(500, 330, 196, 104, 18, WHITE); lift(false);
+      dot(530, 366, 16, kind === "app" ? TH : ACC); line(556, 356, 110, 11, INK); line(556, 378, 80); line(522, 404, 150, 9, FAINT);
+      lift(true); box(290, 56, 220, 488, 36, WHITE); lift(false);
+      box(290, 56, 220, 488, 36, null, "rgba(64,13,27,0.6)");
+      box(364, 70, 72, 14, 7, INK);                                            // the notch
+      if (kind === "app") {
+        line(312, 108, 92, 13, INK); line(312, 130, 140);
+        box(312, 154, 176, 118, 16, TH);                                        // a map
+        g.strokeStyle = "rgba(255,255,255,0.7)"; g.lineWidth = 3; g.beginPath(); g.moveTo(322, 250); g.bezierCurveTo(372, 200, 412, 260, 478, 176); g.stroke();
+        dot(452, 196, 10, ACC); dot(452, 196, 4, WHITE);
+        for (let r = 0; r < 3; r++) {
+          box(312, 288 + r * 60, 176, 48, 12, TINT);
+          dot(334, 312 + r * 60, 12, r === 0 ? ACC : TH);
+          line(354, 302 + r * 60, 88, 9, SOFT); line(354, 318 + r * 60, 58, 8, FAINT);
+        }
+      } else {
+        line(312, 108, 110, 13, INK);
+        g.lineCap = "round"; g.lineWidth = 16;
+        g.strokeStyle = "#ece6f0"; g.beginPath(); g.arc(400, 214, 58, 0, Math.PI * 2); g.stroke();
+        g.strokeStyle = ACC; g.beginPath(); g.arc(400, 214, 58, -Math.PI / 2, Math.PI * 0.9); g.stroke();
+        line(380, 206, 40, 14, INK);
+        for (let d = 0; d < 7; d++) dot(319 + d * 27, 312, 9, d < 5 ? ACC : TH);
+        for (let r = 0; r < 2; r++) {
+          box(312, 342 + r * 60, 176, 48, 12, TINT);
+          box(328, 356 + r * 60, 20, 20, 6, r === 0 ? ACC : null, r === 0 ? null : SOFT);
+          line(358, 360 + r * 60, 96, 10, SOFT);
+        }
+      }
+      g.fillStyle = FAINT; g.fillRect(304, 488, 192, 2);
+      for (let k = 0; k < 4; k++) dot(332 + k * 46, 512, 6, k === 0 ? ACC : SOFT);   // the tab bar
+    } else if (kind === "web" || kind === "shop") {
+      browser(80, 70, 640, 460);
+      if (kind === "web") {
+        line(112, 140, 210, 20, INK); line(112, 172, 168, 20, INK);
+        line(112, 214, 230); line(112, 234, 190, 10, FAINT);
+        box(112, 270, 124, 36, 18, ACC); line(130, 284, 88, 9, "rgba(255,255,255,0.85)");
+        box(404, 132, 288, 260, 14, TINT);                                      // a calendar
+        line(426, 152, 96, 11, INK);
+        for (let r = 0; r < 4; r++) for (let q = 0; q < 6; q++)
+          box(426 + q * 42, 182 + r * 48, 30, 30, 8, r === 1 && q === 3 ? ACC : r === 2 && q === 1 ? TH : "#e7dfea");
+        for (let s = 0; s < 3; s++) box(112 + s * 96, 420, 84, 30, 15, s === 1 ? TH : TINT);
+        line(112, 468, 260, 10, FAINT);
+      } else {
+        box(112, 130, 576, 118, 14, TH);
+        line(140, 162, 200, 18, INK); line(140, 192, 150, 10, "rgba(64,13,27,0.25)"); box(140, 212, 96, 24, 12, ACC);
+        dot(600, 190, 44, "rgba(255,255,255,0.55)");
+        for (let p = 0; p < 3; p++) {
+          const x = 112 + p * 196;
+          box(x, 270, 184, 150, 12, TINT);
+          dot(x + 92, 340, 38, p === 1 ? ACC : "#e2d6e6");
+          line(x, 434, 120, 10, SOFT); line(x, 452, 70, 9, FAINT);
+          box(x + 124, 434, 60, 26, 13, p === 0 ? INK : "#ece4ea");
+        }
+      }
+    } else if (kind === "system") {
+      lift(true); box(70, 60, 660, 480, 20, WHITE); lift(false);
+      g.fillStyle = INK; g.font = "200 118px 'PP Editorial New', 'Instrument Serif', serif"; g.textBaseline = "alphabetic";
+      g.fillText("Aa", 104, 206);
+      line(104, 232, 160); line(104, 252, 118, 10, FAINT);
+      [INK, ACC, TH, "#f4f7ea", "#beffea"].forEach((col, k) => {
+        dot(342 + k * 66, 132, 24, col);
+        g.strokeStyle = FAINT; g.lineWidth = 2; g.beginPath(); g.arc(342 + k * 66, 132, 24, 0, Math.PI * 2); g.stroke();
+      });
+      box(330, 190, 132, 42, 21, ACC); line(358, 206, 76, 10, "rgba(255,255,255,0.85)");
+      box(476, 190, 132, 42, 21, null, INK); line(504, 206, 76, 10, SOFT);
+      box(624, 190, 42, 42, 21, null, SOFT);
+      box(330, 254, 64, 34, 17, ACC); dot(377, 271, 13, WHITE);
+      box(410, 254, 64, 34, 17, "#e7e1ec"); dot(427, 271, 13, WHITE);
+      box(494, 256, 30, 30, 8, INK);
+      g.strokeStyle = WHITE; g.lineWidth = 3; g.lineCap = "round"; g.beginPath(); g.moveTo(502, 271); g.lineTo(508, 277); g.lineTo(518, 264); g.stroke();
+      box(104, 306, 592, 50, 12, TINT); box(104, 306, 592, 50, 12, null, FAINT); line(124, 326, 180, 10, SOFT);
+      for (let k = 0; k < 3; k++) {
+        box(104 + k * 202, 378, 186, 128, 14, TINT);
+        line(124 + k * 202, 400, 90, 10, INK); line(124 + k * 202, 422, 138, 8, FAINT); line(124 + k * 202, 438, 108, 8, FAINT);
+        box(124 + k * 202, 466, 62, 22, 11, k === 0 ? ACC : TH);
+      }
+    } else {
+      lift(true); box(60, 60, 680, 480, 18, WHITE); lift(false);
+      box(60, 60, 150, 480, 18, INK); g.fillStyle = INK; g.fillRect(190, 60, 20, 480);   // the sidebar
+      dot(92, 92, 11, TH);
+      for (let m = 0; m < 6; m++) line(84, 132 + m * 40, m === 1 ? 92 : 70, 10, m === 1 ? TH : "rgba(250,248,245,0.32)");
+      for (let k = 0; k < 3; k++) {
+        box(232 + k * 166, 84, 150, 86, 12, TINT);
+        line(248 + k * 166, 102, 62, 8, SOFT); line(248 + k * 166, 124, 88, 18, k === 0 ? ACC : INK);
+      }
+      box(232, 190, 482, 214, 12, "#fbf9fb"); box(232, 190, 482, 214, 12, null, FAINT);
+      g.fillStyle = FAINT; for (let gl = 0; gl < 3; gl++) g.fillRect(252, 246 + gl * 50, 442, 2);
+      const pts = [[252, 372], [308, 334], [364, 350], [420, 292], [476, 308], [532, 254], [588, 272], [644, 226], [694, 238]];
+      g.beginPath(); g.moveTo(pts[0][0], 396); pts.forEach(([x, y]) => g.lineTo(x, y)); g.lineTo(694, 396); g.closePath();
+      g.fillStyle = "rgba(135,96,175,0.14)"; g.fill();
+      g.beginPath(); pts.forEach(([x, y], k) => (k ? g.lineTo(x, y) : g.moveTo(x, y)));
+      g.strokeStyle = ACC; g.lineWidth = 4; g.lineJoin = "round"; g.stroke();
+      [44, 70, 58, 86, 62, 96, 74].forEach((h, k) => box(236 + k * 68, 516 - h, 40, h, 6, k === 5 ? ACC : TH));
+    }
+    return c.toDataURL("image/png");
+  }
+  const row = $("row"), hint = $("hint"), cur = $("cur");
+  row.innerHTML = PROJECTS.map((pj, i) => {
+    const t = THEMES[i % THEMES.length], [name, what] = split(pj.title);
+    return '<article class="pn" style="--bg:' + t.bg + ";--fg:" + t.fg + ";--soft:" + t.soft + ";--hi:" + t.hi + '">' +
+      '<button type="button" class="pn-hit" aria-expanded="false" aria-controls="pn' + i + '" aria-label="' + esc(two(i) + ", " + pj.title) + '"></button>' +
+      '<div class="pn-label" aria-hidden="true"><span class="pn-no">' + two(i) + '</span><span class="pn-name">' + esc(name) + "</span></div>" +
+      '<div class="pn-open" id="pn' + i + '"><div class="pn-text"><p class="pn-meta"><b>' + two(i) + "</b><span>" + esc(pj.tag) + "</span><span>" + esc(pj.year) + "</span></p>" +
+      '<h3 class="pn-title">' + esc(name) + "<em>" + esc(what) + '</em></h3><p class="pn-role">' + esc(pj.role) + '</p><a class="pn-go" href="#" onclick="return false">View case study' + ARROW + "</a></div>" +
+      '<figure class="pn-cover"><img alt="" data-pic="' + i + '"></figure></div></article>';
+  }).join("");
+  const panels = [...row.querySelectorAll(".pn")];
+  const draw = () => panels.forEach((p, i) => { p.querySelector("img").src = drawShot(PROJECTS[i], i); });
+  draw();
+  if (document.fonts) document.fonts.ready.then(draw);
+
+  let open = -1;
+  const phone = () => matchMedia("(max-width: 760px)").matches;
+  /* the open band's width (9 shares to every closed one's 1), so its insides are laid out once */
+  function size() {
+    const w = row.clientWidth, gap = 6 * (N - 1);
+    row.style.setProperty("--openW", (((w - gap) / (9 + N - 1)) * 9).toFixed(1) + "px");
+    row.style.setProperty("--rowH", row.clientHeight + "px");
+    if (phone() && open >= 0) panels[open].style.setProperty("--openH", panels[open].querySelector(".pn-open").scrollHeight + "px");
+  }
+  function choose(i) {
+    open = i === open ? -1 : i;
+    panels.forEach((p, k) => { p.classList.toggle("open", k === open); p.querySelector(".pn-hit").setAttribute("aria-expanded", String(k === open)); });
+    row.classList.toggle("has-open", open >= 0);
+    hint.textContent = open >= 0 ? two(open) + " / " + String(N).padStart(2, "0") + " · click again to close" : "06 records · choose one";
+    size();
+    if (phone() && open >= 0) setTimeout(() => panels[open].scrollIntoView({ behavior: "smooth", block: "start" }), 320);
+  }
+  panels.forEach((p, i) => p.querySelector(".pn-hit").addEventListener("click", () => choose(i)));
+  addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && open >= 0) choose(open);
+    else if (open >= 0 && (e.key === "ArrowRight" || e.key === "ArrowLeft")) { e.preventDefault(); choose((open + (e.key === "ArrowRight" ? 1 : -1) + N) % N); panels[open].querySelector(".pn-hit").focus({ preventScroll: true }); }
+  });
+  addEventListener("resize", size);
+  size();
+
+  /* the round label follows the pointer over the row, in the colours of the band under it */
+  let x = 0, y = 0, tx = 0, ty = 0;
+  row.addEventListener("pointermove", (e) => {
+    tx = e.clientX; ty = e.clientY;
+    const p = e.target.closest(".pn"), onLink = !!e.target.closest("a");
+    const show = !!p && !onLink && e.pointerType === "mouse";
+    cur.classList.toggle("on", show);
+    if (p) { cur.textContent = p.classList.contains("open") ? "Close" : "Open"; cur.style.setProperty("--cb", getComputedStyle(p).getPropertyValue("--fg")); cur.style.setProperty("--cf", getComputedStyle(p).getPropertyValue("--bg")); }
+  });
+  row.addEventListener("pointerleave", () => cur.classList.remove("on"));
+  (function follow() {
+    x += (tx - x) * 0.22; y += (ty - y) * 0.22;
+    cur.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px)";
+    requestAnimationFrame(follow);
+  })();
+})();
+</script>
+</body>
+</html>

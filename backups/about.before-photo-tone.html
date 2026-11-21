@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Info · Trinh Trinh Nguyen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;1,400&family=Koulen&display=swap">
+<style>
+html { font-synthesis: none; }   /* one weight per font: never fake bold or slant */
+/* The about page, built on the reference's info page (mason-wong.com/info, the owner's team site, used
+   with permission). It follows the reference's four layouts and their breakpoints, measured from the
+   live page: large (1500px and up), desktop (1200–1499), tablet (810–1199) and phone (under 810).
+   Sizes are the reference's own pixels in each layout. The hero's INFO always sits on the bottom edge
+   of the first screen, as the reference's does. Its Selected Clients, Prequel and "built bold / made
+   human" sections are left out at the owner's asking. The site's own fonts, colours and flower;
+   film noise over everything (pt.js). Pictures: the owner's photos in photos/, retouched as the home hero is. */
+@font-face { font-family: "La Belle Aurore"; src: url("fonts/LaBelleAurore-latin.woff2") format("woff2"); font-display: swap; }
+:root {
+  --paper: #faf8f5; --ink: #351E28; --ink-soft: #6c454f; --accent: #8760af; --thistle: #cdb9dd; --light: rgb(231, 229, 223); --wine: #351E28;
+  --big: "Koulen", Impact, "Arial Narrow", sans-serif;
+  --mono: "IBM Plex Mono", Menlo, Consolas, monospace;
+  --script: "La Belle Aurore", cursive;
+  --pad: 24px; --lab: 14px; --vh: 100vh;
+  /* The spacing scale, read off the reference (mason-wong.com, its info and work pages measured at
+     1720 wide: the gaps between its blocks fall into clear bands, 178-238, 148-150, 106, 65-75 and
+     38-48). One name per band, used on every page of this site so the rhythm is the same throughout:
+       --space-section  a section's own top and bottom padding, and the gap between its main blocks
+       --space-block    one block to the next inside a section
+       --space-label    a label or caption to the block it belongs to
+       --space-row      one row of a list to the next
+       --space-tight    round a picture, or a line to its button
+       --space-dark     a section standing on a photo: half as much again as --space-section
+     Each window size sets the five once; nothing else in the page hard-codes a gap of this size. */
+  --space-section: 200px; --space-block: 150px; --space-label: 115px; --space-row: 72px; --space-tight: 48px;
+  --space-dark: calc(var(--space-section) * 1.5);   /* a section standing on a photo takes half as much again, as the reference's do */
+}
+@supports (height: 100svh) { :root { --vh: 100svh; } }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+p, h1, h2, h3, ol, figure { margin: 0; }
+.lab, .body { font-family: var(--mono); font-size: var(--lab); line-height: 1.4; }
+.lab { text-transform: uppercase; }
+.big { font-family: var(--big); font-weight: 400; text-transform: uppercase; }
+.scr { font-family: var(--script); text-transform: none; letter-spacing: 0; font-weight: 400; }
+.dark { background: var(--wine); color: var(--light); }
+.paper { background: var(--paper); color: var(--ink); }
+.dark .scr { color: var(--thistle); }
+.paper .scr { color: var(--accent); }
+.line { display: block; }
+.line + .line { margin-top: 16px; }
+/* the flower: the same upright vine of dots and 0s and 1s as the home page's (it stands where the
+   reference stands its gold Chinese characters) */
+.vine { display: block; pointer-events: none; background: url(vines/flower-dots.png) center / contain no-repeat; }
+/* a picture placeholder, until the owner's own picture goes in */
+.ph-pic { position: relative; overflow: hidden; background: radial-gradient(70% 70% at 30% 25%, rgba(205, 185, 221, 0.28), rgba(205, 185, 221, 0) 70%), linear-gradient(160deg, #4a2a38, #351e28 50%, #1a0e14); }
+.ph-pic > .ph { position: absolute; left: 20px; bottom: 16px; color: rgba(231, 229, 223, 0.55); }
+
+/* the nav bar is the site's one bar, styled and moved by pt.js (the same as the home page's) */
+
+/* 1 · the hero. The first screen is INFO on its bottom edge with the flower between IN and FO;
+   then the words, at the reference's fixed spacing below it */
+.open { position: relative; overflow: hidden; }
+.open .photo { position: absolute; inset: 0; }
+.open .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; opacity: 0.4; filter: blur(0.6px); }
+.open .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(53, 30, 40, 0.3), rgba(53, 30, 40, 0.65) 45%, rgba(53, 30, 40, 0.9)); }
+.first, .rest { position: relative; z-index: 1; }
+/* INFO scales with the window (no jump at the 1200 / 1500 breakpoints): 670px from 1500 wide up,
+   44.67vw below (the same proportion as at 1500), never taller than the screen allows; phones keep their own size */
+.first { height: var(--vh); --info: min(670px, 44.67vw, calc(var(--vh) * 0.8)); }
+.first .w { position: absolute; bottom: 0; font-size: var(--info); line-height: 0.7; }
+.first .w.l { left: 0; }
+.first .w.r { right: 0; letter-spacing: -0.02em; }
+.first .vine { position: absolute; left: 50%; bottom: calc(var(--info) * -0.0403); width: calc(var(--info) * 0.2866); height: calc(var(--info) * 0.8269); transform: translateX(-50%); }
+.rest { min-height: 1729px; padding: 300px var(--pad) 0; }
+.rest .a { font-size: 120px; line-height: 0.83; }
+/* the second lines and the note share one box, flush to the right margin: the lines end at the margin,
+   and the note starts at the box's left edge, under the first word of the lines (as the owner set it in Figma) */
+.rest .rt { width: max-content; max-width: 100%; margin: 150px 0 0 auto; }
+.rest .b { font-size: 120px; line-height: 0.83; text-align: right; }
+.rest .b .line { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: baseline; column-gap: 0.2em; }
+.rest .b .scr { font-size: 0.8em; line-height: 0.6; }
+.rest .note { margin: 180px 0 0; }
+.rest .note .t { font-size: 24px; line-height: 1.4; white-space: nowrap; }   /* 24px, the owner's asking */
+.rest .note .body { width: 439px; max-width: 100%; margin-top: 13px; }
+.rest .note .body + .body { margin-top: 1.4em; }
+.rest .note u { text-decoration-color: var(--thistle); text-underline-offset: 4px; }
+.rest .feet { position: absolute; left: var(--pad); right: var(--pad); bottom: 50px; display: grid; grid-template-columns: 1fr auto 1fr; line-height: 0.83; }
+.rest .feet > :last-child { text-align: right; }
+
+/* 2 · on paper: a count, two lines, the big statement, two beliefs */
+.state { padding: var(--space-section) var(--pad); text-align: center; }
+.state .n { font-size: 64px; line-height: 1.2; letter-spacing: -0.02em; }
+.state .n .bk { font-family: var(--mono); font-size: 56px; letter-spacing: 0; }
+.state .n .big { margin: 0 0.06em; }
+.state .cap { margin-top: 10px; line-height: 1.2; }
+.state .say { max-width: 1281px; margin: var(--space-section) auto 0; font-size: 130px; line-height: 0.9; letter-spacing: -1.5px; }
+.state .say .scr { font-size: 0.86em; line-height: 0.6; }
+.two { display: grid; grid-template-columns: 26.5vw 26.5vw; column-gap: 14.85vw; justify-content: center; align-items: start; margin-top: var(--space-section); }
+.two .col:first-child { margin-top: 10px; }
+.col .h { margin-top: 16px; padding-bottom: 16px; border-bottom: 1px solid rgba(53, 30, 40, 0.3); font-size: 37px; line-height: 1; }
+.dark .col .h { border-bottom-color: rgba(231, 229, 223, 0.35); }
+.col .body { margin-top: 16px; }
+/* a divider: two hairlines and a small upright label between them */
+.div { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; column-gap: 70px; height: 114px; padding: 0 var(--pad); }
+.div::before, .div::after { content: ""; height: 1px; background: rgba(53, 30, 40, 0.3); }
+.div span { writing-mode: vertical-rl; font-family: var(--mono); font-size: var(--lab); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
+
+/* 3 · on paper: what I offer. The heading holds still at the left while the picture and the list
+   go by at the right, as the reference's does */
+.offer { display: grid; grid-template-columns: 782px minmax(0, 1fr); padding: var(--space-section) var(--pad); }
+.offer .lc { grid-column: 1; grid-row: 1 / 3; }
+.offer .stick { position: sticky; top: 0; height: var(--vh); display: flex; flex-direction: column; justify-content: center; }
+.offer .head { margin-top: 13px; font-size: 185px; line-height: 0.9; letter-spacing: -1.5px; }
+.offer .head .scr { font-size: 0.78em; margin-right: 0.06em; }
+.offer .intro { width: 660px; max-width: 100%; margin-top: var(--space-row); }   /* one paragraph, as wide as the heading */
+.offer .pic { grid-column: 2; grid-row: 1; height: calc(var(--vh) * 0.9); overflow: hidden; background: var(--wine); }
+.offer .pic img { width: 100%; height: 100%; object-fit: cover; }
+.rows { grid-column: 2; grid-row: 2; margin: var(--space-section) 17px 0 24px; padding: 0; list-style: none; }
+.rows li + li { margin-top: var(--space-row); }
+.rows .tp { margin-top: 24px; padding-bottom: 28px; border-bottom: 1px solid rgba(53, 30, 40, 0.3); }
+.rows .h { font-size: 70px; line-height: 0.7; }
+.rows .bt { padding-top: 25px; }
+.rows .d { max-width: 360px; }
+
+/* 4 · on wine over a dark blurred picture: a line round the flower, three goals */
+.goal { position: relative; overflow: hidden; padding: var(--space-dark) 0; }
+.goal .photo { position: absolute; inset: -40px; z-index: 0; }
+.goal .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; opacity: 0.4; filter: blur(0.6px); }   /* the owner's own photo for this section (21 Nov 2026): shown as the hero's is, no longer blurred to a glow */
+.goal .photo::after { content: ""; position: absolute; inset: 0; background: rgba(28, 16, 22, 0.55); }
+.goal > *:not(.photo) { position: relative; z-index: 1; }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) 216px minmax(0, 1fr); align-items: center; margin: 0 40px; }
+.split .side { font-size: 150px; line-height: 1; text-align: center; }
+.split .vine { justify-self: center; width: 192px; height: 554px; }
+.goal .ask { margin-top: var(--space-section); text-align: center; text-transform: none; }
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 12.5%; align-items: start; margin: var(--space-label) 174px 0; text-align: center; }
+.three .col:nth-child(3) { margin-top: 10px; }
+
+/* 5 · on bright paper (at the owner's asking): the next story. Its title, count and card fit one screen */
+.next { padding: var(--space-section) var(--pad); text-align: center; }
+.next .nx { font-size: 54px; line-height: 1.4; }
+.next .cnt { margin-top: 4px; }
+.card { position: relative; display: block; width: 67.8vw; height: min(calc(var(--vh) * 0.7), calc(var(--vh) - 160px - var(--space-section))); margin: var(--space-tight) auto 0; text-decoration: none; }
+.card .cv { position: absolute; inset: 0; overflow: hidden; background: var(--wine); }
+.card .cv img { width: 100%; height: 100%; object-fit: cover; transition: scale 0.9s cubic-bezier(.22, 1, .36, 1); }
+.card:hover .cv img { scale: 1.03; }
+.card .cv::after { content: ""; position: absolute; inset: 0; background: rgba(135, 96, 175, 0); transition: background-color 0.4s ease; }
+.card:hover .cv::after { background: rgba(135, 96, 175, 0.18); }
+.card .tags { position: absolute; z-index: 1; left: 24px; right: 24px; top: 50%; display: flex; justify-content: space-between; color: #fff; font-style: italic; transform: translateY(-50%); }
+.next .blurb { width: 575px; max-width: 100%; margin: var(--space-tight) auto 0; }
+.btn { display: inline-block; vertical-align: top; margin-top: 24px; height: 28px; padding: 0 10px; overflow: hidden; background: var(--ink); color: var(--paper); text-decoration: none; font-family: var(--big); font-size: 20px; line-height: 28px; text-transform: uppercase; transition: background-color 0.25s ease; }
+.btn .r { display: block; transition: transform 0.35s cubic-bezier(.22, 1, .36, 1); }
+.btn .r > span { display: block; }
+.btn:hover { background: var(--accent); }
+.btn:hover .r { transform: translateY(-28px); }
+
+/* 6 · the footer, as the home page's */
+.ft { position: relative; min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; padding: 24px; overflow: hidden; }
+.ft .photo { position: absolute; inset: 0; z-index: 0; }
+.ft .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; opacity: 0.55; filter: blur(0.6px); }
+.ft .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(53, 30, 40, 0.55), rgba(53, 30, 40, 0.3) 45%, rgba(53, 30, 40, 0.75)); }
+.ft > * { position: relative; z-index: 1; }
+.ft .top, .ft .bot { display: flex; justify-content: space-between; align-items: center; }
+.ft .mid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; justify-items: center; }
+.ft .say { justify-self: start; font-size: clamp(56px, 8.4vw, 140px); line-height: 0.92; }
+.ft .vine { width: 10vw; height: 56vh; }
+.ft .rep { display: grid; justify-items: center; gap: 18px; }
+.ft .cov { width: clamp(160px, 17vw, 260px); aspect-ratio: 1; background: url(cover.jpg) center / cover; border-radius: 6px; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4); }
+.ft .lk { font-family: var(--big); font-size: clamp(18px, 1.75vw, 26px); text-transform: uppercase; text-decoration: none; }
+.ft .lk:hover, .ft .up:hover { color: var(--thistle); }
+.ft .up { font-size: 26px; text-decoration: none; }
+
+/* coming in as you scroll: a little low, then in place (no blur) */
+[data-rv] { opacity: 0; translate: 0 36px; transition: opacity 0.8s ease, translate 0.9s cubic-bezier(.22, 1, .36, 1); transition-delay: var(--d, 0s); }
+[data-rv].in { opacity: 1; translate: none; }
+/* the greeting types itself in, a letter at a time */
+.type i { font-style: normal; opacity: 0; transition: opacity 0.05s linear; }
+.type.in i { opacity: 1; }
+
+/* the film noise: the home page's own, laid over every page by pt.js */
+
+/* desktop, 1200–1499 wide: the reference's sizes for this layout */
+@media (max-width: 1499.98px) {
+  :root { --space-section: 170px; --space-block: 128px; --space-label: 90px; --space-row: 64px; }
+  .rest { min-height: 1682px; }
+  .rest .a, .rest .b { font-size: 100px; }
+  .rest .note .body { width: 371px; }
+  .state .say { font-size: 100px; }
+  .two { grid-template-columns: 26.3vw 26.3vw; column-gap: 14.8vw; }
+  .two .col:first-child { margin-top: 0; }
+  .div { height: 164px; }
+  .offer { grid-template-columns: 585px minmax(0, 1fr); }
+  .offer .head { margin-top: 14px; font-size: 125px; }
+  .offer .intro { width: 446px; margin-top: var(--space-row); }
+  .split { grid-template-columns: minmax(0, 1fr) 198px minmax(0, 1fr); }
+  .split .side { font-size: 110px; }
+  .split .vine { width: 146px; height: 422px; }
+  .three { column-gap: 8%; }
+  .next .nx { font-size: 44px; }
+  .next .cnt { margin-top: 0; }
+  .card { width: 67.4vw; height: min(calc(var(--vh) * 0.7), calc(var(--vh) - 142px - var(--space-section))); }
+  .next .blurb { width: 476px; }
+  .btn { margin-top: 24px; }
+}
+/* tablet, 810–1199 wide */
+@media (max-width: 1199.98px) {
+  :root { --space-section: 150px; --space-block: 112px; --space-label: 90px; --space-row: 56px; --space-tight: 40px; }
+  .rest { min-height: 1264px; padding-top: 200px; }
+  .rest .a, .rest .b { font-size: 76px; }
+  .rest .rt { margin-top: 90px; }
+  .rest .note { margin-top: 102px; }
+  .rest .note .body { width: 325px; }
+  .state .n { font-size: 44px; }
+  .state .n .bk { font-size: 36px; }
+  .state .say { font-size: 66px; }
+  .two { grid-template-columns: 31.9vw 31.9vw; column-gap: 13vw; }
+  .two .col:nth-child(2) { margin-top: 19px; }
+  .div { height: 114px; }
+  .offer { grid-template-columns: calc(51.3vw - 24px) minmax(0, 1fr); }
+  .offer .lc { grid-row: 1; }
+  .offer .stick > .lab { font-size: 12px; }
+  .offer .head { font-size: 110px; }
+  .offer .intro { width: 424px; margin-top: var(--space-row); }
+  .rows { grid-column: 1 / 3; margin-top: calc(var(--space-section) - var(--vh) * 0.1); }   /* --space-section below the picture (the left column is a tenth of a screen taller than it) */
+  .split { grid-template-columns: minmax(0, 1fr) 166px minmax(0, 1fr); margin: 0 24px; }
+  .split .side { font-size: 80px; }
+  .split .vine { width: 101px; height: 290px; }
+  .three { column-gap: 9.6%; margin: var(--space-label) 58px 0; }
+  .card { width: 66.6vw; height: min(calc(var(--vh) * 0.7), calc(var(--vh) - 134px - var(--space-section))); }
+  .next .blurb { width: 362px; }
+}
+/* phone, under 810 wide: one column, the same order */
+@media (max-width: 809.98px) {
+  :root { --pad: 16px; --lab: 12px; --space-section: 96px; --space-block: 72px; --space-label: 64px; --space-row: 40px; --space-tight: 32px; }
+  .first { height: calc(var(--vh) * 0.95); display: flex; justify-content: center; align-items: flex-end; }
+  .first .w { position: static; font-size: min(252px, 64.6vw); line-height: 0.8; }
+  .first .vine { top: 32%; bottom: auto; width: 64px; height: 185px; }
+  .rest { min-height: 951px; padding-top: 240px; padding-bottom: 130px; }   /* room for the greeting row under the longer bio */
+  .rest .a, .rest .b { font-size: 48px; }
+  .line + .line { margin-top: 4px; }
+  /* on a phone the two lines run together as one wrapping row of words, so they break as
+     so the words wrap wherever they fit and a script word never sits alone on a row */
+  .rest .rt { width: auto; margin: 0; }
+  .rest .b { text-align: left; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.25em; row-gap: 4px; }
+  .rest .b .line { display: contents; }
+  .rest .note { margin: 109px 0 0; }
+  .rest .note .t { white-space: normal; }
+  .rest .note .body { width: auto; }
+  .rest .feet { grid-template-columns: 1fr 1fr; bottom: 32px; }
+  .rest .feet > :nth-child(2) { text-align: right; }
+  .rest .feet > :last-child { display: none; }
+  .state .n { font-size: 34px; }
+  .state .n .bk { font-size: 28px; }
+  .state .say { font-size: 45px; letter-spacing: -1px; }
+  .two { grid-template-columns: minmax(0, 283px); row-gap: 56px; }
+  .two .col:nth-child(n), .three .col:nth-child(n) { margin-top: 0; }
+  .col .h { margin-top: 12px; padding-bottom: 12px; font-size: 28px; }
+  .col .body { margin-top: 12px; }
+  .div { height: 70px; column-gap: 40px; }
+  .offer { display: block; }
+  .offer .stick { position: static; height: auto; display: block; }
+  .offer .head { margin-top: 22px; font-size: 74px; }
+  .offer .intro { width: auto; margin-top: var(--space-row); }
+  .offer .pic { margin-top: var(--space-label); height: 412px; }
+  .rows { margin: var(--space-label) 0 0; }
+  .rows li + li { margin-top: var(--space-row); }
+  .rows .tp { margin-top: 12px; padding-bottom: 16px; }
+  .rows .h { font-size: 45px; line-height: 0.9; }
+  .rows .bt { padding-top: 14px; }
+  .rows .d { max-width: none; }
+  .split { display: flex; flex-direction: column; align-items: center; margin: 0 var(--pad); }
+  .split .side { font-size: 80px; }
+  .split .vine { width: 107px; height: 308px; margin: 25px 0 17px; }
+  .three { grid-template-columns: 1fr; row-gap: 72px; margin: var(--space-label) 32px 0; }
+  .next .nx { font-size: 32px; }
+  .card { width: 100%; height: auto; }
+  .card .cv { position: relative; inset: auto; display: block; aspect-ratio: 358 / 441; }
+  .card .tags { position: static; transform: none; margin-top: 10px; color: var(--ink); }
+  .next .blurb { width: auto; }
+  .ft .mid { grid-template-columns: 1fr; row-gap: 48px; }
+  .ft .vine { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-rv], .type i { transition: none; opacity: 1; translate: none; }
+}
+</style>
+<script src="pt.js"></script>
+</head>
+<body id="top">
+<header class="nav">
+  <a class="brand" href="index.html">Trinh</a>
+  <nav class="menu" aria-label="Sections">
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="about.html" class="is-on" aria-current="page">Info</a>
+  </nav>
+  <span class="yr">[2026]</span>
+</header>
+
+<main>
+  <!-- 1 · the hero. Words in [brackets] are placeholders for the owner -->
+  <section class="open dark">
+    <!-- the photos are the owner's, retouched as the home hero is (photos/, 21 Nov 2026) -->
+    <div class="photo" aria-hidden="true"><img src="photos/info-hero.jpg" alt=""></div>
+    <div class="first" aria-hidden="true">
+      <span class="w l big" data-rv>IN</span><span class="vine" data-rv style="--d:.12s"></span><span class="w r big" data-rv style="--d:.06s">FO</span>
+    </div>
+    <div class="rest">
+      <h1 class="a big" data-rv><span class="line">A product designer</span><span class="line">for digital products</span></h1>
+      <div class="rt">
+      <p class="b big" data-rv><span class="line"><span class="scr">always</span><span>curious</span><span>about</span></span><span class="line"><span>what</span><span class="scr">could</span><span>be</span><span>better.</span></span></p>
+      <div class="note">
+        <p class="t big" data-rv>2k26 &bull; Folio of Trinh</p>
+        <p class="body" data-rv style="--d:.08s">I grew up drawing, so graphic design was an easy choice. While I was still at university, I started designing apps for real clients and taught myself Figma along the way. That turned into a career in UI/UX, and later into my own studio, TL Studio. Running it taught me that good design is only half the job. The other half is explaining it to clients. Now I want to bring that to a bigger team.</p>
+        <p class="body" data-rv style="--d:.14s">When work gets stressful, I go to the gym and lift something heavy. The rest of my free time goes to psychology and whatever I&rsquo;m curious about this week. I&rsquo;m an INTP, so there&rsquo;s always something.</p>
+      </div>
+      </div>
+      <p class="feet lab"><span class="type">[Nice to meet you]</span><span>[Scroll down]</span><span>[Rất vui được gặp bạn]</span></p>
+    </div>
+  </section>
+
+  <!-- 2 · a count, a statement, two beliefs -->
+  <section class="state paper">
+    <p class="n" data-rv><span class="bk">[</span><span class="big" id="count">00</span><span class="bk">]</span></p>
+    <p class="cap lab" data-rv>7 selected projects [and counting]<br>designed for people and businesses</p>
+    <h2 class="say big" data-rv>Every digital products<br>carefully designed from<br><span class="scr">user research</span> and<br><span class="scr">design thinking</span> methods</h2>
+    <div class="two">
+      <div class="col" data-rv><p class="lab">[01]</p><h3 class="h big">Careful craft</h3><p class="body">I believe good design shapes how people feel about a product. I care about every detail, from type and spacing to motion. I keep refining until each screen feels clear.</p></div>
+      <div class="col" data-rv><p class="lab">[02]</p><h3 class="h big">Clear thinking</h3><p class="body">Design connects what a business needs with what people need. Every project starts with listening to users. Then I turn what I learn into simple and useful products.</p></div>
+    </div>
+  </section>
+  <div class="div paper" aria-hidden="true"><span>[ beliefs ]</span></div>
+
+  <!-- 3 · what I offer -->
+  <section class="offer paper">
+    <div class="lc"><div class="stick">
+      <p class="lab" data-rv>[What I do]</p>
+      <h2 class="head big" data-rv>Expertise<br><span class="scr">and</span> Skills</h2>
+      <p class="intro body" data-rv>My work covers research, interface design and design systems. The goal for every project is the same: clear products that people enjoy using.</p>
+    </div></div>
+    <figure class="pic" data-rv><img src="photos/expertise.jpg" alt="A conductor's baton drawn as a long white line under a fan of composers' names, on deep blue"></figure>
+    <ol class="rows" id="rows"></ol>
+  </section>
+
+  <!-- 4 · a line round the flower, three goals -->
+  <section class="goal dark">
+    <div class="photo" aria-hidden="true"><img src="photos/info-intention.jpg" alt=""></div>
+    <div class="split">
+      <p class="side big" data-rv>always<br>designing</p>
+      <span class="vine" aria-hidden="true"></span>
+      <p class="side big" data-rv>with<br>intention</p>
+    </div>
+    <p class="ask lab" data-rv>[My work comes down to 3 main goals]</p>
+    <div class="three">
+      <div class="col" data-rv><p class="lab">[01]</p><h3 class="h big">User insight</h3><p class="body">Talking to users and testing early, so every design decision starts from what people really need.</p></div>
+      <div class="col" data-rv><p class="lab">[02]</p><h3 class="h big">Clear strategy</h3><p class="body">Finding where business goals and user needs meet, then building the product that works for both.</p></div>
+      <div class="col" data-rv><p class="lab">[03]</p><h3 class="h big">Lasting design</h3><p class="body">Creating a solid design system, so the product stays easy to use and consistent as it grows.</p></div>
+    </div>
+  </section>
+
+  <!-- 5 · the next story, on bright paper -->
+  <section class="next paper">
+    <p class="nx big" data-rv>Read the next story</p>
+    <p class="cnt lab" data-rv>[1 out of 7 selected projects]</p>
+    <!-- the first of the seven, as on the work page: its own cover, its name and what it is -->
+    <a class="card" href="project.html?p=1" data-rv>
+      <span class="cv"><img src="projects/penlo/cover.jpg" alt="Penlo, the redesigned iOS app"></span>
+      <span class="tags lab"><span>Penlo</span><span>iOS app redesign</span></span>
+    </a>
+    <a class="btn" href="work.html" data-rv><span class="r"><span>View all work</span><span aria-hidden="true">View all work</span></span></a>
+  </section>
+
+  <!-- 6 · the footer, as the home page's -->
+  <footer class="ft dark" id="contact">
+    <div class="photo" aria-hidden="true"><img src="photos/footer.jpg" alt=""></div>
+    <p class="top lab"><span>[Trinh Trinh Nguyen]</span><span>[Copyright 2026]</span></p>
+    <div class="mid">
+      <h2 class="say big">Come<br>say<br>hello</h2>
+      <span class="vine" aria-hidden="true"></span>
+      <div class="rep"><p class="lab">[Currently on repeat]</p><a class="cov" href="index.html" aria-label="Back to the record on the home page"></a><p class="lab">[Trinh.N &ndash; Late Bloom]</p></div>
+    </div>
+    <p class="bot"><a class="lk" href="#">LinkedIn &rarr;</a><a class="up" href="#top" aria-label="Back to top">&uarr;</a><a class="lk" href="#">Instagram &rarr;</a></p>
+  </footer>
+</main>
+<div class="noise" aria-hidden="true"></div>
+
+<script>
+(function () {
+  /* the offerings: a number, the skill, one line (the owner took "Related work" and its links out in Figma) */
+  const SKILLS = [
+    ["User research", "Interviews, testing and data that show what people actually need. AI helps me sort through notes faster, but the insights come from talking to people."],
+    ["Product thinking", "Working with PMs and engineers to decide what to build, why it matters, and how we&rsquo;ll know it worked."],
+    ["UX / UI design", "Flows, edge cases and interfaces built on how people really behave, clean and accessible down to the last detail."],
+    ["AI product design", "Designing AI features people can trust: chat interfaces, smart suggestions, and what happens when the AI gets it wrong."],
+    ["Prototyping", "Working prototypes built with Figma and AI coding tools, so ideas get tested with real users before anything is built."],
+    ["Design systems", "Components, tokens and docs that keep a product consistent as it grows, and easy for both developers and AI tools to use."],
+    ["Shipping &amp; iteration", "Clear handoff, staying close through development, and improving the product based on how people actually use it."]
+  ];
+  const rows = document.getElementById("rows");
+  rows.innerHTML = SKILLS.map(([n, l], i) =>
+    '<li data-rv><p class="lab">[' + String(i + 1).padStart(2, "0") + ']</p>' +
+    '<div class="tp"><h3 class="h big">' + n + '</h3></div>' +
+    '<div class="bt"><p class="body d">' + l + '</p></div></li>').join("");
+
+  /* the greeting at the foot of the hero types itself in */
+  document.querySelectorAll(".type").forEach((el) => {
+    el.innerHTML = Array.from(el.textContent).map((c, i) => '<i style="transition-delay:' + (i * 45) + 'ms">' + (c === " " ? "&nbsp;" : c) + "</i>").join("");
+  });
+
+  /* the count runs up to the number of projects once it is in view */
+  const cnt = document.getElementById("count");
+  const runCount = () => { let n = 0; const t = setInterval(() => { n++; cnt.textContent = String(n).padStart(2, "0"); if (n >= 7) clearInterval(t); }, 110); };
+
+  /* things come in as they scroll into view (and go again if you scroll back above them) */
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("in"); if (e.target.contains(cnt) && !cnt._ran) { cnt._ran = true; runCount(); } }
+    else if (e.boundingClientRect.top > 0) e.target.classList.remove("in");
+  }), { rootMargin: "0px 0px -6% 0px" });
+  document.querySelectorAll("[data-rv], .type").forEach((e) => io.observe(e));
+  document.querySelector(".up").addEventListener("click", (e) => { e.preventDefault(); scrollTo({ top: 0, behavior: "smooth" }); });
+})();
+</script>
+</body>
+</html>

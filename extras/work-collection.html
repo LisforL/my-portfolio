@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work as a vinyl collection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500&display=swap">
+<style>
+/* Three directions for the Selected work as a vinyl collection, with no disc: the records in a
+   row of thin spines on the page, one taken out and turned to its cover when you click it; framed
+   on the wall and walked along; and flowing past like a music library. Working scroll sketches with the site's
+   fonts, colours and placeholder pictures; the tabs switch between them. Every record is the
+   loading screen's sleeve, each in one of the site's colours. Words in [brackets] are the site's
+   own placeholders. */
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-Ultralight.otf") format("opentype"); font-weight: 200; font-style: normal; }
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-UltralightItalic.otf") format("opentype"); font-weight: 200; font-style: italic; }
+@font-face { font-family: "PP Editorial New"; src: url("../fonts/PPEditorialNew-Italic.otf") format("opentype"); font-weight: 400; font-style: italic; }
+:root {
+  --paper: #faf8f5; --ink: #400d1b; --wine: #400d1b; --ink-soft: #6c454f; --accent: #8760af;
+  --line: #dbd4d1; --thistle: #cdb9dd; --aqua: #beffea; --deep: #2b0a12;
+  --serif: "PP Editorial New", "Instrument Serif", "Times New Roman", serif;
+  --body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", Menlo, monospace;
+  --bar: 64px;
+  --pad: clamp(20px, 5vw, 88px);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+img { display: block; }
+button { font: inherit; color: inherit; }
+.opt { display: none; }
+.opt.on { display: block; }
+
+/* the bar: back to the site, and the three directions */
+.ob {
+  position: fixed; z-index: 100; inset: 0 0 auto 0; height: var(--bar);
+  display: flex; align-items: center; gap: clamp(12px, 2vw, 28px); padding: 0 clamp(14px, 2vw, 28px);
+  background: rgba(250, 248, 245, 0.94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.ob-home { font-size: 11px; line-height: 1; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
+.ob-home:hover { color: var(--ink); }
+.ob-t { margin: 0; font: 200 22px/1 var(--serif); white-space: nowrap; }
+.ob-t em { font-style: italic; color: var(--accent); }
+.ob-tabs { margin-left: auto; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+.ob-tabs::-webkit-scrollbar { display: none; }
+.ob-tabs button {
+  flex: none; display: inline-flex; align-items: baseline; gap: 8px;
+  padding: 9px 14px 8px; border: 1px solid rgba(64, 13, 27, 0.22); border-radius: 999px; background: none; cursor: pointer;
+  font-size: 12px; line-height: 1; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.ob-tabs button b { font: 500 11px/1 var(--mono); color: var(--accent); }
+.ob-tabs button:hover { border-color: var(--ink); }
+.ob-tabs button[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.ob-tabs button[aria-selected="true"] b { color: var(--thistle); }
+@media (max-width: 760px) { .ob-t, .ob-home { display: none; } .ob-tabs { margin-left: 0; } .ob-tabs button { padding: 9px 11px 8px; } }
+
+/* each direction opens with a note on how it scrolls and how it belongs to the site */
+.oi { min-height: 74vh; display: grid; align-content: center; justify-items: start; gap: 18px; max-width: 1100px; padding: calc(var(--bar) + 48px) var(--pad) 56px; }
+.oi-k { margin: 0; font: 500 12px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.oi-t { margin: 0; font: 200 clamp(56px, 8vw, 128px)/0.92 var(--serif); letter-spacing: -0.02em; }
+.oi-t em { font-style: italic; color: var(--accent); }
+.oi-p { margin: 0; max-width: 34em; font-size: clamp(16px, 1.3vw, 21px); line-height: 1.45; color: var(--ink-soft); }
+.oi-why { margin: 6px 0 0; padding: 0; list-style: none; display: grid; max-width: 44em; font-size: 15px; line-height: 1.45; border-bottom: 1px dotted rgba(64, 13, 27, 0.3); }
+.oi-why li { display: grid; grid-template-columns: 90px 1fr; gap: 14px; padding: 9px 0 8px; border-top: 1px dotted rgba(64, 13, 27, 0.3); }
+.oi-why b { font: 500 11px/1.9 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.oi-go { margin: 14px 0 0; font-size: 12px; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+
+/* a project's notes: the number, kind and year; the name and what it is; a line about it; the
+   credits between dotted rules; the way into the case study */
+.k { margin: 0; display: flex; align-items: center; gap: 14px; font-size: 12px; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.k .rule { width: 40px; height: 1px; background: currentColor; opacity: 0.5; }
+.k .soft { color: var(--ink-soft); }
+.big { margin: 0; font: 200 clamp(42px, 5vw, 88px)/0.98 var(--serif); letter-spacing: -0.016em; }
+.big em { font-style: italic; color: var(--accent); }
+.meta { margin: 0; display: flex; align-items: center; gap: 12px; font-size: 12px; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+.meta .no { font-family: var(--mono); letter-spacing: 0.06em; color: var(--accent); }
+.meta .rule { width: 28px; height: 1px; background: currentColor; opacity: 0.5; }
+.meta .yr { margin-left: auto; font-family: var(--mono); letter-spacing: 0.06em; }
+.ttl { margin: 0; font-family: var(--serif); font-weight: 200; line-height: 1.04; letter-spacing: -0.012em; }
+.ttl em { display: block; font-style: italic; color: var(--accent); }
+.desc { margin: 0; max-width: 31em; font-size: 15px; line-height: 1.45; color: var(--ink-soft); }
+.cr { margin: 0; border-bottom: 1px dotted rgba(64, 13, 27, 0.34); }
+.cr > div { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 14px; align-items: baseline; padding: 8px 0 7px; border-top: 1px dotted rgba(64, 13, 27, 0.34); }
+.cr dt { font: 400 11px/1.4 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+.cr dd { margin: 0; font-size: 14px; line-height: 1.4; }
+.cr .res dd { color: var(--accent); }
+.go { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+.go svg { width: 12px; height: 10px; transition: transform 0.3s cubic-bezier(.22, 1, .36, 1); }
+.go:hover svg { transform: translateX(4px); }
+.notes { display: grid; }
+.notes > div { grid-area: 1 / 1; display: grid; gap: 14px; align-content: start; }
+.notes .ttl { font-size: clamp(30px, 2.6vw, 46px); }
+
+/* the record: the loading screen's sleeve (sized by its width, cqw), in one of the site's colours
+   (--bg, --fg, --soft, --rule, --hi): the name and catalogue number at the top, the project's
+   picture as the cover, its name and kind at the foot, the open edge on the right */
+.sl { position: relative; width: 100%; aspect-ratio: 1; container-type: inline-size; background: var(--bg); color: var(--fg); }
+.sl::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 3px; background: rgba(255, 255, 255, 0.1); }
+.sl-frame { position: absolute; inset: 3cqw; border: 1px solid var(--rule); pointer-events: none; }
+.sl-top, .sl-foot { position: absolute; left: 7cqw; right: 7cqw; display: flex; justify-content: space-between; align-items: baseline; gap: 3cqw; white-space: nowrap; }
+.sl-top { top: 6.6cqw; font: 500 max(5px, 2.4cqw)/1 var(--mono); letter-spacing: 0.16em; text-transform: uppercase; }
+.sl-top b { font-weight: 500; color: var(--hi); }
+.sl-art { position: absolute; left: 7cqw; right: 7cqw; top: 13cqw; bottom: 20cqw; overflow: hidden; background: #e8dff0; }
+.sl-art img { width: 100%; height: 100%; object-fit: cover; }
+.sl-foot { bottom: 6.6cqw; }
+.sl-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; font: italic 200 6.4cqw/1.05 var(--serif); }
+.sl-kind { font: 500 max(5px, 2.3cqw)/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--soft); }
+
+
+/* ── 1 · The spines ──────────────────────────────────────────────
+   The collection as a row of thin spines standing on the page: each record a slim 3D box in one
+   of the site's colours, with nothing on its spine but its number. Nothing to read until you
+   choose: click a spine and that record slides out, turns to its cover and stands beside the row,
+   its notes come up on the other side, the rest close the gap and the page takes a wash of its
+   colour. Click the cover (or Esc) to put it back; the arrows step through. */
+.sn-stage { --W: 440px; position: relative; height: calc(100vh - var(--bar)); min-height: 560px; overflow: hidden; perspective: var(--persp, 1500px); perspective-origin: var(--po, 50% 50%); background-color: var(--paper); transition: background-color 0.9s ease; }
+.sn-head { position: absolute; z-index: 2; left: var(--pad); top: 44px; display: grid; gap: 14px; }
+.sn-head .big { font-size: clamp(40px, 4.2vw, 74px); }
+.sn-room { position: absolute; inset: 0; transform-style: preserve-3d; }
+.sn-shadow { position: absolute; height: 30px; border-radius: 50%; background: radial-gradient(closest-side, rgba(64, 13, 27, 0.2), transparent); pointer-events: none; }
+.sn .rc { position: absolute; left: 0; top: 0; width: var(--W); height: var(--W); transform-style: preserve-3d; }
+.sn .rc-f { position: absolute; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.sn .rc-front { inset: 0; transform: translateZ(calc(var(--d) / 2)); cursor: pointer; }
+.sn .rc-back { inset: 0; background: var(--side); transform: rotateY(180deg) translateZ(calc(var(--d) / 2)); }
+.sn .rc-spine, .sn .rc-edge { top: 0; left: calc((var(--W) - var(--d)) / 2); width: var(--d); height: var(--W); }
+.sn .rc-spine { margin: 0; padding: 0; border: 0; background: none; cursor: pointer; transform: rotateY(-90deg) translateZ(calc(var(--W) / 2)); }
+.sn .rc-spine:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.sn .rc-edge { background: var(--side); transform: rotateY(90deg) translateZ(calc(var(--W) / 2)); }
+.sn .rc-top, .sn .rc-bot { left: 0; top: calc((var(--W) - var(--d)) / 2); width: var(--W); height: var(--d); background: var(--side); }
+.sn .rc-top { transform: rotateX(90deg) translateZ(calc(var(--W) / 2)); }
+.sn .rc-bot { transform: rotateX(-90deg) translateZ(calc(var(--W) / 2)); }
+.sn .rc.in .rc-front, .sn .rc.in .rc-back, .sn .rc.in .rc-edge, .sn .rc.in .rc-top, .sn .rc.in .rc-bot { visibility: hidden; }
+/* a spine: its colour with a soft sheen, its number at the top, a flower at the foot */
+.sn-spn { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 14px 0 13px; background: linear-gradient(90deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 38%, rgba(0, 0, 0, 0.07)), var(--bg); }
+.sn-spn b { writing-mode: vertical-rl; font: 500 9px/1 var(--mono); letter-spacing: 0.16em; color: var(--hi); }
+.sn-spn i { font-style: normal; font-size: 9px; line-height: 1; color: var(--hi); }
+/* the cover: the record's colour, the picture, the number and the year, nothing else */
+.cv { position: absolute; inset: 0; container-type: inline-size; background: var(--bg); color: var(--fg); transition: box-shadow 0.5s ease; }
+.sn .rc.out .cv { box-shadow: 0 2cqw 6cqw rgba(43, 10, 18, 0.22); }
+.cv-art { position: absolute; left: 8cqw; right: 8cqw; top: 8cqw; bottom: 18cqw; overflow: hidden; background: #ece6ee; }
+.cv-art img { width: 100%; height: 100%; object-fit: cover; }
+.cv-no, .cv-yr { position: absolute; bottom: 7.2cqw; font: 500 max(8px, 2.4cqw)/1 var(--mono); letter-spacing: 0.16em; }
+.cv-no { left: 8cqw; }
+.cv-yr { right: 8cqw; color: var(--soft); }
+.cv-f { position: absolute; left: 50%; bottom: 6.8cqw; translate: -50% 0; font-size: 3cqw; line-height: 1; color: var(--hi); }
+/* under the row: each number in 0s and 1s, and a line naming the record under the pointer */
+.sn-bits { position: absolute; display: flex; pointer-events: none; transition: opacity 0.4s ease; }
+.sn-bits span { flex: none; display: flex; justify-content: center; writing-mode: vertical-rl; font: 500 8px/1 var(--mono); letter-spacing: 0.32em; color: rgba(64, 13, 27, 0.3); transition: color 0.3s ease; }
+.sn-bits span.on { color: var(--accent); }
+.sn-hint { position: absolute; left: 0; right: 0; margin: 0; text-align: center; font: 500 11px/1.4 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
+.sn-hint em { font: italic 200 15px/1 var(--serif); letter-spacing: 0; text-transform: none; color: var(--ink); }
+/* the notes of the chosen record, in one readable column */
+.sn-notes { position: absolute; top: 50%; width: 440px; translate: 0 -50%; display: grid; gap: 22px; opacity: 0; transform: translateX(18px); pointer-events: none; transition: opacity 0.35s ease, transform 0.5s cubic-bezier(.2, .8, .2, 1); }
+.sn-notes.on { opacity: 1; transform: none; pointer-events: auto; transition-delay: 0.2s; }
+.sn-nav { display: flex; align-items: center; gap: 10px; font: 500 11px/1 var(--mono); letter-spacing: 0.1em; color: var(--ink-soft); }
+.sn-nav button { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid rgba(64, 13, 27, 0.22); border-radius: 50%; background: none; cursor: pointer; font-size: 15px; line-height: 1; transition: border-color 0.2s ease, background-color 0.2s ease; }
+.sn-nav button:hover { border-color: var(--ink); background: rgba(255, 255, 255, 0.5); }
+.sn-nav .sn-close { margin-left: auto; width: auto; padding: 0 16px; border-radius: 999px; font: 500 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; }
+.sn-body > div { gap: 16px; }
+.sn-body .ttl { font-size: clamp(34px, 3vw, 52px); }
+.sn-body .desc { font-size: 16.5px; line-height: 1.5; }
+.sn-body .cr > div { padding: 10px 0 9px; }
+.sn-body .cr dd { font-size: 15px; }
+.sn-cta { justify-self: start; margin-top: 6px; display: inline-flex; align-items: center; gap: 12px; padding: 14px 22px 13px; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 12px; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: background-color 0.25s ease; }
+.sn-cta svg { width: 12px; height: 10px; transition: transform 0.3s cubic-bezier(.22, 1, .36, 1); }
+.sn-cta:hover { background: var(--accent); }
+.sn-cta:hover svg { transform: translateX(4px); }
+@media (max-width: 760px) {
+  .sn-stage { height: var(--h, auto); min-height: calc(100vh - var(--bar)); transition: background-color 0.9s ease, height 0.6s cubic-bezier(.2, .8, .2, 1); }
+  .sn-head { left: 18px; right: 18px; top: 22px; }
+  .sn-head .big { font-size: 40px; }
+  .sn-notes { left: 18px !important; right: 18px; width: auto !important; translate: none; top: var(--nt, 0px); transform: translateY(14px); }
+  .sn-body .ttl { font-size: 28px; }
+  .sn-body .desc { font-size: 15px; }
+}
+
+/* ── 2 · The wall ────────────────────────────────────────────────
+   The collection framed on a wall, as collectors hang the records they love most. The whole wall
+   first; then the camera walks up to each frame in turn, pulling back a little between them, and
+   a collector's card beside it gives the notes. The wall is laid out at the size a frame has
+   when you stand at it (--F), so the camera only ever scales down. */
+.wl { position: relative; }
+.wl-stage { position: sticky; top: var(--bar); height: calc(100vh - var(--bar)); overflow: hidden; background: #f5f0ea; }
+.wl-wall { --F: 500px; position: absolute; left: 0; top: 0; transform-origin: 0 0; background: #f7f2ec; }
+.wl-words { position: absolute; }
+.wl-head { display: grid; gap: calc(var(--F) * 0.06); }
+.wl-words .k { font-size: calc(var(--F) * 0.034); gap: calc(var(--F) * 0.03); }
+.wl-words .k .rule { width: calc(var(--F) * 0.1); }
+.wl-words .big { font-size: calc(var(--F) * 0.2); }
+.wl-fr { position: absolute; margin: 0; width: var(--F); cursor: pointer; }
+.wl-light { position: absolute; left: -30%; right: -30%; top: -34%; height: 110%; background: radial-gradient(closest-side, rgba(255, 255, 255, 0.75), transparent); pointer-events: none; }
+.wl-frame { position: relative; padding: calc(var(--F) * 0.035); background: linear-gradient(135deg, #4a1626, var(--deep)); box-shadow: 0 calc(var(--F) * 0.05) calc(var(--F) * 0.09) calc(var(--F) * -0.04) rgba(43, 10, 18, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.08); }
+.wl-mat { padding: calc(var(--F) * 0.075); background: #fdfbf7; box-shadow: inset 0 calc(var(--F) * 0.006) calc(var(--F) * 0.02) rgba(43, 10, 18, 0.2); }
+.wl-fr figcaption { position: relative; margin-top: calc(var(--F) * 0.05); display: flex; align-items: baseline; gap: calc(var(--F) * 0.025); white-space: nowrap; overflow: hidden; }
+.wl-fr figcaption b { font: 500 calc(var(--F) * 0.03)/1 var(--mono); letter-spacing: 0.08em; color: var(--accent); }
+.wl-fr figcaption span { font: italic 200 calc(var(--F) * 0.046)/1.1 var(--serif); color: var(--ink-soft); overflow: hidden; text-overflow: ellipsis; }
+.wl-card {
+  position: absolute; top: 50%; right: var(--pad); width: min(34vw, 470px); translate: 0 -50%;
+  padding: 26px 26px 22px; background: #fffdf8; box-shadow: 0 18px 40px -24px rgba(64, 13, 27, 0.45), 0 0 0 1px rgba(64, 13, 27, 0.06);
+  transition: opacity 0.4s ease, translate 0.5s cubic-bezier(.2, .8, .2, 1);
+}
+.wl-card.off { opacity: 0; translate: 24px -50%; pointer-events: none; }
+.wl-card-k { margin: 0 0 16px; display: flex; justify-content: space-between; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(64, 13, 27, 0.14); font: 500 10.5px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
+.wl-card-k span:first-child { color: var(--accent); }
+.wl-hint { position: absolute; left: 50%; bottom: 16px; translate: -50% 0; margin: 0; font: 500 11px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
+@media (max-width: 760px) {
+  .wl-card { top: auto; bottom: 40px; left: 16px; right: 16px; width: auto; translate: none; padding: 18px 18px 16px; }
+  .wl-card.off { translate: 0 20px; }
+  .wl-card .desc { display: none; }
+  .wl-card .notes .ttl { font-size: 24px; }
+  .wl-card .cr > div { padding: 6px 0 5px; }
+}
+
+
+/* ── 3 · The flow ────────────────────────────────────────────────
+   The collection flowing past like a music library: the record in front faces you, the rest
+   stand turned to either side, reflected in the shelf they stand on. Scroll, click a record, or
+   use the arrow keys; the notes of the one in front sit underneath, and a bar marks the place. */
+.fl { position: relative; }
+.fl-stage { --S: 380px; position: sticky; top: var(--bar); height: calc(100vh - var(--bar)); overflow: hidden; perspective: calc(var(--S) * 4); background: linear-gradient(var(--paper) 0 var(--floor, 60%), #f1ebe5 var(--floor, 60%), var(--paper)); }
+.fl-row { position: absolute; inset: 0; transform-style: preserve-3d; }
+.fl-it { position: absolute; left: 0; top: 0; width: var(--S); cursor: pointer; }
+.fl-it .sl { -webkit-box-reflect: below 2px linear-gradient(transparent 64%, rgba(0, 0, 0, 0.22)); box-shadow: 0 calc(var(--S) * 0.02) calc(var(--S) * 0.05) rgba(43, 10, 18, 0.25); }
+.fl-bar { position: absolute; left: 50%; width: min(40vw, 460px); height: 18px; translate: -50% 0; cursor: pointer; }
+.fl-bar::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px dotted rgba(64, 13, 27, 0.45); }
+.fl-tick { position: absolute; top: 50%; width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px; border-radius: 50%; background: rgba(64, 13, 27, 0.3); }
+.fl-thumb { position: absolute; top: 50%; width: 46px; height: 12px; margin: -6px 0 0 -23px; border-radius: 999px; background: var(--ink); box-shadow: 0 2px 6px rgba(43, 10, 18, 0.3); }
+.fl-info { position: absolute; left: 50%; translate: -50% 0; width: min(88vw, 1040px); }
+.fl-info .notes > div { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); column-gap: 4vw; }
+.fl-l, .fl-r { display: grid; gap: 12px; align-content: start; }
+@media (max-width: 760px) {
+  .fl-bar { width: 70vw; }
+  .fl-info { width: auto; left: 18px; right: 18px; translate: none; }
+  .fl-info .notes > div { grid-template-columns: minmax(0, 1fr); row-gap: 10px; }
+  .fl-info .desc { display: none; }
+  .fl-info .ttl { font-size: 24px; }
+  .fl-info .cr > div { padding: 6px 0 5px; }
+}
+</style>
+</head>
+<body>
+<nav class="ob" aria-label="Directions">
+  <a class="ob-home" href="../index.html">← The site</a>
+  <p class="ob-t">Selected work, <em>as a vinyl collection</em></p>
+  <div class="ob-tabs" role="tablist">
+    <button type="button" role="tab" data-o="a"><b>1</b>The spines</button>
+    <button type="button" role="tab" data-o="b"><b>2</b>The wall</button>
+    <button type="button" role="tab" data-o="c"><b>3</b>The flow</button>
+  </div>
+</nav>
+<main>
+  <section class="opt" id="opt-a" data-o="a" aria-label="Direction 1, the spines"></section>
+  <section class="opt" id="opt-b" data-o="b" aria-label="Direction 2, the wall"></section>
+  <section class="opt" id="opt-c" data-o="c" aria-label="Direction 3, the flow"></section>
+</main>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+  const clamp01 = (x) => clamp(x, 0, 1);
+  const smooth = (x) => { x = clamp01(x); return x * x * (3 - 2 * x); };
+  const easeInOut = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+  const BAR = 64;
+  const phone = () => innerWidth <= 760;
+  /* scroll position in steps, resting on each whole step: the move happens in the middle of a step */
+  const stepped = (raw, edge) => Math.floor(raw) + smooth((raw - Math.floor(raw) - edge) / (1 - 2 * edge));
+
+  /* the site's projects, as in index.html */
+  const PROJECTS = [
+    { title: "[Project name]: a mobile app for slow travel", tag: "Mobile / App", cat: "Mobile", year: "2026",
+      role: "[Lead product designer]", team: "[Who you worked with]", time: "[12 weeks]", result: "[What changed, in one number]",
+      desc: "[One or two lines: the problem, your part in it, and what changed for the people who use it.]" },
+    { title: "[Project name]: a booking flow for a wellness studio", tag: "Web / UX", cat: "Web", year: "2026",
+      role: "[Product designer]", team: "[Who you worked with]", time: "[6 weeks]", result: "[What changed, in one number]",
+      desc: "[One or two lines: the problem, your part in it, and what changed for the people who use it.]" },
+    { title: "[Project name]: a design system for a fintech team", tag: "Design System", cat: "Systems", year: "2025",
+      role: "[Design systems lead]", team: "[Who you worked with]", time: "[5 months]", result: "[What changed, in one number]",
+      desc: "[One or two lines: the problem, your part in it, and what changed for the people who use it.]" },
+    { title: "[Project name]: an e-commerce redesign", tag: "Web / E-commerce", cat: "Web", year: "2025",
+      role: "[Product designer]", team: "[Who you worked with]", time: "[10 weeks]", result: "[What changed, in one number]",
+      desc: "[One or two lines: the problem, your part in it, and what changed for the people who use it.]" },
+    { title: "[Project name]: a dashboard for a logistics start-up", tag: "SaaS / Dashboard", cat: "Systems", year: "2024",
+      role: "[Senior product designer]", team: "[Who you worked with]", time: "[4 months]", result: "[What changed, in one number]",
+      desc: "[One or two lines: the problem, your part in it, and what changed for the people who use it.]" },
+    { title: "[Project name]: a habit-tracking app", tag: "Mobile / App", cat: "Mobile", year: "2024",
+      role: "[Product designer]", team: "[Who you worked with]", time: "[8 weeks]", result: "[What changed, in one number]",
+      desc: "[One or two lines: the problem, your part in it, and what changed for the people who use it.]" }
+  ];
+  const N = PROJECTS.length;
+  /* each record in one of the site's colours: its sleeve, the print on it, and its darker sides */
+  const THEMES = [
+    { bg: "#400d1b", fg: "#faf8f5", soft: "rgba(250,248,245,.62)", rule: "rgba(205,185,221,.34)", hi: "#cdb9dd", side: "#2e0913" },
+    { bg: "#cdb9dd", fg: "#400d1b", soft: "rgba(64,13,27,.6)", rule: "rgba(64,13,27,.24)", hi: "#8760af", side: "#b29dc4" },
+    { bg: "#f1eae1", fg: "#400d1b", soft: "rgba(64,13,27,.55)", rule: "rgba(64,13,27,.2)", hi: "#8760af", side: "#dcd2c6" },
+    { bg: "#8760af", fg: "#faf8f5", soft: "rgba(250,248,245,.74)", rule: "rgba(250,248,245,.34)", hi: "#beffea", side: "#6d4b92" },
+    { bg: "#2b0a12", fg: "#cdb9dd", soft: "rgba(205,185,221,.6)", rule: "rgba(205,185,221,.28)", hi: "#beffea", side: "#1c060b" },
+    { bg: "#d4f3e7", fg: "#400d1b", soft: "rgba(64,13,27,.55)", rule: "rgba(64,13,27,.2)", hi: "#8760af", side: "#b5dacb" }
+  ];
+  const theme = (i) => { const t = THEMES[i % THEMES.length]; return "--bg:" + t.bg + ";--fg:" + t.fg + ";--soft:" + t.soft + ";--rule:" + t.rule + ";--hi:" + t.hi + ";--side:" + t.side; };
+  const CREDITS = [["Role", "role"], ["Team", "team"], ["Time", "time"], ["Result", "result"]];
+  const two = (i) => String(i + 1).padStart(2, "0");
+  const pad2 = (n) => String(n).padStart(2, "0");
+  const catNo = (i) => "TTN—" + two(i);
+  const split = (t) => { const k = t.indexOf(": "); return k < 0 ? [t, ""] : [t.slice(0, k), t.slice(k + 2)]; };
+  const ARROW = '<svg viewBox="0 0 12 10" aria-hidden="true"><path d="M1 5h10M7 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>';
+
+  /* the placeholder pictures, drawn as on the site, as blob URLs */
+  function drawShot(pj, i) {
+    const c = document.createElement("canvas");
+    c.width = 800; c.height = 600;
+    const g = c.getContext("2d");
+    const t = (pj.tag + " " + pj.title).toLowerCase();
+    const kind = /dashboard|saas/.test(t) ? "dash" : /system/.test(t) ? "system" : /commerce|shop/.test(t) ? "shop"
+      : /mobile|app/.test(t) ? (/habit|track/.test(t) ? "habit" : "app") : "web";
+    const INK = "#400d1b", SOFT = "rgba(64,13,27,0.16)", FAINT = "rgba(64,13,27,0.09)", ACC = "#8760af", TH = "#cdb9dd", WHITE = "#fdfcfa", TINT = "#f3eef5";
+    g.fillStyle = { app: "#e8dff0", habit: "#e3ebe8", web: "#eeeae1", shop: "#efe4e2", system: "#e6e2ef", dash: "#e7ebe2" }[kind];
+    g.fillRect(0, 0, 800, 600);
+    const path = (x, y, w, h, r) => {
+      r = Math.min(r, w / 2, h / 2);
+      g.beginPath();
+      g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r);
+      g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath();
+    };
+    const box = (x, y, w, h, r, fill, stroke) => {
+      path(x, y, w, h, r);
+      if (fill) { g.fillStyle = fill; g.fill(); }
+      if (stroke) { g.strokeStyle = stroke; g.lineWidth = 2; g.stroke(); }
+    };
+    const line = (x, y, w, h = 10, fill = SOFT) => box(x, y, w, h, h / 2, fill);   // a line of text
+    const dot = (x, y, r, fill) => { g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fillStyle = fill; g.fill(); };
+    const lift = (on) => { g.shadowColor = on ? "rgba(64,13,27,0.2)" : "transparent"; g.shadowBlur = on ? 34 : 0; g.shadowOffsetY = on ? 16 : 0; };
+    const browser = (x, y, w, h) => {
+      lift(true); box(x, y, w, h, 18, WHITE); lift(false);
+      box(x, y, w, h, 18, null, "rgba(64,13,27,0.55)");
+      g.fillStyle = FAINT; g.fillRect(x + 1, y + 40, w - 2, 2);
+      dot(x + 24, y + 21, 6, TH); dot(x + 44, y + 21, 6, SOFT); dot(x + 64, y + 21, 6, SOFT);
+      box(x + w / 2 - 110, y + 11, 220, 20, 10, TINT);
+    };
+    if (kind === "app" || kind === "habit") {
+      /* two floating cards either side, then the phone */
+      lift(true); box(100, 170, 200, 118, 18, WHITE); lift(false);
+      line(122, 194, 96, 12, INK); line(122, 218, 150); line(122, 238, 118, 10, FAINT); box(122, 254, 62, 20, 10, kind === "app" ? ACC : TH);
+      lift(true); box(500, 330, 196, 104, 18, WHITE); lift(false);
+      dot(530, 366, 16, kind === "app" ? TH : ACC); line(556, 356, 110, 11, INK); line(556, 378, 80); line(522, 404, 150, 9, FAINT);
+      lift(true); box(290, 56, 220, 488, 36, WHITE); lift(false);
+      box(290, 56, 220, 488, 36, null, "rgba(64,13,27,0.6)");
+      box(364, 70, 72, 14, 7, INK);                                            // the notch
+      if (kind === "app") {
+        line(312, 108, 92, 13, INK); line(312, 130, 140);
+        box(312, 154, 176, 118, 16, TH);                                        // a map
+        g.strokeStyle = "rgba(255,255,255,0.7)"; g.lineWidth = 3; g.beginPath(); g.moveTo(322, 250); g.bezierCurveTo(372, 200, 412, 260, 478, 176); g.stroke();
+        dot(452, 196, 10, ACC); dot(452, 196, 4, WHITE);
+        for (let r = 0; r < 3; r++) {
+          box(312, 288 + r * 60, 176, 48, 12, TINT);
+          dot(334, 312 + r * 60, 12, r === 0 ? ACC : TH);
+          line(354, 302 + r * 60, 88, 9, SOFT); line(354, 318 + r * 60, 58, 8, FAINT);
+        }
+      } else {
+        line(312, 108, 110, 13, INK);
+        g.lineCap = "round"; g.lineWidth = 16;
+        g.strokeStyle = "#ece6f0"; g.beginPath(); g.arc(400, 214, 58, 0, Math.PI * 2); g.stroke();
+        g.strokeStyle = ACC; g.beginPath(); g.arc(400, 214, 58, -Math.PI / 2, Math.PI * 0.9); g.stroke();
+        line(380, 206, 40, 14, INK);
+        for (let d = 0; d < 7; d++) dot(319 + d * 27, 312, 9, d < 5 ? ACC : TH);
+        for (let r = 0; r < 2; r++) {
+          box(312, 342 + r * 60, 176, 48, 12, TINT);
+          box(328, 356 + r * 60, 20, 20, 6, r === 0 ? ACC : null, r === 0 ? null : SOFT);
+          line(358, 360 + r * 60, 96, 10, SOFT);
+        }
+      }
+      g.fillStyle = FAINT; g.fillRect(304, 488, 192, 2);
+      for (let k = 0; k < 4; k++) dot(332 + k * 46, 512, 6, k === 0 ? ACC : SOFT);   // the tab bar
+    } else if (kind === "web" || kind === "shop") {
+      browser(80, 70, 640, 460);
+      if (kind === "web") {
+        line(112, 140, 210, 20, INK); line(112, 172, 168, 20, INK);
+        line(112, 214, 230); line(112, 234, 190, 10, FAINT);
+        box(112, 270, 124, 36, 18, ACC); line(130, 284, 88, 9, "rgba(255,255,255,0.85)");
+        box(404, 132, 288, 260, 14, TINT);                                      // a calendar
+        line(426, 152, 96, 11, INK);
+        for (let r = 0; r < 4; r++) for (let q = 0; q < 6; q++)
+          box(426 + q * 42, 182 + r * 48, 30, 30, 8, r === 1 && q === 3 ? ACC : r === 2 && q === 1 ? TH : "#e7dfea");
+        for (let s = 0; s < 3; s++) box(112 + s * 96, 420, 84, 30, 15, s === 1 ? TH : TINT);
+        line(112, 468, 260, 10, FAINT);
+      } else {
+        box(112, 130, 576, 118, 14, TH);
+        line(140, 162, 200, 18, INK); line(140, 192, 150, 10, "rgba(64,13,27,0.25)"); box(140, 212, 96, 24, 12, ACC);
+        dot(600, 190, 44, "rgba(255,255,255,0.55)");
+        for (let p = 0; p < 3; p++) {
+          const x = 112 + p * 196;
+          box(x, 270, 184, 150, 12, TINT);
+          dot(x + 92, 340, 38, p === 1 ? ACC : "#e2d6e6");
+          line(x, 434, 120, 10, SOFT); line(x, 452, 70, 9, FAINT);
+          box(x + 124, 434, 60, 26, 13, p === 0 ? INK : "#ece4ea");
+        }
+      }
+    } else if (kind === "system") {
+      lift(true); box(70, 60, 660, 480, 20, WHITE); lift(false);
+      g.fillStyle = INK; g.font = "200 118px 'PP Editorial New', 'Instrument Serif', serif"; g.textBaseline = "alphabetic";
+      g.fillText("Aa", 104, 206);
+      line(104, 232, 160); line(104, 252, 118, 10, FAINT);
+      [INK, ACC, TH, "#f4f7ea", "#beffea"].forEach((col, k) => {
+        dot(342 + k * 66, 132, 24, col);
+        g.strokeStyle = FAINT; g.lineWidth = 2; g.beginPath(); g.arc(342 + k * 66, 132, 24, 0, Math.PI * 2); g.stroke();
+      });
+      box(330, 190, 132, 42, 21, ACC); line(358, 206, 76, 10, "rgba(255,255,255,0.85)");
+      box(476, 190, 132, 42, 21, null, INK); line(504, 206, 76, 10, SOFT);
+      box(624, 190, 42, 42, 21, null, SOFT);
+      box(330, 254, 64, 34, 17, ACC); dot(377, 271, 13, WHITE);
+      box(410, 254, 64, 34, 17, "#e7e1ec"); dot(427, 271, 13, WHITE);
+      box(494, 256, 30, 30, 8, INK);
+      g.strokeStyle = WHITE; g.lineWidth = 3; g.lineCap = "round"; g.beginPath(); g.moveTo(502, 271); g.lineTo(508, 277); g.lineTo(518, 264); g.stroke();
+      box(104, 306, 592, 50, 12, TINT); box(104, 306, 592, 50, 12, null, FAINT); line(124, 326, 180, 10, SOFT);
+      for (let k = 0; k < 3; k++) {
+        box(104 + k * 202, 378, 186, 128, 14, TINT);
+        line(124 + k * 202, 400, 90, 10, INK); line(124 + k * 202, 422, 138, 8, FAINT); line(124 + k * 202, 438, 108, 8, FAINT);
+        box(124 + k * 202, 466, 62, 22, 11, k === 0 ? ACC : TH);
+      }
+    } else {
+      lift(true); box(60, 60, 680, 480, 18, WHITE); lift(false);
+      box(60, 60, 150, 480, 18, INK); g.fillStyle = INK; g.fillRect(190, 60, 20, 480);   // the sidebar
+      dot(92, 92, 11, TH);
+      for (let m = 0; m < 6; m++) line(84, 132 + m * 40, m === 1 ? 92 : 70, 10, m === 1 ? TH : "rgba(250,248,245,0.32)");
+      for (let k = 0; k < 3; k++) {
+        box(232 + k * 166, 84, 150, 86, 12, TINT);
+        line(248 + k * 166, 102, 62, 8, SOFT); line(248 + k * 166, 124, 88, 18, k === 0 ? ACC : INK);
+      }
+      box(232, 190, 482, 214, 12, "#fbf9fb"); box(232, 190, 482, 214, 12, null, FAINT);
+      g.fillStyle = FAINT; for (let gl = 0; gl < 3; gl++) g.fillRect(252, 246 + gl * 50, 442, 2);
+      const pts = [[252, 372], [308, 334], [364, 350], [420, 292], [476, 308], [532, 254], [588, 272], [644, 226], [694, 238]];
+      g.beginPath(); g.moveTo(pts[0][0], 396); pts.forEach(([x, y]) => g.lineTo(x, y)); g.lineTo(694, 396); g.closePath();
+      g.fillStyle = "rgba(135,96,175,0.14)"; g.fill();
+      g.beginPath(); pts.forEach(([x, y], k) => (k ? g.lineTo(x, y) : g.moveTo(x, y)));
+      g.strokeStyle = ACC; g.lineWidth = 4; g.lineJoin = "round"; g.stroke();
+      [44, 70, 58, 86, 62, 96, 74].forEach((h, k) => box(236 + k * 68, 516 - h, 40, h, 6, k === 5 ? ACC : TH));
+    }
+    return c.toDataURL("image/png");
+  }
+  const toURL = (d) => { const b = atob(d.split(",")[1]), a = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return URL.createObjectURL(new Blob([a], { type: "image/png" })); };
+  let pics = PROJECTS.map((pj, i) => toURL(drawShot(pj, i)));
+  const fillPics = (root) => root.querySelectorAll("img[data-pic]").forEach((im) => { im.src = pics[+im.dataset.pic]; });
+
+  /* pieces of a project's notes, and its sleeve */
+  const meta = (pj, i) => '<p class="meta"><span class="no">' + catNo(i) + '</span><span class="rule"></span><span>' + esc(pj.tag) + '</span><span class="yr">' + esc(pj.year) + "</span></p>";
+  const title = (pj) => { const [n, w] = split(pj.title); return '<h3 class="ttl">' + esc(n) + (w ? "<em>" + esc(w) + "</em>" : "") + "</h3>"; };
+  const desc = (pj) => '<p class="desc">' + esc(pj.desc) + "</p>";
+  const credits = (pj) => '<dl class="cr">' + CREDITS.filter(([, k]) => pj[k]).map(([l, k]) => "<div" + (k === "result" ? ' class="res"' : "") + "><dt>" + l + "</dt><dd>" + esc(pj[k]) + "</dd></div>").join("") + "</dl>";
+  const go = '<a class="go" href="#" onclick="return false">View case study' + ARROW + "</a>";
+  const notesHTML = (i) => meta(PROJECTS[i], i) + title(PROJECTS[i]) + desc(PROJECTS[i]) + credits(PROJECTS[i]) + go;
+  const sleeve = (i) => {
+    const pj = PROJECTS[i];
+    return '<div class="sl" style="' + theme(i) + '"><span class="sl-frame"></span><span class="sl-top"><span>Trinh Trinh Nguyen</span><b>' + catNo(i) + '</b></span><span class="sl-art"><img alt="" data-pic="' + i +
+      '"></span><span class="sl-foot"><span class="sl-name">' + esc(split(pj.title)[0]) + '</span><span class="sl-kind">' + esc(pj.tag) + "</span></span></div>";
+  };
+  const head = (cls) => '<div class="' + cls + '"><p class="k"><span>(02) Selected work</span><span class="rule"></span><span class="soft">06 projects</span></p><h2 class="big">Records I’d play <em>again.</em></h2></div>';
+  const intro = (L, name, pitch, rows) => '<header class="oi"><p class="oi-k">Direction ' + L + '</p><h1 class="oi-t">' + name + '</h1><p class="oi-p">' + pitch + '</p><ul class="oi-why">' +
+    rows.map(([k, v]) => "<li><b>" + k + "</b><span>" + v + "</span></li>").join("") + '</ul><p class="oi-go">Scroll to try it ↓</p></header>';
+  const docTop = (el) => el.getBoundingClientRect().top + scrollY;
+  /* the notes of one project, swapped in with a short cross-fade */
+  function swapNotes(box, html) {
+    const old = box.lastElementChild, el = document.createElement("div");
+    el.innerHTML = html;
+    box.appendChild(el);
+    if (!old) return;
+    old.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: "translateY(-12px)" }], { duration: 220, easing: "ease-in", fill: "forwards" }).onfinish = () => old.remove();
+    el.animate([{ opacity: 0, transform: "translateY(14px)" }, { opacity: 1, transform: "none" }], { duration: 420, delay: 140, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" });
+  }
+  const OPT = {};
+
+
+  /* ── 1 · The spines ── */
+  OPT.a = (() => {
+    const sec = $("opt-a");
+    const THICK = [22, 15, 26, 18, 24, 16];                          // each record's thickness: singles and doubles side by side
+    const WASH = ["#efe9e8", "#efe8ef", "#f5f0ea", "#eee8ef", "#eee8e6", "#ebf5ef"];   // the page, tinted by the chosen record
+    const GAP = 3;
+    const bits = (i) => (i + 1).toString(2).padStart(4, "0");
+    const record = (i) => '<div class="rc" style="' + theme(i) + ";--d:" + THICK[i % THICK.length] + 'px">' +
+      '<div class="rc-f rc-front" title="Put it back"><div class="cv"><span class="cv-art"><img alt="" data-pic="' + i + '"></span><span class="cv-no">' + catNo(i) +
+      '</span><span class="cv-f" aria-hidden="true">✿</span><span class="cv-yr">' + esc(PROJECTS[i].year) + "</span></div></div>" +
+      '<div class="rc-f rc-back"></div>' +
+      '<button type="button" class="rc-f rc-spine" data-i="' + i + '" aria-label="' + esc(catNo(i) + ", " + PROJECTS[i].title + ", " + PROJECTS[i].year) + '"><span class="sn-spn"><b>' + two(i) + '</b><i aria-hidden="true">✿</i></span></button>' +
+      '<div class="rc-f rc-edge"></div><div class="rc-f rc-top"></div><div class="rc-f rc-bot"></div></div>';
+    const body = (i) => { const pj = PROJECTS[i]; return meta(pj, i) + title(pj) + desc(pj) + credits(pj) + '<a class="sn-cta" href="#" onclick="return false">View case study' + ARROW + "</a>"; };
+    sec.innerHTML = intro("1", "The <em>spines</em>",
+      "Your work as a row of thin records standing on the page, spines out, each in one of the site’s colours with nothing on it but its number. Nothing to read until you choose: click a spine and that record slides out, turns to its cover and stands beside the row, with its notes on the other side.",
+      [["Concept", "A collection seen the way you keep it, spine by spine. No shelf and no clutter: the colours and the numbers do the work."], ["Fun", "Choosing is the whole interaction: a spine lifts as you point at it, then slides out and turns when you click."], ["Clear", "One record’s notes at a time, in a large readable column; the arrows step through the rest."]]) +
+      '<div class="sn" id="sn"><div class="sn-stage" id="snStage">' + head("sn-head") +
+      '<div class="sn-room">' + PROJECTS.map((pj, i) => record(i)).join("") + "</div>" +
+      '<span class="sn-shadow" id="snShadow"></span>' +
+      '<div class="sn-bits" id="snBits" aria-hidden="true">' + PROJECTS.map((pj, i) => '<span style="width:' + (THICK[i % THICK.length] + GAP) + 'px">' + bits(i) + "</span>").join("") + "</div>" +
+      '<p class="sn-hint" id="snHint">Choose a record</p>' +
+      '<aside class="sn-notes" id="snNotes" aria-live="polite"><div class="sn-nav"><button type="button" id="snPrev" aria-label="Previous record">←</button><span id="snNo">01 / 06</span>' +
+      '<button type="button" id="snNext" aria-label="Next record">→</button><button type="button" class="sn-close" id="snClose">Put it back ×</button></div><div class="notes sn-body" id="snBody"></div></aside>' +
+      "</div></div>";
+    const stage = $("snStage"), notes = $("snNotes"), bodyEl = $("snBody"), hint = $("snHint"), shadow = $("snShadow"), bitsEl = $("snBits"), headEl = sec.querySelector(".sn-head");
+    const bitSpans = [...bitsEl.children];
+    const recs = [...sec.querySelectorAll(".sn .rc")].map((el, i) => ({ el, i, d: THICK[i % THICK.length], p: 0, want: 0, h: 0, hover: false, tf: "" }));
+    const groupW = recs.reduce((a, r) => a + r.d + GAP, 0) - GAP;
+    let open = -1, hovered = -1, W = 400, rowY = 0, closedC = 0, openC = 0, coverX = 0, coverY = 0, ph = false, last = 0, hintKey = "";
+    function layout() {
+      ph = phone();
+      const sw = stage.clientWidth;
+      if (!ph) {
+        stage.style.removeProperty("--h");
+        const sh2 = stage.clientHeight, pad = clamp(sw * 0.05, 20, 88), notesW = Math.min(440, sw * 0.32), sep = clamp(sw * 0.045, 40, 72);
+        W = Math.max(200, Math.min(sh2 * 0.58, sw - 2 * pad - groupW - notesW - 2 * sep, 520));
+        rowY = sh2 * 0.56;
+        const total = W + sep + groupW + sep + notesW, left = (sw - total) / 2;     // open: cover, row, notes, centred together
+        closedC = sw / 2; openC = left + W + sep + groupW / 2;
+        coverX = left + W / 2; coverY = rowY;
+        Object.assign(notes.style, { left: (left + W + 2 * sep + groupW) + "px", width: notesW + "px", top: rowY + "px" });
+      } else {
+        W = Math.min(sw * 0.7, (innerHeight - BAR) * 0.42);
+        rowY = headEl.offsetTop + headEl.offsetHeight + 34 + W / 2;
+        closedC = openC = sw / 2;
+        coverX = sw / 2; coverY = rowY + W + 40;                        // on phones the record comes out below the row
+        notes.style.setProperty("--nt", (coverY + W / 2 + 26) + "px");
+      }
+      stage.style.setProperty("--W", W.toFixed(1) + "px");
+      stage.style.setProperty("--persp", (W * 8).toFixed(0) + "px");
+      stage.style.setProperty("--po", (sw / 2).toFixed(0) + "px " + rowY.toFixed(0) + "px");
+      hint.style.top = (rowY + W / 2 + (ph ? 68 : 58)) + "px";
+      sizePhone();
+      recs.forEach((r) => { r.tf = ""; });
+    }
+    /* phones: the section grows to hold the cover and the notes under the row */
+    function sizePhone() {
+      if (!ph) return;
+      const closedH = rowY + W / 2 + 110, openH = coverY + W / 2 + 26 + notes.offsetHeight + 56;
+      stage.style.setProperty("--h", (open >= 0 ? Math.max(closedH, openH) : closedH) + "px");
+    }
+    /* a record's place for a pull of p (0 in the row, 1 out, facing you): out of the row first,
+       then turned to its cover on the way across */
+    function pose(r, p, sx) {
+      const sy = rowY - r.h * W * 0.035;
+      if (p <= 0) return [sx, sy, -W / 2, 90];
+      const outZ = W * 0.62, outY = sy - W * 0.03;
+      if (p < 0.34) { const e = easeInOut(p / 0.34); return [sx, lerp(sy, outY, e), lerp(-W / 2, outZ, e), 90]; }
+      const e = easeInOut((p - 0.34) / 0.66);
+      return [lerp(sx, coverX, e), lerp(outY, coverY, e), lerp(outZ, W * 0.04, e), lerp(90, 0, e)];
+    }
+    function frame() {
+      const now = performance.now(), dt = Math.min(0.05, (now - (last || now)) / 1000);
+      last = now;
+      let opn = 0;
+      const busy = recs.some((r) => r.want === 0 && r.p > 0.25);
+      recs.forEach((r) => {
+        if (r.want > r.p && busy) return;                               // wait until the last one is nearly back
+        const sp = dt / (r.want > r.p ? 0.95 : busy ? 0.55 : 0.8);
+        r.p = r.want > r.p ? Math.min(r.want, r.p + sp) : Math.max(r.want, r.p - sp);
+        r.h += ((r.hover && r.p === 0 && open < 0 ? 1 : 0) - r.h) * 0.18;
+        opn = Math.max(opn, r.p);
+      });
+      const centre = lerp(closedC, openC, easeInOut(opn));
+      const ws = recs.map((r) => (r.d + GAP) * (1 - smooth(r.p / 0.6)));   // a record on its way out gives up its place
+      const rowW = ws.reduce((a, b) => a + b, 0) - GAP;
+      let x = centre - rowW / 2;
+      recs.forEach((r, i) => {
+        const [px, py, pz, pa] = pose(r, r.p, x + r.d / 2);
+        const tf = "translate3d(" + (px - W / 2).toFixed(1) + "px," + (py - W / 2).toFixed(1) + "px," + pz.toFixed(1) + "px) rotateY(" + pa.toFixed(2) + "deg)";
+        if (tf !== r.tf) { r.tf = tf; r.el.style.transform = tf; }
+        const inRow = r.p === 0, out = r.p > 0.9;
+        if (inRow !== r.inRow) { r.inRow = inRow; r.el.classList.toggle("in", inRow); }
+        if (out !== r.out) { r.out = out; r.el.classList.toggle("out", out); }
+        x += ws[i];
+      });
+      Object.assign(shadow.style, { left: (centre - rowW / 2 - 26) + "px", width: (rowW + 52) + "px", top: (rowY + W / 2 - 13) + "px" });
+      Object.assign(bitsEl.style, { left: (closedC - groupW / 2) + "px", top: (rowY + W / 2 + 16) + "px", opacity: (1 - Math.min(1, opn * 3)).toFixed(2) });
+      notes.classList.toggle("on", open >= 0 && recs[open].p > 0.55);
+      const hk = open >= 0 ? "open" : hovered >= 0 ? "h" + hovered : "idle";
+      if (hk !== hintKey) {
+        hintKey = hk;
+        hint.innerHTML = open >= 0 ? "" : hovered >= 0 ? catNo(hovered) + " &nbsp;·&nbsp; <em>" + esc(split(PROJECTS[hovered].title)[1]) + "</em>" : "Choose a record";
+        bitSpans.forEach((b, i) => b.classList.toggle("on", i === hovered && open < 0));
+      }
+    }
+    function choose(i) {
+      if (i === open) i = -1;
+      open = i;
+      recs.forEach((r) => { r.want = r.i === i ? 1 : 0; });
+      if (i >= 0) {
+        swapNotes(bodyEl, body(i));
+        $("snNo").textContent = two(i) + " / " + pad2(N);
+        stage.style.backgroundColor = WASH[i % WASH.length];
+      } else stage.style.backgroundColor = "";
+      if (ph) {
+        requestAnimationFrame(sizePhone);
+        if (i >= 0) setTimeout(() => scrollTo({ top: docTop(stage) + coverY - innerHeight * 0.3, behavior: "smooth" }), 250);
+      }
+    }
+    sec.querySelectorAll(".sn .rc-spine").forEach((b) => {
+      const r = recs[+b.dataset.i];
+      b.addEventListener("pointerenter", () => { r.hover = true; hovered = r.i; });
+      b.addEventListener("pointerleave", () => { r.hover = false; if (hovered === r.i) hovered = -1; });
+      b.addEventListener("focus", () => { hovered = r.i; });
+      b.addEventListener("blur", () => { if (hovered === r.i) hovered = -1; });
+      b.addEventListener("click", () => choose(r.i));
+    });
+    sec.querySelectorAll(".sn .rc-front").forEach((f) => f.addEventListener("click", () => choose(-1)));
+    $("snClose").addEventListener("click", () => choose(-1));
+    $("snPrev").addEventListener("click", () => choose((open - 1 + N) % N));
+    $("snNext").addEventListener("click", () => choose((open + 1) % N));
+    addEventListener("keydown", (e) => {
+      if (cur !== "a") return;
+      if (e.key === "Escape" && open >= 0) choose(-1);
+      else if (open >= 0 && (e.key === "ArrowRight" || e.key === "ArrowLeft")) { e.preventDefault(); choose((open + (e.key === "ArrowRight" ? 1 : -1) + N) % N); }
+    });
+    return { layout, step() {}, frame, choose };
+  })();
+
+
+  /* ── 2 · The wall ── */
+  OPT.b = (() => {
+    const sec = $("opt-b");
+    sec.innerHTML = intro("2", "The <em>wall</em>",
+      "Your favourite records framed on the wall. You see the whole wall first; scrolling walks up to each frame in turn, and a collector’s card beside it tells you about it.",
+      [["Concept", "How collectors show the records they love most: framed covers, each in its own colour."], ["Fun", "The view drifts from frame to frame across the wall, like walking along it."], ["Clear", "The whole collection at a glance, then each project up close with every fact on its card."]]) +
+      '<div class="wl" id="wl"><div class="wl-stage" id="wlStage"><div class="wl-wall" id="wlWall"><div class="wl-words" id="wlWords">' + head("wl-head") + "</div>" +
+      PROJECTS.map((pj, i) => { const [n, w] = split(pj.title);
+        return '<figure class="wl-fr" data-i="' + i + '"><span class="wl-light"></span><div class="wl-frame"><div class="wl-mat">' + sleeve(i) + "</div></div><figcaption><b>" + catNo(i) + "</b><span>" + esc(n) + ", " + esc(w) + "</span></figcaption></figure>"; }).join("") +
+      '</div><div class="wl-card off" id="wlCard"><p class="wl-card-k"><span id="wlCardK">Frame 01 of 06</span><span id="wlCardY">On the wall since 2026</span></p><div class="notes" id="wlNotes"></div></div>' +
+      '<p class="wl-hint" id="wlHint">Scroll to walk up to the first frame</p></div></div>';
+    const wl = $("wl"), stage = $("wlStage"), wall = $("wlWall"), words = $("wlWords"), card = $("wlCard"), notes = $("wlNotes"), frs = [...sec.querySelectorAll(".wl-fr")];
+    let t = 0, start = 0, stepPx = 1, shown = -2, states = [], F = 400, last = "";
+    function layout() {
+      const sw = stage.clientWidth, sh2 = stage.clientHeight, ph = phone();
+      F = ph ? sw * 0.74 : Math.min(sh2 * 0.68, sw * 0.36);           // a frame's size when you stand at it
+      const cols = ph ? 2 : 3, rows = Math.ceil(N / cols), gx = F * (ph ? 0.32 : 0.62), gy = F * 0.5, side = F * 0.45, top = F * (ph ? 0.95 : 0.85);
+      const capH = F * 0.12, ww = side * 2 + cols * F + (cols - 1) * gx, wh = top + rows * (F + capH) + (rows - 1) * gy + F * 0.4;
+      Object.assign(wall.style, { width: ww + "px", height: wh + "px" });
+      wall.style.setProperty("--F", F.toFixed(1) + "px");
+      Object.assign(words.style, { left: side + "px", top: (F * 0.22) + "px" });
+      const centres = frs.map((fr, i) => {
+        const c = i % cols, r = Math.floor(i / cols), x = side + c * (F + gx), y = top + r * (F + capH + gy);
+        Object.assign(fr.style, { left: x + "px", top: y + "px" });
+        return [x + F / 2, y + F / 2];
+      });
+      const s0 = Math.min((sw * 0.94) / ww, (sh2 * 0.92) / wh);
+      const ax = ph ? sw / 2 : sw * 0.33, ay = ph ? sh2 * 0.29 : sh2 * 0.5;
+      states = [{ s: s0, fx: ww / 2, fy: wh / 2, ax: sw / 2, ay: sh2 / 2 }].concat(centres.map(([fx, fy]) => ({ s: ph ? 0.9 : 1, fx, fy, ax, ay })));
+      stepPx = Math.round(innerHeight * 0.8);
+      wl.style.height = (sh2 + N * stepPx + Math.round(innerHeight * 0.35)) + "px";
+      start = docTop(wl) - BAR;
+      last = "";
+    }
+    function step() {}
+    function frame() {
+      const target = stepped(clamp((scrollY - start) / stepPx, 0, N), 0.2);
+      t += (target - t) * 0.1;
+      if (Math.abs(target - t) < 0.0005) t = target;
+      const a = Math.min(N, Math.floor(t)), b = Math.min(N, a + 1), e = t - a, A = states[a], B = states[b];
+      let s = lerp(A.s, B.s, e);
+      if (a > 0) s *= 1 - 0.24 * Math.sin(Math.PI * e);                // between frames, step back a little
+      const fx = lerp(A.fx, B.fx, e), fy = lerp(A.fy, B.fy, e), ax = lerp(A.ax, B.ax, e), ay = lerp(A.ay, B.ay, e);
+      const tf = "translate(" + (ax - s * fx).toFixed(1) + "px," + (ay - s * fy).toFixed(1) + "px) scale(" + s.toFixed(4) + ")";
+      if (tf !== last) { last = tf; wall.style.transform = tf; }
+      const k = Math.round(t) - 1;                                       // -1: the whole wall
+      if (k !== shown) {
+        shown = k;
+        card.classList.toggle("off", k < 0);
+        $("wlHint").style.opacity = k < 0 ? "1" : "0";
+        if (k >= 0) { swapNotes(notes, notesHTML(k)); $("wlCardK").textContent = "Frame " + two(k) + " of " + pad2(N); $("wlCardY").textContent = "On the wall since " + PROJECTS[k].year; }
+      }
+    }
+    frs.forEach((fr) => fr.addEventListener("click", () => scrollTo({ top: start + (+fr.dataset.i + 1) * stepPx + 2, behavior: "smooth" })));
+    return { layout, step, frame };
+  })();
+
+
+  /* ── 3 · The flow ── */
+  OPT.c = (() => {
+    const sec = $("opt-c");
+    sec.innerHTML = intro("3", "The <em>flow</em>",
+      "Flip through the collection like a music library: the record in front faces you, the rest stand turned to either side, reflected in the shelf. Scroll, click a record, or use the arrow keys.",
+      [["Concept", "Browsing a record collection the way music players first let you: covers flowing past."], ["Fun", "The covers sweep and turn as you scroll, and any one is a click away."], ["Clear", "One record in front with its notes underneath; the bar below shows where you are."]]) +
+      '<div class="fl" id="fl"><div class="fl-stage" id="flStage"><div class="fl-row" id="flRow">' + PROJECTS.map((pj, i) => '<div class="fl-it" data-i="' + i + '">' + sleeve(i) + "</div>").join("") + "</div>" +
+      '<div class="fl-bar" id="flBar">' + PROJECTS.map((pj, i) => '<span class="fl-tick" style="left:' + ((i / (N - 1)) * 100).toFixed(2) + '%"></span>').join("") + '<span class="fl-thumb" id="flThumb"></span></div>' +
+      '<div class="fl-info"><div class="notes" id="flNotes"></div></div></div></div>';
+    const fl = $("fl"), stage = $("flStage"), bar = $("flBar"), thumb = $("flThumb"), notes = $("flNotes"), info = sec.querySelector(".fl-info");
+    const items = [...sec.querySelectorAll(".fl-it")].map((el) => ({ el, tf: "", z: "" }));
+    let t = 0, start = 0, stepPx = 1, shown = -1, S = 300, cx = 0, cy = 0;
+    function layout() {
+      const sw = stage.clientWidth, sh2 = stage.clientHeight, ph = phone();
+      S = ph ? sw * 0.56 : Math.min(sh2 * 0.4, sw * 0.25);
+      cx = sw / 2; cy = ph ? 26 + S / 2 : sh2 * 0.07 + S / 2;
+      stage.style.setProperty("--S", S.toFixed(1) + "px");
+      stage.style.setProperty("--floor", (cy + S / 2).toFixed(0) + "px");
+      bar.style.top = (cy + S / 2 + S * 0.42) + "px";
+      info.style.top = (cy + S / 2 + S * 0.42 + 40) + "px";
+      stepPx = Math.round(innerHeight * 0.55);
+      fl.style.height = (sh2 + (N - 1) * stepPx + Math.round(innerHeight * 0.35)) + "px";
+      start = docTop(fl) - BAR;
+      items.forEach((it) => { it.tf = ""; });
+    }
+    function step() {}
+    function frame() {
+      const target = stepped(clamp((scrollY - start) / stepPx, 0, N - 1), 0.15);
+      t += (target - t) * 0.12;
+      if (Math.abs(target - t) < 0.0005) t = target;
+      const near = S * 0.66, far = S * 0.22, turn = 62, back = S * 0.6;
+      items.forEach((it, i) => {
+        const o = i - t, ao = Math.abs(o), sg = Math.sign(o);
+        const x = ao < 1 ? o * near : sg * (near + (ao - 1) * far);
+        const r = -sg * turn * Math.min(1, ao), z = -back * Math.min(1, ao) - Math.max(0, ao - 1) * S * 0.04;
+        const tf = "translate3d(" + (cx + x - S / 2).toFixed(1) + "px," + (cy - S / 2).toFixed(1) + "px," + z.toFixed(1) + "px) rotateY(" + r.toFixed(2) + "deg)";
+        if (tf !== it.tf) { it.tf = tf; it.el.style.transform = tf; it.el.style.opacity = ao > 4.5 ? "0" : ""; }
+      });
+      thumb.style.left = ((t / (N - 1)) * 100).toFixed(2) + "%";
+      const k = clamp(Math.round(t), 0, N - 1);
+      if (k !== shown) { shown = k; swapNotes(notes, '<div class="fl-l">' + meta(PROJECTS[k], k) + title(PROJECTS[k]) + desc(PROJECTS[k]) + '</div><div class="fl-r">' + credits(PROJECTS[k]) + go + "</div>"); }
+    }
+    const goTo = (i) => scrollTo({ top: start + clamp(i, 0, N - 1) * stepPx + 2, behavior: "smooth" });
+    items.forEach((it, i) => it.el.addEventListener("click", () => goTo(i)));
+    bar.addEventListener("click", (e) => { const b = bar.getBoundingClientRect(); goTo(Math.round(((e.clientX - b.left) / b.width) * (N - 1))); });
+    addEventListener("keydown", (e) => {
+      if (cur !== "c" || (e.key !== "ArrowRight" && e.key !== "ArrowLeft")) return;
+      const r = fl.getBoundingClientRect();
+      if (r.top > innerHeight * 0.5 || r.bottom < innerHeight * 0.5) return;
+      e.preventDefault();
+      goTo(Math.round(t) + (e.key === "ArrowRight" ? 1 : -1));
+    });
+    return { layout, step, frame };
+  })();
+
+
+  /* ── switching, scrolling, sizing ── */
+  Object.keys(OPT).forEach((o) => fillPics($("opt-" + o)));
+  const tabs = [...document.querySelectorAll(".ob-tabs button")];
+  let cur = "a";
+  function show(o) {
+    cur = o;
+    document.querySelectorAll(".opt").forEach((s) => s.classList.toggle("on", s.dataset.o === o));
+    tabs.forEach((t) => t.setAttribute("aria-selected", String(t.dataset.o === o)));
+    scrollTo(0, 0);
+    OPT[o].layout(); OPT[o].step();
+    history.replaceState(null, "", "#" + o);
+  }
+  tabs.forEach((t) => t.addEventListener("click", () => show(t.dataset.o)));
+  addEventListener("scroll", () => OPT[cur].step(), { passive: true });
+  addEventListener("resize", () => { OPT[cur].layout(); OPT[cur].step(); });
+  (function loop() { if (OPT[cur].frame) OPT[cur].frame(); requestAnimationFrame(loop); })();
+  show(OPT[location.hash.slice(1)] ? location.hash.slice(1) : "a");
+  /* the placeholder type sheet uses the serif: draw the pictures again once it has loaded */
+  if (document.fonts) document.fonts.ready.then(() => {
+    pics.forEach((u) => URL.revokeObjectURL(u));
+    pics = PROJECTS.map((pj, i) => toURL(drawShot(pj, i)));
+    Object.keys(OPT).forEach((o) => fillPics($("opt-" + o)));
+    OPT[cur].layout(); OPT[cur].step();
+  });
+})();
+</script>
+</body>
+</html>
