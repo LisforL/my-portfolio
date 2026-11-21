@@ -1348,9 +1348,9 @@ body.on-label .nav-link:hover, body.on-label .nav-link:focus-visible { color: va
     </div>
     <div class="ft-bottom">
       <!-- Resume: point href at the PDF once it is in the folder. Email: a mailto: once the address is given -->
-      <a class="ft-link" href="#">Resume &rarr;</a>
+      <a class="ft-link" href="#"><span class="roll"><span class="roll-in"><span>Resume</span><span aria-hidden="true">Resume</span></span></span> <span class="nudge" aria-hidden="true">&rarr;</span></a>
       <button type="button" class="ft-up" id="ftUp" aria-label="Back to top">&uarr;</button>
-      <a class="ft-link" href="#">Email &rarr;</a>
+      <a class="ft-link" href="#"><span class="roll"><span class="roll-in"><span>Email</span><span aria-hidden="true">Email</span></span></span> <span class="nudge" aria-hidden="true">&rarr;</span></a>
     </div>
   </footer>
 </main>
@@ -3148,7 +3148,8 @@ const START_ANGLE = -65 * Math.PI / 180;  // pointing up and to the right, like 
         '<p class="fw-cap"><span>' + esc(name) + "</span><span>" + esc(pj.tag) + "</span></p></a></li>";
     }).join("");
     grid.addEventListener("click", (e) => { const a = e.target.closest("a"); if (a && a.getAttribute("href") === "#") e.preventDefault(); });
-    $("fwAll").innerHTML = "<span>" + $("fwAll").textContent + "</span>";
+    const allTxt = esc($("fwAll").textContent);   // its words roll on hover (the shared .roll, in pt.js)
+    $("fwAll").innerHTML = '<span><span class="roll"><span class="roll-in"><span>' + allTxt + '</span><span aria-hidden="true">' + allTxt + "</span></span></span></span>";
   })();
   /* the projects come up one by one as they scroll into view (the second of a row a beat after
      the first); a picture that drops back below the screen is set back, to come up again */

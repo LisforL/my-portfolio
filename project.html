@@ -145,6 +145,7 @@ a { color: inherit; }
 .btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 2.2vw; padding: 10px 16px; background: var(--paper); color: var(--ink) !important;
   font-family: var(--mono); font-size: var(--lab); line-height: 1; text-transform: uppercase; text-decoration: none; transition: background-color 0.25s ease, transform 0.3s ease; }
 .btn:hover, .btn:focus-visible { background: var(--thistle); transform: translateY(-2px); }
+.btn .roll { height: 1em; line-height: 1; }   /* the rolling words keep the button's own line-height 1, so it stays the same size */
 
 /* a picture in the left half, the notes centred in the right */
 .pair { display: grid; grid-template-columns: 47.5vw 1fr; height: 85vh; margin-top: var(--gap); }
@@ -711,8 +712,10 @@ const PALETTE = ["#cdb9dd", "#b49ac8", "#e3d6ea", "#8760af", "#d9c7e0", "#a68bbf
     : l.sub ? '<h3 class="sub"' + d(k0 + k) + ">" + l.sub + "</h3>"
     : l.ul && numbered(b) ? l.ul.map((x) => '<p class="num"' + d(k0 + k) + ">#" + (++n) + '</p><p class="body"' + d(k0 + k) + ">" + x + "</p>").join("")
     : l.ul ? '<ul class="bul"' + d(k0 + k) + ">" + l.ul.map((x) => "<li>" + x + "</li>").join("") + "</ul>" : "").join(""); };
+  /* a button's words roll on hover and its arrow nudges (the shared .roll and .nudge, in pt.js) */
+  const roll = (t) => '<span class="roll"><span class="roll-in"><span>' + t + '</span><span aria-hidden="true">' + t + "</span></span></span>";
   const btn = (b, k0) => b.btn ? '<a class="btn' + (b.btn.ink ? " ink" : "") + '"' + d(k0) +
-    ' href="' + b.btn.href + '" target="_blank" rel="noopener">' + b.btn.label + ' <span aria-hidden="true">&nearr;</span></a>' : "";
+    ' href="' + b.btn.href + '" target="_blank" rel="noopener">' + roll(b.btn.label) + ' <span class="nudge ne" aria-hidden="true">&nearr;</span></a>' : "";
   /* a block's words: its label, its heading (big where the block has room for one, bold in the
      body where it does not), its lines, and a link to the live work if it has one */
   const lab = (b, k) => b.lab ? '<p class="lab"' + d(k) + ">" + b.lab + "</p>" : "";
@@ -776,7 +779,7 @@ const PALETTE = ["#cdb9dd", "#b49ac8", "#e3d6ea", "#8760af", "#d9c7e0", "#a68bbf
     "</dl>" +
     '<h1 class="title"' + d(0) + ">" + esc(pj.big || pj.name) + "</h1>" +
     (pj.live ? '<p class="live"><a class="btn ink" href="' + esc(pj.live.href) + '" target="_blank" rel="noopener">' +
-      esc(pj.live.label) + ' <span aria-hidden="true">&nearr;</span></a></p>' : "") +   /* Koulen has no Vietnamese diacritics: `big` spells the display name without them */
+      roll(esc(pj.live.label)) + ' <span class="nudge ne" aria-hidden="true">&nearr;</span></a></p>' : "") +   /* Koulen has no Vietnamese diacritics: `big` spells the display name without them */
     '<section class="cover">' + pic("", true, pj.cover) + "</section>" +
     pj.blocks.map(draw).join("") +
     (() => {

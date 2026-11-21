@@ -620,3 +620,25 @@
   }
   document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", init) : init();
 })();
+
+/* Button hover (the owner's asking, 21 Nov 2026): the word roll that Info's View all work had first,
+   now on every button and footer link. The label sits in a one-line window (.roll) with a copy under
+   it; on hover the pair slides up half its height, so the copy rolls in. Same ease and time as
+   about.html's .btn (0.35s, cubic-bezier(.22, 1, .36, 1)). An arrow beside a label (.nudge) moves a
+   few px the way it points: → right, ↗ up and right. Markup:
+   <a><span class="roll"><span class="roll-in"><span>Word</span><span aria-hidden="true">Word</span></span></span>
+      <span class="nudge" aria-hidden="true">&rarr;</span></a>
+   Reduced motion: nothing moves; the colour changes stay. */
+(function () {
+  const st = document.createElement("style");
+  st.textContent =
+    ".roll { display: inline-block; vertical-align: top; height: 1.15em; overflow: hidden; line-height: 1.15; }" +
+    ".roll > .roll-in { display: block; transition: transform 0.35s cubic-bezier(.22, 1, .36, 1); }" +
+    ".roll > .roll-in > span { display: block; }" +
+    "a:hover .roll > .roll-in, a:focus-visible .roll > .roll-in { transform: translateY(-50%); }" +
+    ".nudge { display: inline-block; transition: transform 0.35s cubic-bezier(.22, 1, .36, 1); }" +
+    "a:hover .nudge, a:focus-visible .nudge { transform: translateX(4px); }" +
+    "a:hover .nudge.ne, a:focus-visible .nudge.ne { transform: translate(2px, -2px); }" +
+    "@media (prefers-reduced-motion: reduce) { .roll > .roll-in, .nudge { transition: none; } a:hover .roll > .roll-in, a:focus-visible .roll > .roll-in, a:hover .nudge, a:focus-visible .nudge { transform: none; } }";
+  document.head.appendChild(st);
+})();
