@@ -775,7 +775,7 @@ How the owner works, so the next person can carry on in the same way:
   sight and easy to scan: short plain labels ("User interviews", "Low-fi wireframes"), not
   sentences, not poetic lines, and never a line split in two halves with a comma ("Talk to users,
   hear what isn't working"). The owner finds that style slow to read and AI-like.
-- Check every visual change at 1440×900, 1280×720 and 390×844 before calling it done; the
+- Check every visual change at 1440×900, 1280×720, 390×844 and the tablets (820×1180 upright, 1024×768 sideways) before calling it done; the
   page has a loading screen and a disc screen first, so a test has to click "No sound" (or
   play) and scroll, or use the nav's Work / About links, to reach a section.
 - Keep a copy of `index.html` before big changes, so a version the owner preferred can come
@@ -795,3 +795,18 @@ Known quirks:
 - Keep the single-file structure unless asked to split it.
 - After visual changes, check desktop (1440×900, 1280×720) and a phone (390 px wide).
 - Comments in the code explain intent; keep that style when editing.
+
+## Tablets (21 Nov 2026, the owner's asking)
+
+The site was first built and checked for desktop and phone only. Tablet rules are kept apart, so desktop
+and phone stay exactly as set:
+- Upright tablets (`orientation: portrait`, 761/810 to 1199 wide): every picture that was sized to the
+  screen's height (the case cover, `over`, `full`, a `pair`'s 85vh, Work's cards, Info's next-story
+  card) keeps a landscape shape instead, since a screen taller than wide turned them into tall crops.
+  On a case page a `pair` stacks, picture first, and the text columns are widened. The case page's
+  next-project card is bigger (min(56vw, 560px)).
+- Sideways tablets (`orientation: landscape`, 761 to 1199 wide), case page only: the narrow text
+  columns are widened (a pair's words 34vw, the centred ones about half the width).
+- iPad mini width (600 to 809) takes the phone's one column on Work and Info, with landscape pictures.
+- The button hover roll (pt.js) runs only where `(hover: hover)`, so a tap on an iPad does not leave a
+  label rolled up.

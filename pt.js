@@ -638,10 +638,13 @@
     ".roll > .roll-in { display: block; position: relative; transition: transform 0.35s cubic-bezier(.22, 1, .36, 1); }" +
     ".roll > .roll-in > span { display: block; }" +
     ".roll > .roll-in > span + span { position: absolute; left: 0; top: 100%; }" +   /* the copy waits just under the window */
-    "a:hover .roll > .roll-in, a:focus-visible .roll > .roll-in { transform: translateY(-100%); }" +
+    "a:focus-visible .roll > .roll-in { transform: translateY(-100%); }" +
+    /* hover only where there is a real pointer: on a touch screen (an iPad) a tap would leave the label
+       rolled up until the next tap elsewhere */
+    "@media (hover: hover) { a:hover .roll > .roll-in { transform: translateY(-100%); } a:hover .nudge { transform: translateX(4px); } a:hover .nudge.ne { transform: translate(2px, -2px); } }" +
     ".nudge { display: inline-block; transition: transform 0.35s cubic-bezier(.22, 1, .36, 1); }" +
-    "a:hover .nudge, a:focus-visible .nudge { transform: translateX(4px); }" +
-    "a:hover .nudge.ne, a:focus-visible .nudge.ne { transform: translate(2px, -2px); }" +
+    "a:focus-visible .nudge { transform: translateX(4px); }" +
+    "a:focus-visible .nudge.ne { transform: translate(2px, -2px); }" +
     "@media (prefers-reduced-motion: reduce) { .roll > .roll-in, .nudge { transition: none; } a:hover .roll > .roll-in, a:focus-visible .roll > .roll-in, a:hover .nudge, a:focus-visible .nudge { transform: none; } }";
   document.head.appendChild(st);
 })();

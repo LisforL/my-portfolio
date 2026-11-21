@@ -177,6 +177,21 @@ p, h1, h2, h3, ol, figure { margin: 0; }
   .wk .pic { height: 60vw; }
   .sum .say { font-size: 45px; }
 }
+/* Tablets held upright (the owner's asking, 21 Nov 2026). A card's picture is 0.478 of the screen tall,
+   which on a screen taller than wide made a 560-wide card almost square and cut the words off the
+   project covers. Here it keeps the desktop card's own shape (722x471), its inner window and the label
+   above the row following it. Desktop, landscape tablets and phones are untouched. */
+@media (min-width: 810px) and (max-width: 1199.98px) and (orientation: portrait) {
+  .wk { --pic: 365px; }   /* 560 x 471 / 722 */
+  .wk .pic { height: var(--pic); }
+  .wk .win { top: calc(20px + var(--pic) * 0.23); height: calc(var(--pic) * 0.528); }   /* the same share of the picture as on desktop */
+  .wk .lab-n { top: calc(50% - (var(--pic) + 50px) / 2 - 64px); }
+}
+/* iPad mini and similar (600 to 809 wide) take the phone's one column; their pictures keep a landscape
+   shape rather than the phone's tall one */
+@media (min-width: 600px) and (max-width: 809.98px) {
+  .wk .pic { height: calc((100vw - 2 * var(--pad)) * 0.652); }
+}
 /* 6 · the footer, as the home page's */
 .ft { position: relative; min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; padding: 24px; overflow: hidden; }
 .ft .photo { position: absolute; inset: 0; z-index: 0; overflow: hidden; }

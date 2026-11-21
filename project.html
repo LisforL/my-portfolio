@@ -363,6 +363,55 @@ a { color: inherit; }
   .next .nn { font-size: 56px; margin-top: 16px; }
   .next .card { margin-top: 24px; }
 }
+/* Tablets held upright (iPad 768 to iPad Pro 1024 wide; the owner's asking, 21 Nov 2026). The desktop
+   page sizes its pictures to the screen's height (the cover, `over` and `full` one screen tall, a `pair`
+   85vh), which on a screen taller than wide turns every landscape picture into a tall crop and squeezes
+   the text columns (set as shares of the width) into a few words a line. Here a picture keeps a
+   landscape shape, a pair stacks (picture, then its words), and every text column is widened. Desktop,
+   landscape tablets and phones are untouched. */
+@media (min-width: 761px) and (max-width: 1199.98px) and (orientation: portrait) {
+  .cover { height: auto; aspect-ratio: 3 / 2; }
+  .full { height: auto; aspect-ratio: 3 / 2; }
+  .full.vid { aspect-ratio: 2994 / 1724; }
+  .overview { grid-template-columns: 1fr 3fr; }
+  .overview .head { max-width: 100%; }
+  .overview .body, .overview .sub, .overview .bul { max-width: 86%; }
+  .overview.ctr { min-height: 0; padding: 160px 0; }
+  .overview.ctr .head, .overview.ctr .body, .overview.ctr .sub, .overview.ctr .bul { max-width: 68%; }
+  .over, .over.tall { height: auto; min-height: 72vw; padding: 140px 0; box-sizing: border-box; }
+  .over .head { width: 72%; }
+  .over .body, .over .sub, .over .bul { width: 62%; }
+  .pair, .pair.flip { grid-template-columns: 1fr; height: auto; }
+  .pair .pic { aspect-ratio: 3 / 2; }
+  .pair.flip .txt { order: 0; }   /* the picture first, then its words, the same in every pair */
+  .pair .txt { width: 62%; padding: 96px 0 56px; }
+  .pair .pic.fit img { inset: 4vw; width: calc(100% - 8vw); height: calc(100% - 8vw); }
+  .pic.fit img { inset: 4vw; width: calc(100% - 8vw); height: calc(100% - 8vw); }
+  .solo { min-height: 0; padding: 140px 0; }
+  .solo.mid .txt { width: 76vw; }
+  .solo.left .txt { width: 56vw; margin: 0 auto; }
+  .set, .tbl, .sw { min-height: 0; padding: 140px 0; }
+  .set .hd, .tbl .hd, .sw .hd { width: 76vw; }
+  .duo, .duo.flip { grid-template-columns: 1fr; gap: 56px; }
+  .duo.flip .txt { order: 0; }
+  .duo .txt { max-width: 62%; }
+  .stage .st-lead { width: 82%; }
+  .stage .st-pair { padding: 0 3%; }
+  .stage .st-pair .st-shot { width: 47%; }
+  .stage .st-end { width: 70%; }
+  .show .body { width: 62%; }
+  .show .phones img { width: min(25vw, 300px); }
+  .next .card { width: min(56vw, 560px); }   /* the 349px card sat small in a tall empty screen */
+}
+/* Tablets held sideways (1024 to 1199 wide): the desktop layout, but the text columns set as shares of
+   the width (a pair's 24.2vw, the centred 35-40%) came to about 250-400px, so a section's words ran
+   nearly the screen's whole height (Mâm Việt's [The brand] had 10px to spare at 1024x768). */
+@media (min-width: 761px) and (max-width: 1199.98px) and (orientation: landscape) {
+  .pair .txt { width: 34vw; }
+  .over .head { width: 52%; }
+  .over .body, .over .sub, .over .bul, .show .body { width: 46%; }
+  .overview.ctr .head, .overview.ctr .body, .overview.ctr .sub, .overview.ctr .bul { max-width: 52%; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   [data-rv], .pic[data-rv] { transition: none; opacity: 1; transform: none; filter: none; clip-path: none; }

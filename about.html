@@ -298,6 +298,16 @@ p, h1, h2, h3, ol, figure { margin: 0; }
   .ft .mid { grid-template-columns: 1fr; row-gap: 48px; }
   .ft .vine { display: none; }
 }
+/* Tablets (the owner's asking, 21 Nov 2026). Upright, the next story's card is 0.7 of the screen tall,
+   which on a screen taller than wide cut the cover into a tall strip; it keeps a landscape shape here.
+   An iPad mini (600 to 809 wide) takes the phone's one column, but its card stays landscape too rather
+   than the phone's tall one. Desktop, landscape tablets and phones are untouched. */
+@media (min-width: 810px) and (max-width: 1199.98px) and (orientation: portrait) {
+  .card { height: auto; aspect-ratio: 3 / 2; }
+}
+@media (min-width: 600px) and (max-width: 809.98px) {
+  .card .cv { aspect-ratio: 3 / 2; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   [data-rv], .type i { transition: none; opacity: 1; translate: none; }

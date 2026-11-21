@@ -86,6 +86,6 @@ in a browser and reading computed styles, not by eye. Two things worth knowing i
   that as AI-written.
 - Koulen has no Vietnamese diacritics, so display words take the plain spelling (Mâm Việt →
   "Mam Viet"). Body text is mono and keeps the proper spelling.
-- Check every visual change at 1440×900, 1280×720 and 390×844. Reaching a section means clicking
+- Check every visual change at 1440×900, 1280×720 and 390×844, and on tablets at 820×1180 (upright) and 1024×768 (sideways). Reaching a section means clicking
   past the loading and disc screens, or using the nav.
 - Keep a copy before a big change. The owner often asks to go back to an earlier look.
