@@ -624,7 +624,9 @@
 /* Button hover (the owner's asking, 21 Nov 2026): the word roll that Info's View all work had first,
    now on every button and footer link. The label sits in a one-line window (.roll) with a copy under
    it; on hover the pair slides up half its height, so the copy rolls in. Same ease and time as
-   about.html's .btn (0.35s, cubic-bezier(.22, 1, .36, 1)). An arrow beside a label (.nudge) moves a
+   about.html's .btn (0.35s, cubic-bezier(.22, 1, .36, 1)). The window takes the label's own line-height
+   (Koulen's normal is about 1.82em), never a fixed one: a fixed 1.15 left View all work's words high
+   with a gap under them. An arrow beside a label (.nudge) moves a
    few px the way it points: → right, ↗ up and right. Markup:
    <a><span class="roll"><span class="roll-in"><span>Word</span><span aria-hidden="true">Word</span></span></span>
       <span class="nudge" aria-hidden="true">&rarr;</span></a>
@@ -632,10 +634,11 @@
 (function () {
   const st = document.createElement("style");
   st.textContent =
-    ".roll { display: inline-block; vertical-align: top; height: 1.15em; overflow: hidden; line-height: 1.15; }" +
-    ".roll > .roll-in { display: block; transition: transform 0.35s cubic-bezier(.22, 1, .36, 1); }" +
+    ".roll { display: inline-block; vertical-align: top; overflow: hidden; }" +   /* one line of the label's own line-height, so the button keeps its size and balance */
+    ".roll > .roll-in { display: block; position: relative; transition: transform 0.35s cubic-bezier(.22, 1, .36, 1); }" +
     ".roll > .roll-in > span { display: block; }" +
-    "a:hover .roll > .roll-in, a:focus-visible .roll > .roll-in { transform: translateY(-50%); }" +
+    ".roll > .roll-in > span + span { position: absolute; left: 0; top: 100%; }" +   /* the copy waits just under the window */
+    "a:hover .roll > .roll-in, a:focus-visible .roll > .roll-in { transform: translateY(-100%); }" +
     ".nudge { display: inline-block; transition: transform 0.35s cubic-bezier(.22, 1, .36, 1); }" +
     "a:hover .nudge, a:focus-visible .nudge { transform: translateX(4px); }" +
     "a:hover .nudge.ne, a:focus-visible .nudge.ne { transform: translate(2px, -2px); }" +
