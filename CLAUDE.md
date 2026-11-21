@@ -810,3 +810,18 @@ and phone stay exactly as set:
 - iPad mini width (600 to 809) takes the phone's one column on Work and Info, with landscape pictures.
 - The button hover roll (pt.js) runs only where `(hover: hover)`, so a tap on an iPad does not leave a
   label rolled up.
+
+## Phones, shorter (21 Nov 2026, the owner's asking: "not too stretched, not too long")
+
+Phone rules (760 and under; Info's goal and card at 599 and under) that cut length without changing
+the look. At 390x844 the home page went from 12.4 screens to 10.4, Info 9.7 to 8.9, case pages by
+about 1-2 screens each.
+- Home: the Selected projects title sits at 30% of its screen and the grid starts 0.42 of a screen
+  higher, so the first card shares the title's screen; `.ab-pin` 380vh to 270vh (the record's steps are
+  shares of the pin, so they play the same, a little quicker); `.me-pin` 1.45 to 1.2 screens.
+- Case pages: the cover, `full` and a pair's picture are 4:3 instead of a share of the screen's height;
+  `over` is as tall as its words (at 375x667 Mâm Việt's [The challenges] used to be cut off by its
+  90vh box); section air is a fixed 72px; the next-project screen is no longer a whole screen.
+- Info: smaller flower between ALWAYS DESIGNING and WITH INTENTION, tighter goals, the next story's
+  cover 4:3 instead of the tall 358x441 crop.
+- Every footer on a phone is as tall as its content instead of a whole screen.

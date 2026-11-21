@@ -1060,6 +1060,22 @@ body.on-label .nav-link:hover, body.on-label .nav-link:focus-visible { color: va
   .ft-col { display: none; }                    /* phones: no column, as in the work section */
   .ft-mid { grid-template-columns: minmax(0, 1fr); row-gap: 48px; padding: 48px 0; }
 }
+/* Phones, shorter (the owner's asking, 21 Nov 2026: "not too stretched, not too long"; the page was
+   12.4 screens at 390x844):
+   - Selected projects: the title held a screen of its own before the first card came up. It now
+     sits in the upper part of its screen and the cards start halfway down, sliding over it as before.
+   - How I work: 380vh of scroll for the record's five steps; 270vh plays the same steps (every part
+     of it is a share of the pin's height, so it simply runs a little quicker).
+   - My Craft: held 0.45 of a screen after the record lands; now 0.2.
+   - The footer: no longer a whole screen tall, which left an empty band between its words and the
+     record. */
+@media (max-width: 760px) {
+  .fw-title { top: 30%; }
+  .fw-grid { margin-top: calc(var(--screen, 100vh) * -0.42); }
+  .ab-pin { height: 270vh; }
+  .me-pin { height: calc(var(--screen, 100vh) * 1.2); }
+  .ft { min-height: 0; }
+}
 @media (prefers-reduced-motion: reduce) { .do-name { transition: none; } }
 
 

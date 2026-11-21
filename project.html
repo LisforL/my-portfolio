@@ -403,6 +403,25 @@ a { color: inherit; }
   .show .phones img { width: min(25vw, 300px); }
   .next .card { width: min(56vw, 560px); }   /* the 349px card sat small in a tall empty screen */
 }
+/* Phones, shorter (the owner's asking, 21 Nov 2026: "not too stretched, not too long"). Boxes that
+   were a share of the screen's height (the cover 70vh, `over` 86-90vh, a pair's picture 56vh, `full`
+   56vh) take their content's size or a picture's own shape instead, and the air round a section is a
+   fixed step rather than 12-14vh. This also stops `over` cutting off its last lines: at 375x667 Mâm
+   Việt's [The challenges] was 10px taller than its box. */
+@media (max-width: 760px) {
+  .cover { height: auto; aspect-ratio: 4 / 3; }
+  .full { height: auto; aspect-ratio: 4 / 3; }
+  .full.vid { aspect-ratio: 2994 / 1724; }
+  .overview { padding: 72px 0; }
+  .overview.ctr { padding: 72px 0; }
+  .over, .over.tall { height: auto; min-height: 0; padding: 72px 20px; }
+  .pair .pic { height: auto; aspect-ratio: 4 / 3; }
+  .pair .txt { padding: 48px 0 8px; }
+  .reel, .row.lead { padding-top: 48px; }
+  .show { padding: 64px 16px 72px; }
+  .show .phones { margin-top: 40px; }
+  .next { min-height: 0; padding: 96px 0 120px; }
+}
 /* Tablets held sideways (1024 to 1199 wide): the desktop layout, but the text columns set as shares of
    the width (a pair's 24.2vw, the centred 35-40%) came to about 250-400px, so a section's words ran
    nearly the screen's whole height (Mâm Việt's [The brand] had 10px to spare at 1024x768). */

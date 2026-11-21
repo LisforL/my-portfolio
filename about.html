@@ -308,6 +308,21 @@ p, h1, h2, h3, ol, figure { margin: 0; }
 @media (min-width: 600px) and (max-width: 809.98px) {
   .card .cv { aspect-ratio: 3 / 2; }
 }
+/* Phones, shorter (the owner's asking, 21 Nov 2026: "not too stretched, not too long"): the flower
+   between ALWAYS DESIGNING and WITH INTENTION is smaller, so the pair fits a screen with room to spare;
+   less air round the three goals; the next story's cover is landscape (the tall 358x441 crop cut the
+   project's words off the picture); the footer is as tall as its content, not a whole screen. */
+@media (max-width: 599.98px) {
+  .goal { padding: var(--space-section) 0; }
+  .split .vine { width: 72px; height: 208px; margin: 16px 0 12px; }
+  .goal .ask { margin-top: var(--space-label); }
+  .three { row-gap: 48px; }
+  .card .cv { aspect-ratio: 4 / 3; }
+}
+@media (max-width: 760px) {
+  .ft { min-height: 0; }
+  .ft .mid { padding: 56px 0; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   [data-rv], .type i { transition: none; opacity: 1; translate: none; }
