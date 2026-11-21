@@ -1363,10 +1363,10 @@ body.on-label .nav-link:hover, body.on-label .nav-link:focus-visible { color: va
       </div>
     </div>
     <div class="ft-bottom">
-      <!-- Resume: point href at the PDF once it is in the folder. Email: a mailto: once the address is given -->
-      <a class="ft-link" href="#"><span class="roll"><span class="roll-in"><span>Resume</span><span aria-hidden="true">Resume</span></span></span> <span class="nudge" aria-hidden="true">&rarr;</span></a>
+      <!-- Resume: the PDF in the site folder, opened in a new tab. Email: a mailto: link -->
+      <a class="ft-link" href="Trinh_resume.pdf" target="_blank" rel="noopener"><span class="roll"><span class="roll-in"><span>Resume</span><span aria-hidden="true">Resume</span></span></span> <span class="nudge" aria-hidden="true">&rarr;</span></a>
       <button type="button" class="ft-up" id="ftUp" aria-label="Back to top">&uarr;</button>
-      <a class="ft-link" href="#"><span class="roll"><span class="roll-in"><span>Email</span><span aria-hidden="true">Email</span></span></span> <span class="nudge" aria-hidden="true">&rarr;</span></a>
+      <a class="ft-link" href="mailto:trinhtrinhnguyen333@gmail.com"><span class="roll"><span class="roll-in"><span>Email</span><span aria-hidden="true">Email</span></span></span> <span class="nudge" aria-hidden="true">&rarr;</span></a>
     </div>
   </footer>
 </main>
@@ -3067,10 +3067,10 @@ const START_ANGLE = -65 * Math.PI / 180;  // pointing up and to the right, like 
       role: "Product designer", team: "Self-directed", time: "2 weeks", result: "A concept, prototyped",
       desc: "Waiting is the part nobody designs. A mascot with one pose per job turns the wait from dead time into the thing people remember." },
     { title: "Bliss: a restaurant website built on warmth", tag: "Restaurant website", cat: "Web", year: "2026", url: "project.html?p=6", img: "projects/bliss/image-01.jpg",
-      role: "Product designer", team: "TL Studio", time: "[x weeks]", result: "Menu, gallery and table booking on one site",
+      role: "Product designer", team: "TL Studio", result: "Menu, gallery and table booking on one site",
       desc: "Made with love, served with joy: cream and burgundy, serif type, hand-drawn food patterns and motion carrying the page." },
     { title: "TL Studio: a website for a digital agency", tag: "Agency website", cat: "Web", year: "2026", url: "project.html?p=7", img: "projects/tl-studio/image-01.jpg",
-      role: "Product designer", team: "Worked independently", time: "[x weeks]", result: "Live at tlstudio.site",
+      role: "Product designer", team: "Worked independently", result: "Live at tlstudio.site",
       desc: "A website for a digital agency: its services, its work, its team, and an easy way to get in touch." }
   ];
   const worksEl = $("works"), list = $("workList"), sec = $("worksSec"), colEl = sec.querySelector(".wk-col");

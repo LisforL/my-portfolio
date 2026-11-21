@@ -65,10 +65,10 @@ in a browser and reading computed styles, not by eye. Two things worth knowing i
 
 ## Still to fill in
 
-- The footer's **Resume** and **Email** links are `href="#"` on all three pages. They need the
-  resume PDF's path and the owner's email address.
+- Done 21 Nov 2026: the footer's **Resume** opens `Trinh_resume.pdf` (site root) in a new tab, and
+  **Email** is a mailto: link, on all three pages. To update the resume, replace that file.
 - Project pictures: every case has its images; what is still marked is noted per project in
-  CLAUDE.md. Bliss's and TL Studio's timelines are `[x weeks]`.
+  CLAUDE.md. Bliss and TL Studio show no timeline (the owner's choice; their `time` is left out).
 - The work section's closing line and where "View all work" points.
 - Words in `[brackets]` anywhere are placeholders for the owner.
 - `about.html` still uses the older 36px-rise scroll reveal; `work.html` and `project.html` use the
